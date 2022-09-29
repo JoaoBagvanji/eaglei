@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "eaglei",
+    "slug": "eaglei",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
