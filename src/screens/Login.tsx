@@ -1,0 +1,50 @@
+import { VStack, Heading, Icon, useTheme } from 'native-base';
+import { User, Key } from 'phosphor-react-native'
+import { useState } from 'react';
+import {  Alert } from 'react-native';
+
+
+import Logo from '../assets/eagle I 1.svg' ;
+import { Button } from '../components/Button';
+import { Input } from '../components/Input';
+
+export function Login(){
+    
+    const { colors } = useTheme();
+    const { fonts } = useTheme();
+    const [isLoading, setIsLoading] = useState(false);
+
+    return(
+        <VStack flex={1} alignItems="center" bg="white" px={8} pt={24}>
+
+                < Logo />
+
+                <Heading fontFamily={fonts.heading} color="secondary.700" fontSize="xl" mt={20} mb={6}>
+                    Acesse a tua conta
+                </Heading>
+
+                <Input 
+                    mb={4}
+                    placeholder="Username"
+                    InputLeftElement={<Icon as={<User color={colors.primary[700]}/>} ml={4}/>}
+                />
+
+                <Input 
+                    mb={8}
+                    placeholder="Password"
+                    InputLeftElement={<Icon as={<Key color={colors.primary[700]} />} ml={4} />}
+                    secureTextEntry
+                    style={{justifyContent: 'flex-end'}}
+                />
+
+                <Button 
+                    title='Entrar'
+                    w="full"
+                
+                />
+                
+
+        </VStack>
+
+    )
+}
