@@ -10,6 +10,7 @@ import  Inventario  from '../screens/Inventario';
 import  Viaturas  from '../screens/Viaturas';
 import  Users  from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
+import  Login  from '../screens/Login';
 
 import * as Animatable from 'react-native-animatable';
 
@@ -39,9 +40,10 @@ export default function AuthRoutes() {
                     alignItems:'center',
                     padding: 6,
                     
-                }
+                },
 
-            }}>
+            }}
+            initialRouteName='Login'>
                 <AppTab.Screen 
                     name='Home'
                     component={Home}
