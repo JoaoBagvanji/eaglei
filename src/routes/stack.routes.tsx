@@ -28,7 +28,7 @@ export default function AppRoutes(){
         <StackRoutes.Screen name="Tarefa" component={Tarefa} />
         <StackRoutes.Screen name="Inventario" component={Inventario} />
         <StackRoutes.Screen name="Users" component={Users} />
-        <StackRoutes.Screen name="Home" component={Home} />
+        <StackRoutes.Screen name="Overview" component={Home} />
 
     </StackRoutes.Navigator>
     )

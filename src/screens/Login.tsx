@@ -10,10 +10,13 @@ import { Input } from '../components/Input';
 
 
 export default function Login(){
-    const navigation = useNavigation();
-    
+    type Nav = {
+        navigate: (value:string) => void;
+    }
+    const { navigate } = useNavigation<Nav>();
+
     function handleLogin(){
-        navigation.navigate('Home');
+        navigate('Home') as never;
     }
     const { colors } = useTheme();
     const { fonts } = useTheme();

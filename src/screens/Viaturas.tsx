@@ -15,18 +15,35 @@ import AuthRoutes from '../routes/tab.routes';
 
 
 const Stack = createStackNavigator();
+
+
+
 export default function MyStack() {
+  
+
     return (
       <NavigationContainer independent={true}>
         
-        <AuthRoutes />
+        <Stack.Navigator  screenOptions={{headerShown: false}} 
+                initialRouteName='Viaturas'>
+            <Stack.Screen name="Viaturas" component={Viaturas} />
+            <Stack.Screen name="Tarefa" component={Tarefa} />
+            <Stack.Screen name="Inventario" component={Inventario} />
+            <Stack.Screen name="Users" component={Users} />
+            <Stack.Screen name="Principal" component={Home} />
+        </Stack.Navigator>
         
       </NavigationContainer>
     );
   }
 export function Viaturas() {
+  type Nav ={
+    navigate : (value: string) => void;
+  }
+  
+  const { navigate } = useNavigation<Nav>()
+  
 
-    const navigation = useNavigation();
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
@@ -51,24 +68,24 @@ export function Viaturas() {
       </VStack>
       <VStack flex={4} px={6}>
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-evenly' alignItems='center'  >
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigation.navigate('Users')}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Users') as never}>
             <Icon as ={<Usuarios color={colors.primary[700]}/>} />
                 <Text >Usuarios</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigation.navigate('Inventario')}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inventario') as never}>
             <Icon as ={<Gear color={colors.primary[700]}/>} />
             <Text >Inventario</Text>
             </TouchableOpacity>
         </View>
 
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-evenly' alignItems='center' paddingBottom={12}>
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigation.navigate('Tarefa')}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Tarefa') as never}>
             <Icon as ={<ListChecks color={colors.primary[700]}/>} />
                 <Text >Tarefa</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Home') as never}>
             <Icon as ={<House color={colors.primary[700]}/>} />
             <Text >Home</Text>
             </TouchableOpacity>

@@ -45,7 +45,7 @@ export default function AuthRoutes() {
             }}
             initialRouteName='Login'>
                 <AppTab.Screen 
-                    name='Home'
+                    name='Inicio'
                     component={Home}
                     options={{
                         tabBarIcon:(({ size, color})=>(
