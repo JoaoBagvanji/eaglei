@@ -23,7 +23,7 @@ export default function Login(){
     const [isLoading, setIsLoading] = useState(false);
 
     return(
-        <VStack flex={1} alignItems="center" bg="white" px={8} pt={24}>
+        <VStack flex={1} alignItems="center" bg="white" px={8} pt={8} justifyContent='center'>
             < Logo />
             <HStack  mb={4} justifyContent="center" alignItems='center'>
                 <Text fontFamily={fonts.heading} color="secondary.700" fontSize="xl" mt={20} mb={6} alignItems='center'>

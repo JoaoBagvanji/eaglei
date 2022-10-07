@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme, Icon } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Car, House, ListChecks, Gear, Users as Usuarios, Truck } from 'phosphor-react-native'
+import { Car, House, Package, Gear, Users as Usuarios, Truck, Wrench } from 'phosphor-react-native'
 
 import { Home } from '../screens/Home';
 
@@ -68,7 +68,7 @@ export default function AuthRoutes() {
                     component={Tarefa}
                     options={{
                         tabBarIcon:(({ size, color})=>(
-                            <Icon as ={<ListChecks color={color} size={size}/>} />
+                            <Icon as ={<Wrench color={color} size={size}/>} />
                         ))
                     }}
                 />
@@ -78,7 +78,7 @@ export default function AuthRoutes() {
                     component={Inventario}
                     options={{
                         tabBarIcon:(({ size, color})=>(
-                            <Icon as ={<Gear color={color} size={size}/>} />
+                            <Icon as ={<Package color={color} size={size}/>} />
                         ))
                     }}
                 />
