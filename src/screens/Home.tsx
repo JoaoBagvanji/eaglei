@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { VStack, HStack, Icon, useTheme, Text, View } from 'native-base';
 
 import { List, Info } from 'phosphor-react-native'
-
+import { Load } from '../components/Load';
 import { Header } from '../components/Header';
 
 
@@ -10,7 +10,11 @@ export function Home() {
 
   const { fonts } = useTheme();
   const { colors } = useTheme();
+  const [loading, setLoading ] = useState(true);
 
+  if(loading)
+  return <Load />
+  
   return (
     <VStack flex={1} pb={6} bg="white">
       <HStack>
