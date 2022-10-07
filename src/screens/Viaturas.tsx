@@ -10,11 +10,18 @@ import  Inventario from '../screens/Inventario';
 import  Users from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
 import  {useNavigation}  from '@react-navigation/native';
+<<<<<<< Updated upstream
+=======
+import { Home } from './Home';
+import AuthRoutes from '../routes/tab.routes';
+import Rotas from '../routes';
+>>>>>>> Stashed changes
 
 
 const Stack = createStackNavigator();
 export default function MyStack() {
     return (
+<<<<<<< Updated upstream
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Viaturas'>
@@ -24,6 +31,9 @@ export default function MyStack() {
             <Stack.Screen name="Users" component={Users} />
         </Stack.Navigator>
       </NavigationContainer>
+=======
+      <AuthRoutes/>
+>>>>>>> Stashed changes
     );
   }
 export function Viaturas() {
@@ -51,11 +61,19 @@ export function Viaturas() {
                 <Icon as ={<Car color={colors.green[500]}/>} />
             </HStack>
       </VStack>
+<<<<<<< Updated upstream
       <VStack flex={1} px={6}>
         <View flex={4} backgroundColor={colors.gray[700]} flexDirection="row" justifyContent='space-evenly' alignItems='center'>
             <TouchableOpacity style={styles.menuButtonsUp} onPress={() => navigation.navigate('Users')}>
             <Icon as ={<Truck color={colors.primary[700]}/>} />
                 <Text >Viaturas</Text>
+=======
+      <VStack flex={4} px={6}>
+      <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-evenly' alignItems='center'  >
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigation.navigate('Users')}>
+            <Icon as ={<Usuarios color={colors.primary[700]}/>} />
+                <Text >Usuarios</Text>
+>>>>>>> Stashed changes
             </TouchableOpacity>
 
             <TouchableOpacity  style={styles.menuButtonsUp} onPress={() => navigation.navigate('Inventario')}>
