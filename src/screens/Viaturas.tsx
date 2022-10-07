@@ -11,7 +11,6 @@ import  Users from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
 import  {useNavigation}  from '@react-navigation/native';
 import { Home } from './Home';
-import AuthRoutes from '../routes/tab.routes';
 
 
 const Stack = createStackNavigator();
@@ -23,16 +22,14 @@ export default function MyStack() {
 
     return (
       <NavigationContainer independent={true}>
-        
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Viaturas'>
             <Stack.Screen name="Viaturas" component={Viaturas} />
             <Stack.Screen name="Tarefa" component={Tarefa} />
             <Stack.Screen name="Inventario" component={Inventario} />
             <Stack.Screen name="Users" component={Users} />
-            <Stack.Screen name="Principal" component={Home} />
+            <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
-        
       </NavigationContainer>
     );
   }
