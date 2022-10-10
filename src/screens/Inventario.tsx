@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Briefcase } from 'phosphor-react-native'
+import { Package } from 'phosphor-react-native'
 import { Header } from '../components/Header';
 export default function Inventario() {
 
@@ -22,7 +22,7 @@ export default function Inventario() {
                     entre os Inventarios
                 </Text>
                 </View>
-                <Icon as ={<Briefcase color={colors.green[500]}/>} />
+                <Icon as ={<Package color={colors.green[500]}/>} />
             </HStack>
       </VStack>
     </VStack>

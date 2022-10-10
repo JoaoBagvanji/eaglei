@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { ListChecks } from 'phosphor-react-native'
+import { Wrench } from 'phosphor-react-native'
 import { Header } from '../components/Header';
 export default function Tarefa() {
 
@@ -22,7 +22,7 @@ export default function Tarefa() {
                     entre as Tarefas
                 </Text>
                 </View>
-                <Icon as ={<ListChecks color={colors.green[500]}/>} />
+                <Icon as ={<Wrench color={colors.green[500]}/>} />
             </HStack>
       </VStack>
     </VStack>

@@ -1,8 +1,9 @@
 import { VStack, Heading, Icon, useTheme, View, HStack,Text } from 'native-base';
 import { User, Key } from 'phosphor-react-native'
 import { useState } from 'react';
-import {  Alert } from 'react-native';
+import {  TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
 
 import Logo from '../assets/eagle I 1.svg' ;
 import { Button } from '../components/Button';
@@ -30,19 +31,23 @@ export default function Login(){
                     Acesse a tua conta
                 </Text>
             </HStack>
-            <Input 
-                mb={4}
-                placeholder="Username"
-                InputLeftElement={<Icon as={<User color={colors.primary[700]}/>} ml={4}/>}
-            />
 
-            <Input 
-                mb={8}
-                placeholder="Password"
-                InputLeftElement={<Icon as={<Key color={colors.primary[700]} />} ml={4} />}
-                secureTextEntry
-                style={{justifyContent: 'flex-end'}}
-            />
+            <View style={styles.uinputView}>
+                <TextInput 
+                    style={styles.txtInput} selectionColor='#12375C' outlineColor='#cce3f9'
+                    activeOutlineColor='#12375C' underlineColor='#12375C' 
+                    left={<TextInput.Icon icon="account-outline"/>}
+                    mode="outlined" label="Username"
+                />
+            </View>
+            <View style={styles.pinputView}>
+                <TextInput 
+                    style={styles.txtInput} selectionColor='#12375C' outlineColor='#cce3f9'
+                    activeOutlineColor='#12375C' left={<TextInput.Icon icon="key-outline" />}
+                    mode="outlined" secureTextEntry={true} label="Password"
+                />
+            </View>
+
             <Button 
                 title='Entrar'
                 w="full"
@@ -52,3 +57,27 @@ export default function Login(){
 
     )
 }
+
+const styles= StyleSheet.create({
+    uinputView:{
+        marginTop: "5%",
+        height:56,
+        width: "100%",
+        justifyContent: 'center',
+        borderRadius: 6
+    },
+
+    pinputView:{
+        marginVertical: "8%",
+        width: "100%",
+        height:56,
+        justifyContent: 'center',
+        borderRadius: 6
+    },
+
+    txtInput:{
+        backgroundColor: '#cce3f9',
+        textColor: '#12375C',
+        
+    }, 
+})
