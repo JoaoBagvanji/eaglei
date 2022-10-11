@@ -1,12 +1,45 @@
 import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Wrench } from 'phosphor-react-native'
+import { VStack, HStack, View, Text, Icon, useTheme,FlatList } from 'native-base';
+import { ProjectorScreenChart, Scroll, Package, Wrench, Users as Usuarios, Truck } from 'phosphor-react-native'
 import { Header } from '../components/Header';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import  {useNavigation}  from '@react-navigation/native';
+import { Home } from './Home';
+
+import Projectos from '../pages_tarefas/Projectos';
+import Relatorios from '../pages_tarefas/Relatorios';
+import Preventiva from '../pages_tarefas/Preventiva';
+
+
+const Stack = createStackNavigator();
+
+
+export function MyStack() {
+    return (
+      <NavigationContainer independent={true}>
+        <Stack.Navigator  screenOptions={{headerShown: false}} 
+                initialRouteName='Tarefa'>
+            <Stack.Screen name="Projectos" component={Projectos} />
+            <Stack.Screen name="Relatorios" component={Relatorios} />
+            <Stack.Screen name="Preventiva" component={Preventiva} />
+            <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+
 export default function Tarefa() {
-
-    const { fonts } = useTheme();
-    const { colors } = useTheme();
-
+    type Nav ={
+        navigate : (value: string) => void;
+      }
+      
+      const { navigate } = useNavigation<Nav>()
+      
+    
+        const { fonts } = useTheme();
+        const { colors } = useTheme();
   return (
     <VStack flex={1} pb={6} bg="white">
         <HStack>
@@ -19,12 +52,52 @@ export default function Tarefa() {
                     Navegue 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Tarefas
+                    entre as Viaturas
                 </Text>
                 </View>
                 <Icon as ={<Wrench color={colors.green[500]}/>} />
             </HStack>
       </VStack>
-    </VStack>
+      <VStack flex={4} px={6}>
+        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Projectos') as never}>
+            <Icon as ={<ProjectorScreenChart color={colors.primary[700]}/>} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Projectos</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Tarefa') as never}>
+            <Icon as ={<Scroll color={colors.primary[700]}/>} />
+            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Tarefas</Text>
+            </TouchableOpacity>
+        </View>
+
+        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inventario') as never}>
+            <Icon as ={<Package color={colors.primary[700]}/>} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Inventario</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Users') as never}>
+            <Icon as ={<Usuarios color={colors.primary[700]}/>} />
+            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Usuarios</Text>
+            </TouchableOpacity>
+        </View>
+
+
+      </VStack>
+      </VStack>
   );
 }
+
+const styles = StyleSheet.create({
+    menuButtonsUp:{
+        backgroundColor: '#f5f5f5',
+        width: '42%',
+        height:'80%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        marginBottom: '5%',
+        borderRadius: 20
+    },
+})
