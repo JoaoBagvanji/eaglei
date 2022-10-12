@@ -1,5 +1,5 @@
 import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme, ScrollView } from 'native-base';
 import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle} from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -75,25 +75,26 @@ export  function Tarefa() {
                     
                 </View>
 
-            <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Relatorios') as never}>
-                    <Icon as ={<Scroll color={colors.primary[700]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Relatorios</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Projectos') as never}>
-                    <Icon as ={<ProjectorScreenChart color={colors.primary[700]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Projectos</Text>
-                </TouchableOpacity>
-            </View>
+                <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
+                    <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Relatorios') as never}>
+                        <Icon as ={<Scroll color={colors.green[700]}/>} />
+                        <Text fontFamily={fonts.heading} color={colors.primary[600]}>Relatorios</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Projectos') as never}>
+                        <Icon as ={<ProjectorScreenChart color={colors.green[700]}/>} />
+                        <Text fontFamily={fonts.heading} color={colors.primary[600]}>Projectos</Text>
+                    </TouchableOpacity>
+                </View>
 
+            </VStack>
         </VStack>
-      </VStack>
+    
   );
 }
 
 const styles = StyleSheet.create({
     menuButtonsUp:{
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#f8f8f8',
         width: '42%',
         height:'80%',
         alignItems: 'center',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
+
 import { Car, ArrowLeft,ArrowRight, Truck, FileSearch} from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -58,8 +59,8 @@ export function Viaturas() {
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
                     Navegue 
                 </Text>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre o Sub Menu de Viaturas
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                    entre os Sub Menus
                 </Text>
                 </View>
                 <Icon as ={<Car color={colors.green[700]}/>} />
@@ -100,7 +101,7 @@ export function Viaturas() {
 }
 const styles = StyleSheet.create({
     menuButtonsUp:{
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#f8f8f8',
         width: '42%',
         height:'80%',
         alignItems: 'center',

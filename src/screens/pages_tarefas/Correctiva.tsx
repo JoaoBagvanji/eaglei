@@ -25,7 +25,7 @@ export default function Correctiva() {
                     Correctivas
                 </Text>
                 </View>
-                <Icon as ={<CheckCircle  color={colors.green[500]}/>} />
+                <Icon as ={<CheckCircle  color={colors.green[700]}/>} />
             </HStack>
       </VStack>
     </VStack>
