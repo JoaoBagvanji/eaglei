@@ -3,7 +3,7 @@ import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { MagnifyingGlass } from 'phosphor-react-native'
 import { Header } from '../../components/Header';
 
-export default function Projectos() {
+export default function Inspeccao() {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
