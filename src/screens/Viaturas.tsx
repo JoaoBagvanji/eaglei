@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Car, ArrowLeft,ArrowRight, Truck, MagnifyingGlass} from 'phosphor-react-native'
+import { Car, ArrowLeft,ArrowRight, Truck, FileSearch} from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
