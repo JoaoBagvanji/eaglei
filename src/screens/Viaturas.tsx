@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Car, ArrowLeft,ArrowRight, Truck, MagnifyingGlass} from 'phosphor-react-native'
+import { Car, ArrowLeft,ArrowRight, Truck, FileSearch } from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -88,7 +88,7 @@ export function Viaturas() {
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inspeccao') as never}>
-            <Icon as ={<MagnifyingGlass color={colors.green[700]}/>} />
+            <Icon as ={<FileSearch  color={colors.green[700]}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Inspecção diária</Text>
             </TouchableOpacity>
         </View>
