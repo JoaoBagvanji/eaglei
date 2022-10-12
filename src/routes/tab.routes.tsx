@@ -64,7 +64,7 @@ export default function AuthRoutes() {
                 />
 
                 <AppTab.Screen 
-                    name='Tarefas'
+                    name='Tarefa'
                     component={Tarefa}
                     options={{
                         tabBarIcon:(({ size, color})=>(

@@ -1,10 +1,10 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { ClockCounterClockwise } from 'phosphor-react-native'
-import { Header } from '../components/Header';
+import { Scroll } from 'phosphor-react-native'
+import { Header } from '../../components/Header';
 
 
-export default function Preventiva() {
+export default function Relatorios() {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -22,10 +22,10 @@ export default function Preventiva() {
                     Navegue 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Tarefas Preventivas
+                    entre os Relatorios
                 </Text>
                 </View>
-                <Icon as ={<ClockCounterClockwise color={colors.green[500]}/>} />
+                <Icon as ={<Scroll color={colors.green[500]}/>} />
             </HStack>
       </VStack>
     </VStack>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Scroll } from 'phosphor-react-native'
-import { Header } from '../components/Header';
+import { CheckCircle  } from 'phosphor-react-native'
+import { Header } from '../../components/Header';
 
 
-export default function Relatorios() {
+export default function Correctiva() {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -19,13 +19,13 @@ export default function Relatorios() {
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
+                    Tarefas 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre os Relatorios
+                    Correctivas
                 </Text>
                 </View>
-                <Icon as ={<Scroll color={colors.green[500]}/>} />
+                <Icon as ={<CheckCircle  color={colors.green[500]}/>} />
             </HStack>
       </VStack>
     </VStack>
