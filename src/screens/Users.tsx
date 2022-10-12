@@ -1,7 +1,7 @@
 import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Users as Usuarios } from 'phosphor-react-native';
-import { FlatList, StyleSheet, Image } from 'react-native';
+import { VStack, HStack, View, Text, Icon, useTheme, Box } from 'native-base';
+import { Info, Users as Usuarios } from 'phosphor-react-native';
+import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import { Header } from '../components/Header';
 import { Fontisto } from '@expo/vector-icons';
@@ -39,17 +39,33 @@ export default function Users() {
             id: 6,
             nome: 'Tovela',
             image: require('../assets/avatars/avatar3.png'),
+        },
+        {
+            id: 7,
+            nome: 'Tovela',
+            image: require('../assets/avatars/avatar3.png'),
+        },
+        {
+            id: 8,
+            nome: 'Tovela',
+            image: require('../assets/avatars/avatar3.png'),
         }
     ];
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
+            <Box flexDirection={'row'}>
             <View style={styles.avatarContainer }>
                 <Image source={item.image} style={styles.avatar}/>
             </View>
             <Text fontFamily={fonts.body} marginLeft={4}>{item.nome}</Text>
-        </View>
-        
+            </Box>
+           
+            <TouchableOpacity>
+            <Icon as ={<Info color={colors.green[500]}/>} />
+        </TouchableOpacity>
+
+        </View>   
     )
 
     function headerComponent(){
@@ -111,6 +127,7 @@ const styles=StyleSheet.create({
     item:{
         flex:1,
         flexDirection: 'row',
+        justifyContent:'space-between',
         alignItems:'center',
         paddingVertical:13
     },

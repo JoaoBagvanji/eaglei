@@ -6,10 +6,10 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Atrelado from '../pages_viaturas/Atrelado';
-import Inspeccao from '../pages_viaturas/Inspeccao';
-import Transfers from '../pages_viaturas/Transfers';
-import Vehicles from '../pages_viaturas/Vehicles';
+import Atrelado from './pages_viaturas/Atrelado';
+import Inspeccao from './pages_viaturas/Inspeccao';
+import Transfers from './pages_viaturas/Transfers';
+import Vehicles from './pages_viaturas/Vehicles';
 
 import  {useNavigation}  from '@react-navigation/native';
 

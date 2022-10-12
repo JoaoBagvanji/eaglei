@@ -17,21 +17,22 @@ import Correctiva from './pages_tarefas/Correctiva';
 const Stack = createStackNavigator();
 
 
-export function MyStack() {
+export  default function MyStack() {
     return (
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Tarefa'>
+            <Stack.Screen name="Correctiva" component={Correctiva} />
             <Stack.Screen name="Projectos" component={Projectos} />
             <Stack.Screen name="Relatorios" component={Relatorios} />
             <Stack.Screen name="Preventiva" component={Preventiva} />
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Tarefa" component={Tarefa} />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 
-export default function Tarefa() {
+export function Tarefa() {
     type Nav ={
         navigate : (value: string) => void;
       }

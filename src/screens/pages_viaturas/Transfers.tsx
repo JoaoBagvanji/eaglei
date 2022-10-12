@@ -1,7 +1,7 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Car} from 'phosphor-react-native'
-import { Header } from '../components/Header';
+import { ArrowsLeftRight } from 'phosphor-react-native'
+import { Header } from '../../components/Header';
 
 export default function Projectos() {
 
@@ -22,10 +22,10 @@ export default function Projectos() {
                     Navegue 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Viaturas
+                    entre as Transferências
                 </Text>
                 </View>
-                <Icon as ={<Car color={colors.green[500]}/>} />
+                <Icon as ={<ArrowsLeftRight color={colors.green[500]}/>} />
             </HStack>
       </VStack>
     </VStack>
