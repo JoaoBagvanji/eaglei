@@ -3,7 +3,7 @@ import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { ClockCounterClockwise } from 'phosphor-react-native'
 import { Header } from '../../../components/Header';
 
-export function PlanoHoje() {
+export default function PlanoHoje() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
@@ -16,14 +16,14 @@ export function PlanoHoje() {
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
-                     Tarefas 
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                     Planos 
                 </Text>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                     Preventivas
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                     Para Hoje
                 </Text>
                 </View>
-                <Icon as ={<ClockCounterClockwise color={colors.green[500]}/>} />
+                <Icon as ={<ClockCounterClockwise color={colors.green[700]}/>} />
             </HStack>
       </VStack>
     </VStack>

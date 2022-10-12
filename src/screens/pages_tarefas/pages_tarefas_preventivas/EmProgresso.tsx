@@ -1,13 +1,11 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { ProjectorScreenChart } from 'phosphor-react-native'
-import { Header } from '../../components/Header';
+import { ClockCounterClockwise } from 'phosphor-react-native'
+import { Header } from '../../../components/Header';
 
-export default function Projectos() {
-
+export default function EmProgresso() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
-
 
 
   return (
@@ -19,13 +17,13 @@ export default function Projectos() {
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
+                      Planos 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                    entre os Projectos
+                      Em  Progresso
                 </Text>
                 </View>
-                <Icon as ={<ProjectorScreenChart color={colors.green[700]}/>} />
+                <Icon as ={<ClockCounterClockwise color={colors.green[700]}/>} />
             </HStack>
       </VStack>
     </VStack>
