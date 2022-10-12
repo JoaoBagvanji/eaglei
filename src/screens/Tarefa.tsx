@@ -1,5 +1,5 @@
 import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme,FlatList } from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle} from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, TouchableOpacity } from 'react-native';

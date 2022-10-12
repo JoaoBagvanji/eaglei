@@ -1,15 +1,9 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { ClockCounterClockwise } from 'phosphor-react-native'
-import { Header } from '../../components/Header';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import  {useNavigation}  from '@react-navigation/native';
+import { Header } from '../../../components/Header';
 
-
-export default function Preventiva() {
-
+export function PlanoHoje() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
