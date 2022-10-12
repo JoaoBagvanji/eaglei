@@ -17,7 +17,7 @@ import Correctiva from './pages_tarefas/Correctiva';
 const Stack = createStackNavigator();
 
 
-export default function MinhaStack() {
+export function MyStack() {
     return (
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
@@ -25,14 +25,13 @@ export default function MinhaStack() {
             <Stack.Screen name="Projectos" component={Projectos} />
             <Stack.Screen name="Relatorios" component={Relatorios} />
             <Stack.Screen name="Preventiva" component={Preventiva} />
-            <Stack.Screen name="Correctiva" component={Correctiva} />
-            <Stack.Screen name="Tarefa" component={Tarefa} />
+            <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 
-export function Tarefa() {
+export default function Tarefa() {
     type Nav ={
         navigate : (value: string) => void;
       }
@@ -54,7 +53,7 @@ export function Tarefa() {
                     Navegue 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Tarefas
+                    entre as Viaturas
                 </Text>
                 </View>
                 <Icon as ={<Wrench color={colors.green[500]}/>} />
