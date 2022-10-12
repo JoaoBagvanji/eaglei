@@ -1,5 +1,5 @@
 import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme,FlatList } from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle} from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -17,22 +17,23 @@ import Correctiva from './pages_tarefas/Correctiva';
 const Stack = createStackNavigator();
 
 
-export  default function MyStack() {
+export function MyStack() {
     return (
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Tarefa'>
             <Stack.Screen name="Correctiva" component={Correctiva} />
             <Stack.Screen name="Projectos" component={Projectos} />
+            <Stack.Screen name="Correctiva" component={Correctiva} />
             <Stack.Screen name="Relatorios" component={Relatorios} />
             <Stack.Screen name="Preventiva" component={Preventiva} />
-            <Stack.Screen name="Tarefa" component={Tarefa} />
+            <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 
-export function Tarefa() {
+export default function Tarefa() {
     type Nav ={
         navigate : (value: string) => void;
       }
