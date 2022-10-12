@@ -48,49 +48,75 @@ export function Viaturas() {
 
 
   return (
-    <VStack flex={1} pb={6} bg="white">
-        <HStack>
-            <Header />
-        </HStack>
-        <VStack flex={1} px={6}>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-                <View>
+<VStack flex={1} pb={6} bg="white">
+    <HStack>
+        <Header/>
+    </HStack>
+    <VStack flex={1} px={6}>
+        <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+            <View>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
+                    Navegue
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
                     entre o Sub Menu de Viaturas
                 </Text>
-                </View>
-                <Icon as ={<Car color={colors.green[500]}/>} />
-            </HStack>
-      </VStack>
-      <VStack flex={4} px={6}>
-        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Transfers') as never}>
-            
-            <Icon as ={<ArrowLeft color={colors.green[400]} size={16}/>} />
-            <Icon as ={<Truck color={colors.primary[600]}/>}/>
-            <Icon as ={<ArrowRight color={colors.green[400]} size={16}/>} />
+            </View>
+            <Icon as={<Car color={colors.green[500]}/>} />
+        </HStack>
+    </VStack>
+    <VStack flex={4} px={6}>
+        <View
+            flex={4}
+            backgroundColor={colors.white}
+            flexDirection="row"
+            justifyContent='space-around'
+            alignItems='center'>
+
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.menuButtonsUp}
+                onPress={() => navigate('Inspeccao') as never}>
+                <Icon as={<MagnifyingGlass color={colors.primary[600]}/>} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Inspecção diária</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.menuButtonsUp}
+                onPress={() => navigate('Transfers') as never}>
+                <Icon as={<ArrowLeft color={colors.green[400]} size={16}/>} />
+                <Icon as={<Truck color={colors.primary[600]}/>}/>
+                <Icon as={<ArrowRight color={colors.green[400]} size={16}/>} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Transferências</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Vehicles') as never}>
-            <Icon as ={<Car color={colors.primary[600]}/>} />
-            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
-            </TouchableOpacity>
         </View>
 
-        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Atrelado') as never}>
-            <Icon as ={<Truck color={colors.primary[600]}/>} />
+        <View
+            flex={4}
+            backgroundColor={colors.white}
+            flexDirection="row"
+            justifyContent='space-around'
+            alignItems='center'
+            paddingBottom={12}>
+
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.menuButtonsUp}
+                onPress={() => navigate('Atrelado') as never}>
+                <Icon as={<Truck color={colors.primary[600]}/>} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Atrelado</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inspeccao') as never}>
-            <Icon as ={<MagnifyingGlass color={colors.primary[600]}/>} />
-            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Inspecção diária</Text>
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.menuButtonsUp}
+                onPress={() => navigate('Vehicles') as never}>
+                <Icon as={<Car color={colors.primary[600]}/>} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
             </TouchableOpacity>
+
         </View>
 
 

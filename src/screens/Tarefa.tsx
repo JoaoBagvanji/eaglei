@@ -55,7 +55,7 @@ export  function Tarefa() {
                     Navegue 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Viaturas
+                    entre as Tarefas
                 </Text>
                 </View>
                 <Icon as ={<Wrench color={colors.green[500]}/>} />
