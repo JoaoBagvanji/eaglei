@@ -16,7 +16,7 @@ import Preventiva from '../pages_tarefas/Preventiva';
 const Stack = createStackNavigator();
 
 
-export function MyStack() {
+export default function MyStack() {
     return (
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
@@ -25,12 +25,13 @@ export function MyStack() {
             <Stack.Screen name="Relatorios" component={Relatorios} />
             <Stack.Screen name="Preventiva" component={Preventiva} />
             <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Tarefa" component={Tarefa} />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 
-export default function Tarefa() {
+export  function Tarefa() {
     type Nav ={
         navigate : (value: string) => void;
       }
@@ -52,7 +53,7 @@ export default function Tarefa() {
                     Navegue 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Viaturas
+                    entre as as
                 </Text>
                 </View>
                 <Icon as ={<Wrench color={colors.green[500]}/>} />
