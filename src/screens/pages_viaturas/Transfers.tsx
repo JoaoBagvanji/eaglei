@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { ArrowsLeftRight } from 'phosphor-react-native'
+import { ArrowLeft, Truck ,ArrowRight } from 'phosphor-react-native'
 import { Header } from '../../components/Header';
 
 export default function Transfers() {
@@ -18,14 +18,19 @@ export default function Transfers() {
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
-                </Text>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Transferências
-                </Text>
+                    <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                        Navegue 
+                    </Text>
+                    <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                        entre as Transferências
+                    </Text>
                 </View>
-                <Icon as ={<ArrowsLeftRight color={colors.green[500]}/>} />
+                <View>
+                    <Icon as ={<ArrowLeft color={colors.green[700]} size={16}/>} />
+                    <Icon as ={<Truck color={colors.primary[600]}/>}/>
+                    <Icon as ={<ArrowRight color={colors.green[700]} size={16}/>} />
+                </View>
+                
             </HStack>
       </VStack>
     </VStack>
