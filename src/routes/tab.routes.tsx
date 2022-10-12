@@ -1,18 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme, Icon } from 'native-base';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Car, House, Package, Gear, Users as Usuarios, Truck, Wrench } from 'phosphor-react-native'
+import { House, Package, Users as Usuarios, Truck, Wrench } from 'phosphor-react-native'
 
-import { Home } from '../screens/Home';
+import Home from '../screens/Home';
 
 import  Inventario  from '../screens/Inventario';
 import  Viaturas  from '../screens/Viaturas';
 import  Users  from '../screens/Users';
-import  Tarefa  from '../screens/Tarefa';
-import  Login  from '../screens/Login';
+import  Tarefa  from '../screens/Tarefas';
 
-import * as Animatable from 'react-native-animatable';
 
 const AppTab = createBottomTabNavigator();
 

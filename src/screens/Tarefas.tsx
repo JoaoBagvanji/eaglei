@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme,FlatList, Box } from 'native-base';
-import { Car, ArrowsLeftRight, Truck, MagnifyingGlass } from 'phosphor-react-native'
+import { Car, ArrowsLeftRight, Truck, Wrench, MagnifyingGlass } from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -27,19 +27,19 @@ export default function MyStack() {
     return (
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
-                initialRouteName='Viaturas'>
+                initialRouteName='Tarefas'>
             <Stack.Screen name="Atrelado" component={Atrelado} />
             <Stack.Screen name="Inspeccao" component={(Inspeccao)} />
             <Stack.Screen name="Transfers" component={Transfers} />
             <Stack.Screen name="Vehicles" component={Vehicles} />
-            <Stack.Screen name="Viaturas" component={Viaturas} />
+            <Stack.Screen name="Tarefas" component={Tarefas} />
             <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 
-export function Viaturas() {
+export function Tarefas() {
   type Nav ={
     navigate : (value: string) => void;
   }
@@ -63,10 +63,10 @@ export function Viaturas() {
                     Navegue 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Viaturas
+                    entre as Tarefas
                 </Text>
                 </View>
-                <Icon as ={<Car color={colors.green[500]}/>} />
+                <Icon as ={<Wrench color={colors.green[500]}/>} />
             </HStack>
       </VStack>
 
@@ -74,24 +74,24 @@ export function Viaturas() {
       <View  backgroundColor={colors.white} flexDirection="row" justifyContent='space-evenly' alignItems='center'  >
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Transfers') as never}>
             <Icon as ={<ArrowsLeftRight color={colors.primary[700]}/>} />
-                <Text >Transferências</Text>
+                <Text >Tarefas preventivas</Text>
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Vehicles') as never}>
             <Icon as ={<Car color={colors.primary[700]}/>} />
-            <Text >Viaturas</Text>
+            <Text >Tarefas correctivas</Text>
             </TouchableOpacity>
         </View>
 
         <View backgroundColor={colors.white} flexDirection="row" justifyContent='space-evenly' alignItems='center' marginBottom={'20%'}>
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('') as never}>
             <Icon as ={<Truck color={colors.primary[700]}/>} />
-                <Text >Atrelado</Text>
+                <Text >Projectos</Text>
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inspeccao') as never}>
             <Icon as ={<MagnifyingGlass color={colors.primary[700]}/>} />
-            <Text >Inspecção diária</Text>
+            <Text>Relatórios</Text>
             </TouchableOpacity>
         </View>
       </View>

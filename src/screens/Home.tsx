@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { VStack, HStack, Icon, useTheme, Text, View } from 'native-base';
 
 import { House } from 'phosphor-react-native'
-import { Load } from '../components/Load';
 import { Header } from '../components/Header';
 
 
-export function Home() {
+export default function Home() {
 
   const { fonts } = useTheme();
   const { colors } = useTheme();

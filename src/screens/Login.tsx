@@ -7,9 +7,6 @@ import { StyleSheet } from 'react-native';
 
 import Logo from '../assets/eagle I 1.svg' ;
 import { Button } from '../components/Button';
-import { Fontisto } from '@expo/vector-icons';
-
-
 
 export default function Login(){
     type Nav = {
