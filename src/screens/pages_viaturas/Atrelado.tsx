@@ -3,7 +3,7 @@ import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { Truck } from 'phosphor-react-native'
 import { Header } from '../../components/Header';
 
-export default function Projectos() {
+export default function Atrelado() {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
