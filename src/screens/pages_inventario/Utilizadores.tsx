@@ -1,9 +1,9 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { Truck } from 'phosphor-react-native'
-import { Header } from '../components/Header';
+import { Header } from '../../components/Header';
 
-export default function Atrelado() {
+export default function StockReturn() {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -22,7 +22,7 @@ export default function Atrelado() {
                     Navegue 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre o inventario
+                    entre os utlizadores 
                 </Text>
                 </View>
                 <Icon as ={<Truck color={colors.green[500]}/>} />
