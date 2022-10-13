@@ -44,35 +44,36 @@ export  function Tarefa() {
         const { fonts } = useTheme();
         const { colors } = useTheme();
   return (
-    <VStack flex={1} pb={6} bg="white">
-        <HStack>
-            <Header />
-        </HStack>
-        <VStack flex={1} px={6}>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-                <View>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
-                </Text>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Viaturas
-                </Text>
-                </View>
-                <Icon as ={<Wrench color={colors.green[500]}/>} />
+    
+        <VStack flex={1} pb={6} bg="white">
+            <HStack>
+                <Header />
             </HStack>
-        </VStack>
-        <VStack flex={4} px={6}>
-            <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Correctiva') as never}>
-                    <Icon as ={<CheckCircle  color={colors.primary[700]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Correctiva</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Preventiva') as never}>
-                <Icon as ={<ClockCounterClockwise color={colors.primary[700]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Preventiva</Text>
-                </TouchableOpacity>
-                
-            </View>
+            <VStack flex={1} px={6}>
+                <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                    <View>
+                    <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                        Navegue 
+                    </Text>
+                    <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                        entre as Tarefas
+                    </Text>
+                    </View>
+                    <Icon as ={<Wrench color={colors.green[700]}/>} />
+                </HStack>
+            </VStack>
+            <VStack flex={4} px={6}>
+                <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
+                    <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Correctiva') as never}>
+                        <Icon as ={<CheckCircle  color={colors.green[700]}/>} />
+                        <Text fontFamily={fonts.heading} color={colors.primary[600]}>Correctiva</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Preventiva') as never}>
+                    <Icon as ={<ClockCounterClockwise color={colors.green[700]}/>} />
+                        <Text fontFamily={fonts.heading} color={colors.primary[600]}>Preventiva</Text>
+                    </TouchableOpacity>
+                    
+                </View>
 
             <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
                 <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Relatorios') as never}>

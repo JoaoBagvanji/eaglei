@@ -69,7 +69,7 @@ export default function Users() {
     )
 
     function headerComponent(){
-       return <Text fontFamily={fonts.heading} fontSize={17}>Usuários</Text>
+       return <Text fontFamily={fonts.heading} fontSize={16} color={colors.primary[600]}>Usuários</Text>
     }
 
     function itemSeparator(){
