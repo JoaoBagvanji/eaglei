@@ -22,7 +22,7 @@ export default function Relatorios() {
                     Navegue 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                    entre os Relatorios
+                    entre os Relatórios
                 </Text>
                 </View>
                 <Icon as ={<Scroll color={colors.green[700]}/>} />

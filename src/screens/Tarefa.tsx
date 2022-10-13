@@ -64,7 +64,7 @@ export  function Tarefa() {
     <VStack flex={4} px={6}>
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Correctiva') as never}>
-                <Icon as ={<CheckCircle  color={colors.green[700]}/>} />
+                <Icon as ={<CheckCircle  color={colors.green[700]}/>}/>
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Correctiva</Text>
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Preventiva') as never}>
@@ -77,7 +77,7 @@ export  function Tarefa() {
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Relatorios') as never}>
                 <Icon as ={<Scroll color={colors.green[700]}/>} />
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Relatorios</Text>
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Relatórios</Text>
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Projectos') as never}>
                 <Icon as ={<ProjectorScreenChart color={colors.green[700]}/>} />

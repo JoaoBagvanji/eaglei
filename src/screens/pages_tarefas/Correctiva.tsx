@@ -50,10 +50,10 @@ export function Correctiva() {
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
                     Tarefas 
                 </Text>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
                     Correctivas
                 </Text>
                 </View>
@@ -63,24 +63,24 @@ export function Correctiva() {
       <VStack flex={4} px={6}>
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Novos') as never}>
-            <Icon as ={<FilePlus color={colors.primary[600]}/>}/>
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Novos</Text>
+            <Icon as ={<FilePlus color={colors.green[700]}/>}/>
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Novas</Text>
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Progress') as never}>
-            <Icon as ={<HourglassMedium color={colors.primary[600]}/>} />
+            <Icon as ={<HourglassMedium color={colors.green[700]}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Em progresso</Text>
             </TouchableOpacity>
         </View>
 
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Completos') as never}>
-            <Icon as ={<CheckCircle color={colors.primary[600]}/>} />
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Completos</Text>
+            <Icon as ={<CheckCircle color={colors.green[700]}/>} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Completas</Text>
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Attention') as never}>
-            <Icon as ={<Warning color={colors.primary[600]}/>} />
+            <Icon as ={<Warning color={colors.green[700]}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Atenção</Text>
             </TouchableOpacity>
         </View>
@@ -92,7 +92,7 @@ export function Correctiva() {
 }
 const styles = StyleSheet.create({
     menuButtonsUp:{
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#f8f8f8',
         width: '42%',
         height:'80%',
         alignItems: 'center',

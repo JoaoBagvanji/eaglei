@@ -72,7 +72,7 @@ export function Preventiva() {
             
               <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
                   <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('PlanoHoje') as never}>
-                      <Icon as ={<ListDashes  color={colors.green[700]}/>} />
+                      <Icon as ={<ListDashes  color={colors.green[700]}/>}/>
                       <Text fontFamily={fonts.heading} color={colors.primary[600]}>PlanoHoje</Text>
                   </TouchableOpacity>
                   <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('PlanoMensal') as never}>
