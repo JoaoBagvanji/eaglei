@@ -16,7 +16,7 @@ export default function Users() {
         },
         {
             id: 2,
-            nome: 'Claudio',
+            nome: 'Cláudio',
             image: require('../assets/avatars/avatar3.png'),
 
         },
@@ -58,15 +58,19 @@ export default function Users() {
             <View style={styles.avatarContainer }>
                 <Image source={item.image} style={styles.avatar}/>
             </View>
-            <Text fontFamily={fonts.body} marginLeft={4}>{item.nome}</Text>
+            <Text fontFamily={fonts.body} color={colors.primary[600]} marginLeft={4}>{item.nome}</Text>
             </Box>
            
             <TouchableOpacity>
-            <Icon as ={<Info color={colors.green[500]}/>} />
+            <Icon as ={<Info color={colors.blueGray[400]}/>} />
         </TouchableOpacity>
 
         </View>   
     )
+
+    function headerComponent(){
+       return <Text fontFamily={fonts.heading} fontSize={16} color={colors.primary[600]}>Usuários</Text>
+    }
 
     function itemSeparator(){
         return <View style={styles.separator}/>
@@ -83,14 +87,14 @@ export default function Users() {
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
                     Navegue 
                 </Text>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre os Usuarios
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                    entre os Usuários
                 </Text>
                 </View>
-                <Icon as ={<Usuarios color={colors.green[500]}/>} />
+                <Icon as ={<Usuarios color={colors.green[700]}/>} />
             </HStack>
             <View> 
             <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={17}>Usuários</Text>
@@ -100,6 +104,7 @@ export default function Users() {
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
                     keyExtractor = { data => data.id }
+                    showsVerticalScrollIndicator={false}
                 />
             </View>
       </VStack>

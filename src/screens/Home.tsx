@@ -24,14 +24,14 @@ export function Home() {
       <VStack flex={1} px={6}>
         <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
           <View>
-          <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
+          <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
             Navegue 
           </Text>
-          <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
+          <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
             entre os Menus
           </Text>
           </View>
-          <Icon as ={<House color={colors.green[500]}/>} />
+          <Icon as ={<House color={colors.green[700]}/>} />
         </HStack>
       </VStack>
 

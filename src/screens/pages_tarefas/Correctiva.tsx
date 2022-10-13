@@ -51,13 +51,13 @@ export function Correctiva() {
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
+                    Tarefas 
                 </Text>
                 <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    pelo Submenu de Tarefas Correctivas
+                    Correctivas
                 </Text>
                 </View>
-                <Icon as ={<CheckCircle  color={colors.green[500]}/>} />
+                <Icon as ={<CheckCircle  color={colors.green[700]}/>} />
             </HStack>
       </VStack>
       <VStack flex={4} px={6}>
