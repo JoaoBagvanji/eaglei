@@ -96,10 +96,9 @@ export default function Users() {
                 </View>
                 <Icon as ={<Usuarios color={colors.green[700]}/>} />
             </HStack>
-            <View>
+            <View> 
+            <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={17}>Usuários</Text>
                 <FlatList 
-                    ListHeaderComponentStyle = {styles.listHeader}
-                    ListHeaderComponent={headerComponent}
                     data = {data}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
@@ -115,11 +114,6 @@ export default function Users() {
 
 
 const styles=StyleSheet.create({
-    listHeader:{
-        height: 55,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     separator:{
         height: 1,
         width: '100%',
