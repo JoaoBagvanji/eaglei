@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Truck } from 'phosphor-react-native'
+import { Package } from 'phosphor-react-native'
 import { Header } from '../components/Header';
 
 export default function Atrelado() {
