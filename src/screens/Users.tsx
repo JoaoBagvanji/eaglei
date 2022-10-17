@@ -62,9 +62,8 @@ export default function Users() {
             </Box>
            
             <TouchableOpacity>
-            <Icon as ={<Info color={colors.blueGray[400]}/>} />
-        </TouchableOpacity>
-
+                <Icon as ={<Info color={colors.blueGray[400]}/>} />
+            </TouchableOpacity>
         </View>   
     )
 
