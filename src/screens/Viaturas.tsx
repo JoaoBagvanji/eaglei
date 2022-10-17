@@ -1,7 +1,8 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 
-import { Car, ArrowLeft,ArrowRight, Truck, FileSearch} from 'phosphor-react-native'
+import { Car, ArrowLeft,ArrowRight, Truck, FileSearch} from 'phosphor-react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -67,32 +68,37 @@ export function Viaturas() {
             </HStack>
       </VStack>
       <VStack flex={4} px={6}>
-        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Transfers') as never}>
-            
-            <Icon as ={<ArrowLeft color={colors.green[700]} size={16}/>} />
-            <Icon as ={<Truck color={colors.primary[600]}/>}/>
-            <Icon as ={<ArrowRight color={colors.green[700]} size={16}/>} />
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Transferências</Text>
-            </TouchableOpacity>
+        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'>
 
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Vehicles') as never}>
-            <Icon as ={<Car color={colors.green[700]}/>} />
-            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
-            </TouchableOpacity>
-        </View>
-
-        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Atrelado') as never}>
-            <Icon as ={<Truck color={colors.green[700]}/>} />
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Atrelado</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inspeccao') as never}>
+        <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inspeccao') as never}>
             <Icon as ={<FileSearch color={colors.green[700]}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Inspecção diária</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Transfers') as never}>
+            
+            <Icon as ={<ArrowLeft color={colors.green[700]} size={16}/>} />
+            <Icon as ={<Truck color={colors.green[700]}/>}/>
+            <Icon as ={<ArrowRight color={colors.green[700]} size={16}/>} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]} >Transferências</Text>
+            </TouchableOpacity>
+        </View>
+
+        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
+
+        <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Atrelado') as never}>
+        <FontAwesome5 name="trailer" size={25} color={colors.green[700]} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Atrelado</Text>
+            </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Vehicles') as never}>
+            <Icon as ={<Car color={colors.green[700]}/>} />
+            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
+            </TouchableOpacity> 
+
+           
+
+           
         </View>
 
 
