@@ -51,9 +51,11 @@ export function Viaturas() {
 
   return (
     <VStack flex={1} pb={6} bg="white">
+
         <HStack>
             <Header />
         </HStack>
+
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
@@ -61,25 +63,26 @@ export function Viaturas() {
                     Navegue 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                    entre os Sub Menus
+                    entre as viaturas
                 </Text>
                 </View>
-                <Icon as ={<Car color={colors.green[700]}/>} />
+                <Icon as ={<Car color={colors.primary[600]}/>} />
             </HStack>
-      </VStack>
+        </VStack>
+
       <VStack flex={4} px={6}>
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'>
 
         <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inspeccao') as never}>
-            <Icon as ={<FileSearch color={colors.green[700]}/>} />
+            <Icon as ={<FileSearch color={colors.primary[600]}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Inspecção diária</Text>
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Transfers') as never}>
             
-            <Icon as ={<ArrowLeft color={colors.green[700]} size={16}/>} />
-            <Icon as ={<Truck color={colors.green[700]}/>}/>
-            <Icon as ={<ArrowRight color={colors.green[700]} size={16}/>} />
+            <Icon as ={<ArrowLeft color={colors.primary[600]} size={16}/>} />
+            <Icon as ={<Truck color={colors.primary[600]}/>}/>
+            <Icon as ={<ArrowRight color={colors.primary[600]} size={16}/>} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]} >Transferências</Text>
             </TouchableOpacity>
         </View>
@@ -87,12 +90,12 @@ export function Viaturas() {
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
 
         <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Atrelado') as never}>
-        <FontAwesome5 name="trailer" size={25} color={colors.green[700]} />
+        <FontAwesome5 name="trailer" size={25} color={colors.primary[600]} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Atrelado</Text>
             </TouchableOpacity>
 
         <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Vehicles') as never}>
-            <Icon as ={<Car color={colors.green[700]}/>} />
+            <Icon as ={<Car color={colors.primary[600]}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
             </TouchableOpacity> 
 
