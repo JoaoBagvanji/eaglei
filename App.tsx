@@ -12,6 +12,7 @@ import { Loading } from './src/components/Loading';
 import Routes from './src/routes';
 
 
+
 export default function App() {
 
   const [fontsLoaded] = useFonts({ Montserrat_400Regular, Montserrat_600SemiBold })
