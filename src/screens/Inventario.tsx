@@ -1,8 +1,8 @@
-import React from 'react';
+import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle} from 'phosphor-react-native'
 import { Header } from '../components/Header';
-import { StyleSheet, TouchableOpacity,ScrollView } from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
@@ -15,11 +15,22 @@ import Finalizado from './pages_inventario/Finalizado';
 import Pedido from './pages_inventario/Pedido';
 import StockReturn from './pages_inventario/StockReturn';
 import Utilizadores from './pages_inventario/Utilizadores';
+import Inventarios from './Inventarios';
 
 
 
 const Stack = createStackNavigator();
-
+const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
+const inventarios = [
+    {brand: 'Comserv', type: 'Pedido', name: 'Pedidos', price: 220, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovados', price: 10, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizados  ', price: 20, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Armazem', name: 'Armazenados  ', price:340, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores ss', price: 230, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Atencao', name: 'Atencao ss', price: 660, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Relatórios', name: 'Relatórios', price: 90, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Projectos', name: 'Projectos', price: 80, inventarioImage :  ImagemEstac}
+]
 
 export default function MyStack() {
     return (
@@ -51,6 +62,7 @@ export  function Inventario() {
     
         const { fonts } = useTheme();
         const { colors } = useTheme();
+        const [loadingMore, setLoadingMore] = useState(false);
   return (
 <VStack flex={1} pb={6} bg="white">
 
@@ -68,59 +80,28 @@ export  function Inventario() {
                 entre os Inventarios
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.primary[600]}/>} />
+            <Icon as ={<Wrench color={colors.green[700]}/>} />
         </HStack>
    
     </VStack>
 
-        <VStack flex={4} px={6}>
-            
-            <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Pedido') as never}>
-                    <Icon as ={<CheckCircle  color={colors.primary[600]} />}/>
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Pedido</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Aprovado') as never}>
-                <Icon as ={<ClockCounterClockwise color={colors.primary[600]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Aprovados</Text>
-                </TouchableOpacity>     
-            </View>
-
-            <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Finalizado') as never}>
-                    <Icon as ={<CheckCircle  color={colors.primary[600]}/>}/>
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Finalizados</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Armazem') as never}>
-                <Icon as ={<ClockCounterClockwise color={colors.primary[600]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Armazem</Text>
-                </TouchableOpacity>
-                
-            </View>
-
-            <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Utilizadores') as never}>
-                    <Icon as ={<CheckCircle  color={colors.primary[600]}/>}/>
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Utilizadores</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Attention') as never}>
-                <Icon as ={<ClockCounterClockwise color={colors.primary[600]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Atencao</Text>
-                </TouchableOpacity>
-                
-            </View>
-
-            <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Relatorios') as never}>
-                    <Icon as ={<Scroll color={colors.primary[600]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Relatórios</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Projectos') as never}>
-                    <Icon as ={<ProjectorScreenChart color={colors.primary[600]}/>} />
-                    <Text fontFamily={fonts.heading} color={colors.primary[600]}>Projectos</Text>
-                </TouchableOpacity>
-            </View>
-
+        <VStack flex={5}>
+            <SafeAreaView>
+                <FlatList
+                    numColumns={2} 
+                    data={inventarios} 
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={ ( {item} ) => (<Inventarios inventario={item}/>)}
+                    showsVerticalScrollIndicator ={false}
+                    onEndReachedThreshold={0.1}
+                    ListFooterComponent ={
+                        loadingMore 
+                        ? <ActivityIndicator color={colors.green[700]} />
+                        : <></>
+    
+                    }
+                />
+            </SafeAreaView>
         </VStack>
 
 </VStack>  );

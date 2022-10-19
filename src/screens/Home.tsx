@@ -31,7 +31,7 @@ export function Home() {
             entre os Menus
           </Text>
           </View>
-          <Icon as ={<House color={colors.primary[600]}/>} />
+          <Icon as ={<House color={colors.green[700]}/>} />
         </HStack>
       </VStack>
 
