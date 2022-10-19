@@ -55,8 +55,7 @@ export default function Login({history}){
             const data = await api.post("/LogIn", {
               email: email,
               senha: senha,
-            },
-            config).then((data) =>data);
+            }).then((data) =>data);
             console.log(data.data)
       
       
