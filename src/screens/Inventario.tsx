@@ -1,8 +1,8 @@
-import React , {useState}from 'react';
+import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { Wrench } from 'phosphor-react-native'
 import { Header } from '../components/Header';
-import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, TouchableOpacity,ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
@@ -17,21 +17,20 @@ import Finalizado from './pages_inventario/Finalizado';
 import Pedido from './pages_inventario/Pedido';
 import StockReturn from './pages_inventario/StockReturn';
 import Utilizadores from './pages_inventario/Utilizadores';
-import Inventarios from './Inventarios';
 
 
 
 const Stack = createStackNavigator();
 const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
 const inventarios = [
-    {brand: 'Comserv', type: 'Pedido', name: 'Pedidos', qtd: 220, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovados', qtd: 10, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizados  ', qtd: 20, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Armazem', name: 'Armazem  ', qtd:340, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Users', name: 'Users', qtd: 230, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Atencao', name: 'Atenção', qtd: 660, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Relatórios', name: 'Relatórios', qtd: 90, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Projectos', name: 'Projectos', qtd: 80, inventarioImage :  ImagemEstac}
+    {brand: 'Comserv', type: 'Pedido', name: 'Pedidos', price: 220, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovados', price: 10, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizados  ', price: 20, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Armazem', name: 'Armazenados  ', price:340, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores ss', price: 230, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Atencao', name: 'Atencao ss', price: 660, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Relatórios', name: 'Relatórios', price: 90, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Projectos', name: 'Projectos', price: 80, inventarioImage :  ImagemEstac}
 ]
 
 export default function MyStack() {
@@ -54,38 +53,39 @@ export default function MyStack() {
     );
   }
 
-export  function Inventario() {
-    type Nav ={
-        navigate : (value: string) => void;
-      }
-      
-      const { navigate } = useNavigation<Nav>()
-      
+export function Inventario(){
+  
+           type Nav ={
+            navigate : (value: string) => void;
+          }
     
-        const { fonts } = useTheme();
-        const { colors } = useTheme();
-        const [loadingMore, setLoadingMore] = useState(false);
-  return (
-<VStack flex={1} pb={6} bg="white">
+           const { navigate } = useNavigation<Nav>()
+    
+  
+      const { fonts } = useTheme();
+      const { colors } = useTheme();
 
-    <HStack>
-        <Header />
-    </HStack>
+      return (
+      <VStack flex={1} pb={6} bg="white">
 
-    <VStack flex={1} px={6}>
-        <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-            <View>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Navegue 
-            </Text>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                entre os Inventarios
-            </Text>
-            </View>
-            <Icon as ={<Wrench color={colors.green[700]}/>} />
+        <HStack>
+            <Header />
         </HStack>
-   
-    </VStack>
+
+        <VStack flex={1} px={6}>
+            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                <View>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                    Navegue 
+                </Text>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                    entre os Inventarios
+                </Text>
+                </View>
+                <Icon as ={<Wrench color={colors.primary[600]}/>} />
+            </HStack>
+      
+        </VStack>
 
         <VStack flex={5}>
             <SafeAreaView>
@@ -93,7 +93,7 @@ export  function Inventario() {
                     numColumns={2} 
                     data={inventarios} 
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={ ( {item} ) => (<RectButton style={styles.container}><Inventarios inventario={item}/></RectButton>)}
+                    renderItem={ ( {item} ) => (<Inventarios inventario={item}/>)}
                     showsVerticalScrollIndicator ={false}
                     onEndReachedThreshold={0.1}
                     ListFooterComponent ={
@@ -110,13 +110,14 @@ export  function Inventario() {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        maxWidth: '45%',
-        backgroundColor: colors.shape,
-        borderRadius: 20,
-        paddingVertical: 10,
+    menuButtonsUp:{
+        backgroundColor: '#f8f8f8',
+        width: '42%',
+        height:'80%',
         alignItems: 'center',
-        margin: 10
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        marginBottom: '5%',
+        borderRadius: 20
     },
 })

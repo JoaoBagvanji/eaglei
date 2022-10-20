@@ -90,7 +90,7 @@ export default function Users() {
                     entre os Usuários
                 </Text>
                 </View>
-                <Icon as ={<Usuarios color={colors.green[700]}/>} />
+                <Icon as ={<Usuarios color={colors.blueGray[400]}/>} />
             </HStack>
 
             <View  mb={'50%'}> 
