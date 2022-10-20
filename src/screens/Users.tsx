@@ -90,11 +90,11 @@ export default function Users() {
                     entre os Usuários
                 </Text>
                 </View>
-                <Icon as ={<Usuarios color={colors.primary[600]}/>} />
+                <Icon as ={<Usuarios color={colors.green[700]}/>} />
             </HStack>
 
             <View  mb={'50%'}> 
-            <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={17}>Usuários</Text>
+            <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={14} color={colors.blueGray[500]}>Usuários</Text>
                 <FlatList 
                     data = {data}
                     renderItem = { oneUser }

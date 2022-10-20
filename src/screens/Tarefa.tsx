@@ -58,17 +58,17 @@ export  function Tarefa() {
                 entre as Tarefas
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.primary[600]}/>} />
+            <Icon as ={<Wrench color={colors.green[700]}/>} />
         </HStack>
     </VStack>
     <VStack flex={4} px={6}>
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Correctiva') as never}>
-                <Icon as ={<CheckCircle  color={colors.primary[600]}/>}/>
+                <Icon as ={<CheckCircle  color={colors.green[600]}/>}/>
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Correctiva</Text>
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Preventiva') as never}>
-            <Icon as ={<ClockCounterClockwise color={colors.primary[600]}/>} />
+            <Icon as ={<ClockCounterClockwise color={colors.green[600]}/>} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Preventiva</Text>
             </TouchableOpacity>
             
@@ -76,11 +76,11 @@ export  function Tarefa() {
 
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Relatorios') as never}>
-                <Icon as ={<Scroll color={colors.primary[600]}/>} />
+                <Icon as ={<Scroll color={colors.green[600]}/>} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Relatórios</Text>
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Projectos') as never}>
-                <Icon as ={<ProjectorScreenChart color={colors.primary[600]}/>} />
+                <Icon as ={<ProjectorScreenChart color={colors.green[600]}/>} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Projectos</Text>
             </TouchableOpacity>
         </View>
