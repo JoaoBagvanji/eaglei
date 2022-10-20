@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme, Icon } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Car, House, ListChecks, Gear, Users as Usuarios, Truck } from 'phosphor-react-native'
+import { Car, House, Package, Gear, Users as Usuarios, Truck, Wrench } from 'phosphor-react-native'
 
 import { Home } from '../screens/Home';
 
@@ -10,6 +10,7 @@ import  Inventario  from '../screens/Inventario';
 import  Viaturas  from '../screens/Viaturas';
 import  Users  from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
+import  Login  from '../screens/Login';
 
 import * as Animatable from 'react-native-animatable';
 
@@ -39,11 +40,12 @@ export default function AuthRoutes() {
                     alignItems:'center',
                     padding: 6,
                     
-                }
+                },
 
-            }}>
+            }}
+            initialRouteName='Login'>
                 <AppTab.Screen 
-                    name='Home'
+                    name='Inicio'
                     component={Home}
                     options={{
                         tabBarIcon:(({ size, color})=>(
@@ -62,11 +64,11 @@ export default function AuthRoutes() {
                 />
 
                 <AppTab.Screen 
-                    name='Tarefas'
+                    name='Tarefa'
                     component={Tarefa}
                     options={{
                         tabBarIcon:(({ size, color})=>(
-                            <Icon as ={<ListChecks color={color} size={size}/>} />
+                            <Icon as ={<Wrench color={color} size={size}/>} />
                         ))
                     }}
                 />
@@ -76,7 +78,7 @@ export default function AuthRoutes() {
                     component={Inventario}
                     options={{
                         tabBarIcon:(({ size, color})=>(
-                            <Icon as ={<Gear color={color} size={size}/>} />
+                            <Icon as ={<Package color={color} size={size}/>} />
                         ))
                     }}
                 />

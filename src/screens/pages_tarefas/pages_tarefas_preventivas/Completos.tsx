@@ -1,11 +1,12 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Package } from 'phosphor-react-native'
-import { Header } from '../components/Header';
-export default function Inventario() {
+import { ClockCounterClockwise } from 'phosphor-react-native'
+import { Header } from '../../../components/Header';
 
+export default function Completos() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
+
 
   return (
     <VStack flex={1} pb={6} bg="white">
@@ -16,13 +17,13 @@ export default function Inventario() {
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
+                    Planos 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                    entre os Inventários
+                    Completos
                 </Text>
                 </View>
-                <Icon as ={<Package color={colors.green[700]}/>} />
+                <Icon as ={<ClockCounterClockwise color={colors.green[700]}/>} />
             </HStack>
       </VStack>
     </VStack>

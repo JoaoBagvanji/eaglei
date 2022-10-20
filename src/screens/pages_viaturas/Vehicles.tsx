@@ -1,11 +1,14 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Package } from 'phosphor-react-native'
-import { Header } from '../components/Header';
-export default function Inventario() {
+import { Car} from 'phosphor-react-native'
+import { Header } from '../../components/Header';
+
+export default function Vehicles() {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
+
+
 
   return (
     <VStack flex={1} pb={6} bg="white">
@@ -19,10 +22,10 @@ export default function Inventario() {
                     Navegue 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                    entre os Inventários
+                    entre as Viaturas
                 </Text>
                 </View>
-                <Icon as ={<Package color={colors.green[700]}/>} />
+                <Icon as ={<Car color={colors.green[700]}/>} />
             </HStack>
       </VStack>
     </VStack>

@@ -1,14 +1,16 @@
 import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme,FlatList } from 'native-base';
-import { Car,Truck, Gear } from 'phosphor-react-native'
+import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
+import { Car, ArrowLeft,ArrowRight, Truck, FileSearch } from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import  Inventario from '../screens/Inventario';
-import  Users from '../screens/Users';
-import  Tarefa  from '../screens/Tarefa';
+import Atrelado from './pages_viaturas/Atrelado';
+import Inspeccao from './pages_viaturas/Inspeccao';
+import Transfers from './pages_viaturas/Transfers';
+import Vehicles from './pages_viaturas/Vehicles';
+
 import  {useNavigation}  from '@react-navigation/native';
 <<<<<<< Updated upstream
 =======
@@ -18,17 +20,24 @@ import Rotas from '../routes';
 >>>>>>> Stashed changes
 
 
+
 const Stack = createStackNavigator();
+
+
+
 export default function MyStack() {
+  
+
     return (
 <<<<<<< Updated upstream
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Viaturas'>
+            <Stack.Screen name="Atrelado" component={Atrelado} />
+            <Stack.Screen name="Inspeccao" component={Inspeccao} />
+            <Stack.Screen name="Transfers" component={Transfers} />
+            <Stack.Screen name="Vehicles" component={Vehicles} />
             <Stack.Screen name="Viaturas" component={Viaturas} />
-            <Stack.Screen name="Tarefa" component={Tarefa} />
-            <Stack.Screen name="Inventario" component={Inventario} />
-            <Stack.Screen name="Users" component={Users} />
         </Stack.Navigator>
       </NavigationContainer>
 =======
@@ -37,8 +46,13 @@ export default function MyStack() {
     );
   }
 export function Viaturas() {
+  type Nav ={
+    navigate : (value: string) => void;
+  }
+  
+  const { navigate } = useNavigation<Nav>()
+  
 
-    const navigation = useNavigation();
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
@@ -51,16 +65,17 @@ export function Viaturas() {
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
                     Navegue 
                 </Text>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre as Viaturas
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                    entre os Sub Menus
                 </Text>
                 </View>
-                <Icon as ={<Car color={colors.green[500]}/>} />
+                <Icon as ={<Car color={colors.green[700]}/>} />
             </HStack>
       </VStack>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       <VStack flex={1} px={6}>
         <View flex={4} backgroundColor={colors.gray[700]} flexDirection="row" justifyContent='space-evenly' alignItems='center'>
@@ -74,20 +89,44 @@ export function Viaturas() {
             <Icon as ={<Usuarios color={colors.primary[700]}/>} />
                 <Text >Usuarios</Text>
 >>>>>>> Stashed changes
+=======
+      <VStack flex={4} px={6}>
+        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Transfers') as never}>
+            
+            <Icon as ={<ArrowLeft color={colors.green[700]} size={16}/>} />
+            <Icon as ={<Truck color={colors.primary[600]}/>}/>
+            <Icon as ={<ArrowRight color={colors.green[700]} size={16}/>} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Transferências</Text>
+>>>>>>> origin
             </TouchableOpacity>
 
-            <TouchableOpacity  style={styles.menuButtonsUp} onPress={() => navigation.navigate('Inventario')}>
-            <Icon as ={<Gear color={colors.primary[700]}/>} />
-            <Text >Inventario</Text>
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Vehicles') as never}>
+            <Icon as ={<Car color={colors.green[700]}/>} />
+            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
             </TouchableOpacity>
-            </View>
+        </View>
+
+        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Atrelado') as never}>
+            <Icon as ={<Truck color={colors.green[700]}/>} />
+                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Atrelado</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inspeccao') as never}>
+            <Icon as ={<FileSearch  color={colors.green[700]}/>} />
+            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Inspecção diária</Text>
+            </TouchableOpacity>
+        </View>
+
+
       </VStack>
     </VStack>
   );
 }
 const styles = StyleSheet.create({
     menuButtonsUp:{
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#f8f8f8',
         width: '42%',
         height:'80%',
         alignItems: 'center',
