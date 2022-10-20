@@ -2,7 +2,7 @@ import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle} from 'phosphor-react-native'
 import { Header } from '../components/Header';
-import { StyleSheet, TouchableOpacity,ScrollView } from 'react-native';
+import { StyleSheet, TouchableOpacity,ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
@@ -41,39 +41,46 @@ export default function MyStack() {
     );
   }
 
-export  function Inventario() {
-    type Nav ={
-        navigate : (value: string) => void;
-      }
-      
-      const { navigate } = useNavigation<Nav>()
-      
+export function Inventario(){
+  
+           type Nav ={
+            navigate : (value: string) => void;
+          }
     
-        const { fonts } = useTheme();
-        const { colors } = useTheme();
-  return (
-<VStack flex={1} pb={6} bg="white">
+           const { navigate } = useNavigation<Nav>()
+    
+  
+      const { fonts } = useTheme();
+      const { colors } = useTheme();
 
-    <HStack>
-        <Header />
-    </HStack>
+      return (
+      <VStack flex={1} pb={6} bg="white">
 
-    <VStack flex={1} px={6}>
-        <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-            <View>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Navegue 
-            </Text>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                entre os Inventarios
-            </Text>
-            </View>
-            <Icon as ={<Wrench color={colors.primary[600]}/>} />
+        <HStack>
+            <Header />
         </HStack>
-   
-    </VStack>
 
-        <VStack flex={4} px={6}>
+        <VStack flex={1} px={6}>
+            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                <View>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                    Navegue 
+                </Text>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                    entre os Inventarios
+                </Text>
+                </View>
+                <Icon as ={<Wrench color={colors.primary[600]}/>} />
+            </HStack>
+      
+        </VStack>
+
+
+
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+
+      <VStack px={4} style={{width: '100%'}}>
             
             <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
                 <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Pedido') as never}>
@@ -121,20 +128,36 @@ export  function Inventario() {
                 </TouchableOpacity>
             </View>
 
-        </VStack>
 
-</VStack>  );
+        </VStack>
+      </ScrollView>
+    </SafeAreaView>
+    </VStack>
+      );
 }
 
 const styles = StyleSheet.create({
-    menuButtonsUp:{
-        backgroundColor: '#f8f8f8',
-        width: '42%',
-        height:'80%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'flex-end',
-        marginBottom: '5%',
-        borderRadius: 20
-    },
-})
+  container: {
+    flex: 5,
+    paddingTop: StatusBar.currentHeight,
+    marginBottom:'14%'
+  },
+  scrollView: {
+    backgroundColor: 'white',
+  },
+  text: {
+    fontSize: 20,
+    lineHeight: 40,
+  },
+
+  menuButtonsUp:{
+    backgroundColor: '#f8f8f8',
+    width: '42%',
+    height:'80%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
+    marginTop: '30%',
+    borderRadius: 20
+},
+});
