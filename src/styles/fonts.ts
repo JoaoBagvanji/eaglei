@@ -1,5 +1,5 @@
 export default {
-    heading: 'Jost_600SemiBold',
-    text: 'Jost_400Regular',
-    complement: 'Jost_400Regular'
+    heading: 'Montserrat_600SemiBold',
+    text: 'Montserrat_400Regular',
+    complement: 'Montserrat_400Regular'
 };
