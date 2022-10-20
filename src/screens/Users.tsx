@@ -4,7 +4,6 @@ import { Info, Users as Usuarios } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import { Header } from '../components/Header';
-import { Fontisto } from '@expo/vector-icons';
 
 export default function Users() {
 
@@ -37,17 +36,17 @@ export default function Users() {
         },
         {
             id: 6,
-            nome: 'Tovela',
+            nome: 'Walcyr',
             image: require('../assets/avatars/avatar3.png'),
         },
         {
             id: 7,
-            nome: 'Tovela',
+            nome: 'Xeron',
             image: require('../assets/avatars/avatar3.png'),
         },
         {
             id: 8,
-            nome: 'Tovela',
+            nome: 'Yanick',
             image: require('../assets/avatars/avatar3.png'),
         }
     ];
@@ -62,15 +61,10 @@ export default function Users() {
             </Box>
            
             <TouchableOpacity>
-            <Icon as ={<Info color={colors.blueGray[400]}/>} />
-        </TouchableOpacity>
-
+                <Icon as ={<Info color={colors.blueGray[400]}/>} />
+            </TouchableOpacity>
         </View>   
     )
-
-    function headerComponent(){
-       return <Text fontFamily={fonts.heading} fontSize={16} color={colors.primary[600]}>Usuários</Text>
-    }
 
     function itemSeparator(){
         return <View style={styles.separator}/>
@@ -81,9 +75,11 @@ export default function Users() {
 
   return (
     <VStack flex={1} pb={6} bg="white">
+
         <HStack>
-            <Header />
+            <Header/>
         </HStack>
+
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
@@ -94,12 +90,12 @@ export default function Users() {
                     entre os Usuários
                 </Text>
                 </View>
-                <Icon as ={<Usuarios color={colors.green[700]}/>} />
+                <Icon as ={<Usuarios color={colors.blueGray[400]}/>} />
             </HStack>
-            <View>
+
+            <View  mb={'50%'}> 
+            <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={14} color={colors.blueGray[500]}>Usuários</Text>
                 <FlatList 
-                    ListHeaderComponentStyle = {styles.listHeader}
-                    ListHeaderComponent={headerComponent}
                     data = {data}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
@@ -108,6 +104,7 @@ export default function Users() {
                     showsVerticalScrollIndicator={false}
                 />
             </View>
+
       </VStack>
     </VStack>
   );
@@ -115,11 +112,6 @@ export default function Users() {
 
 
 const styles=StyleSheet.create({
-    listHeader:{
-        height: 55,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     separator:{
         height: 1,
         width: '100%',

@@ -1,9 +1,9 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { MagnifyingGlass } from 'phosphor-react-native'
-import { Header } from '../../components/Header';
+import { CheckCircle } from 'phosphor-react-native'
+import { Header } from '../../../components/Header';
 
-export default function Inspeccao() {
+export default function Completos() {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -19,13 +19,13 @@ export default function Inspeccao() {
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
+                    Tarefas 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                    entre as Inspecções
+                    Completas
                 </Text>
                 </View>
-                <Icon as ={<MagnifyingGlass color={colors.green[700]}/>} />
+                <Icon as ={<CheckCircle color={colors.green[700]}/>} />
             </HStack>
       </VStack>
     </VStack>
