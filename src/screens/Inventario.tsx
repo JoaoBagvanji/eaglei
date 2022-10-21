@@ -32,7 +32,7 @@ const inventarios = [
     {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, inventarioImage :  ImagemEstac},
     {brand: 'Comserv', type: 'Attention', name: 'Attention', qtd: 660, inventarioImage :  ImagemEstac},
     {brand: 'Comserv', type: 'StockReturn', name: 'StockReturn', qtd: 90, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Projectos', name: 'Projectos', qtd: 80, inventarioImage :  ImagemEstac}
+    {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, inventarioImage :  ImagemEstac}
 ]
 
 export default function MyStack() {
