@@ -23,6 +23,7 @@ import Inventarios from './Inventarios';
 
 const Stack = createStackNavigator();
 const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
+
 const inventarios = [
     {brand: 'Comserv', type: 'Pedido', name: 'Pedidos', qtd: 220, inventarioImage :  ImagemEstac},
     {brand: 'Comserv', type: 'Aprovados', name: 'Aprovados', qtd: 10, inventarioImage :  ImagemEstac},
@@ -55,6 +56,7 @@ export default function MyStack() {
   }
 
 export  function Inventario() {
+
     type Nav ={
         navigate : (value: string) => void;
       }
@@ -65,6 +67,7 @@ export  function Inventario() {
         const { fonts } = useTheme();
         const { colors } = useTheme();
         const [loadingMore, setLoadingMore] = useState(false);
+        
   return (
 <VStack flex={1} pb={6} bg="white">
 
@@ -93,7 +96,12 @@ export  function Inventario() {
                     numColumns={2} 
                     data={inventarios} 
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={ ( {item} ) => (<RectButton style={styles.container}><Inventarios inventario={item}/></RectButton>)}
+                    renderItem={ ( {item} ) => (
+                    <RectButton 
+                    style={styles.container}>
+                        <Inventarios inventario={item}/>
+                    </RectButton>
+                    )}
                     showsVerticalScrollIndicator ={false}
                     onEndReachedThreshold={0.1}
                     ListFooterComponent ={

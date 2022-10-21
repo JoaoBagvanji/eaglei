@@ -10,7 +10,7 @@ import  Inventario  from '../screens/Inventario';
 import  Viaturas  from '../screens/Viaturas';
 import  Users  from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
-import  Login  from '../screens/Login';
+
 
 import * as Animatable from 'react-native-animatable';
 

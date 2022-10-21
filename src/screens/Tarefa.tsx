@@ -33,7 +33,7 @@ export default function MyStack() {
     );
   }
 
-export  function Tarefa() {
+export function Tarefa() {
     type Nav ={
         navigate : (value: string) => void;
       }
@@ -43,6 +43,7 @@ export  function Tarefa() {
     
         const { fonts } = useTheme();
         const { colors } = useTheme();
+
   return (
     <VStack flex={1} pb={6} bg="white">
     <HStack>
