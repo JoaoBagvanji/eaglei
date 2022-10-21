@@ -15,10 +15,6 @@ import Vehicles from './pages_viaturas/Vehicles';
 
 import  {useNavigation}  from '@react-navigation/native';
 
-import { Home } from './Home';
-import AuthRoutes from '../routes/tab.routes';
-import Rotas from '../routes';
-
 
 const Stack = createStackNavigator();
 
@@ -38,9 +34,6 @@ export default function MyStack() {
             <Stack.Screen name="Viaturas" component={Viaturas} />
         </Stack.Navigator>
       </NavigationContainer>
-
-      <AuthRoutes/>
-
     );
   }
 export function Viaturas() {
@@ -72,51 +65,24 @@ export function Viaturas() {
                     entre as viaturas
                 </Text>
                 </View>
-                <Icon as ={<Car color={colors.blueGray[400]}/>} />
+                <Icon as ={<Car color={colors.green[700]}/>} />
             </HStack>
-
         </VStack>
-
-
-      </VStack>
-
-      <VStack flex={1} px={6}>
-        <View flex={4} backgroundColor={colors.gray[700]} flexDirection="row" justifyContent='space-evenly' alignItems='center'>
-            <TouchableOpacity style={styles.menuButtonsUp} onPress={() => navigation.navigate('Users')}>
-            <Icon as ={<Truck color={colors.primary[700]}/>} />
-                <Text >Viaturas</Text>
-
-      <VStack flex={4} px={6}>
-      <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-evenly' alignItems='center'  >
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigation.navigate('Users')}>
-            <Icon as ={<Usuarios color={colors.primary[700]}/>} />
-                <Text >Usuarios</Text>
-
 
       <VStack flex={4} px={6}>
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'>
 
         <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Inspeccao') as never}>
-            <Icon as ={<FileSearch color={colors.green[700]} size={25}/>} />
+            <Icon as ={<FileSearch color={colors.green[700]}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Inspecção diária</Text>
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Transfers') as never}>
             
             <Icon as ={<ArrowLeft color={colors.green[700]} size={16}/>} />
-            <Icon as ={<Truck color={colors.green[700]} size={25}/>}/>
+            <Icon as ={<Truck color={colors.primary[600]}/>}/>
             <Icon as ={<ArrowRight color={colors.green[700]} size={16}/>} />
-
                 <Text fontFamily={fonts.heading} color={colors.primary[600]} >Transferências</Text>
-
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Transferências</Text>
-
-            </TouchableOpacity>
-
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Vehicles') as never}>
-            <Icon as ={<Car color={colors.green[700]}/>} />
-            <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
-
             </TouchableOpacity>
         </View>
 
@@ -128,7 +94,7 @@ export function Viaturas() {
             </TouchableOpacity>
 
         <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Vehicles') as never}>
-            <Icon as ={<Car color={colors.green[700]} size={25}/>} />
+            <Icon as ={<Car color={colors.green[700]}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
             </TouchableOpacity> 
 
@@ -144,7 +110,7 @@ export function Viaturas() {
 }
 const styles = StyleSheet.create({
     menuButtonsUp:{
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#f8f8f8',
         width: '42%',
         height:'80%',
         alignItems: 'center',
