@@ -1,6 +1,6 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { Wrench } from 'phosphor-react-native'
+import { Wrench, Notification  } from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator,TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -20,8 +20,6 @@ import Utilizadores from './pages_inventario/Utilizadores';
 import Inventarios from './Inventarios';
 
 
-
-
 const Stack = createStackNavigator();
 const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
 const ImagemEstac_Ap= 'https://images.unsplash.com/photo-1603899122361-e99b4f6fecf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
@@ -31,7 +29,13 @@ const ImagemEstac_Us= 'https://images.unsplash.com/photo-1624561172888-ac93c696e
 const ImagemEstac_At= 'https://images.unsplash.com/photo-1578986568309-707ef1017f69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80'
 const ImagemEstac_St= 'https://images.unsplash.com/photo-1526152505827-d2f3b5b4a52a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
 const ImagemEstac_Dp= 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80'
+
+const icons =[
+    { icon1: <Notification />, iconName: 'IconPedido'}
+]
+
 const inventarios = [
+    
     {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 220, inventarioImage :  ImagemEstac},
     {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, inventarioImage :  ImagemEstac_Ap},
     {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, inventarioImage :  ImagemEstac_Fn},
@@ -41,6 +45,7 @@ const inventarios = [
     {brand: 'Comserv', type: 'StockReturn', name: 'StockReturn', qtd: 90, inventarioImage :  ImagemEstac_St},
     {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, inventarioImage :  ImagemEstac_Dp}
 ]
+
 
 export default function MyStack() {
     return (
