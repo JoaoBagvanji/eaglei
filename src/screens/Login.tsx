@@ -1,27 +1,17 @@
 import { VStack, Icon, useTheme, View, HStack,Text } from 'native-base';
 import { SignIn, Key, User } from 'phosphor-react-native'
-import { useEffect, useState, useContext } from 'react';
+import { useState } from 'react';
 import {  TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
-
-import EmailInput from '../components/EmailInput';
-import PasswordInput from '../components/PasswordInput';
-
-import { Context } from '../context/AuthContext';
-import api from "../services/api";
-import axios from 'axios';
 import Logo from '../assets/eagle I 1.svg' ;
 import { Button } from '../components/Button';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Fontisto } from '@expo/vector-icons';
 
-const config = {
-    header: {
-      "Content-Type": "application/json",
-    },
-  };
-export default function Login({history}){
+
+
+export default function Login(){
     type Nav = {
         navigate: (value:string) => void;
     }
@@ -33,40 +23,7 @@ export default function Login({history}){
     const { colors } = useTheme();
     const { fonts } = useTheme();
     const [isLoading, setIsLoading] = useState(false);
-
     
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const [showPassword, setShowPassword] = useState(true);
-
-    
-
-    // useEffect(() => {
-    //     if (AsyncStorage.getItem("authToken")) {
-    //       history.push("/");
-    //     }
-    //   }, [history]);
-    const loginUser = async (email, senha) => {
-        
-         
-          try {
-            const data = await api.post("/LogIn", {
-              email: email,
-              senha: senha,
-            }).then((data) =>data);
-            console.log(data.data)
-      
-      
-            await AsyncStorage.setItem("token", data.data.token);
-          } catch (e) {
-            console.log(e);
-          }
-        
-      };
-
-           
 
     return(
         <VStack flex={1} alignItems="center" bg="white" px={8} pt={8} justifyContent='center'>
@@ -78,14 +35,33 @@ export default function Login({history}){
             </HStack>
 
             <View style={styles.uinputView}>
-                <EmailInput value={email} setValue={setEmail}/>
+                <TextInput 
+                    style={styles.txtInput} 
+                    selectionColor='#12375C' 
+                    outlineColor='#cce3f9'
+                    activeOutlineColor='#12375C' 
+                    underlineColor='#12375C' 
+                    left={<TextInput.Icon icon={User}
+                    color={colors.primary[600]} />}
+                    mode="outlined"
+                    label="Username"
+                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                    
+                />
             </View>
             <View style={styles.pinputView}>
-                <PasswordInput
-                    value={password}
-                    setValue={setPassword}
-                    showPassword={showPassword}
-                    setShowPassword={setShowPassword}
+                <TextInput 
+                    style={styles.txtInput} 
+                    selectionColor='#12375C' 
+                    outlineColor='#cce3f9'
+                    activeOutlineColor='#12375C' 
+                    left={<TextInput.Icon icon={Key} 
+                    color={colors.primary[600]}/>}
+                    mode="outlined" 
+                    secureTextEntry={true} 
+                    label="Password"
+                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                    
                 />
             </View>
 
@@ -93,10 +69,7 @@ export default function Login({history}){
                 leftIcon={<Icon as={<SignIn color={colors.green[700]}/>} ml={4}/>}
                 title='Entrar'
                 w="full"
-                onPress={() => {
-                    loginUser(email, password);
-                    navigate("Home") as never;
-                }}
+                onPress={handleLogin}
             />
         </VStack>
 

@@ -22,7 +22,7 @@ export default function Inspeccao() {
                     Navegue 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                    entre as Inspecções
+                    entre as Inspeçoes
                 </Text>
                 </View>
                 <Icon as ={<MagnifyingGlass color={colors.green[700]}/>} />
