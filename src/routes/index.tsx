@@ -8,12 +8,6 @@ const Stack = createNativeStackNavigator();
 export default function Rotas(){
     return(
         <NavigationContainer>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-            <AuthRoutes />
-=======
-=======
->>>>>>> origin
             <Stack.Navigator initialRouteName="Login" screenOptions={{
                 headerShown:false,
             }}>
@@ -21,10 +15,6 @@ export default function Rotas(){
                 <Stack.Screen name='Home' component={AuthRoutes}/>
             </Stack.Navigator>
 
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> origin
         </NavigationContainer>
     )
 }

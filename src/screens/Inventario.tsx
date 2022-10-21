@@ -2,7 +2,7 @@ import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { Wrench } from 'phosphor-react-native'
 import { Header } from '../components/Header';
-import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator,TouchableOpacity } from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
@@ -21,17 +21,16 @@ import Inventarios from './Inventarios';
 
 
 
-
 const Stack = createStackNavigator();
 const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
 const inventarios = [
-    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 220, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Attention', name: 'Attention', qtd: 660, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'StockReturn', name: 'StockReturn', qtd: 90, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Pedido', name: 'Pedidos', qtd: 220, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovados', qtd: 10, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizados  ', qtd: 20, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Armazem', name: 'Armazem  ', qtd:340, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Users', name: 'Users', qtd: 230, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Atencao', name: 'Atenção', qtd: 660, inventarioImage :  ImagemEstac},
+    {brand: 'Comserv', type: 'Relatórios', name: 'Relatórios', qtd: 90, inventarioImage :  ImagemEstac},
     {brand: 'Comserv', type: 'Projectos', name: 'Projectos', qtd: 80, inventarioImage :  ImagemEstac}
 ]
 
@@ -58,19 +57,14 @@ export default function MyStack() {
 export  function Inventario() {
     type Nav ={
         navigate : (value: string) => void;
-    }
+      }
       
-    const { navigate } = useNavigation<Nav>()
-    const { fonts } = useTheme();
-    const { colors } = useTheme();
-    const [loadingMore, setLoadingMore] = useState(false);
-
-    function handleTelas(posicao){
-        // Verficar a posicao e nome
-        // let telaposicao = inventarios.findIndex(x=>x.name==posicao.name);
-        // console.log(telaposicao,posicao)
-        navigate(posicao.name) as never
-    }
+      const { navigate } = useNavigation<Nav>()
+      
+    
+        const { fonts } = useTheme();
+        const { colors } = useTheme();
+        const [loadingMore, setLoadingMore] = useState(false);
   return (
 <VStack flex={1} pb={6} bg="white">
 
@@ -99,10 +93,9 @@ export  function Inventario() {
                     numColumns={2} 
                     data={inventarios} 
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Inventarios inventario={item}/></RectButton>)}
+                    renderItem={ ( {item} ) => (<RectButton style={styles.container}><Inventarios inventario={item}/></RectButton>)}
                     showsVerticalScrollIndicator ={false}
                     onEndReachedThreshold={0.1}
-                    
                     ListFooterComponent ={
                         loadingMore 
                         ? <ActivityIndicator color={colors.green[700]} />
