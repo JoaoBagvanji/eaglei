@@ -1,8 +1,9 @@
 import React from 'react';
-import { VStack } from 'native-base';
+import { VStack, Icon} from 'native-base';
 import { View, Text, Image, StyleSheet} from 'react-native'
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+
 
 
 class Inventarios extends React.Component<any, any> {
@@ -10,7 +11,7 @@ class Inventarios extends React.Component<any, any> {
     render() {
         const { name,  brand, qtd, inventarioImage} = this.props.inventario
         return(
-            <View style={{width: '50%', alignItems: 'center',margin: '1%', padding: 5}}>
+            <View style={{width: '50%', alignItems: 'center',margin: '1%', padding: 6}}>
                 <Image style={styles.imageiventory} source={{uri: inventarioImage}} />
                 <Text style={styles.text}>{name}</Text>
                 <Text style={styles.textbrand}>  {brand}</Text>
