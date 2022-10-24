@@ -1,6 +1,6 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { Wrench, Notification  } from 'phosphor-react-native'
+import { Wrench, Notification, Checks, Flag, ArchiveBox, UsersThree,WarningCircle, KeyReturn, ThumbsUp} from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator,TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -29,20 +29,16 @@ const ImagemEstac_At= 'https://images.unsplash.com/photo-1578986568309-707ef1017
 const ImagemEstac_St= 'https://images.unsplash.com/photo-1526152505827-d2f3b5b4a52a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
 const ImagemEstac_Dp= 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80'
 
-const icons =[
-    { icon1: <Notification />, iconName: 'IconPedido'}
-]
-
 const inventarios = [
     
-    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 220, inventarioImage :  ImagemEstac},
-    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, inventarioImage :  ImagemEstac_Ap},
-    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, inventarioImage :  ImagemEstac_Fn},
-    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340, inventarioImage :  ImagemEstac_Am},
-    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, inventarioImage :  ImagemEstac_Us},
-    {brand: 'Comserv', type: 'Attention', name: 'Attention', qtd: 660, inventarioImage :  ImagemEstac_At},
-    {brand: 'Comserv', type: 'StockReturn', name: 'StockReturn', qtd: 90, inventarioImage :  ImagemEstac_St},
-    {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, inventarioImage :  ImagemEstac_Dp}
+    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 220, inventarioImage :  ImagemEstac, icon: <Notification color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, inventarioImage :  ImagemEstac_Ap, icon: <Checks color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, inventarioImage :  ImagemEstac_Fn, icon: <Flag  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340, inventarioImage :  ImagemEstac_Am, icon: <ArchiveBox color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, inventarioImage :  ImagemEstac_Us, icon: <UsersThree  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Attention', name: 'Attention', qtd: 660, inventarioImage :  ImagemEstac_At, icon: <WarningCircle  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'StockReturn', name: 'StockReturn', qtd: 90, inventarioImage :  ImagemEstac_St, icon: <KeyReturn color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, inventarioImage :  ImagemEstac_Dp, icon: <ThumbsUp  color='#A1C861'/>}
 ]
 
 
@@ -102,24 +98,25 @@ export  function Inventario() {
    
     </VStack>
 
-        <VStack flex={5}>
-            <SafeAreaView>
-                <FlatList
-                    numColumns={2} 
-                    data={inventarios} 
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Inventarios inventario={item}/></RectButton>)}
-                    showsVerticalScrollIndicator ={false}
-                    onEndReachedThreshold={0.1}
+        <VStack flex={5} mx={4} py={20}>
+                <SafeAreaView>
                     
-                    ListFooterComponent ={
-                        loadingMore 
-                        ? <ActivityIndicator color={colors.green[700]} />
-                        : <></>
-    
-                    }
-                />
-            </SafeAreaView>
+                        <FlatList
+                            numColumns={2} 
+                            data={inventarios} 
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Inventarios inventario={item}/></RectButton>)}
+                            showsVerticalScrollIndicator ={false}
+                            onEndReachedThreshold={0.1}
+                            
+                            ListFooterComponent ={
+                                loadingMore 
+                                ? <ActivityIndicator color={colors.green[700]} />
+                                : <></>
+            
+                            }
+                        />
+                </SafeAreaView>
         </VStack>
 
 </VStack>  );
@@ -131,7 +128,7 @@ const styles = StyleSheet.create({
         maxWidth: '45%',
         backgroundColor: colors.shape,
         borderRadius: 20,
-        paddingVertical: 10,
+        paddingVertical: 15,
         alignItems: 'center',
         margin: 10
     },
