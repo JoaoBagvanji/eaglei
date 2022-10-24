@@ -7,13 +7,13 @@ import fonts from "../styles/fonts";
 class Inventarios extends React.Component<any, any> {
     
     render() {
-        const { name,  brand, qtd, inventarioImage, icon} = this.props.inventario
+        const { name, type, brand, qtd, inventarioImage, icon} = this.props.inventario
      
         return(
-            <View style={{width: '50%', alignItems: 'center',margin: '5%',height:120}}>
+            <View style={{width: '60%', alignItems: 'center',margin: '5%',height:120, justifyContent: 'center'}}>
                 
                 <Icon style={colors.green[300] as StyleProp<ViewStyle>} size={30}>{icon}</Icon>
-                <Text style={styles.text}>{name}</Text>
+                <Text style={styles.text}>{type}</Text>
                 <Text style={styles.textqtd}> qtd: {qtd}</Text>
                 
             </View>
