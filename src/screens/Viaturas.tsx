@@ -15,10 +15,6 @@ import Vehicles from './pages_viaturas/Vehicles';
 
 import  {useNavigation}  from '@react-navigation/native';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6ae0286bef55f61326fb1be1483ad952078deab4
 
 const Stack = createStackNavigator();
 

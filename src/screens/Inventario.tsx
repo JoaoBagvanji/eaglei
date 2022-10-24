@@ -19,7 +19,6 @@ import StockReturn from './pages_inventario/StockReturn';
 import Utilizadores from './pages_inventario/Utilizadores';
 import Inventarios from './Inventarios';
 
-
 const Stack = createStackNavigator();
 const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
 const ImagemEstac_Ap= 'https://images.unsplash.com/photo-1603899122361-e99b4f6fecf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
@@ -77,11 +76,9 @@ export  function Inventario() {
     const { colors } = useTheme();
     const [loadingMore, setLoadingMore] = useState(false);
 
-    function handleTelas(posicao){
-        // Verficar a posicao e nome
-        // let telaposicao = inventarios.findIndex(x=>x.name==posicao.name);
-        // console.log(telaposicao,posicao)
-        navigate(posicao.name) as never
+    function handleTelas(item){
+     
+        navigate(item.name) as never
     }
   return (
 <VStack flex={1} pb={6} bg="white">
