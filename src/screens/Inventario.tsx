@@ -1,6 +1,6 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { Wrench, Notification, Checks, Flag, ArchiveBox, UsersThree,WarningCircle, KeyReturn, ThumbsUp} from 'phosphor-react-native'
+import { Wrench, Notification, Checks, Handshake , Nut , UsersThree,ArrowsCounterClockwise , KeyReturn, ThumbsUp} from 'phosphor-react-native'
 import { Header } from '../components/Header';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator,TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -24,13 +24,13 @@ const Stack = createStackNavigator();
 
 const inventarios = [
     
-    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 220, icon: <Notification color='#CC0000'/>},
+    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 22000, icon: <Notification color='#A1C861'/>},
     {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, icon: <Checks color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, icon: <Flag  color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340, icon: <ArchiveBox color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, icon: <UsersThree  color='#12375C'/>},
-    {brand: 'Comserv', type: 'Attention', name: 'Attention', qtd: 660, icon: <WarningCircle  color='#CC0000'/>},
-    {brand: 'Comserv', type: 'StockReturn', name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#F2BC1A'/>},
+    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, icon: <Handshake   color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340, icon: <Nut  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, icon: <UsersThree  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Atenção', name: 'Attention', qtd: 660,  icon: <ArrowsCounterClockwise   color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Retorno', name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
     {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>}
 ]
 
@@ -91,7 +91,7 @@ export  function Inventario() {
    
     </VStack>
 
-        <VStack flex={5} mx={4} py={20}>
+        <VStack flex={4} mx={2} py={20}>
                 <SafeAreaView>
                     
                         <FlatList
@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
         maxWidth: '45%',
         backgroundColor: colors.shape,
         borderRadius: 20,
-        paddingVertical: 15,
+        paddingVertical: '5%',
         alignItems: 'center',
-        margin: 10
+        margin: '2%'
     },
 })
