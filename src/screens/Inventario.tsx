@@ -32,13 +32,13 @@ const ImagemEstac_Dp= 'https://images.unsplash.com/photo-1566576721346-d4a3b4eae
 
 const inventarios = [
     
-    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 220, inventarioImage :  ImagemEstac, icon: <Notification color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 220, inventarioImage :  ImagemEstac, icon: <Notification color='#CC0000'/>},
     {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, inventarioImage :  ImagemEstac_Ap, icon: <Checks color='#A1C861'/>},
     {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, inventarioImage :  ImagemEstac_Fn, icon: <Flag  color='#A1C861'/>},
     {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340, inventarioImage :  ImagemEstac_Am, icon: <ArchiveBox color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, inventarioImage :  ImagemEstac_Us, icon: <UsersThree  color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Attention', name: 'Attention', qtd: 660, inventarioImage :  ImagemEstac_At, icon: <WarningCircle  color='#A1C861'/>},
-    {brand: 'Comserv', type: 'StockReturn', name: 'StockReturn', qtd: 90, inventarioImage :  ImagemEstac_St, icon: <KeyReturn color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, inventarioImage :  ImagemEstac_Us, icon: <UsersThree  color='#12375C'/>},
+    {brand: 'Comserv', type: 'Attention', name: 'Attention', qtd: 660, inventarioImage :  ImagemEstac_At, icon: <WarningCircle  color='#CC0000'/>},
+    {brand: 'Comserv', type: 'StockReturn', name: 'StockReturn', qtd: 90, inventarioImage :  ImagemEstac_St, icon: <KeyReturn color='#F2BC1A'/>},
     {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, inventarioImage :  ImagemEstac_Dp, icon: <ThumbsUp  color='#A1C861'/>}
 ]
 
