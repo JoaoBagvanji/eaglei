@@ -24,9 +24,6 @@ export default function AppRoutes(){
     >
         <StackRoutes.Screen name='Login' component={Login}/>
 
-
-
-
     </StackRoutes.Navigator>
     )
 }

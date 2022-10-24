@@ -1,21 +1,20 @@
 import React from 'react';
-import { VStack } from 'native-base';
-import { View, Text, Image, StyleSheet} from 'react-native'
+import { VStack, Icon, useTheme} from 'native-base';
+import { View, Text, Image, StyleSheet, StyleProp, ViewStyle} from 'react-native'
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-
+import { white } from 'react-native-paper/lib/typescript/styles/colors';
 
 class Inventarios extends React.Component<any, any> {
     
     render() {
-        const { name,  brand, qtd, inventarioImage} = this.props.inventario
+        const { name, type, brand, qtd, inventarioImage, icon} = this.props.inventario
+     
         return(
-            <View style={{width: '50%', alignItems: 'center',margin: '1%', padding: 5}}>
-                <Image style={styles.imageiventory} source={{uri: inventarioImage}} />
-                <Text style={styles.text}>{name}</Text>
-                <Text style={styles.textbrand}>  {brand}</Text>
-                <Text style={styles.textqtd}> qtd: {qtd}</Text>
-                
+            <View style={{width: '100%', alignItems: 'center',margin: '5%',height:120, justifyContent: 'center'}}>
+                <Icon  size={30}>{icon}</Icon>
+                <Text style={styles.text}>{type}</Text>
+                <Text style={styles.textqtd}>{qtd}</Text>
             </View>
         )
     }
@@ -23,21 +22,11 @@ class Inventarios extends React.Component<any, any> {
 
 export default Inventarios;
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        maxWidth: '45%',
-        backgroundColor: colors.shape,
-        borderRadius: 20,
-        paddingVertical: 15,
-        alignItems: 'center',
-        margin: 10
-    },
-    text:{
-        
+    text:{   
         textAlign: 'center',
         color: colors.green_dark,
         fontFamily: fonts.heading,
-        marginVertical: 10
+        marginVertical: "10%"
     },
     textbrand:{
         textAlign: 'center',
@@ -46,12 +35,14 @@ const styles = StyleSheet.create({
     },
     textqtd:{
         textAlign: 'center',
-        color: colors.gray_dark,
+        color: colors.blue,
         fontFamily: fonts.text,
+        backgroundColor: colors.white,
+        lineHeight: 35,
+        width: '50%',
+        height: '30%',
+        borderRadius: 15,
+        
     },
-    imageiventory:{
-        width: 70, 
-        height:70,
-        borderRadius: 40
-    }
+   
 })
