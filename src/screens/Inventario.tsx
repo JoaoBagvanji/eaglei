@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         maxWidth: '45%',
         backgroundColor: colors.shape,
         borderRadius: 20,
-        paddingVertical: '5%',
+        paddingVertical: 15,
         alignItems: 'center',
         margin: '3%'
     },
