@@ -12,11 +12,9 @@ class Inventarios extends React.Component<any, any> {
      
         return(
             <View style={{width: '100%', alignItems: 'center',margin: '5%',height:120, justifyContent: 'center'}}>
-                
                 <Icon  size={30}>{icon}</Icon>
                 <Text style={styles.text}>{type}</Text>
                 <Text style={styles.textqtd}>{qtd}</Text>
-                
             </View>
         )
     }
@@ -24,21 +22,11 @@ class Inventarios extends React.Component<any, any> {
 
 export default Inventarios;
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        maxWidth: '45%',
-        backgroundColor: colors.shape,
-        borderRadius: 20,
-        paddingVertical: 15,
-        alignItems: 'center',
-        margin: 10
-    },
-    text:{
-        
+    text:{   
         textAlign: 'center',
         color: colors.green_dark,
         fontFamily: fonts.heading,
-        marginVertical: 10
+        marginVertical: "10%"
     },
     textbrand:{
         textAlign: 'center',
@@ -52,13 +40,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         lineHeight: 35,
         width: '50%',
-        height: 35,
+        height: '30%',
         borderRadius: 15,
         
-    },
-    imageiventory:{
-        width: 70, 
-        height:70,
-        borderRadius: 40
     },
 })
