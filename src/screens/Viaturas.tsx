@@ -1,12 +1,13 @@
 import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
+import {  Image, StyleSheet, StyleProp, ViewStyle,TouchableOpacity} from 'react-native'
+import colors from "../styles/colors";
+import fonts from "../styles/fonts";
+import { white } from 'react-native-paper/lib/typescript/styles/colors';
 
-import { Car, Truck, FileSearch, ArrowBendUpLeft,ArrowBendDownRight  } from 'phosphor-react-native';
+import { Car, ArrowLeft,ArrowRight, Truck, FileSearch} from 'phosphor-react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faTrailer } from '@fortawesome/free-solid-svg-icons'
 import { Header } from '../components/Header';
-import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -82,9 +83,9 @@ export function Viaturas() {
 
             <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Transfers') as never}>
             
-            <Icon as ={<ArrowBendUpLeft  color={colors.green[700]} size={16}/>} />
+            <Icon as ={<ArrowLeft color={colors.green[700]} size={16}/>} />
             <Icon as ={<Truck color={colors.green[700]} size={25}/>}/>
-            <Icon as ={<ArrowBendDownRight  color={colors.green[700]} size={16}/>} />
+            <Icon as ={<ArrowRight color={colors.green[700]} size={16}/>} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]} >Transferências</Text>
             </TouchableOpacity>
         </View>
@@ -92,7 +93,7 @@ export function Viaturas() {
         <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
 
         <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Atrelado') as never}>
-        <FontAwesomeIcon icon={faTrailer} size={25} color={colors.green[700]} />
+        <FontAwesome5 name="trailer" size={25} color={colors.green[700]} />
                 <Text fontFamily={fonts.heading} color={colors.primary[600]}>Atrelado</Text>
             </TouchableOpacity>
 
@@ -100,6 +101,10 @@ export function Viaturas() {
             <Icon as ={<Car color={colors.green[700]} size={25}/>} />
             <Text fontFamily={fonts.heading} color={colors.primary[600]}>Viaturas</Text>
             </TouchableOpacity> 
+
+           
+
+           
         </View>
 
 
