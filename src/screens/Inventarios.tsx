@@ -1,8 +1,9 @@
 import React from 'react';
 import { VStack, Icon, useTheme} from 'native-base';
-import { View, Text, Image, StyleSheet, StyleProp, ViewStyle} from 'react-native'
+import { View, Text, Image, StyleSheet, StyleProp, ViewStyle, TextInput} from 'react-native'
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import { white } from 'react-native-paper/lib/typescript/styles/colors';
 
 class Inventarios extends React.Component<any, any> {
     
@@ -10,11 +11,11 @@ class Inventarios extends React.Component<any, any> {
         const { name, type, brand, qtd, inventarioImage, icon} = this.props.inventario
      
         return(
-            <View style={{width: '60%', alignItems: 'center',margin: '5%',height:120, justifyContent: 'center'}}>
+            <View style={{width: '100%', alignItems: 'center',margin: '5%',height:120, justifyContent: 'center'}}>
                 
                 <Icon style={colors.green[300] as StyleProp<ViewStyle>} size={30}>{icon}</Icon>
                 <Text style={styles.text}>{type}</Text>
-                <Text style={styles.textqtd}> qtd: {qtd}</Text>
+                <Text style={styles.textqtd}>{qtd}</Text>
                 
             </View>
         )
@@ -46,8 +47,14 @@ const styles = StyleSheet.create({
     },
     textqtd:{
         textAlign: 'center',
-        color: colors.gray,
+        color: colors.blue,
         fontFamily: fonts.text,
+        backgroundColor: colors.white,
+        lineHeight: 35,
+        width: '50%',
+        height: 35,
+        borderRadius: 15,
+        
     },
     imageiventory:{
         width: 70, 
