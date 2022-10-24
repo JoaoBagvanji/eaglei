@@ -19,7 +19,7 @@ import Viaturas from './Viaturas'
 const Stack = createStackNavigator();
 
 
-const inventarios = [
+const viaturas = [
     
     {label: 'Inspecção diária', component_name: 'Inspeccao', qtd: 22000, icon: <FileSearch color='#A1C861' size={25} />},
     {label: 'Transferências', component_name: 'Transfers', qtd: 10, icon: <Icon as ={<Truck color='#A1C861' size={25} />} />}, 
@@ -85,7 +85,7 @@ export  function Viatura() {
                 <SafeAreaView>
                         <FlatList
                             numColumns={2} 
-                            data={inventarios} 
+                            data={viaturas} 
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Viaturas Viatura={item}/></RectButton>)}
                             showsVerticalScrollIndicator ={false}

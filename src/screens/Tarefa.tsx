@@ -1,24 +1,34 @@
-import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, ScrollView } from 'native-base';
-import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle} from 'phosphor-react-native'
+import React , {useState}from 'react';
+import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
+import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle} from 'phosphor-react-native';
 import { Header } from '../components/Header';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator,TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
-import { Home } from './Home';
+import { RectButton } from 'react-native-gesture-handler';
+import colors from '../styles/colors';
 
 import Projectos from './pages_tarefas/Projectos';
 import Relatorios from './pages_tarefas/Relatorios';
 import Preventiva from './pages_tarefas/Preventiva';
 import Correctiva from './pages_tarefas/Correctiva';
-
+import Tarefas from './Tarefas';
 
 const Stack = createStackNavigator();
 
 
+const tarefas = [
+    
+    {label: 'Correctiva', component_name: 'Correctiva', qtd: 22000, icon: <CheckCircle color='#A1C861' size={25} />},
+    {label: 'Preventiva', component_name: 'Preventiva', qtd: 10, icon: <Icon as ={<ClockCounterClockwise color='#A1C861' size={25} />} />}, 
+    {label: 'Relatórios', component_name: 'Relatorios', qtd: 20, icon: <Scroll color='#A1C861' size={25} />},
+    {label: 'Projectos', component_name: 'Projectos', qtd:340, icon: <Icon as ={<ProjectorScreenChart color='#A1C861' size={25}/>} />},
+]
+
+
 export default function MyStack() {
-    return (
+      return (
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Tarefa'>
@@ -31,23 +41,30 @@ export default function MyStack() {
         </Stack.Navigator>
       </NavigationContainer>
     );
-  }
+      }
 
-export  function Tarefa() {
+export function Tarefa() {
     type Nav ={
         navigate : (value: string) => void;
-      }
+    }
       
-      const { navigate } = useNavigation<Nav>()
-      
-    
-        const { fonts } = useTheme();
-        const { colors } = useTheme();
+    const { navigate } = useNavigation<Nav>()
+    const { fonts } = useTheme();
+    const { colors } = useTheme();
+    const [loadingMore, setLoadingMore] = useState(false);
+
+    function handleTelas(item){
+     
+        navigate(item.component_name) as never
+    }
+
   return (
-    <VStack flex={1} pb={6} bg="white">
+<VStack flex={1} pb={6} bg="white">
+
     <HStack>
         <Header />
     </HStack>
+
     <VStack flex={1} px={6}>
         <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
             <View>
@@ -55,49 +72,45 @@ export  function Tarefa() {
                 Navegue 
             </Text>
             <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                entre as Tarefas
+            entre as Tarefas
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.blueGray[400]}/>} />
+            <Icon as ={<Wrench color={colors.green[700]}/>} />
         </HStack>
+   
     </VStack>
-    <VStack flex={4} px={6}>
-        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center'  >
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Correctiva') as never}>
-                <Icon as ={<CheckCircle  color={colors.green[700]}/>}/>
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Correctiva</Text>
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Preventiva') as never}>
-            <Icon as ={<ClockCounterClockwise color={colors.green[700]}/>} />
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Preventiva</Text>
-            </TouchableOpacity>
+
+        <VStack flex={4} mx={2} py={20}>
+                <SafeAreaView>
+                        <FlatList
+                            numColumns={2} 
+                            data={tarefas} 
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Tarefas Tarefa={item}/></RectButton>)}
+                            showsVerticalScrollIndicator ={false}
+                            onEndReachedThreshold={0.1}
+                            ListFooterComponent ={
+                                loadingMore 
+                                ? <ActivityIndicator color={colors.green[700]} />
+                                : <></>
             
-        </View>
+                            }
+                        />
+                </SafeAreaView>
+        </VStack>
 
-        <View flex={4} backgroundColor={colors.white} flexDirection="row" justifyContent='space-around' alignItems='center' paddingBottom={12}>
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Relatorios') as never}>
-                <Icon as ={<Scroll color={colors.green[700]}/>} />
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Relatórios</Text>
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7} style={styles.menuButtonsUp} onPress={() => navigate('Projectos') as never}>
-                <Icon as ={<ProjectorScreenChart color={colors.green[700]}/>} />
-                <Text fontFamily={fonts.heading} color={colors.primary[600]}>Projectos</Text>
-            </TouchableOpacity>
-        </View>
-
-    </VStack>
 </VStack>  );
 }
 
 const styles = StyleSheet.create({
-    menuButtonsUp:{
-        backgroundColor: '#f8f8f8',
-        width: '42%',
-        height:'80%',
+    container:{
+        flex:1,
+        maxWidth: '45%',
+        backgroundColor: colors.shape,
+        borderRadius: 20,
+        paddingVertical: '5%',
         alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'flex-end',
-        marginBottom: '5%',
-        borderRadius: 20
+        margin: '3%'
     },
+
 })
