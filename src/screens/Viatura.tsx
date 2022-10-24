@@ -1,6 +1,7 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { Wrench, Notification, Checks, Handshake , Nut , UsersThree,ArrowsCounterClockwise , KeyReturn, ThumbsUp} from 'phosphor-react-native'
+import { Car, Truck, FileSearch} from 'phosphor-react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator,TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,53 +10,41 @@ import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import colors from '../styles/colors';
 
-import Aprovado from './pages_inventario/Aprovado';
-import Armazem from './pages_inventario/Armazem';
-import Attention from './pages_inventario/Attention';
-import Despacho from './pages_inventario/Despacho';
-import Finalizado from './pages_inventario/Finalizado';
-import Pedido from './pages_inventario/Pedido';
-import StockReturn from './pages_inventario/StockReturn';
-import Utilizadores from './pages_inventario/Utilizadores';
-import Inventarios from './Inventarios';
+import Atrelado from './pages_viaturas/Atrelado';
+import Inspeccao from './pages_viaturas/Inspeccao';
+import Transfers from './pages_viaturas/Transfers';
+import Vehicles from './pages_viaturas/Vehicles';
+import Viaturas from './Viaturas'
 
 const Stack = createStackNavigator();
 
 
 const inventarios = [
     
-    {label: 'Pedido', component_name: 'Pedido', qtd: 22000, icon: <Notification color='#A1C861'/>},
-    {label: 'Aprovados', component_name: 'Aprovado', qtd: 10, icon: <Checks color='#A1C861'/>},
-    {label: 'Finalizados', component_name: 'Finalizado', qtd: 20, icon: <Handshake   color='#A1C861'/>},
-    {label: 'Armazem', component_name: 'Armazem', qtd:340, icon: <Nut  color='#A1C861'/>},
-    {label: 'Utilizadores', component_name: 'Utilizadores', qtd: 230, icon: <UsersThree  color='#A1C861'/>},
-    {label: 'Atenção', component_name: 'Attention', qtd: 660,  icon: <ArrowsCounterClockwise   color='#A1C861'/>},
-    {label: 'Retorno', component_name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
-    {label: 'Despacho', component_name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>}
+    {label: 'Inspecção diária', component_name: 'Inspeccao', qtd: 22000, icon: <FileSearch color='#A1C861' size={25} />},
+    {label: 'Transferências', component_name: 'Transfers', qtd: 10, icon: <Icon as ={<Truck color='#A1C861' size={25} />} />}, 
+    {label: 'Atrelado', component_name: 'Atrelado', qtd: 20, icon: <FontAwesome5 name="trailer" color='#A1C861' size={25} />},
+    {label: 'Viaturas', component_name: 'Vehicles', qtd:340, icon: <Icon as ={<Car color='#A1C861' size={25}/>} />},
 ]
 
 
 export default function MyStack() {
-    return (
+     return (
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
-                initialRouteName='Inventario'>
-            <Stack.Screen name="Aprovado" component={Aprovado} />
-            <Stack.Screen name="Armazem" component={Armazem} />
-            <Stack.Screen name="Attention" component={Attention} />
-            <Stack.Screen name="Despacho" component={Despacho} />
-            <Stack.Screen name="Finalizado" component={Finalizado} />
-            <Stack.Screen name="Pedido" component={Pedido} />
-            <Stack.Screen name="StockReturn" component={StockReturn} />
-            <Stack.Screen name="Utilizadores" component={Utilizadores} />
-
-            <Stack.Screen name="Inventario" component={Inventario} />    
+                initialRouteName='Viatura'>
+            <Stack.Screen name="Atrelado" component={Atrelado} />
+            <Stack.Screen name="Inspeccao" component={Inspeccao} />
+            <Stack.Screen name="Transfers" component={Transfers} />
+            <Stack.Screen name="Vehicles" component={Vehicles} />
+            <Stack.Screen name="Viatura" component={Viatura} />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 
-export  function Inventario() {
+
+export  function Viatura() {
     type Nav ={
         navigate : (value: string) => void;
     }
@@ -84,10 +73,10 @@ export  function Inventario() {
                 Navegue 
             </Text>
             <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                entre os Inventarios
+                entre as viaturas
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.green[700]}/>} />
+            <Icon as ={<Car color={colors.green[700]}/>} />
         </HStack>
    
     </VStack>
@@ -98,7 +87,7 @@ export  function Inventario() {
                             numColumns={2} 
                             data={inventarios} 
                             keyExtractor={(item, index) => index.toString()}
-                            renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Inventarios inventario={item}/></RectButton>)}
+                            renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Viaturas Viatura={item}/></RectButton>)}
                             showsVerticalScrollIndicator ={false}
                             onEndReachedThreshold={0.1}
                             ListFooterComponent ={
