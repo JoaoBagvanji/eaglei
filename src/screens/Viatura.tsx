@@ -83,24 +83,24 @@ export  function Viatura() {
    
     </VStack>
 
-        <VStack flex={4} mx={2} py={20}>
-                <SafeAreaView>
-                        <FlatList
-                            numColumns={2} 
-                            data={viaturas} 
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Viaturas Viatura={item}/></RectButton>)}
-                            showsVerticalScrollIndicator ={false}
-                            onEndReachedThreshold={0.1}
-                            ListFooterComponent ={
-                                loadingMore 
-                                ? <ActivityIndicator color={colors.green[700]} />
-                                : <></>
-            
-                            }
-                        />
-                </SafeAreaView>
-        </VStack>
+    <VStack flex={4} mx={2} py={20}>
+            <SafeAreaView>
+                    <FlatList
+                        numColumns={2} 
+                        data={viaturas} 
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Viaturas Viatura={item}/></RectButton>)}
+                        showsVerticalScrollIndicator ={false}
+                        onEndReachedThreshold={0.1}
+                        ListFooterComponent ={
+                            loadingMore 
+                            ? <ActivityIndicator color={colors.green[700]} />
+                            : <></>
+        
+                        }
+                    />
+            </SafeAreaView>
+    </VStack>
 
 </VStack>  );
 }
