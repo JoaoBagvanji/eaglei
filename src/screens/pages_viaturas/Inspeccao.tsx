@@ -1,13 +1,41 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { MagnifyingGlass } from 'phosphor-react-native'
+import { MagnifyingGlass, Plus } from 'phosphor-react-native'
 import { Header } from '../../components/Header';
+import colors from '../../styles/colors';
 
-export default function Inspeccao() {
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import  {useNavigation}  from '@react-navigation/native';
+
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import FormInspeccao from './pages_inspeccao/FormInspeccao';
+
+const Stack = createStackNavigator();
+
+export default function MyStack() {
+    return (
+     <NavigationContainer independent={true}>
+       <Stack.Navigator  screenOptions={{headerShown: false}} 
+               initialRouteName='Inspeccao('>
+           <Stack.Screen name="Inspeccao" component={Inspeccao} />
+           <Stack.Screen name="FormInspeccao" component={FormInspeccao} />
+       </Stack.Navigator>
+     </NavigationContainer>
+   );
+ }
+
+export function Inspeccao() {
+
+    type Nav ={
+        navigate : (value: string) => void;
+    }
+      
+    const { navigate } = useNavigation<Nav>()
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
-
+    
 
 
   return (
@@ -28,6 +56,24 @@ export default function Inspeccao() {
                 <Icon as ={<MagnifyingGlass color={colors.green[700]}/>} />
             </HStack>
       </VStack>
+    
+       <VStack mb={70} alignSelf={'center'}>
+            <TouchableOpacity style={styles.formButton}   onPress={() => navigate('FormInspeccao') as never}>
+                <Plus size={22} color={colors.green[700]} />
+            </TouchableOpacity>
+       </VStack>
+            
+
     </VStack>
   );
 }
+
+const styles = StyleSheet.create({
+    formButton:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.blue,
+        borderRadius: 25,
+        height: 50,
+        width:50
+}})
