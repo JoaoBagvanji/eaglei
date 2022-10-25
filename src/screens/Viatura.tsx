@@ -3,7 +3,7 @@ import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { Car, Truck, FileSearch} from 'phosphor-react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Header } from '../components/Header';
-import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator,TouchableOpacity } from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
@@ -45,6 +45,8 @@ export default function MyStack() {
 
 
 export  function Viatura() {
+   
+
     type Nav ={
         navigate : (value: string) => void;
     }
@@ -55,8 +57,7 @@ export  function Viatura() {
     const [loadingMore, setLoadingMore] = useState(false);
 
     function handleTelas(item){
-     
-        navigate(item.component_name) as never
+        navigate(item.component_name) as never;
     }
 
   return (

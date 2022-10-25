@@ -17,10 +17,10 @@ export default function PlanoHoje() {
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                     Planos 
+                      Planos 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                     Para Hoje
+                      para hoje
                 </Text>
                 </View>
                 <Icon as ={<ClockCounterClockwise color={colors.green[700]}/>} />
