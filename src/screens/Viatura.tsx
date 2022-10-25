@@ -1,6 +1,6 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { Car, Truck, FileSearch} from 'phosphor-react-native';
+import { Car, ArrowsLeftRight, FileSearch} from 'phosphor-react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrailer } from '@fortawesome/free-solid-svg-icons';
 import { Header } from '../components/Header';
@@ -23,7 +23,7 @@ const Stack = createStackNavigator();
 const viaturas = [
     
     {label: 'Inspecção diária', component_name: 'Inspeccao', qtd: 22000, icon: <FileSearch color='#A1C861' size={25} />},
-    {label: 'Transferências', component_name: 'Transfers', qtd: 10, icon: <Icon as ={<Truck color='#A1C861' size={25} />} />}, 
+    {label: 'Transferências', component_name: 'Transfers', qtd: 10, icon: <Icon as ={<ArrowsLeftRight color='#A1C861' size={25} />} />}, 
     {label: 'Atrelado', component_name: 'Atrelado', qtd: 20, icon: <FontAwesomeIcon icon={faTrailer} color='#A1C861' size={25} />},
     {label: 'Viaturas', component_name: 'Vehicles', qtd:340, icon: <Icon as ={<Car color='#A1C861' size={25}/>} />},
 ]
