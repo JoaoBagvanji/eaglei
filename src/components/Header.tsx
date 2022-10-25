@@ -13,15 +13,6 @@ export function Header() {
     const [userName, setUserName] = useState<string>();
 
 
-    useEffect(()=>{
-        async function loadStorageUserName(){
-            const user = await AsyncStorage.getItem('@eaglei:user');
-            setUserName(user || "");
-        }
-
-        loadStorageUserName();
-    },[]);
-
   return (
     <VStack flex={1} pb={6} bg="white">
         <HStack

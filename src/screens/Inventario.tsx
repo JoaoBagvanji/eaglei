@@ -21,17 +21,20 @@ import Inventarios from './Inventarios';
 
 
 const Stack = createStackNavigator();
-const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
-const ImagemEstac_Ap= 'https://images.unsplash.com/photo-1603899122361-e99b4f6fecf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
-const ImagemEstac_Fn= 'https://images.unsplash.com/photo-1580893211123-627e0262be3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-const ImagemEstac_Am= 'https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
-const ImagemEstac_Us= 'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=689&q=80'
-const ImagemEstac_At= 'https://images.unsplash.com/photo-1578986568309-707ef1017f69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80'
-const ImagemEstac_St= 'https://images.unsplash.com/photo-1526152505827-d2f3b5b4a52a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-const ImagemEstac_Dp= 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80'
+
 
 const inventarios = [
     
+
+    {label: 'Pedido', component_name: 'Pedido', qtd: 22000, icon: <Notification color='#A1C861'/>},
+    {label: 'Aprovados', component_name: 'Aprovado', qtd: 10, icon: <Checks color='#A1C861'/>},
+    {label: 'Finalizados', component_name: 'Finalizado', qtd: 20, icon: <Handshake   color='#A1C861'/>},
+    {label: 'Armazem', component_name: 'Armazem', qtd:340, icon: <Nut  color='#A1C861'/>},
+    {label: 'Utilizadores', component_name: 'Utilizadores', qtd: 230, icon: <UsersThree  color='#A1C861'/>},
+    {label: 'Atenção', component_name: 'Attention', qtd: 660,  icon: <ArrowsCounterClockwise   color='#A1C861'/>},
+    {label: 'Retorno', component_name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
+    {label: 'Despacho', component_name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>}
+
     {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 22000, inventarioImage :  ImagemEstac, icon: <Notification color='#A1C861'/>},
     {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, inventarioImage :  ImagemEstac_Ap, icon: <Checks color='#A1C861'/>},
     {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, inventarioImage :  ImagemEstac_Fn, icon: <Handshake   color='#A1C861'/>},
@@ -40,6 +43,7 @@ const inventarios = [
     {brand: 'Comserv', type: 'Atenção', name: 'Attention', qtd: 660, inventarioImage :  ImagemEstac_At, icon: <ArrowsCounterClockwise   color='#A1C861'/>},
     {brand: 'Comserv', type: 'Retorno', name: 'StockReturn', qtd: 90, inventarioImage :  ImagemEstac_St, icon: <KeyReturn color='#A1C861'/>},
     {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, inventarioImage :  ImagemEstac_Dp, icon: <ThumbsUp  color='#A1C861'/>}
+
 ]
 
 
@@ -73,12 +77,20 @@ export  function Inventario() {
     const { colors } = useTheme();
     const [loadingMore, setLoadingMore] = useState(false);
 
+
+    function handleTelas(item){
+     
+        navigate(item.component_name) as never
+    }
+
+
     function handleTelas(posicao){
         // Verficar a posicao e nome
         // let telaposicao = inventarios.findIndex(x=>x.name==posicao.name);
         // console.log(telaposicao,posicao)
         navigate(posicao.name) as never
     }
+
   return (
 <VStack flex={1} pb={6} bg="white">
 
@@ -103,7 +115,6 @@ export  function Inventario() {
 
         <VStack flex={4} mx={2} py={20}>
                 <SafeAreaView>
-                    
                         <FlatList
                             numColumns={2} 
                             data={inventarios} 
@@ -111,7 +122,6 @@ export  function Inventario() {
                             renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Inventarios inventario={item}/></RectButton>)}
                             showsVerticalScrollIndicator ={false}
                             onEndReachedThreshold={0.1}
-                            
                             ListFooterComponent ={
                                 loadingMore 
                                 ? <ActivityIndicator color={colors.green[700]} />
@@ -133,6 +143,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         paddingVertical: 15,
         alignItems: 'center',
-        margin: '2%'
+        margin: '3%'
     },
+
 })

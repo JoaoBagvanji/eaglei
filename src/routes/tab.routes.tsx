@@ -7,7 +7,7 @@ import { Car, House, Package, Gear, Users as Usuarios, Truck, Wrench } from 'pho
 import { Home } from '../screens/Home';
 
 import  Inventario  from '../screens/Inventario';
-import  Viaturas  from '../screens/Viaturas';
+import  Viatura  from '../screens/Viatura';
 import  Users  from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
 import  Login  from '../screens/Login';
@@ -55,7 +55,7 @@ export default function AuthRoutes() {
                 />
                 <AppTab.Screen 
                     name='Viatura'
-                    component={Viaturas}
+                    component={Viatura}
                     options={{
                         tabBarIcon:(({ size, color})=>(
                             <Icon as ={<Truck color={color} size={size}/>} />
