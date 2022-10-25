@@ -1,7 +1,8 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { Car, Truck, FileSearch} from 'phosphor-react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faTrailer } from '@fortawesome/free-solid-svg-icons';
 import { Header } from '../components/Header';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -23,7 +24,7 @@ const viaturas = [
     
     {label: 'Inspecção diária', component_name: 'Inspeccao', qtd: 22000, icon: <FileSearch color='#A1C861' size={25} />},
     {label: 'Transferências', component_name: 'Transfers', qtd: 10, icon: <Icon as ={<Truck color='#A1C861' size={25} />} />}, 
-    {label: 'Atrelado', component_name: 'Atrelado', qtd: 20, icon: <FontAwesome5 name="trailer" color='#A1C861' size={25} />},
+    {label: 'Atrelado', component_name: 'Atrelado', qtd: 20, icon: <FontAwesomeIcon icon={faTrailer} color='#A1C861' size={25} />},
     {label: 'Viaturas', component_name: 'Vehicles', qtd:340, icon: <Icon as ={<Car color='#A1C861' size={25}/>} />},
 ]
 
