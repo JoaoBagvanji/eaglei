@@ -8,12 +8,12 @@ import { white } from 'react-native-paper/lib/typescript/styles/colors';
 class Inventarios extends React.Component<any, any> {
     
     render() {
-        const {label, qtd, icon} = this.props.inventario;
+        const {name, qtd, icon} = this.props.inventario;
      
         return(
             <View style={{width: '100%', alignItems: 'center', maxHeight: 125, minHeight:122 ,justifyContent: 'center'}}>
                 <Icon size={30}>{icon}</Icon>
-                <Text style={styles.text}>{label}</Text>
+                <Text style={styles.text}>{name}</Text>
                 <Text style={styles.textqtd}>{qtd}</Text>
             </View>
         )
