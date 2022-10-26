@@ -1,69 +1,132 @@
-import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Article } from 'phosphor-react-native'
-import { Header } from '../../../components/Header';
+import { HStack,  VStack } from 'native-base';
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+
+
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
+import { Header } from '../../../components/Header';
 
-export default function Transfers() {
+export default class FormInspeccao extends Component {
+    static navigationOptions = {
+      header: null
+    };
+  
+    defaultScrollViewProps = {
+      keyboardShouldPersistTaps: 'handled',
+      contentContainerStyle: {
+        flex: 1,
+        justifyContent: 'center'
+      }
+    };
+  
+    onNextStep = () => {
+      console.log('called next step');
+    };
+  
+    onPaymentStepComplete = () => {
+      alert('Payment step completed!');
+    };
+  
+    onPrevStep = () => {
+      console.log('called previous step');
+    };
+  
+    onSubmitSteps = () => {
+      console.log('called on submit step.');
+    };
+  
+    render() {
+      return (
+        <VStack flex={1} pb={6} bg="white">
 
-    const { fonts } = useTheme();
-    const { colors } = useTheme();
-
-
-
-  return (
-    <VStack flex={1} pb={10} bg="white">
         <HStack>
             <Header />
         </HStack>
 
-        <View style={{flex: 1, marginHorizontal:'10%'}}>
-    <ProgressSteps>
-        <ProgressStep>
-        <Article size={32} />
-            <View style={{ alignItems: 'center' }}>
-                <Text>DADOS GERAIS</Text>
-            </View>
-        </ProgressStep>
-        <ProgressStep>
-            <View style={{ alignItems: 'center' }}>
-                <Text>CARROÇARIA</Text>
-            </View>
-        </ProgressStep>
-        <ProgressStep>
-            <View style={{ alignItems: 'center' }}>
-                <Text>RODAS</Text>
-            </View>
-        </ProgressStep>
-        <ProgressStep>
-            <View style={{ alignItems: 'center' }}>
-                <Text>ESPELHOS</Text>
-            </View>
-        </ProgressStep>
-        <ProgressStep>
-            <View style={{ alignItems: 'center' }}>
-                <Text>LUZES</Text>
-            </View>
-        </ProgressStep>
-      
-        <ProgressStep>
-            <View style={{ alignItems: 'center' }}>
-                <Text>MOTOR</Text>
-            </View>
-        </ProgressStep>
-        <ProgressStep>
-            <View style={{ alignItems: 'center' }}>
-                <Text>CAMERA</Text>
-            </View>
-        </ProgressStep>
-        <ProgressStep>
-            <View style={{ alignItems: 'center' }}>
-                <Text>SEGURANÇA</Text>
-            </View>
-        </ProgressStep>
+     
+
+      <View style={{ flex: 1, marginBottom: 8 }}>
+          <ProgressSteps>
+            <ProgressStep
+              onNext={this.onPaymentStepComplete}
+              onPrevious={this.onPrevStep}
+              scrollViewProps={this.defaultScrollViewProps}
+            >
+              <View style={{ alignItems: 'center' }}>
+                <Text>Payment step content</Text>
+              </View>
+            </ProgressStep>
+            <ProgressStep
+              onNext={this.onNextStep}
+              onPrevious={this.onPrevStep}
+              scrollViewProps={this.defaultScrollViewProps}
+            >
+              <View style={{ alignItems: 'center' }}>
+                <Text>Shipping address step content</Text>
+              </View>
+            </ProgressStep>
+            <ProgressStep
+              onNext={this.onNextStep}
+              onPrevious={this.onPrevStep}
+              scrollViewProps={this.defaultScrollViewProps}
+            >
+              <View style={{ alignItems: 'center' }}>
+                <Text>Billing address step content</Text>
+              </View>
+            </ProgressStep>
+            <ProgressStep
+              onPrevious={this.onPrevStep}
+              onSubmit={this.onSubmitSteps}
+              scrollViewProps={this.defaultScrollViewProps}
+            >
+              <View style={{ alignItems: 'center' }}>
+                <Text>Confirm order step content</Text>
+              </View>
+            </ProgressStep>
+            <ProgressStep
+              onNext={this.onNextStep}
+              onPrevious={this.onPrevStep}
+              scrollViewProps={this.defaultScrollViewProps}
+            >
+              <View style={{ alignItems: 'center' }}>
+                <Text>Shipping address step content</Text>
+              </View>
+            </ProgressStep>
+            <ProgressStep
+              onNext={this.onNextStep}
+              onPrevious={this.onPrevStep}
+              scrollViewProps={this.defaultScrollViewProps}
+            >
+              <View style={{ alignItems: 'center' }}>
+                <Text>Shipping address step content</Text>
+              </View>
+            </ProgressStep>
+            <ProgressStep
+              onNext={this.onNextStep}
+              onPrevious={this.onPrevStep}
+              scrollViewProps={this.defaultScrollViewProps}
+            >
+              <View style={{ alignItems: 'center' }}>
+                <Text>Shipping address step content</Text>
+              </View>
+            </ProgressStep>
+            <ProgressStep
+              onNext={this.onNextStep}
+              onPrevious={this.onPrevStep}
+              scrollViewProps={this.defaultScrollViewProps}
+            >
+              <View style={{ alignItems: 'center' }}>
+                <Text>Shipping address step content</Text>
+              </View>
+            </ProgressStep>
+          </ProgressSteps>
+        </View>
         
-    </ProgressSteps>
-</View>
     </VStack>
-  );
-}
+
+
+       
+      );
+    }
+  }
+  
