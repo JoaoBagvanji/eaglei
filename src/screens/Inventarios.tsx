@@ -1,19 +1,19 @@
 import React from 'react';
-import { VStack, Icon, useTheme} from 'native-base';
-import { View, Text, Image, StyleSheet, StyleProp, ViewStyle} from 'react-native'
+import { Icon } from 'native-base';
+import { View, Text, StyleSheet} from 'react-native'
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import { white } from 'react-native-paper/lib/typescript/styles/colors';
+
 
 class Inventarios extends React.Component<any, any> {
     
     render() {
-        const {label, qtd, icon} = this.props.inventario;
+        const {name, qtd, icon} = this.props.inventario;
      
         return(
             <View style={{width: '100%', alignItems: 'center', maxHeight: 125, minHeight:122 ,justifyContent: 'center'}}>
                 <Icon size={30}>{icon}</Icon>
-                <Text style={styles.text}>{label}</Text>
+                <Text style={styles.text}>{name}</Text>
                 <Text style={styles.textqtd}>{qtd}</Text>
             </View>
         )
