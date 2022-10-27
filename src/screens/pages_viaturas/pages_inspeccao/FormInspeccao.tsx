@@ -1,12 +1,13 @@
 import { HStack,  VStack } from 'native-base';
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import { Header } from '../../../components/Header';
 
 export default class FormInspeccao extends Component {
+  
     static navigationOptions = {
       header: null
     };
@@ -45,11 +46,13 @@ export default class FormInspeccao extends Component {
 
      
 
-      <View style={{ flex: 1, marginBottom: 8 }}>
-          <ProgressSteps>
+      <View style={{ flex: 1, marginBottom: 25, marginHorizontal:'10%'}} >
+          <ProgressSteps  topOffset={10} borderWidth={3} completedStepIconColor={'#12375C'} completedProgressBarColor={'#12375C'} activeStepIconBorderColor={'#12375C'} activeStepIconColor={'#12375C'} 
+          completedCheckColor={'#A1C861'} activeStepNumColor={'#A1C861'} disabledStepNumColor={'black'} progressBarColor={'transparent'}>
             <ProgressStep
               onNext={this.onPaymentStepComplete}
               onPrevious={this.onPrevStep}
+              nextBtnText="Próximo"
               scrollViewProps={this.defaultScrollViewProps}
             >
               <View style={{ alignItems: 'center' }}>
@@ -59,6 +62,8 @@ export default class FormInspeccao extends Component {
             <ProgressStep
               onNext={this.onNextStep}
               onPrevious={this.onPrevStep}
+              nextBtnText="Próximo"
+              previousBtnText="Anterior"
               scrollViewProps={this.defaultScrollViewProps}
             >
               <View style={{ alignItems: 'center' }}>
@@ -68,6 +73,8 @@ export default class FormInspeccao extends Component {
             <ProgressStep
               onNext={this.onNextStep}
               onPrevious={this.onPrevStep}
+              nextBtnText="Próximo"
+              previousBtnText="Anterior"
               scrollViewProps={this.defaultScrollViewProps}
             >
               <View style={{ alignItems: 'center' }}>
@@ -77,6 +84,8 @@ export default class FormInspeccao extends Component {
             <ProgressStep
               onPrevious={this.onPrevStep}
               onSubmit={this.onSubmitSteps}
+              nextBtnText="Próximo"
+              previousBtnText="Anterior"
               scrollViewProps={this.defaultScrollViewProps}
             >
               <View style={{ alignItems: 'center' }}>
@@ -86,6 +95,8 @@ export default class FormInspeccao extends Component {
             <ProgressStep
               onNext={this.onNextStep}
               onPrevious={this.onPrevStep}
+              nextBtnText="Próximo"
+              previousBtnText="Anterior"
               scrollViewProps={this.defaultScrollViewProps}
             >
               <View style={{ alignItems: 'center' }}>
@@ -95,6 +106,8 @@ export default class FormInspeccao extends Component {
             <ProgressStep
               onNext={this.onNextStep}
               onPrevious={this.onPrevStep}
+              nextBtnText="Próximo"
+              previousBtnText="Anterior"
               scrollViewProps={this.defaultScrollViewProps}
             >
               <View style={{ alignItems: 'center' }}>
@@ -104,6 +117,8 @@ export default class FormInspeccao extends Component {
             <ProgressStep
               onNext={this.onNextStep}
               onPrevious={this.onPrevStep}
+              nextBtnText="Próximo"
+              previousBtnText="Anterior"
               scrollViewProps={this.defaultScrollViewProps}
             >
               <View style={{ alignItems: 'center' }}>
@@ -113,6 +128,8 @@ export default class FormInspeccao extends Component {
             <ProgressStep
               onNext={this.onNextStep}
               onPrevious={this.onPrevStep}
+              finishBtnText="Submeter"
+              previousBtnText="Anterior"
               scrollViewProps={this.defaultScrollViewProps}
             >
               <View style={{ alignItems: 'center' }}>
@@ -123,10 +140,15 @@ export default class FormInspeccao extends Component {
         </View>
         
     </VStack>
-
-
-       
       );
     }
   }
   
+  
+
+  const styles = StyleSheet.create({
+      pSteps:{
+
+      }
+
+  })
