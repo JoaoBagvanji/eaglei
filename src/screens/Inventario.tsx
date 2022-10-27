@@ -25,15 +25,14 @@ const Stack = createStackNavigator();
 
 const inventarios = [
 
-    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 22000, icon: <Notification color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, icon: <Checks color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, icon: <Handshake   color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340, icon: <Nut  color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, icon: <UsersThree  color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Atenção', name: 'Attention', qtd: 660, icon: <ArrowsCounterClockwise   color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 22000,    icon: <Notification color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10,    icon: <Checks color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20,    icon: <Handshake   color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340,    icon: <Nut  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230,  icon: <UsersThree  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Atenção', name: 'Attention', qtd: 660,  icon: <ArrowsCounterClockwise   color='#A1C861'/>},
     {brand: 'Comserv', type: 'Retorno', name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
     {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>}
-
 
 ]
 
@@ -67,7 +66,6 @@ export  function Inventario() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [loadingMore, setLoadingMore] = useState(false);
-
 
     function handleTelas(posicao){
         // Verficar a posicao e nome
