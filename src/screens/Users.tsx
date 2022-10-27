@@ -1,11 +1,19 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box } from 'native-base';
 import { Info, Users as Usuarios } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import axios from "axios";
 
 import { Header } from '../components/Header';
 
 export default function Users() {
+
+
+
+const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
+
+
+
 
     const data = [
         {
@@ -51,11 +59,31 @@ export default function Users() {
         }
     ];
 
+    const [dados, setDados]=useState([]);
+    
+    useEffect(()=>{
+    (async()=>{
+        
+    await axiosinstant.get("utilizador/").then(d=>{
+        setDados(d.data)
+        console.log(d.data)
+
+    });
+    // const alvo  =  dadoss.data; 
+    
+    
+    })()
+    
+
+    },[])
+
+
+
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <Box flexDirection={'row'}>
             <View style={styles.avatarContainer }>
-                <Image source={item.image} style={styles.avatar}/>
+                <Image source={data[2].image} style={styles.avatar}/>
             </View>
             <Text fontFamily={fonts.body} color={colors.primary[600]} marginLeft={4}>{item.nome}</Text>
             </Box>
@@ -96,11 +124,11 @@ export default function Users() {
             <View  mb={'50%'}> 
             <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={14} color={colors.blueGray[500]}>Usuários</Text>
                 <FlatList 
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
-                    keyExtractor = { data => data.id }
+                    keyExtractor = { data => data._id }
                     showsVerticalScrollIndicator={false}
                 />
             </View>
