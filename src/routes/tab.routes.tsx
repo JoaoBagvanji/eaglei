@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTheme, Icon, HStack } from 'native-base';
+import { useTheme, Icon, HStack, VStack } from 'native-base';
 
 import {  House, Package, Users as Usuarios, Truck, Wrench } from 'phosphor-react-native'
 
