@@ -1,11 +1,19 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box } from 'native-base';
 import { Info, Users as Usuarios } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import axios from "axios";
 
 import { Header } from '../components/Header';
 
 export default function Users() {
+
+
+
+const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
+
+
+
 
     const data = [
         {
@@ -50,6 +58,23 @@ export default function Users() {
             image: require('../assets/avatars/avatar3.png'),
         }
     ];
+
+    const [dados, setDados]=useState([]);
+
+    useEffect(()=>{
+    (async()=>{
+    axiosinstant.get("utilizador/").then(async(dadoss)=>{
+    let alvo=await dadoss.data;
+    return setDados([...dados, ...alvo]);
+    })
+
+    
+    })()
+    
+
+    },[])
+
+
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
@@ -96,7 +121,7 @@ export default function Users() {
             <View  mb={'50%'}> 
             <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={14} color={colors.blueGray[500]}>Usuários</Text>
                 <FlatList 
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}

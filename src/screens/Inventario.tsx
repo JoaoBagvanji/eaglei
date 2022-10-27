@@ -24,6 +24,17 @@ const Stack = createStackNavigator();
 
 
 const inventarios = [
+<<<<<<< HEAD
+    
+    {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 22000, icon: <Notification color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10, icon: <Checks color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20, icon: <Handshake   color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340, icon: <Nut  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230, icon: <UsersThree  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Atenção', name: 'Attention', qtd: 660, icon: <ArrowsCounterClockwise   color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Retorno', name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>}
+=======
     {name: 'Pedido', qtd: 22000, icon: <Notification color='#A1C861'/>},
     {name: 'Aprovado', qtd: 10, icon: <Checks color='#A1C861'/>},
     {name: 'Finalizado', qtd: 20, icon: <Handshake   color='#A1C861'/>},
@@ -32,6 +43,7 @@ const inventarios = [
     {name: 'Attention', qtd: 660, icon: <ArrowsCounterClockwise   color='#A1C861'/>},
     {name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
     {name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>}
+>>>>>>> 2590430504bdbedc975124375a802d6457110ca7
 
 ]
 

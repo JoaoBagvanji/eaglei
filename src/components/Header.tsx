@@ -43,7 +43,7 @@ export function Header() {
                     fontSize='sm'
                     fontWeight='semibold'
                 >
-                    João Bagvanji Jr.
+                    Helio Mahesse.
                 </Text>
            </View>
             
