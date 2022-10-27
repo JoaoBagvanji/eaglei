@@ -60,14 +60,17 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     ];
 
     const [dados, setDados]=useState([]);
-
+    
     useEffect(()=>{
     (async()=>{
-    axiosinstant.get("utilizador/").then(async(dadoss)=>{
-    let alvo=await dadoss.data;
-    return setDados([...dados, ...alvo]);
-    })
+        
+    await axiosinstant.get("utilizador/").then(d=>{
+        setDados(d.data)
+        console.log(d.data)
 
+    });
+    // const alvo  =  dadoss.data; 
+    
     
     })()
     
@@ -80,7 +83,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
         <View style={styles.item}>
             <Box flexDirection={'row'}>
             <View style={styles.avatarContainer }>
-                <Image source={item.image} style={styles.avatar}/>
+                <Image source={data[2].image} style={styles.avatar}/>
             </View>
             <Text fontFamily={fonts.body} color={colors.primary[600]} marginLeft={4}>{item.nome}</Text>
             </Box>
@@ -125,7 +128,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
-                    keyExtractor = { data => data.id }
+                    keyExtractor = { data => data._id }
                     showsVerticalScrollIndicator={false}
                 />
             </View>
