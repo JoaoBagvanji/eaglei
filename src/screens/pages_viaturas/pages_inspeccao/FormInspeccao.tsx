@@ -1,42 +1,34 @@
 import { HStack,  VStack } from 'native-base';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { TextInput } from "react-native-paper";
+import { useTheme } from "native-base";
+import { SignIn, Key, User } from 'phosphor-react-native'
 
 
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import { Header } from '../../../components/Header';
 
-export default class FormInspeccao extends Component {
+
+export default function FormInspeccao(){
+
+  const { colors } = useTheme();
+const { fonts } = useTheme();
   
-    static navigationOptions = {
-      header: null
-    };
-  
-    defaultScrollViewProps = {
-      keyboardShouldPersistTaps: 'handled',
-      contentContainerStyle: {
-        flex: 1,
-        justifyContent: 'center'
-      }
-    };
-  
-    onNextStep = () => {
+    
+    const onNextStep = () => {
       console.log('called next step');
     };
   
-    onPaymentStepComplete = () => {
-      alert('Payment step completed!');
-    };
-  
-    onPrevStep = () => {
+    const onPrevStep = () => {
       console.log('called previous step');
     };
   
-    onSubmitSteps = () => {
+    const onSubmitSteps = () => {
       console.log('called on submit step.');
     };
+
   
-    render() {
       return (
         <VStack flex={1} pb={6} bg="white">
 
@@ -50,90 +42,92 @@ export default class FormInspeccao extends Component {
           <ProgressSteps  topOffset={10} borderWidth={3} completedStepIconColor={'#12375C'} completedProgressBarColor={'#12375C'} activeStepIconBorderColor={'#12375C'} activeStepIconColor={'#12375C'} 
           completedCheckColor={'#A1C861'} activeStepNumColor={'#A1C861'} disabledStepNumColor={'black'} progressBarColor={'transparent'}>
             <ProgressStep
-              onNext={this.onPaymentStepComplete}
-              onPrevious={this.onPrevStep}
+              onPrevious={onPrevStep}
               nextBtnText="Próximo"
-              scrollViewProps={this.defaultScrollViewProps}
             >
-              <View style={{ alignItems: 'center' }}>
-                <Text>Payment step content</Text>
+              <View style={styles.container}>
+                <Text style={styles.headings}>DADOS GERAIS</Text>
+
+                <View style={styles.formContainer}>
+
+                <TextInput style={styles.txtInput} label="MOTORISTA"/>
+                <TextInput style={styles.txtInput} label="MATRICULA"/>
+                <TextInput style={styles.txtInput} label="KILOMETROS"/>
+                <TextInput style={styles.txtInput} label="DATA E HORA"/>
+
+                </View>
               </View>
             </ProgressStep>
             <ProgressStep
-              onNext={this.onNextStep}
-              onPrevious={this.onPrevStep}
-              nextBtnText="Próximo"
-              previousBtnText="Anterior"
-              scrollViewProps={this.defaultScrollViewProps}
-            >
-              <View style={{ alignItems: 'center' }}>
-                <Text>Shipping address step content</Text>
-              </View>
-            </ProgressStep>
-            <ProgressStep
-              onNext={this.onNextStep}
-              onPrevious={this.onPrevStep}
+              onNext={onNextStep}
+              onPrevious={onPrevStep}
               nextBtnText="Próximo"
               previousBtnText="Anterior"
-              scrollViewProps={this.defaultScrollViewProps}
+
             >
-              <View style={{ alignItems: 'center' }}>
-                <Text>Billing address step content</Text>
+              <View style={styles.container}>
+                <Text style={styles.headings}>CARROÇARIA</Text>
               </View>
             </ProgressStep>
             <ProgressStep
-              onPrevious={this.onPrevStep}
-              onSubmit={this.onSubmitSteps}
+              onNext={onNextStep}
+              onPrevious={onPrevStep}
               nextBtnText="Próximo"
               previousBtnText="Anterior"
-              scrollViewProps={this.defaultScrollViewProps}
-            >
-              <View style={{ alignItems: 'center' }}>
-                <Text>Confirm order step content</Text>
+              >
+              <View style={styles.container}>
+                <Text style={styles.headings}>RODAS</Text>
               </View>
             </ProgressStep>
             <ProgressStep
-              onNext={this.onNextStep}
-              onPrevious={this.onPrevStep}
+              onPrevious={onPrevStep}
+              onSubmit={onSubmitSteps}
               nextBtnText="Próximo"
               previousBtnText="Anterior"
-              scrollViewProps={this.defaultScrollViewProps}
-            >
-              <View style={{ alignItems: 'center' }}>
-                <Text>Shipping address step content</Text>
+              >
+              <View style={styles.container}>
+                <Text style={styles.headings}>VIDROS/ESPELHOS</Text>
               </View>
             </ProgressStep>
             <ProgressStep
-              onNext={this.onNextStep}
-              onPrevious={this.onPrevStep}
+              onNext={onNextStep}
+              onPrevious={onPrevStep}
               nextBtnText="Próximo"
               previousBtnText="Anterior"
-              scrollViewProps={this.defaultScrollViewProps}
-            >
-              <View style={{ alignItems: 'center' }}>
-                <Text>Shipping address step content</Text>
+              >
+              <View style={styles.container}>
+                <Text style={styles.headings}>LUZES</Text>
               </View>
             </ProgressStep>
             <ProgressStep
-              onNext={this.onNextStep}
-              onPrevious={this.onPrevStep}
+              onNext={onNextStep}
+              onPrevious={onPrevStep}
               nextBtnText="Próximo"
               previousBtnText="Anterior"
-              scrollViewProps={this.defaultScrollViewProps}
-            >
-              <View style={{ alignItems: 'center' }}>
-                <Text>Shipping address step content</Text>
+              >
+              <View style={styles.container}>
+                <Text style={styles.headings}>MOTOR</Text>
               </View>
             </ProgressStep>
             <ProgressStep
-              onNext={this.onNextStep}
-              onPrevious={this.onPrevStep}
+              onNext={onNextStep}
+              onPrevious={onPrevStep}
+              nextBtnText="Próximo"
+              previousBtnText="Anterior"
+              >
+              <View style={styles.container}>
+                <Text style={styles.headings}>CAMERA</Text>
+                
+              </View>
+            </ProgressStep>
+            <ProgressStep
+              onNext={onNextStep}
+              onPrevious={onPrevStep}
               finishBtnText="Submeter"
               previousBtnText="Anterior"
-              scrollViewProps={this.defaultScrollViewProps}
-            >
-              <View style={{ alignItems: 'center' }}>
-                <Text>Shipping address step content</Text>
+              >
+              <View style={styles.container}>
+                <Text style={styles.headings}>SEGURANÇA</Text>
               </View>
             </ProgressStep>
           </ProgressSteps>
@@ -142,13 +136,45 @@ export default class FormInspeccao extends Component {
     </VStack>
       );
     }
-  }
+  
   
   
 
   const styles = StyleSheet.create({
-      pSteps:{
-
-      }
-
+      container:{
+        flex:1,
+        justifyContent: 'center'
+      },
+      formContainer:{
+        marginTop:'20%',        
+      },
+      headings:{
+        alignSelf: 'center'
+      },
+      uinputView:{
+        marginTop: "5%",
+        height:56,
+        width: "100%",
+        justifyContent: 'center',
+        borderRadius: 6,
+    },
+  
+    pinputView:{
+        marginVertical: "8%",
+        width: "100%",
+        height:56,
+        justifyContent: 'center',
+        borderRadius: 6
+    },
+  
+    txtInput:{
+        backgroundColor: '#e0edf9',
+        color: '#12375C',
+        margin: 3,
+       
+    }, 
+    buttonIcon:{
+        fontSize: 16,
+        color: '#12375c'
+    },
   })

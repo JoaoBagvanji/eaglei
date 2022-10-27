@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useTheme } from "native-base";
-import { SignIn, Key, User } from 'phosphor-react-native'
+import { SignIn, Key, User } from 'phosphor-react-native';
 
 
 const EmailInput = ({ value, setValue }) => {
