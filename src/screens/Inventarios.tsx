@@ -1,9 +1,9 @@
 import React from 'react';
-import { VStack, Icon, useTheme} from 'native-base';
-import { View, Text, Image, StyleSheet, StyleProp, ViewStyle} from 'react-native'
+import { Icon } from 'native-base';
+import { View, Text, StyleSheet} from 'react-native'
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import { white } from 'react-native-paper/lib/typescript/styles/colors';
+
 
 class Inventarios extends React.Component<any, any> {
     
