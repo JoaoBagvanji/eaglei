@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { VStack, HStack, IconButton, useTheme, Image, Text, View } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import  userImg  from '../assets/Joao.png';
+import  userImg  from '../assets/helio.png';
 import Logo from '../assets/eagle I 1.svg' ;
 
 
