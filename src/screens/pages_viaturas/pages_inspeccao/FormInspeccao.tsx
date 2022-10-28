@@ -39,10 +39,7 @@ export default class FormInspeccao extends Component {
       return (
         <VStack flex={1} pb={6} bg="white">
 
-        <HStack>
-            <Header />
-        </HStack>
-
+       
      
 
       <View style={{ flex: 1, marginBottom: 8 }}>
