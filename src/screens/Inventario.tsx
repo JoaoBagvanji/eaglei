@@ -77,12 +77,8 @@ export  function Inventario() {
   return (
 <VStack flex={1} pb={6} bg="white">
 
-    <HStack>
-        <Header />
-    </HStack>
-
     <VStack flex={1} px={6}>
-        <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+        <HStack w="full" mt={8} justifyContent="space-between" alignItems='center' flexDirection="row">
             <View>
             <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
                 Navegue 
@@ -96,7 +92,7 @@ export  function Inventario() {
    
     </VStack>
 
-        <VStack flex={4} mx={2} py={20}>
+        <VStack flex={4} mx={2}>
                 <SafeAreaView>
                         <FlatList
                             numColumns={2} 
@@ -124,9 +120,9 @@ const styles = StyleSheet.create({
         maxWidth: '45%',
         backgroundColor: colors.shape,
         borderRadius: 20,
-        paddingVertical: 15,
+        paddingVertical: 20,
         alignItems: 'center',
-        margin: '3%'
+        margin: '3%',
     },
 
 })

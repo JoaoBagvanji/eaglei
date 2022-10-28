@@ -11,7 +11,7 @@ class Inventarios extends React.Component<any, any> {
         const {name, qtd, icon} = this.props.inventario;
      
         return(
-            <View style={{width: '100%', alignItems: 'center', maxHeight: 125, minHeight:122 ,justifyContent: 'center'}}>
+            <View style={{width: '100%', alignItems: 'center', maxHeight: 140, minHeight:130 ,justifyContent: 'center'}}>
                 <Icon size={30}>{icon}</Icon>
                 <Text style={styles.text}>{name}</Text>
                 <Text style={styles.textqtd}>{qtd}</Text>
