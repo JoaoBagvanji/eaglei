@@ -1,7 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { CheckCircle } from 'phosphor-react-native'
-import { Header } from '../../../components/Header';
+import { CheckCircle } from 'phosphor-react-native';
 
 export default function Completos() {
 

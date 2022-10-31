@@ -11,7 +11,7 @@ import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import colors from '../../styles/colors';
 
-import Novos from './pages_projectos/Novos';
+
 import Completos from './pages_projectos/Completos';
 import Progress from './pages_projectos/Progress';
 import Projecto from './Projecto';
@@ -22,7 +22,6 @@ export default function MyStack() {
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Projectos'>
-            <Stack.Screen name="Novos" component={Novos} />
             <Stack.Screen name="Completos" component={Completos} />
             <Stack.Screen name="Progress" component={Progress} />
             <Stack.Screen name="Projectos" component={Projectos} />
@@ -32,8 +31,7 @@ export default function MyStack() {
   }
 
   const projectos = [
-    
-    {label: 'Novos', component_name: 'Novos', qtd: 22000, icon: <FolderPlus color='#A1C861' size={30} />},
+
     {label: 'Completos', component_name: 'Completos', qtd: 10, icon: <Icon as ={<HandsClapping  color='#A1C861' size={30} />} />}, 
     {label: 'Progress', component_name: 'Progress', qtd: 20, icon: <Icon as ={<ArrowsCounterClockwise  color='#A1C861' size={30} />} />},
     
