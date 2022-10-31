@@ -8,7 +8,7 @@ import { white } from 'react-native-paper/lib/typescript/styles/colors';
 class Viaturas extends React.Component<any, any> {
     
     render() {
-        const {label, qtd, icon, icon2, icon3} = this.props.Viatura;
+        const {label, qtd, icon} = this.props.Viatura;
      
         return(
             <View style={{width: '100%', alignItems: 'center', maxHeight: 125, minHeight:122 ,justifyContent: 'center'}}>

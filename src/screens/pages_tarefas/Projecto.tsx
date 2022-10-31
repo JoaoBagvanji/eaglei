@@ -1,26 +1,26 @@
 import React from 'react';
-import { Icon } from 'native-base';
-import { View, Text, StyleSheet} from 'react-native'
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
+import { VStack, Icon, useTheme} from 'native-base';
+import { View, Text, Image, StyleSheet, StyleProp, ViewStyle} from 'react-native';
+import colors from "../../styles/colors";
+import fonts from "../../styles/fonts";
 
-
-class Inventarios extends React.Component<any, any> {
+class Projecto extends React.Component<any, any> {
     
     render() {
-        const {name, qtd, icon} = this.props.inventario;
+        const {label, qtd, icon} = this.props.projecto;
      
         return(
-            <View style={{width: '100%', alignItems: 'center', maxHeight: 140, minHeight:130 ,justifyContent: 'center'}}>
+            <View style={{width: '100%', alignItems: 'center', maxHeight: 125, minHeight:122 ,justifyContent: 'center'}}>
                 <Icon size={30}>{icon}</Icon>
-                <Text style={styles.text}>{name}</Text>
+                <Text style={styles.text}>{label}</Text>
                 <Text style={styles.textqtd}>{qtd}</Text>
             </View>
         )
     }
 }
 
-export default Inventarios;
+export default Projecto;
+
 const styles = StyleSheet.create({
     text:{   
         textAlign: 'center',
