@@ -24,9 +24,9 @@ export default function Progress() {
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package    color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake      color='#A1C861' size={16} />} />,
+            icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
+            icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
+            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
         },
         {
             id: 3,
@@ -35,9 +35,9 @@ export default function Progress() {
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package    color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake      color='#A1C861' size={16} />} />,
+            icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
+            icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
+            icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
         },
         {
           id: 4,
@@ -46,9 +46,9 @@ export default function Progress() {
           image: require('../../../assets/avatars/tower2.png'),
           icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
-          icon3: <Icon as ={<Package    color='#A1C861' size={16} />} />,
-          icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
-          icon5: <Icon as ={<Handshake      color='#A1C861' size={16} />} />,
+          icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
+          icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
+          icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
       },
         
     ];
