@@ -1,26 +1,26 @@
 import React from 'react';
 import { VStack, Icon, useTheme} from 'native-base';
-import { View, Text, Image, StyleSheet, StyleProp, ViewStyle} from 'react-native'
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
-import { white } from 'react-native-paper/lib/typescript/styles/colors';
+import { View, Text, Image, StyleSheet, StyleProp, ViewStyle} from 'react-native';
+import colors from "../../styles/colors";
+import fonts from "../../styles/fonts";
 
-class Viaturas extends React.Component<any, any> {
+class Projecto extends React.Component<any, any> {
     
     render() {
-        const {label, qtd, icon} = this.props.Viatura;
+        const {label, qtd, icon} = this.props.projecto;
      
         return(
             <View style={{width: '100%', alignItems: 'center', maxHeight: 125, minHeight:122 ,justifyContent: 'center'}}>
                 <Icon size={30}>{icon}</Icon>
                 <Text style={styles.text}>{label}</Text>
-                
+                <Text style={styles.textqtd}>{qtd}</Text>
             </View>
         )
     }
 }
 
-export default Viaturas;
+export default Projecto;
+
 const styles = StyleSheet.create({
     text:{   
         textAlign: 'center',
@@ -44,4 +44,5 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         
     },
+   
 })
