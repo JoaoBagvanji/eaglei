@@ -8,22 +8,31 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {Header} from '../../../components/Header';
+import { background, flexbox } from 'native-base/lib/typescript/theme/styled-system';
 
 export default function FormInspeccao() {
-  const [checked1, setChecked1] = useState('first');
-  const [checked2, setChecked2] = useState('first');
 
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState([]);
-  const [items, setItems] = useState([
+    const {colors} = useTheme();
+    const {fonts} = useTheme();
+
+  const [checkedCar, setCheckedCar] = useState('first');
+  const [checkedBow, setCheckedBow] = useState('first');
+  const [checkedReb, setCheckedReb] = useState('first');
+
+  const [openCar, setOpenCar] = useState(false);
+  const [valueCar, setValueCar] = useState([]);
+  const [itemsCar, setItemsCar] = useState([
     {label: 'Parachoque Frontal', value: 'Parachoque Frontal'},
     {label: 'Parachoque Traseiro', value: 'Parachoque Traseiro'},
     {label: 'Porta esquerda', value: 'Porta esquerda'},
     {label: 'Porta direita', value: 'Porta direita'},
   ]);
 
-    const {colors} = useTheme();
-    const {fonts} = useTheme();
+  const [openReb, setOpenReb] = useState(false);
+  const [valueReb, setValueReb] = useState([]);
+  const [itemsReb, setItemsReb] = useState([
+    {label: 'Bola Gasta', value: 'Bola Gasta'},
+  ]);
 
     const onNextStep = () => {
         console.log('called next step');
@@ -38,36 +47,68 @@ export default function FormInspeccao() {
     };
 
     const [isCarrocaria, setIsCarrocaria] = useState(false);
+    const [isBowser, setIsBowser] = useState(true);
+    const [isReboque, setIsReboque] = useState(false);
 
     const onCarrocariaS = () => {
-      console.log("Voce clicou em nao no Radio Button 1 Like");
-      setChecked1('first');
+      console.log("Voce clicou em nao no Radio Button Carroocaria Like");
+      setCheckedCar('first');
       setIsCarrocaria(false);
     }
-    
+
     const onCarrocariaN = () => {
-      console.log("Voce clicou em nao no Radio Button 1 Dislike");
-      setChecked1('second');
-      setIsCarrocaria(true);
-    }
+        console.log("Voce clicou em nao no Radio Button Carrocaria Dislike");
+        setCheckedCar('second');
+        setIsCarrocaria(true);
+      }
+
+    const onBowserS = () => {
+        console.log("Voce clicou em nao no Radio Button Bowser Sim");
+        setCheckedBow('first');
+        setIsBowser(true);
+      }
     
+      const onBowserN = () => {
+        console.log("Voce clicou em nao no Radio Button Bowser Nao");
+        setCheckedBow('second');
+        setIsBowser(false);
+      }
 
+      const onReboqueS = () => {
+        console.log("Voce clicou em nao no Radio Button Reboque Like");
+        setCheckedReb('first');
+        setIsReboque(false);
+      }
+  
+      const onReboqueN = () => {
+          console.log("Voce clicou em nao no Radio Button Reboque Dislike");
+          setCheckedReb('second');
+          setIsReboque(true);
+        }
+  
+   
 
+    const [combo1, setCombo1] = useState(0);  
+    
+    const [mb1, setMb1] = useState('5%');
 
+    const onComboboxPress= () => {
+        setCombo1(combo1+1);
 
+        if (combo1 % 2 === 0)
+        {
+            setMb1('50%');
+            console.log("Voce abriu o ComboBox");}
 
-
-    const onRadioPress2 = () => {
-      console.log("Voce clicou em nao no Radio Button 2");
-      setChecked2('first');
-    }
+        else
+       { setMb1('5%'); 
+        console.log("Voce fechou o ComboBox"); }
+      }
+  
+ 
 
     return (
         <VStack flex={1} pb={6} bg="white">
-
-            <HStack>
-                <Header/>
-            </HStack>
 
             <View
                 style={{
@@ -156,12 +197,13 @@ export default function FormInspeccao() {
                     </ProgressStep>
 
                     <ProgressStep
+                        scrollable= {false}
                         onNext={onNextStep}
                         onPrevious={onPrevStep}
                         nextBtnText="Próximo"
                         previousBtnText="Anterior">
 
-                        <View style={styles.container}>
+                        <VStack>
 
                             <Text style={styles.headings}>CARROÇARIA</Text>
 
@@ -176,7 +218,7 @@ export default function FormInspeccao() {
                                                 <RadioButton
                                             color= '#12375c'
                                                   value="first"
-                                                  status={ checked1 === 'first' ? 'checked' : 'unchecked' }
+                                                  status={ checkedCar === 'first' ? 'checked' : 'unchecked' }
                                                   onPress={onCarrocariaS}
                                                 />
                                                   <ThumbsUp color={colors.primary[700]}/>
@@ -186,7 +228,7 @@ export default function FormInspeccao() {
                                                 <RadioButton
                                                 color= '#12375c'
                                                   value="second"
-                                                  status={ checked1 === 'second' ? 'checked' : 'unchecked' }
+                                                  status={ checkedCar === 'second' ? 'checked' : 'unchecked' }
                                                   onPress={onCarrocariaN} 
                                                 />
                                                 <ThumbsDown color={colors.primary[700]}/>
@@ -199,20 +241,21 @@ export default function FormInspeccao() {
                                     </HStack>
                                     
                                     { isCarrocaria && <View style={{
-                                    marginBottom:'50%',
+                                    marginBottom: mb1,
                                     backgroundColor: '#171717',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     paddingHorizontal: 15
                                   }}>
                                     <DropDownPicker
+                                        onPress={onComboboxPress}
                                         placeholder="Selecione a(s) Parte(s)"
-                                        open={open}
-                                        value={value}
-                                        items={items}
-                                        setOpen={setOpen}
-                                        setValue={setValue}
-                                        setItems={setItems}
+                                        open={openCar}
+                                        value={valueCar}
+                                        items={itemsCar}
+                                        setOpen={setOpenCar}
+                                        setValue={setValueCar}
+                                        setItems={setItemsCar}
 
                                         theme="LIGHT"
                                         multiple={true}
@@ -220,6 +263,7 @@ export default function FormInspeccao() {
                                         badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                                       />
                                     </View>}
+
                                     
                                     <HStack justifyContent={'space-between'} alignItems={'center'}>
                                       <Text>Bowser</Text>
@@ -230,8 +274,8 @@ export default function FormInspeccao() {
                                                 <RadioButton
                                                   color= '#12375c'
                                                   value="first"
-                                                  status={ checked2 === 'first' ? 'checked' : 'unchecked' }
-                                                  onPress={onRadioPress2}
+                                                  status={ checkedBow === 'first' ? 'checked' : 'unchecked' }
+                                                  onPress={onBowserS}
                                                   
                                                 />
                                                 <Text>Sim</Text>
@@ -241,8 +285,8 @@ export default function FormInspeccao() {
                                                 <RadioButton
                                                    color= '#12375c'
                                                   value="second"
-                                                  status={ checked2 === 'second' ? 'checked' : 'unchecked' }
-                                                  onPress={() => setChecked2('second')}
+                                                  status={ checkedBow === 'second' ? 'checked' : 'unchecked' }
+                                                  onPress={onBowserN}
                                                 />
                                                 <Text>Não</Text>
                                                 
@@ -253,10 +297,67 @@ export default function FormInspeccao() {
 
                                         
                                     </HStack>
+
+                                    { isBowser &&  <View>
+                                    
+                                    <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                      <Text>Bola de Reboque</Text>
+
+                                          <HStack ml={1} justifyContent={'space-evenly'} alignItems={'center'}>
+                                          
+                                              <HStack alignItems={'center'}>
+                                                <RadioButton
+                                                 color= '#12375c'
+                                                  value="first"
+                                                  status={ checkedReb === 'first' ? 'checked' : 'unchecked' }
+                                                  onPress={onReboqueS}
+                                                />
+                                                  <ThumbsUp color={colors.primary[700]}/>
+                                              </HStack>
+                                              
+                                              <HStack alignItems={'center'} ml={5}>
+                                                <RadioButton
+                                                color= '#12375c'
+                                                  value="second"
+                                                  status={ checkedReb === 'second' ? 'checked' : 'unchecked' }
+                                                  onPress={onReboqueN}
+                                                />
+                                                <ThumbsDown color={colors.primary[700]}/>
+                                              </HStack>
+                                          
+                                          </HStack>
+                                          </HStack>
+
+                                          { isReboque && <View style={{
+                                    marginBottom: mb1,
+                                    backgroundColor: '#171717',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingHorizontal: 15
+                                  }}>
+                                    <DropDownPicker
+                                        placeholder="Selecione a(s) Parte(s)"
+                                        open={openReb}
+                                        value={valueReb}
+                                        items={itemsReb}
+                                        setOpen={setOpenReb}
+                                        setValue={setValueReb}
+                                        setItems={setItemsReb}
+
+                                        theme="LIGHT"
+                                        multiple={true}
+                                        mode="BADGE"
+                                        badgeDotColors={["#00b4d8"]}
+                                      />
+                                    </View>}
+                                          
+
+                                        
+                                    </View>}
                                     
                             </View>
 
-                        </View>
+                        </VStack>
 
                     </ProgressStep>
 
