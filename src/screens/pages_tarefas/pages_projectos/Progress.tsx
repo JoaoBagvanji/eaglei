@@ -21,7 +21,7 @@ export default function Progress() {
         {
             id: 2,
             nome: '4352, Boquisso',
-            info: 'Samuel David, estado: no local',
+            info: 'Samuel Joaquim, estado: no local',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -32,7 +32,7 @@ export default function Progress() {
         {
             id: 3,
             nome: '4652, Museu',
-            info: 'David Almeida, estado: a caminho',
+            info: 'David Joaquim, estado: a caminho',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -43,7 +43,7 @@ export default function Progress() {
         {
           id: 4,
           nome: '5992, Campoane',
-          info: 'Helio Almeida, estado: a caminho',
+          info: 'Helio Joaquim, estado: a caminho',
           image: require('../../../assets/avatars/tower2.png'),
           icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
