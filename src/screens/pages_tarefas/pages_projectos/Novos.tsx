@@ -9,7 +9,7 @@ export default function Novos() {
     const data = [
         {
             id: 1,
-            nome: '4552, Mahotas',
+            nome: '4552, Matola',
             info: 'Mario Joaquim, estado: novos',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<HandPalm    color='#A1C861' size={16} />} />,
@@ -20,7 +20,7 @@ export default function Novos() {
         },
         {
             id: 2,
-            nome: '4352, Boquisso',
+            nome: '4352, Pateke',
             info: 'Samuel Joaquim, estado: novos',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
@@ -42,7 +42,7 @@ export default function Novos() {
         },
         {
           id: 4,
-          nome: '5992, Campoane',
+          nome: '5992, Chibuto',
           info: 'Helio Joaquim, estado: novos',
           image: require('../../../assets/avatars/tower2.png'),
           icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
