@@ -105,15 +105,15 @@ export default function Progress() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 6}}>
+              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
-                {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={25}
-                  icon={<CaretDown  color={colors.primary[700]} size={14}/>}
+                {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
+                  icon={<CaretDown  color={colors.primary[700]} size={10}/>}
                   onPress={() => handleDropDownItems(item.id)}
-                  />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={25}
-                  icon={<CaretUp   color={colors.primary[700]} size={14}/>}
+                  />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
+                  icon={<CaretUp   color={colors.primary[700]} size={10}/>}
                   onPress={() => handleHideItems(item.id)}
                   />)} 
               </View>
