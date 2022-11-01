@@ -1,5 +1,6 @@
+import * as React from 'react';
 import {HStack, VStack, useTheme} from 'native-base';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {TextInput, RadioButton} from "react-native-paper";
 import {Gauge, Calendar, User, ClosedCaptioning, ThumbsDown, ThumbsUp} from 'phosphor-react-native';
@@ -7,8 +8,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
-import {Header} from '../../../components/Header';
-import { background, flexbox } from 'native-base/lib/typescript/theme/styled-system';
 
 export default function FormInspeccao() {
 
@@ -23,6 +22,21 @@ export default function FormInspeccao() {
   const [checkedPre, setCheckedPre] = useState('first');
   const [checkedPor, setCheckedPor] = useState('first');
   const [checkedTra, setCheckedTra] = useState('first');
+
+  const [checkedVidro, setCheckedVidro] = useState('first');
+  const [checkedLimpa, setCheckedLimpa] = useState('first');
+
+  const [checkedLuzes, setCheckedLuzes] = useState('first');
+
+  const [checkedOleo, setCheckedOleo] = useState('first');
+  const [checkedMotor, setCheckedMotor] = useState('first');
+
+  const [checkedCamera, setCheckedCamera] = useState('first');
+  const [checkedMaos, setCheckedMaos] = useState('first');
+
+  const [checkedExtintor, setCheckedExtintor] = useState('first');
+  const [checkedPri, setCheckedPri] = useState('first');
+  const [checkedCinto, setCheckedCinto] = useState('first');
 
   const [openCar, setOpenCar] = useState(false);
   const [valueCar, setValueCar] = useState([]);
@@ -73,6 +87,62 @@ export default function FormInspeccao() {
     {label: 'Travão de estacionamento', value: 'Travão de estacionamento'},
   ]);
 
+  const [openVidro, setOpenVidro] = useState(false);
+  const [valueVidro, setValueVidro] = useState([]);
+  const [itemsVidro, setItemsVidro] = useState([
+    {label: 'Vidro Frontal', value: 'Vidro Frontal'},
+    {label: 'Vidro Traseiro', value: 'Vidro Traseiro'},
+    {label: 'Vidro Lateral esquerdo', value: 'Vidro Lateral esquerdo'},
+    {label: 'Vidro Lateral direito', value: 'Vidro Lateral direito'},
+  ]);
+
+  const [openLuzes, setOpenLuzes] = useState(false);
+  const [valueLuzes, setValueLuzes] = useState([]);
+  const [itemsLuzes, setItemsLuzes] = useState([
+    {label: 'Frontal esquerdo', value: 'Frontal esquerdo'},
+    {label: 'Frontal direito', value: 'Frontal direito'},
+    {label: 'Indicador frontal esquerdo', value: 'Indicador frontal esquerdo'},
+  ]);
+
+  const [openOleo, setOpenOleo] = useState(false);
+  const [valueOleo, setValueOleo] = useState([]);
+  const [itemsOleo, setItemsOleo] = useState([
+    {label: 'Oleo de travao', value: 'Oleo de travao'},
+    {label: 'Oleo do motor', value: 'Oleo do motor'},
+    {label: 'Água do radiador', value: 'Água do radiador'},
+    {label: 'Água de limpa-brisa', value: 'Água de limpa-brisa'},
+  ]);
+
+  
+  const [openCam, setOpenCam] = useState(false);
+  const [valueCam, setValueCam] = useState([]);
+  const [itemsCam, setItemsCam] = useState([
+    {label: 'Frontal', value: 'Frontal'},
+    {label: 'Traseira', value: 'Traseira'},
+    {label: 'Mensagem de Erro', value: 'Mensagem de Erro'},
+  ]);
+
+  const [openExt, setOpenExt] = useState(false);
+  const [valueExt, setValueExt] = useState([]);
+  const [itemsExt, setItemsExt] = useState([
+    {label: 'Expirou', value: 'Expirou'},
+    {label: 'Nao existe', value: 'Nao existe'},
+  ]);
+
+  const [openPri, setOpenPri] = useState(false);
+  const [valuePri, setValuePri] = useState([]);
+  const [itemsPri, setItemsPri] = useState([
+    {label: 'Expirou', value: 'Expirou'},
+    {label: 'Nao existe', value: 'Nao existe'},
+  ]);
+
+  const [openCinto, setOpenCinto] = useState(false);
+  const [valueCinto, setValueCinto] = useState([]);
+  const [itemsCinto, setItemsCinto] = useState([
+    {label: 'Estragado', value: 'Estragado'},
+    {label: 'Nao existe', value: 'Nao existe'},
+  ]);
+
     const onNextStep = () => {
         console.log('called next step');
     };
@@ -90,11 +160,21 @@ export default function FormInspeccao() {
     const [isReboque, setIsReboque] = useState(false);
 
     const [isPneu, setIsPneu] = useState(false);
-    const [isPressao, setIsPressao] = useState(true);
+    const [isPressao, setIsPressao] = useState(false);
     const [isPorcas, setIsPorcas] = useState(false);
     const [isTravoes, setIsTravoes] = useState(false);
 
-    
+    const [isVidros, setIsVidros] = useState(false);
+
+    const [isLuzes, setIsLuzes] = useState(false);
+
+    const [isOleo, setIsOleo] = useState(false);
+
+    const [isCam, setIsCam] = useState(false);
+
+    const [isExt, setIsExt] = useState(false);
+    const [isPri, setIsPri] = useState(false);
+    const [isCinto, setIsCinto] = useState(false);
 
     const onCarrocariaS = () => {
       console.log("Voce clicou em nao no Radio Button Carroocaria Like");
@@ -132,6 +212,8 @@ export default function FormInspeccao() {
           setIsReboque(true);
         }
   
+
+
         const onPneuS = () => {
             console.log("Voce clicou em nao no Radio Button Pneu Like");
             setCheckedPneu('first');
@@ -156,29 +238,121 @@ export default function FormInspeccao() {
                   setIsPressao(true);
                 }
 
-                const onPorcaS = () => {
+            const onPorcaS = () => {
                     console.log("Voce clicou em nao no Radio Button Porca Like");
                     setCheckedPor('first');
                     setIsPorcas(false);
                   }
               
-                const onPorcaN = () => {
+            const onPorcaN = () => {
                       console.log("Voce clicou em nao no Radio Button Porca Dislike");
                       setCheckedPor('second');
                       setIsPorcas(true);
                     }
             
-                 const onTravS = () => {
+          const onTravS = () => {
                         console.log("Voce clicou em nao no Radio Button Travoes Like");
                         setCheckedTra('first');
                         setIsTravoes(false);
                       }
                   
-                const onTravN = () => {
+          const onTravN = () => {
                           console.log("Voce clicou em nao no Radio Button Travoes Dislike");
                           setCheckedTra('second');
                           setIsTravoes(true);
                         }
+    
+
+
+
+
+          const onVidrosS = () => {
+                          console.log("Voce clicou em nao no Radio Button Vidro Like");
+                          setCheckedVidro('first');
+                          setIsVidros(false);
+                        }
+                    
+            const onVidrosN = () => {
+                            console.log("Voce clicou em nao no Radio Button Vidro Dislike");
+                            setCheckedVidro('second');
+                            setIsVidros(true);
+                          }
+
+
+            const onLuzS = () => {
+              console.log("Voce clicou em nao no Radio Button Luz Like");
+              setCheckedLuzes('first');
+              setIsLuzes(false);
+            }
+        
+            const onLuzN = () => {
+                console.log("Voce clicou em nao no Radio Button Luz Dislike");
+                setCheckedLuzes('second');
+                setIsLuzes(true);
+              }
+
+
+          const onOleoS = () => {
+            console.log("Voce clicou em nao no Radio Button Oleo Like");
+            setCheckedOleo('first');
+            setIsOleo(false);
+          }
+      
+          const onOleoN = () => {
+              console.log("Voce clicou em nao no Radio Button Oleo Dislike");
+              setCheckedOleo('second');
+              setIsOleo(true);
+            }
+
+            const onCamS = () => {
+              console.log("Voce clicou em nao no Radio Button Camera Like");
+              setCheckedCamera('first');
+              setIsCam(false);
+            }
+        
+            const onCamN = () => {
+                console.log("Voce clicou em nao no Radio Button Camera Dislike");
+                setCheckedCamera('second');
+                setIsCam(true);
+              }
+
+              //For security
+              const onExtS = () => {
+                console.log("Voce clicou em nao no Radio Button Extintor Like");
+                setCheckedExtintor('first');
+                setIsExt(false);
+              }
+          
+            const onExtN = () => {
+                  console.log("Voce clicou em nao no Radio Button Extintor Dislike");
+                  setCheckedExtintor('second');
+                  setIsExt(true);
+                }
+    
+                const onPriS = () => {
+                    console.log("Voce clicou em nao no Radio Button Primeiros Like");
+                    setCheckedPri('first');
+                    setIsPri(false);
+                  }
+              
+                const onPriN = () => {
+                      console.log("Voce clicou em nao no Radio Button Primeiros Dislike");
+                      setCheckedPri('second');
+                      setIsPri(true);
+                    }
+    
+                const onCintoS = () => {
+                        console.log("Voce clicou em nao no Radio Button Cinto Like");
+                        setCheckedCinto('first');
+                        setIsCinto(false);
+                      }
+                  
+                const onCintoN = () => {
+                          console.log("Voce clicou em nao no Radio Button Cinto Dislike");
+                          setCheckedCinto('second');
+                          setIsCinto(true);
+                        }
+  
 
     const [combo, setCombo] = useState(0);  
     const [combo1, setCombo1] = useState(0);  
@@ -241,6 +415,8 @@ export default function FormInspeccao() {
        { setMb3('5%'); 
         console.log("Voce fechou o ComboBox"); }
       }
+
+
 
     return (
         <VStack flex={1} pb={6} bg="white">
@@ -680,7 +856,7 @@ export default function FormInspeccao() {
                                                         <RadioButton
                                                     color= '#12375c'
                                                         value="first"
-                                                        status={ checkedPor === 'first' ? 'checked' : 'unchecked' }
+                                                        status={ checkedTra === 'first' ? 'checked' : 'unchecked' }
                                                         onPress={onTravS}
                                                         />
                                                         <ThumbsUp color={colors.primary[700]}/>
@@ -690,7 +866,7 @@ export default function FormInspeccao() {
                                                         <RadioButton
                                                         color= '#12375c'
                                                         value="second"
-                                                        status={ checkedPor === 'second' ? 'checked' : 'unchecked' }
+                                                        status={ checkedTra === 'second' ? 'checked' : 'unchecked' }
                                                         onPress={onTravN}
                                                         />
                                                         <ThumbsDown color={colors.primary[700]}/>
@@ -739,7 +915,96 @@ export default function FormInspeccao() {
                         <VStack>
                             <Text style={styles.headings}>VIDROS/ESPELHOS</Text>
 
-                            <View style={styles.formContainer}></View>
+                            <View style={styles.formContainer}>
+
+                                    <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                            <Text>Vidros/Espelhos</Text>
+
+                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                                
+                                                    <HStack alignItems={'center'}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="first"
+                                                        status={ checkedVidro === 'first' ? 'checked' : 'unchecked' }
+                                                        onPress={onVidrosS}
+                                                        />
+                                                        <ThumbsUp color={colors.primary[700]}/>
+                                                    </HStack>
+                                                    
+                                                    <HStack alignItems={'center'} ml={5}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="second"
+                                                        status={ checkedVidro === 'second' ? 'checked' : 'unchecked' }
+                                                        onPress={onVidrosN}
+                                                        />
+                                                        <ThumbsDown color={colors.primary[700]}/>
+                                                    </HStack>
+                                                
+                                                </HStack>
+                                                
+
+                                                
+                                    </HStack>
+                                    
+                                    { isVidros && <View style={{
+                                    marginBottom: mb,
+                                    backgroundColor: '#171717',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingHorizontal: 15
+                                  }}>
+                                    <DropDownPicker
+                                        onPress={onComboboxPress}
+                                        placeholder="Selecione a(s) Parte(s)"
+                                        open={openVidro}
+                                        value={valueVidro}
+                                        items={itemsVidro}
+                                        setOpen={setOpenVidro}
+                                        setValue={setValueVidro}
+                                        setItems={setItemsVidro}
+
+                                        theme="LIGHT"
+                                        multiple={true}
+                                        mode="BADGE"
+                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                      />
+                                    </View>}
+
+                                    <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                            <Text>Limpa-parabrisas</Text>
+
+                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                                
+                                                    <HStack alignItems={'center'}>
+                                                        <RadioButton
+                                                    color= '#12375c'
+                                                        value="first"
+                                                        status={ checkedLimpa === 'first' ? 'checked' : 'unchecked' }
+                                                        onPress={() => setCheckedLimpa('first')}
+                                                        />
+                                                        <ThumbsUp color={colors.primary[700]}/>
+                                                    </HStack>
+                                                    
+                                                    <HStack alignItems={'center'} ml={5}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="second"
+                                                        status={ checkedLimpa === 'second' ? 'checked' : 'unchecked' }
+                                                        onPress={() => setCheckedLimpa('second')}
+                                                        />
+                                                        <ThumbsDown color={colors.primary[700]}/>
+                                                    </HStack>
+                                                
+                                                </HStack>
+                                                
+
+                                                
+                                    </HStack>
+
+
+                            </View>
 
                         </VStack>
                     </ProgressStep>
@@ -754,7 +1019,62 @@ export default function FormInspeccao() {
                         <VStack>
                             <Text style={styles.headings}>LUZES</Text>
 
-                            <View style={styles.formContainer}></View>
+                            <View style={styles.formContainer}>
+
+                            <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                            <Text>Luzes</Text>
+
+                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                                
+                                                    <HStack alignItems={'center'}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="first"
+                                                        status={ checkedLuzes === 'first' ? 'checked' : 'unchecked' }
+                                                        onPress={onLuzS}
+                                                        />
+                                                        <ThumbsUp color={colors.primary[700]}/>
+                                                    </HStack>
+                                                    
+                                                    <HStack alignItems={'center'} ml={5}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="second"
+                                                        status={ checkedLuzes === 'second' ? 'checked' : 'unchecked' }
+                                                        onPress={onLuzN}
+                                                        />
+                                                        <ThumbsDown color={colors.primary[700]}/>
+                                                    </HStack>
+                                                
+                                                </HStack>
+                                                    
+                             </HStack>
+                                    
+                                    { isLuzes && <View style={{
+                                    marginBottom: mb,
+                                    backgroundColor: '#171717',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingHorizontal: 15
+                                  }}>
+                                    <DropDownPicker
+                                        onPress={onComboboxPress}
+                                        placeholder="Selecione a(s) Parte(s)"
+                                        open={openLuzes}
+                                        value={valueLuzes}
+                                        items={itemsLuzes}
+                                        setOpen={setOpenLuzes}
+                                        setValue={setValueLuzes}
+                                        setItems={setItemsLuzes}
+
+                                        theme="LIGHT"
+                                        multiple={true}
+                                        mode="BADGE"
+                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                      />
+                                    </View>}
+                                          
+                            </View>
 
                         </VStack>
                     </ProgressStep>
@@ -769,7 +1089,95 @@ export default function FormInspeccao() {
                         <VStack>
                             <Text style={styles.headings}>MOTOR</Text>
 
-                            <View style={styles.formContainer}></View>
+                            <View style={styles.formContainer}>
+
+                                  <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                  <Text>Oleo/Agua</Text>
+
+                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                
+                                    <HStack alignItems={'center'}>
+                                        <RadioButton
+                                        color= '#12375c'
+                                        value="first"
+                                        status={ checkedOleo === 'first' ? 'checked' : 'unchecked' }
+                                        onPress={onOleoS}
+                                        />
+                                        <ThumbsUp color={colors.primary[700]}/>
+                                    </HStack>
+                                    
+                                    <HStack alignItems={'center'} ml={5}>
+                                        <RadioButton
+                                        color= '#12375c'
+                                        value="second"
+                                        status={ checkedOleo === 'second' ? 'checked' : 'unchecked' }
+                                        onPress={onOleoN}
+                                        />
+                                        <ThumbsDown color={colors.primary[700]}/>
+                                </HStack>
+                                                
+                             </HStack>
+                                                
+
+                                                
+                                    </HStack>
+                                    
+                                    { isOleo && <View style={{
+                                    marginBottom: mb,
+                                    backgroundColor: '#171717',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingHorizontal: 15
+                                  }}>
+                                    <DropDownPicker
+                                        onPress={onComboboxPress}
+                                        placeholder="Selecione a(s) Parte(s)"
+                                        open={openOleo}
+                                        value={valueOleo}
+                                        items={itemsOleo}
+                                        setOpen={setOpenOleo}
+                                        setValue={setValueOleo}
+                                        setItems={setItemsOleo}
+
+                                        theme="LIGHT"
+                                        multiple={true}
+                                        mode="BADGE"
+                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                      />
+                                    </View>}
+
+                                    <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                            <Text>Motor</Text>
+
+                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                                
+                                                    <HStack alignItems={'center'}>
+                                                        <RadioButton
+                                                    color= '#12375c'
+                                                        value="first"
+                                                        status={ checkedMotor === 'first' ? 'checked' : 'unchecked' }
+                                                        onPress={() => setCheckedMotor('first')}
+                                                        />
+                                                        <ThumbsUp color={colors.primary[700]}/>
+                                                    </HStack>
+                                                    
+                                                    <HStack alignItems={'center'} ml={5}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="second"
+                                                        status={ checkedMotor === 'second' ? 'checked' : 'unchecked' }
+                                                        onPress={() => setCheckedMotor('second')}
+                                                        />
+                                                        <ThumbsDown color={colors.primary[700]}/>
+                                                    </HStack>
+                                                
+                                                </HStack>
+                                                
+
+                                                
+                                    </HStack>
+
+                            </View>
 
                         </VStack>
                     </ProgressStep>
@@ -783,6 +1191,94 @@ export default function FormInspeccao() {
 
                         <VStack>
                             <Text style={styles.headings}>CAMERA</Text>
+                            
+                            <View style={styles.formContainer}>
+
+                                <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                <Text>Camera</Text>
+
+                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+
+                                  <HStack alignItems={'center'}>
+                                      <RadioButton
+                                      color= '#12375c'
+                                      value="first"
+                                      status={ checkedCamera === 'first' ? 'checked' : 'unchecked' }
+                                      onPress={onCamS}
+                                      />
+                                      <ThumbsUp color={colors.primary[700]}/>
+                                  </HStack>
+                                  
+                                  <HStack alignItems={'center'} ml={5}>
+                                      <RadioButton
+                                      color= '#12375c'
+                                      value="second"
+                                      status={ checkedCamera === 'second' ? 'checked' : 'unchecked' }
+                                      onPress={onCamN}
+                                      />
+                                      <ThumbsDown color={colors.primary[700]}/>
+                                </HStack>
+                                              
+                                </HStack>
+                                                        
+                                  </HStack>
+                                  
+                                  { isCam && <View style={{
+                                  marginBottom: mb,
+                                  backgroundColor: '#171717',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  paddingHorizontal: 15
+                                }}>
+                                  <DropDownPicker
+                                      onPress={onComboboxPress}
+                                      placeholder="Selecione a(s) Parte(s)"
+                                      open={openCam}
+                                      value={valueCam}
+                                      items={itemsCam}
+                                      setOpen={setOpenCam}
+                                      setValue={setValueCam}
+                                      setItems={setItemsCam}
+
+                                      theme="LIGHT"
+                                      multiple={true}
+                                      mode="BADGE"
+                                      badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                    />
+                                  </View>}
+
+                                  <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                          <Text>Mãos-livre</Text>
+
+                                              <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                              
+                                                  <HStack alignItems={'center'}>
+                                                      <RadioButton
+                                                  color= '#12375c'
+                                                      value="first"
+                                                      status={ checkedMaos === 'first' ? 'checked' : 'unchecked' }
+                                                      onPress={() => setCheckedMaos('first')}
+                                                      />
+                                                      <ThumbsUp color={colors.primary[700]}/>
+                                                  </HStack>
+                                                  
+                                                  <HStack alignItems={'center'} ml={5}>
+                                                      <RadioButton
+                                                      color= '#12375c'
+                                                      value="second"
+                                                      status={ checkedMaos === 'second' ? 'checked' : 'unchecked' }
+                                                      onPress={() => setCheckedMaos('second')}
+                                                      />
+                                                      <ThumbsDown color={colors.primary[700]}/>
+                                                  </HStack>
+                                              
+                                              </HStack>
+                                              
+
+                                              
+                                </HStack>
+
+                            </View>
 
                         </VStack>
                     </ProgressStep>
@@ -797,7 +1293,173 @@ export default function FormInspeccao() {
                         <VStack>
                             <Text style={styles.headings}>SEGURANÇA</Text>
 
-                            <View style={styles.formContainer}></View>
+                            <View style={styles.formContainer}>
+
+                            <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                            <Text>Extintor</Text>
+
+                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                                
+                                                    <HStack alignItems={'center'}>
+                                                        <RadioButton
+                                                    color= '#12375c'
+                                                        value="first"
+                                                        status={ checkedExtintor === 'first' ? 'checked' : 'unchecked' }
+                                                        onPress={onExtS}
+                                                        />
+                                                        <ThumbsUp color={colors.primary[700]}/>
+                                                    </HStack>
+                                                    
+                                                    <HStack alignItems={'center'} ml={5}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="second"
+                                                        status={ checkedExtintor === 'second' ? 'checked' : 'unchecked' }
+                                                        onPress={onExtN}
+                                                        />
+                                                        <ThumbsDown color={colors.primary[700]}/>
+                                                    </HStack>
+                                                
+                                                </HStack>
+                                                
+
+                                                
+                                    </HStack>
+                                    
+                                    { isExt && <View style={{
+                                    marginBottom: mb,
+                                    backgroundColor: '#171717',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingHorizontal: 15
+                                  }}>
+                                    <DropDownPicker
+                                        onPress={onComboboxPress}
+                                        placeholder="Selecione a(s) Parte(s)"
+                                        open={openExt}
+                                        value={valueExt}
+                                        items={itemsExt}
+                                        setOpen={setOpenExt}
+                                        setValue={setValueExt}
+                                        setItems={setItemsExt}
+
+                                        theme="LIGHT"
+                                        multiple={true}
+                                        mode="BADGE"
+                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                      />
+                                    </View>}
+
+
+                                    <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                            <Text>Pr. Socorros</Text>
+
+                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                                
+                                                    <HStack alignItems={'center'}>
+                                                        <RadioButton
+                                                    color= '#12375c'
+                                                        value="first"
+                                                        status={ checkedPri === 'first' ? 'checked' : 'unchecked' }
+                                                        onPress={onPriS}
+                                                        />
+                                                        <ThumbsUp color={colors.primary[700]}/>
+                                                    </HStack>
+                                                    
+                                                    <HStack alignItems={'center'} ml={5}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="second"
+                                                        status={ checkedPri === 'second' ? 'checked' : 'unchecked' }
+                                                        onPress={onPriN}
+                                                        />
+                                                        <ThumbsDown color={colors.primary[700]}/>
+                                                    </HStack>
+                                                
+                                                </HStack>
+                                                
+
+                                                
+                                    </HStack>
+                                    
+                                    { isPri && <View style={{
+                                    marginBottom: mb1,
+                                    backgroundColor: '#171717',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingHorizontal: 15
+                                  }}>
+                                    <DropDownPicker
+                                        onPress={onComboboxPress1}
+                                        placeholder="Selecione a(s) Parte(s)"
+                                        open={openPri}
+                                        value={valuePri}
+                                        items={itemsPri}
+                                        setOpen={setOpenPri}
+                                        setValue={setValuePri}
+                                        setItems={setItemsPri}
+
+                                        theme="LIGHT"
+                                        multiple={true}
+                                        mode="BADGE"
+                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                      />
+                                    </View>}
+
+                                    <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                            <Text>Cinto Segurança</Text>
+
+                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                                
+                                                    <HStack alignItems={'center'}>
+                                                        <RadioButton
+                                                    color= '#12375c'
+                                                        value="first"
+                                                        status={ checkedCinto === 'first' ? 'checked' : 'unchecked' }
+                                                        onPress={onCintoS}
+                                                        />
+                                                        <ThumbsUp color={colors.primary[700]}/>
+                                                    </HStack>
+                                                    
+                                                    <HStack alignItems={'center'} ml={5}>
+                                                        <RadioButton
+                                                        color= '#12375c'
+                                                        value="second"
+                                                        status={ checkedCinto === 'second' ? 'checked' : 'unchecked' }
+                                                        onPress={onCintoN}
+                                                        />
+                                                        <ThumbsDown color={colors.primary[700]}/>
+                                                    </HStack>
+                                                
+                                                </HStack>
+                                                       
+                                    </HStack>
+                                    
+                                    { isCinto && <View style={{
+                                    marginBottom: mb2,
+                                    backgroundColor: '#171717',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingHorizontal: 15
+                                  }}>
+                                    <DropDownPicker
+                                        onPress={onComboboxPress2}
+                                        placeholder="Selecione a(s) Parte(s)"
+                                        open={openCinto}
+                                        value={valueCinto}
+                                        items={itemsCinto}
+                                        setOpen={setOpenCinto}
+                                        setValue={setValueCinto}
+                                        setItems={setItemsCinto}
+
+                                        theme="LIGHT"
+                                        multiple={true}
+                                        mode="BADGE"
+                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                      />
+                                    </View>}
+
+                            </View>
 
                         </VStack>
                     </ProgressStep>
@@ -830,5 +1492,8 @@ const styles = StyleSheet.create({
     buttonIcon: {
         fontSize: 16,
         color: '#12375c'
+    },
+    dateComponent:{
+      width: 350
     }
 })
