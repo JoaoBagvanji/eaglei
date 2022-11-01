@@ -1,15 +1,16 @@
-import React from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Box } from 'native-base';
-import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake } from 'phosphor-react-native';
+import React, { useState } from 'react';
+import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
+import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp   } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 export default function Progress() {
-
+  
+  
     const data = [
         {
             id: 1,
             nome: '4552, Mahotas',
-            info: 'Mario Joaquim,status: a caminho',
+            info: 'Mario Joaquim, estado: a caminho',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -20,7 +21,7 @@ export default function Progress() {
         {
             id: 2,
             nome: '4352, Boquisso',
-            info: 'Samuel David,status: chegou',
+            info: 'Samuel Joaquim, estado: no local',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -31,7 +32,7 @@ export default function Progress() {
         {
             id: 3,
             nome: '4652, Museu',
-            info: 'David Almeida,status: a caminho',
+            info: 'David Joaquim, estado: a caminho',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -42,7 +43,7 @@ export default function Progress() {
         {
           id: 4,
           nome: '5992, Campoane',
-          info: 'Helio Almeida,status: a caminho',
+          info: 'Helio Joaquim, estado: a caminho',
           image: require('../../../assets/avatars/tower2.png'),
           icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -52,6 +53,20 @@ export default function Progress() {
       },
         
     ];
+    const val_init = Array.from({ length: data.length}, (v,p) => false)
+    const [shouldShow, setShouldShow] = useState(val_init);
+    const [ showPosition, setShowPosition ] = useState()
+
+
+    async function handleDropDownItems(position){
+      let val_sec = await Array.from({ length: data.length}, (v,p) => false)
+      val_sec[position] = true;
+      setShouldShow(val_sec);
+    }
+    async function handleHideItems(position){
+      let val_sec = await Array.from({ length: data.length}, (v,p) => false)
+      setShouldShow(val_sec);
+    }
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
@@ -63,7 +78,7 @@ export default function Progress() {
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              <View display='flex' flexDirection='row' justifyContent='space-between'>
+              {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon}</Icon>
                 </View>
@@ -83,13 +98,27 @@ export default function Progress() {
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon5}</Icon>
                 </View>
-              </View>
+
+                
+              </View>) : null}
+              
             </View>
             </Box>
+            <View display='flex' flexDirection='column' alignContent='space-between'>
+              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <Icon as ={<Info color={colors.blueGray[400]}/>} />
+              </TouchableOpacity>
+              <View >
+                {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
+                  icon={<CaretDown  color={colors.primary[700]} size={10}/>}
+                  onPress={() => handleDropDownItems(item.id)}
+                  />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
+                  icon={<CaretUp   color={colors.primary[700]} size={10}/>}
+                  onPress={() => handleHideItems(item.id)}
+                  />)} 
+              </View>
+            </View>
             
-            <TouchableOpacity>
-            <Icon as ={<Info color={colors.blueGray[400]}/>} />
-            </TouchableOpacity>
         </View>   
     )
 
