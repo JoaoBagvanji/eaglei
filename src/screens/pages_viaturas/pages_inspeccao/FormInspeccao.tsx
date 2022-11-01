@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {HStack, VStack, useTheme} from 'native-base';
 import { useState } from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button, Platform} from 'react-native';
 import {TextInput, RadioButton} from "react-native-paper";
 import {Gauge, Calendar, User, ClosedCaptioning, ThumbsDown, ThumbsUp} from 'phosphor-react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
@@ -416,7 +417,27 @@ export default function FormInspeccao() {
         console.log("Voce fechou o ComboBox"); }
       }
 
+      const [date, setDate] = useState(new Date());
+      const [mode, setMode] = useState('date');
+      const [show, setShow] = useState (false);
+      const [text, setText] = useState('Data');
 
+      const onChange = (event, selectedDate) => {
+        setShow(false)
+
+        const currentDate = selectedDate || date;
+        setDate(selectedDate);
+
+        let tempDate = new Date(currentDate);
+        let fDate = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
+        setText(fDate)
+      };
+
+      const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+      }
+  
 
     return (
         <VStack flex={1} pb={6} bg="white">
@@ -1295,37 +1316,37 @@ export default function FormInspeccao() {
 
                             <View style={styles.formContainer}>
 
-                            <HStack justifyContent={'space-between'} alignItems={'center'}>
-                                            <Text>Extintor</Text>
+                                    <HStack justifyContent={'space-between'} alignItems={'center'}>
+                                                    <Text>Extintor</Text>
 
-                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                                                
-                                                    <HStack alignItems={'center'}>
-                                                        <RadioButton
-                                                    color= '#12375c'
-                                                        value="first"
-                                                        status={ checkedExtintor === 'first' ? 'checked' : 'unchecked' }
-                                                        onPress={onExtS}
-                                                        />
-                                                        <ThumbsUp color={colors.primary[700]}/>
-                                                    </HStack>
-                                                    
-                                                    <HStack alignItems={'center'} ml={5}>
-                                                        <RadioButton
-                                                        color= '#12375c'
-                                                        value="second"
-                                                        status={ checkedExtintor === 'second' ? 'checked' : 'unchecked' }
-                                                        onPress={onExtN}
-                                                        />
-                                                        <ThumbsDown color={colors.primary[700]}/>
-                                                    </HStack>
-                                                
-                                                </HStack>
-                                                
+                                                        <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                                        
+                                                            <HStack alignItems={'center'}>
+                                                                <RadioButton
+                                                            color= '#12375c'
+                                                                value="first"
+                                                                status={ checkedExtintor === 'first' ? 'checked' : 'unchecked' }
+                                                                onPress={onExtS}
+                                                                />
+                                                                <ThumbsUp color={colors.primary[700]}/>
+                                                            </HStack>
+                                                            
+                                                            <HStack alignItems={'center'} ml={5}>
+                                                                <RadioButton
+                                                                color= '#12375c'
+                                                                value="second"
+                                                                status={ checkedExtintor === 'second' ? 'checked' : 'unchecked' }
+                                                                onPress={onExtN}
+                                                                />
+                                                                <ThumbsDown color={colors.primary[700]}/>
+                                                            </HStack>
+                                                        
+                                                        </HStack>
+                                                        
 
-                                                
+                                                        
                                     </HStack>
-                                    
+                                            
                                     { isExt && <View style={{
                                     marginBottom: mb,
                                     backgroundColor: '#171717',
@@ -1350,6 +1371,28 @@ export default function FormInspeccao() {
                                       />
                                     </View>}
 
+                                    {!isExt && <View>
+                                        <Text style={{fontWeight:'bold', fontSize:20}}>Validade: {text}</Text>
+
+                                        <View>
+                                           <Button title='Escolher data' onPress={() => showMode('date')}  />
+                                        </View>  
+
+                                        {
+                                          show && (
+                                            <DateTimePicker
+                                              testID='dateTimePicker'
+                                              value={date}
+                                              mode={mode}
+                                              is24Hour={true}
+                                              display='default'
+                                              onChange={onChange}
+                                            />
+                                            
+                                          )
+                                        }                                        
+                                    </View>}
+                                    
 
                                     <HStack justifyContent={'space-between'} alignItems={'center'}>
                                             <Text>Pr. Socorros</Text>
