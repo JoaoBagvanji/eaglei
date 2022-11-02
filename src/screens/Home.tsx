@@ -46,10 +46,7 @@ export function Home() {
             
             <View>
               <Image source={innoqImage} resizeMode='contain' height={Dimensions.get('window').width * 0.5} alt='Inno'/>
-            </View>
-
-            
-          
+            </View> 
         </View>
 
       </SafeAreaView>
@@ -67,6 +64,5 @@ const styles = StyleSheet.create({
       alignItems:'center',
       display:'flex',
       flexDirection:'column',
-
   },
 })
