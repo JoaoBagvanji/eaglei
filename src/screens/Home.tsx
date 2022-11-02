@@ -39,10 +39,14 @@ export function Home() {
 
       <SafeAreaView style={styles.container}>
         
-        <View flex={1} alignItems='center' justifyContent='center' display='flex' flexDirection='column'>
-
-            <Image source={missaoImg} resizeMode='contain' height={Dimensions.get('window').width * 0.7} alt='Missao e Visao'/>
-            <Image source={innoqImage} resizeMode='contain' height={Dimensions.get('window').width * 0.7} alt='Inno'/>
+        <View flex={1} alignItems='center'  justifyContent='center'>
+            <View>
+              <Image source={missaoImg} resizeMode='contain' height={Dimensions.get('window').width * 0.7} alt='Missao e Visao'/>
+            </View>
+            
+            <View>
+              <Image source={innoqImage} resizeMode='contain' height={Dimensions.get('window').width * 0.5} alt='Inno'/>
+            </View>
 
             
           
@@ -59,6 +63,10 @@ export function Home() {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
+      flex:5,
+      alignItems:'center',
+      display:'flex',
+      flexDirection:'column',
+
   },
 })
