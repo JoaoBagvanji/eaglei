@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { VStack, HStack, Icon, useTheme, Text, View } from 'native-base';
+import { VStack, HStack, Icon, useTheme, Text, View, Image } from 'native-base';
 
 import { House } from 'phosphor-react-native'
 import { Load } from '../components/Load';
 import { Header } from '../components/Header';
+
+import missaoImg from '../assets/missao.png'
+import innoqImage from '../assets/InnoQ.png'
+import { Dimensions, SafeAreaView, StyleSheet } from 'react-native';
 
 
 export function Home() {
@@ -33,10 +37,36 @@ export function Home() {
         </HStack>
       </VStack>
 
-      <HStack>
+      <SafeAreaView style={styles.container}>
+        
+        <View flex={1} alignItems='center'  justifyContent='center'>
+            <View>
+              <Image source={missaoImg} resizeMode='contain' height={Dimensions.get('window').width * 0.7} alt='Missao e Visao'/>
+            </View>
+            
+            <View>
+              <Image source={innoqImage} resizeMode='contain' height={Dimensions.get('window').width * 0.5} alt='Inno'/>
+            </View>
 
-      </HStack>
+            
+          
+        </View>
+
+      </SafeAreaView>
+
+
+
 
     </VStack>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+      flex:5,
+      alignItems:'center',
+      display:'flex',
+      flexDirection:'column',
+
+  },
+})
