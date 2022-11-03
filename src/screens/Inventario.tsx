@@ -87,7 +87,7 @@ export  function Inventario() {
                 entre os Inventarios
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.green[700]}/>} />
+            <Icon as ={<Wrench color={colors.blueGray[400]}/>} />
         </HStack>
    
     </VStack>
