@@ -73,7 +73,7 @@ export function Tarefa() {
             entre as Tarefas
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.green[700]}/>} />
+            <Icon as ={<Wrench color={colors.blueGray[400]}/>} />
         </HStack>
    
     </VStack>
