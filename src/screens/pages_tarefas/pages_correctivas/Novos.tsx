@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp } from 'phosphor-react-native';
+import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 export default function Novas() {
@@ -14,7 +14,7 @@ export default function Novas() {
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<HandPalm    color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package    color='#A1C861' size={16} />} />,
+            icon3: <Icon as ={<MapPinLine     color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
             icon5: <Icon as ={<Handshake      color='#A1C861' size={16} />} />,
         },
@@ -83,9 +83,11 @@ export default function Novas() {
                   <Icon>{item.icon}</Icon>
                 </View>
 
+                
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon2}</Icon>
                 </View>
+
 
                 
               </View>) : null}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp   } from 'phosphor-react-native';
+import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp ,MapPinLine,MagnifyingGlass  } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 export default function Progress() {
@@ -12,11 +12,13 @@ export default function Progress() {
             nome: '4552, Mahotas',
             info: 'Mario Joaquim, estado: a caminho',
             image: require('../../../assets/avatars/tower2.png'),
-            icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
+            icon: <Icon as ={<Lightning color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package    color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake      color='#A1C861' size={16} />} />,
+            icon3: <Icon as ={<Package color='#A1C861' size={16} />} />,
+            icon4: <Icon as ={<Camera color='#A1C861' size={16} />} />,
+            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon6: <Icon as ={<MapPinLine  color='#A1C861' size={16} />} />,
+            icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
         {
             id: 2,
@@ -28,6 +30,8 @@ export default function Progress() {
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
             icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
+            icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
         {
             id: 3,
@@ -39,23 +43,27 @@ export default function Progress() {
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
             icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+            icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
+            icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
         {
           id: 4,
           nome: '5992, Campoane',
-          info: 'Helio Joaquim, estado: a caminho',
+          info: 'Helio Joaquim, estado: no local',
           image: require('../../../assets/avatars/tower2.png'),
           icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
           icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
           icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
           icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+          icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
+          icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
       },
         
     ];
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
-    const [ showPosition, setShowPosition ] = useState()
+    const [ showPosition, setShowPosition ] = useState('')
 
 
     async function handleDropDownItems(position){
@@ -78,7 +86,7 @@ export default function Progress() {
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between'>
+              {shouldShow[item.id] ? (item.info.indexOf('local')!= -1 ?(<View display='flex' flexDirection='row' justifyContent='space-between'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon}</Icon>
                 </View>
@@ -98,9 +106,23 @@ export default function Progress() {
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon5}</Icon>
                 </View>
+                
+                
+              </View>) : (
+                <>
+                <View display='flex' flexDirection='row' justifyContent='space-around'>
+                  <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                    <Icon>{item.icon6}</Icon>
+                  </View>
+
+                  <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                    <Icon>{item.icon7}</Icon>
+                  </View>
+                </View>
+                </>
 
                 
-              </View>) : null}
+                )) : null}
               
             </View>
             </Box>
