@@ -9,7 +9,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import FormInspeccao from './pages_inspeccao/FormInspeccao';
+import FormInspeccao from '../../routes/top.routes';
+
 
 const Stack = createStackNavigator();
 
