@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, CheckCircle  ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp   } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import colors from '../../../styles/colors';
 
 export default function Completas() {
   
@@ -11,45 +12,61 @@ export default function Completas() {
             id: 1,
             nome: '4552, Aeroporto A',
             info: 'Jaime Joaquim, estado: completos',
+            gerador: [0,2,3,4],
+            credelec: [2],
+            photos: [],
+            spare: [],
             image: require('../../../assets/avatars/tower2.png'),
-            icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package    color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake      color='#A1C861' size={16} />} />,
+            icon: <Icon as ={<Lightning   color='#fff' size={16} />} />,
+            icon2: <Icon as ={<LightbulbFilament color='#fff' size={16} />} />,
+            icon3: <Icon as ={<Package    color='#fff' size={16} />} />,
+            icon4: <Icon as ={<Camera    color='#fff' size={16} />} />,
+            icon5: <Icon as ={<Handshake      color='#fff' size={16} />} />,
         },
         {
             id: 2,
             nome: '4352, Malhampsene',
             info: 'Constantino J., estado: completos',
+            gerador: [],
+            credelec: [2],
+            photos: [],
+            spare: [0],
             image: require('../../../assets/avatars/tower2.png'),
-            icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon: <Icon as ={<Lightning   color='#fff' size={16} />} />,
+            icon2: <Icon as ={<LightbulbFilament color='#fff' size={16} />} />,
+            icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
+            icon4: <Icon as ={<Camera  color='#fff' size={16} />} />,
+            icon5: <Icon as ={<Handshake  color='#fff' size={16} />} />,
         },
         {
             id: 3,
             nome: '4652, Polana Cimento A',
             info: 'Cláudio Joaquim, estado: completos',
+            gerador: [0,2,3,4],
+            credelec: [2],
+            photos: [],
+            spare: [0],
             image: require('../../../assets/avatars/tower2.png'),
-            icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+            icon: <Icon as ={<Lightning   color='#fff' size={16} />} />,
+            icon2: <Icon as ={<LightbulbFilament color='#fff' size={16} />} />,
+            icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
+            icon4: <Icon as ={<Camera  color='#fff' size={16} />} />,
+            icon5: <Icon as ={<Handshake   color='#fff' size={16} />} />,
         },
         {
           id: 4,
           nome: '5992, Bairro T3',
           info: 'Helio Joaquim, estado: completos',
+          gerador: [0,2,3,4],
+          credelec: [],
+          photos: [2],
+          spare: [],
           image: require('../../../assets/avatars/tower2.png'),
-          icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
-          icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
-          icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-          icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+          icon: <Icon as ={<Lightning   color='#fff' size={16} />} />,
+          icon2: <Icon as ={<LightbulbFilament color='#fff' size={16} />} />,
+          icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
+          icon4: <Icon as ={<Camera  color='#fff' size={16} />} />,
+          icon5: <Icon as ={<Handshake   color='#fff' size={16} />} />,
       },
         
     ];
@@ -67,6 +84,7 @@ export default function Completas() {
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
     }
+    
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
@@ -79,25 +97,23 @@ export default function Completas() {
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between'>
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft={4} marginTop={2} style={item.gerador.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon}</Icon>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft={4} marginTop={2} style={item.credelec.length>0 ? styles.filled: styles.unfilled}  borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon2}</Icon>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft={4} marginTop={2} style={item.spare.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon3}</Icon>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft={4} marginTop={2} style={item.photos.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon4}</Icon>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon5}</Icon>
-                </View>
+                
 
                 
               </View>) : null}
@@ -190,5 +206,11 @@ const styles=StyleSheet.create({
     avatar:{
         height: 35,
         width: 35,
+    },
+    filled:{
+      backgroundColor: colors.green_dark,
+    },
+    unfilled:{
+      backgroundColor: colors.red
     }
 })

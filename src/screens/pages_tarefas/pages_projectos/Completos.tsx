@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, CheckCircle  ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp   } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import colors from '../../../styles/colors';
 
 export default function Completos() {
   
@@ -190,5 +191,11 @@ const styles=StyleSheet.create({
     avatar:{
         height: 35,
         width: 35,
+    },
+    filled:{
+      backgroundColor: colors.green,
+    },
+    unfilled:{
+      backgroundColor: colors.red
     }
 })
