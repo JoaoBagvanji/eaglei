@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp ,MapPinLine,MagnifyingGlass  } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import colors from '../../../styles/colors';
 
 export default function Progress() {
   
@@ -24,6 +25,10 @@ export default function Progress() {
             id: 2,
             nome: '4352, Boquisso',
             info: 'Samuel Joaquim, estado: no local',
+            gerador: [],
+            credelec: [],
+            photos: [],
+            spare: [],
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -37,6 +42,10 @@ export default function Progress() {
             id: 3,
             nome: '4652, Museu',
             info: 'David Joaquim, estado: a caminho',
+            gerador: [],
+            credelec: [],
+            photos: [],
+            spare: [],
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -50,6 +59,10 @@ export default function Progress() {
           id: 4,
           nome: '5992, Campoane',
           info: 'Helio Joaquim, estado: no local',
+          gerador: [],
+          credelec: [],
+          photos: [],
+          spare: [],
           image: require('../../../assets/avatars/tower2.png'),
           icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -63,7 +76,8 @@ export default function Progress() {
     ];
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
-    const [ showPosition, setShowPosition ] = useState('')
+    const [ carregado, setCarregado ] = useState(false)
+
 
 
     async function handleDropDownItems(position){
@@ -75,6 +89,8 @@ export default function Progress() {
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
     }
+    
+
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
@@ -212,5 +228,11 @@ const styles=StyleSheet.create({
     avatar:{
         height: 35,
         width: 35,
+    },
+    filled:{
+      backgroundColor: colors.green,
+    },
+    unfilled:{
+      backgroundColor: colors.red
     }
 })
