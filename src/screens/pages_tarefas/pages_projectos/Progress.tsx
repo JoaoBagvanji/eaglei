@@ -5,10 +5,7 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
-import Index from '../pagesforms';
-
-import { Correctiva } from '../Correctiva';
-;
+import Questions from '../pagesforms/Questions';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +15,7 @@ export default function MyStack() {
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Progress'>
           
-         <Stack.Screen name="Index" component={Index} />
+         <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Progress" component={Progress} />
      </Stack.Navigator>
    </NavigationContainer>
@@ -34,7 +31,7 @@ export function Progress() {
 const { navigate } = useNavigation<Nav>()
 
 function handleTelas(){
-  navigate('Index') as never;
+  navigate('Questions') as never;
 }
   
   
