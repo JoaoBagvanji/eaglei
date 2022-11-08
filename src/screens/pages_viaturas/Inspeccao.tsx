@@ -63,6 +63,12 @@ export function Inspeccao() {
                 <Plus size={22} color={colors.green[700]} />
             </TouchableOpacity>
        </VStack>
+
+       <VStack mb={70} alignSelf={'center'}>
+            <TouchableOpacity style={styles.formButton}   onPress={() => navigate('FormBowser') as never}>
+                <Plus size={22} color={colors.green[700]} />
+            </TouchableOpacity>
+       </VStack>
             
 
     </VStack>
