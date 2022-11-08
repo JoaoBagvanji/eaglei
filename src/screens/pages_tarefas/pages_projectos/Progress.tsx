@@ -2,8 +2,40 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack'
 
-export default function Progress() {
+import Index from '../pagesforms';
+
+import { Correctiva } from '../Correctiva';
+;
+
+const Stack = createStackNavigator();
+
+export default function MyStack() {
+  return (
+   <NavigationContainer independent={true}>
+     <Stack.Navigator  screenOptions={{headerShown: false}} 
+             initialRouteName='Progress'>
+          
+         <Stack.Screen name="Index" component={Index} />
+         <Stack.Screen name="Progress" component={Progress} />
+     </Stack.Navigator>
+   </NavigationContainer>
+ ); 
+}
+
+
+export function Progress() {
+  type Nav ={
+    navigate : (value: string) => void;
+}
+  
+const { navigate } = useNavigation<Nav>()
+
+function handleTelas(){
+  navigate('Index') as never;
+}
   
   
     const data = [
@@ -112,11 +144,13 @@ export default function Progress() {
                 <>
                 <View display='flex' flexDirection='row' justifyContent='space-around'>
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                    <Icon>{item.icon6}</Icon>
+                      <Icon>{item.icon6}</Icon>
                   </View>
 
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                    <Icon>{item.icon7}</Icon>
+                    <TouchableOpacity onPress={handleTelas}>
+                      <Icon>{item.icon7}</Icon>
+                    </TouchableOpacity>
                   </View>
                 </View>
                 </>
