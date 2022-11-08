@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Button } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Calendar, Car, FirstAidKit,  Headlights, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera,  TagSimple } from 'phosphor-react-native';
+import { Calendar, Car, FirstAidKit,  Headlights, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera,  TagSimple, Cube, GasPump, GitFork, DotsThreeOutlineVertical } from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -42,20 +42,7 @@ import { useState } from 'react';
             ]);
 
             const [combo, setCombo] = useState(0);  
-            const [mb, setMb] = useState('2%');   
-
-            const onComboboxPress = () => {
-                setCombo(combo+1);
-  
-                if (combo % 2 === 0)
-                {
-                    setMb('60%');
-                    console.log("Voce abriu o ComboBox");}
-  
-                else
-              { setMb('2%'); 
-                console.log("Voce fechou o ComboBox"); }
-              }
+            const [mb, setMb] = useState('2%');  
 
               return (
                 <VStack style={styles.container}>
@@ -91,8 +78,6 @@ import { useState } from 'react';
                                     textStyle={{
                                         fontSize: 14
                                     }}
-                                    onPress={onComboboxPress}
-                                    onClose={onComboboxPress}
                                     placeholder="Escolha a opção"
                                     open={openMat}
                                     value={valueMat}
@@ -146,252 +131,7 @@ import { useState } from 'react';
           
 
           function Screen2() {
-            const {colors} = useTheme();
-        const { fonts } = useTheme();
-
-            const [combo, setCombo] = useState(0);  
-            const [combo1, setCombo1] = useState(0);  
-              
-
-            const [mb, setMb] = useState('2%');    
-            const [mb1, setMb1] = useState('2%');
-
-
-            const onComboboxPress= () => {
-              setCombo(combo+1);
-
-              if (combo % 2 === 0)
-              {
-                  setMb('46%');
-                  console.log("Voce abriu o ComboBox");}
-
-              else
-            { setMb('2%'); 
-              console.log("Voce fechou o ComboBox"); }
-            }
-
-              const [checkedCar, setCheckedCar] = useState('first');
-              const [checkedBow, setCheckedBow] = useState('first');
-              const [checkedReb, setCheckedReb] = useState('first');
-
-              const [openCar, setOpenCar] = useState(false);
-              const [valueCar, setValueCar] = useState([]);
-              const [itemsCar, setItemsCar] = useState([
-                {label: 'Parachoque Frontal', value: 'Parachoque Frontal'},
-                {label: 'Parachoque Traseiro', value: 'Parachoque Traseiro'},
-                {label: 'Porta esquerda', value: 'Porta esquerda'},
-                {label: 'Porta direita', value: 'Porta direita'},
-              ]);
-
-              const [openReb, setOpenReb] = useState(false);
-              const [valueReb, setValueReb] = useState([]);
-              const [itemsReb, setItemsReb] = useState([
-                {label: 'Bola Gasta', value: 'Bola Gasta'},
-              ]);
-
-              const [isCarrocaria, setIsCarrocaria] = useState(false);
-              const [isBowser, setIsBowser] = useState(true);
-              const [isReboque, setIsReboque] = useState(false);
-
-              const onCarrocariaS = () => {
-                console.log("Voce clicou em nao no Radio Button Carroocaria Like");
-                setCheckedCar('ok');
-                setIsCarrocaria(false);
-              }
-
-              const onCarrocariaN = () => {
-                  console.log("Voce clicou em nao no Radio Button Carrocaria Dislike");
-                  setCheckedCar('notOk');
-                  setIsCarrocaria(true);
-                }
-
-              const onBowserS = () => {
-                  console.log("Voce clicou em nao no Radio Button Bowser Sim");
-                  setCheckedBow('ok');
-                  setIsBowser(true);
-                }
-              
-                const onBowserN = () => {
-                  console.log("Voce clicou em nao no Radio Button Bowser Nao");
-                  setCheckedBow('notOk');
-                  setIsBowser(false);
-                }
-
-                const onReboqueS = () => {
-                  console.log("Voce clicou em nao no Radio Button Reboque Like");
-                  setCheckedReb('ok');
-                  setIsReboque(false);
-                }
-
-                const onReboqueN = () => {
-                    console.log("Voce clicou em nao no Radio Button Reboque Dislike");
-                    setCheckedReb('notOk');
-                    setIsReboque(true);
-                  }
-
-                return (
-                  <VStack style={styles.container}>
-
-                  <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>CARROÇARIA</Text>
-
-              
-
-                          <HStack mt={'5%'} alignItems={'center'} justifyContent={'space-evenly'}>
-                            <Text fontFamily={fonts.body}>&nbsp;Carroçaria&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-
-                                    <HStack alignItems={'center'}>
-                                      <RadioButton
-                                        color= 'green'
-                                        value="ok"
-                                        status={ checkedCar === 'ok' ? 'checked' : 'unchecked' }
-                                        onPress={onCarrocariaS}
-                                      />
-                                        <ThumbsUp color={colors.primary[700]}/>
-                                    </HStack>
-                                    
-                                    <HStack alignItems={'center'} >
-                                      <RadioButton
-                                      color= 'red'
-                                        value="notOk"
-                                        status={ checkedCar === 'notOk' ? 'checked' : 'unchecked' }
-                                        onPress={onCarrocariaN} 
-                                      />
-                                      <ThumbsDown color={colors.primary[700]}/>
-                                    </HStack>
-                                
-                              
-                                
-
-                              
-                          </HStack>
-                          
-                          { isCarrocaria && <View style={{
-                          marginBottom: mb,
-                          backgroundColor: 'transparent',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          paddingHorizontal: 15
-                        }}>
-                          <DropDownPicker
-                              textStyle={{
-                                fontSize: 14
-                              }}
-                              onPress={onComboboxPress}
-                              placeholder="Selecione a(s) Parte(s)"
-                              open={openCar}
-                              value={valueCar}
-                              items={itemsCar}
-                              setOpen={setOpenCar}
-                              setValue={setValueCar}
-                              setItems={setItemsCar}
-
-                              theme="LIGHT"
-                              multiple={true}
-                              mode="BADGE"
-                              badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                            />
-                          </View>}
-
-                          
-                          <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                            <Text fontFamily={fonts.body}>&nbsp;&nbsp;Bowser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-
-                                    <HStack alignItems={'center'}>
-                                      <RadioButton
-                                        color= 'green'
-                                        value="ok"
-                                        status={ checkedBow === 'ok' ? 'checked' : 'unchecked' }
-                                        onPress={onBowserS}
-                                        
-                                      />
-                                      <Text fontFamily={fonts.body}>Sim</Text>
-                                    </HStack>
-                                    
-                                    <HStack alignItems={'center'}>
-                                      <RadioButton
-                                        color= 'red'
-                                        value="notOk"
-                                        status={ checkedBow === 'notOk' ? 'checked' : 'unchecked' }
-                                        onPress={onBowserN}
-                                      />
-                                      <Text fontFamily={fonts.body}>Não</Text>
-                                      
-                                    </HStack>
-                     
-
-                              
-                          </HStack>
-
-                          { isBowser &&  <View>
-                          
-                          <HStack justifyContent={'space-evenly'}>
-                            <Text fontFamily={fonts.body}>&nbsp;&nbsp;&nbsp;&nbsp;Bola de Reboque</Text>
-
-                                
-                                
-                                    <HStack alignItems={'center'} mr={5}>
-                                      <RadioButton
-                                      color= 'green'
-                                        value="ok"
-                                        status={ checkedReb === 'ok' ? 'checked' : 'unchecked' }
-                                        onPress={onReboqueS}
-                                      />
-                                        <ThumbsUp color={colors.primary[700]}/>
-                                    </HStack>
-                                    
-                                    <HStack alignItems={'center'} mr={4}>
-                                      <RadioButton
-                                      color= 'red'
-                                        value="notOk"
-                                        status={ checkedReb === 'notOk' ? 'checked' : 'unchecked' }
-                                        onPress={onReboqueN}
-                                      />
-                                      <ThumbsDown color={colors.primary[700]}/>
-                                    </HStack>
-                                
-                                </HStack>
-                              
-
-                                { isReboque && <View style={{
-                          marginBottom: mb1,
-                          backgroundColor: 'transparent',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          paddingHorizontal: 15
-                        }}>
-                          <DropDownPicker
-                              placeholder="Selecione a(s) Parte(s)"
-                              open={openReb}
-                              value={valueReb}
-                              items={itemsReb}
-                              setOpen={setOpenReb}
-                              setValue={setValueReb}
-                              setItems={setItemsReb}
-
-                              theme="LIGHT"
-                              multiple={true}
-                              mode="BADGE"
-                              badgeDotColors={["#00b4d8"]}
-                            />
-                          </View>}
-                                
-
-                              
-                          </View>}
-                          
-              
-
-              </VStack>
-            );
-          }
-
-
-
-
-
-
-
-          function Screen3() {
+           
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -399,45 +139,58 @@ import { useState } from 'react';
             const [checkedPre, setCheckedPre] = useState('first');
             const [checkedPor, setCheckedPor] = useState('first');
             const [checkedTra, setCheckedTra] = useState('first');
+            const [checkedSup, setCheckedSup] = useState('first');
+            const [checkedDesc, setCheckedDesc] = useState('first');
 
             const [openPneu, setOpenPneu] = useState(false);
             const [valuePneu, setValuePneu] = useState([]);
             const [itemsPneu, setItemsPneu] = useState([
-              {label: 'Frontal esquerdo', value: 'Frontal esquerdo'},
-              {label: 'Frontal direito', value: 'Frontal direito'},
-              {label: 'Traseiro esquerdo', value: 'Traseiro esquerdo'},
-              {label: 'Traseiro direito', value: 'Traseiro direito'},
+              {label: 'Pneus Gastos', value: 'Pneus Gastos'},
+              {label: 'Baixa Pressao', value: 'Baixa Pressao'},
             ]);
           
-            const [openPre, setOpenPre] = useState(false);
-            const [valuePre, setValuePre] = useState([]);
-            const [itemsPre, setItemsPre] = useState([
-              {label: 'Frontal esquerdo', value: 'Frontal esquerdo'},
-              {label: 'Frontal direito', value: 'Frontal direito'},
-              {label: 'Traseiro esquerdo', value: 'Traseiro esquerdo'},
-              {label: 'Traseiro direito', value: 'Traseiro direito'},
+            const [openJan, setOpenJan] = useState(false);
+            const [valueJan, setValueJan] = useState([]);
+            const [itemsJan, setItemsJan] = useState([
+              {label: 'Empenada', value: 'Empenada'},
+              {label: 'Rachada', value: 'Rachada'},
             ]);
           
             const [openPorca, setOpenPorca] = useState(false);
             const [valuePorca, setValuePorca] = useState([]);
             const [itemsPorca, setItemsPorca] = useState([
-              {label: 'Frontal esquerdo', value: 'Frontal esquerdo'},
-              {label: 'Frontal direito', value: 'Frontal direito'},
-              {label: 'Traseiro esquerdo', value: 'Traseiro esquerdo'},
-              {label: 'Traseiro direito', value: 'Traseiro direito'},
+              {label: 'Desapertadas', value: 'Desapertadas'},
+              {label: 'Partidas', value: 'Partidas'},
+              {label: 'Ausencia', value: 'Ausencia'},
             ]);
           
             const [openTrav, setOpenTrav] = useState(false);
             const [valueTrav, setValueTrav] = useState([]);
             const [itemsTrav, setItemsTrav] = useState([
-              {label: 'Travão', value: 'Travão'},
-              {label: 'Travão de estacionamento', value: 'Travão de estacionamento'},
+              {label: 'Calço Rebentado', value: 'Calço Rebentado'},
+              {label: 'Balatas Gastas', value: 'Balatas Gastas'},
+            ]);
+
+            const [openSup, setOpenSup] = useState(false);
+            const [valueSup, setValueSup] = useState([]);
+            const [itemsSup, setItemsSup] = useState([
+              {label: 'Pneus Gastos', value: 'Pneus Gastos'},
+              {label: 'Baixa Pressao', value: 'Baixa Pressao'},
+            ]);
+
+            const [openDes, setOpenDes] = useState(false);
+            const [valueDes, setValueDes] = useState([]);
+            const [itemsDes, setItemsDes] = useState([
+              {label: 'Empenada', value: 'Empenada'},
+              {label: 'Rachada', value: 'Rachada'},
             ]);
           
             const [isPneu, setIsPneu] = useState(false);
-            const [isPressao, setIsPressao] = useState(false);
+            const [isJantes, setIsJantes] = useState(false);
             const [isPorcas, setIsPorcas] = useState(false);
             const [isTravoes, setIsTravoes] = useState(false);
+            const [isSuplente, setIsSuplente] = useState(false);
+            const [isDescanso, setIsDescanso] = useState(false);
 
             const onPneuS = () => {
               console.log("Voce clicou em nao no Radio Button Pneu Like");
@@ -454,13 +207,13 @@ import { useState } from 'react';
               const onPreS = () => {
                   console.log("Voce clicou em nao no Radio Button Pressao Like");
                   setCheckedPre('ok');
-                  setIsPressao(false);
+                  setIsJantes(false);
                 }
             
               const onPreN = () => {
                     console.log("Voce clicou em nao no Radio Button Pressao Dislike");
                     setCheckedPre('notOk');
-                    setIsPressao(true);
+                    setIsJantes(true);
                   }
   
               const onPorcaS = () => {
@@ -487,23 +240,53 @@ import { useState } from 'react';
                             setIsTravoes(true);
                           }
 
+            
+            const onSupS = () => {
+              console.log("Voce clicou em nao no Radio Button suplente Like");
+              setCheckedSup('ok');
+              setIsSuplente(false);
+            }
+                      
+              const onSupN = () => {
+                console.log("Voce clicou em nao no Radio Button suplente Dislike");
+                setCheckedSup('notOk');
+                setIsSuplente(true);
+              }
+
+            const onDeS = () => {
+              console.log("Voce clicou em nao no Radio Button Descanso Like");
+              setCheckedDesc('ok');
+              setIsDescanso(false);
+            }
+                      
+            const onDeN = () => {
+              console.log("Voce clicou em nao no Radio Button Descanso Dislike");
+              setCheckedDesc('notOk');
+              setIsDescanso(true);
+            }
+
+
 
             const [combo, setCombo] = useState(0);  
               const [combo1, setCombo1] = useState(0);  
               const [combo2, setCombo2] = useState(0);
-              const [combo3, setCombo3] = useState(0);    
+              const [combo3, setCombo3] = useState(0); 
+              const [combo4, setCombo4] = useState(0);
+              const [combo5, setCombo5] = useState(0);   
 
               const [mb, setMb] = useState('2%');    
               const [mb1, setMb1] = useState('2%');
               const [mb2, setMb2] = useState('2%');
               const [mb3, setMb3] = useState('2%');
+              const [mb4, setMb4] = useState('2%');
+              const [mb5, setMb5] = useState('2%');
 
                           const onComboboxPress= () => {
                             setCombo(combo+1);
                     
                             if (combo % 2 === 0)
                             {
-                                setMb('46%');
+                                setMb('26%');
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
@@ -516,7 +299,7 @@ import { useState } from 'react';
                     
                             if (combo1 % 2 === 0)
                             {
-                                setMb1('46%');
+                                setMb1('26%');
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
@@ -529,7 +312,7 @@ import { useState } from 'react';
                     
                             if (combo2 % 2 === 0)
                             {
-                                setMb2('46%');
+                                setMb2('35%');
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
@@ -542,7 +325,7 @@ import { useState } from 'react';
                     
                             if (combo3 % 2 === 0)
                             {
-                                setMb3('46%');
+                                setMb3('26%');
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
@@ -550,17 +333,586 @@ import { useState } from 'react';
                             console.log("Voce fechou o ComboBox"); }
                           }
 
+                          const onComboboxPress4= () => {
+                            setCombo2(combo2+1);
+                    
+                            if (combo2 % 2 === 0)
+                            {
+                                setMb2('26%');
+                                console.log("Voce abriu o ComboBox");}
+                    
+                            else
+                           { setMb2('2%'); 
+                            console.log("Voce fechou o ComboBox"); }
+                          }
+                      
+                         
+
 
 
 
             return (
-              <VStack style={styles.container}>
-              <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>RODAS</Text>
+                <VStack style={styles.container}>
+                <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>RODAS</Text>
 
-             
+              
+
+                        <HStack justifyContent={'space-evenly'} mt={'5%'}>
+                                <Text fontFamily={fonts.body}>Pneus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                                    
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                        color= 'green'
+                                            value="ok"
+                                            status={ checkedPneu === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onPneuS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedPneu === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onPneuN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
+                                    
+                        </HStack>        
+                        
+                        { isPneu && <View style={{
+                        marginBottom: mb,
+                        backgroundColor: 'transparent',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            onPress={onComboboxPress}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openPneu}
+                            value={valuePneu}
+                            items={itemsPneu}
+                            setOpen={setOpenPneu}
+                            setValue={setValuePneu}
+                            setItems={setItemsPneu}
+
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
+
+                        <HStack justifyContent={'space-evenly'} >
+                                <Text fontFamily={fonts.body}>Jantes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'green'
+                                            value="ok"
+                                            status={ checkedPre === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onPreS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedPre === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onPreN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
+                                    
+                
+                        </HStack>
+                        
+                        { isJantes && <View style={{
+                        marginBottom: mb1,
+                        backgroundColor: 'transparent',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            onPress={onComboboxPress1}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openJan}
+                            value={valueJan}
+                            items={itemsJan}
+                            setOpen={setOpenJan}
+                            setValue={setValueJan}
+                            setItems={setItemsJan}
+
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
+
+                        <HStack justifyContent={'space-evenly'}>
+                                <Text fontFamily={fonts.body}>Porcas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                        color= 'green'
+                                            value="ok"
+                                            status={ checkedPor === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onPorcaS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedPor === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onPorcaN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
+                                    
+                        </HStack>
+                        
+                        { isPorcas && <View style={{
+                        marginBottom: mb2,
+                        backgroundColor: 'transparent',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            onPress={onComboboxPress2}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openPorca}
+                            value={valuePorca}
+                            items={itemsPorca}
+                            setOpen={setOpenPorca}
+                            setValue={setValuePorca}
+                            setItems={setItemsPorca}
+
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
+
+                        <HStack justifyContent={'space-evenly'}>
+                                <Text fontFamily={fonts.body} >Travões&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+          
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                        color= 'green'
+                                            value="ok"
+                                            status={ checkedTra === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onTravS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedTra === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onTravN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
+                                    
+                          
+                                          
+                        </HStack>
+                        
+                        { isTravoes && <View style={{
+                        marginBottom: mb3,
+                        backgroundColor: 'transparent',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            onPress={onComboboxPress3}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openTrav}
+                            value={valueTrav}
+                            items={itemsTrav}
+                            setOpen={setOpenTrav}
+                            setValue={setValueTrav}
+                            setItems={setItemsTrav}
+
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
+
+                        <HStack justifyContent={'space-evenly'}>
+                                <Text fontFamily={fonts.body}>Roda Suplente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                                    
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                        color= 'green'
+                                            value="ok"
+                                            status={ checkedSup === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onSupS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedSup === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onSupN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
+                                    
+                        </HStack>        
+                        
+                        { isSuplente && <View style={{
+                        marginBottom: mb,
+                        backgroundColor: 'transparent',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            onPress={onComboboxPress4}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openSup}
+                            value={valueSup}
+                            items={itemsSup}
+                            setOpen={setOpenSup}
+                            setValue={setValueSup}
+                            setItems={setItemsSup}
+
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
+
+                        <HStack justifyContent={'space-evenly'} >
+                                <Text fontFamily={fonts.body}>Roda de Descanso</Text>
+
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'green'
+                                            value="ok"
+                                            status={ checkedDesc === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onDeS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedDesc === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onDeN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
+                                    
+                
+                        </HStack>
+                        
+                        { isDescanso && <View style={{
+                        marginBottom: mb1,
+                        backgroundColor: 'transparent',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openDes}
+                            value={valueDes}
+                            items={itemsDes}
+                            setOpen={setOpenDes}
+                            setValue={setValueDes}
+                            setItems={setItemsDes}
+
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
+
+                </VStack>
+            );
+
+          }
+
+
+
+
+
+
+
+             function Screen3() {
+
+            const {colors} = useTheme();
+            const {fonts} = useTheme();
+
+            const [checkedLuzes, setCheckedLuzes] = useState('first');
+
+            const [openLuzes, setOpenLuzes] = useState(false);
+            const [valueLuzes, setValueLuzes] = useState([]);
+            const [itemsLuzes, setItemsLuzes] = useState([
+              {label: 'Ficha Macho', value: 'Ficha Macho'},
+              {label: 'Cabo', value: 'Cabo'},
+              {label: 'Ficha Femea', value: 'Ficha Femea'},
+            ]);
+
+            const [isLuzes, setIsLuzes] = useState(false);
+
+            const onLuzS = () => {
+              console.log("Voce clicou em nao no Radio Button Luz Like");
+              setCheckedLuzes('ok');
+              setIsLuzes(false);
+            }
+        
+            const onLuzN = () => {
+                console.log("Voce clicou em nao no Radio Button Luz Dislike");
+                setCheckedLuzes('notOk');
+                setIsLuzes(true);
+              }
+
+            return (
+              <VStack style={styles.container}>
+              <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>LUZES</Text>
+
+              <VStack mt={'5%'}>
+
+              <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                              <Text fontFamily={fonts.body}>Luzes</Text>
+
+                                      <HStack alignItems={'center'}>
+                                          <RadioButton
+                                          color= 'green'
+                                          value="ok"
+                                          status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onLuzS}
+                                          />
+                                          <ThumbsUp color={colors.primary[700]}/>
+                                      </HStack>
+                                      
+                                      <HStack alignItems={'center'}>
+                                          <RadioButton
+                                          color= 'red'
+                                          value="notOk"
+                                          status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onLuzN}
+                                          />
+                                          <ThumbsDown color={colors.primary[700]}/>
+                                      </HStack>
+                                  
+                                  
+                                      
+               </HStack>
+                      
+                      { isLuzes && <View style={{
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      paddingHorizontal: 15
+                    }}>
+                      <DropDownPicker
+                          placeholder="Selecione a(s) Parte(s)"
+                          open={openLuzes}
+                          value={valueLuzes}
+                          items={itemsLuzes}
+                          setOpen={setOpenLuzes}
+                          setValue={setValueLuzes}
+                          setItems={setItemsLuzes}
+
+                          theme="LIGHT"
+                          multiple={true}
+                          mode="BADGE"
+                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                        />
+                      </View>}
+                            
+              </VStack>
+
+          </VStack>
+          
+            );
+          }
+
+          
+
+
+
+
+
+
+
+          function Screen4() {
+
+            const {colors} = useTheme();
+            const {fonts} = useTheme();
+
+            const [checkedPneu, setCheckedPneu] = useState('first');
+            const [checkedPre, setCheckedPre] = useState('first');
+            const [checkedPor, setCheckedPor] = useState('first');
+            const [checkedDesc, setCheckedDesc] = useState('first');
+
+            const [openPneu, setOpenPneu] = useState(false);
+            const [valuePneu, setValuePneu] = useState([]);
+            const [itemsPneu, setItemsPneu] = useState([
+              {label: 'Não Funciona', value: 'Não Funciona'},
+              {label: 'Lenta', value: 'Lenta'},
+            ]);
+          
+            const [openJan, setOpenJan] = useState(false);
+            const [valueJan, setValueJan] = useState([]);
+            const [itemsJan, setItemsJan] = useState([
+              {label: 'Quebrada', value: 'Quebrada'},
+            ]);
+          
+            const [openPorca, setOpenPorca] = useState(false);
+            const [valuePorca, setValuePorca] = useState([]);
+            const [itemsPorca, setItemsPorca] = useState([
+              {label: 'Furada', value: 'Furada'},
+              {label: 'Cortada', value: 'Cortada'},
+            ]);
+
+            const [openDes, setOpenDes] = useState(false);
+            const [valueDes, setValueDes] = useState([]);
+            const [itemsDes, setItemsDes] = useState([
+              {label: 'Ecrã Partido', value: 'Ecrã Partido'},
+              {label: 'Não Marca', value: 'Não Marca'},
+              {label: 'Ausência', value: 'Ausência'},
+            ]);
+          
+
+            const [combo, setCombo] = useState(0);  
+            const [combo1, setCombo1] = useState(0);  
+            const [combo2, setCombo2] = useState(0);
+
+            const [mb, setMb] = useState('2%');    
+              const [mb1, setMb1] = useState('2%');
+              const [mb2, setMb2] = useState('2%');
+
+              const onComboboxPress= () => {
+                setCombo(combo+1);
+        
+                if (combo % 2 === 0)
+                {
+                    setMb('26%');
+                    console.log("Voce abriu o ComboBox");}
+        
+                else
+               { setMb('2%'); 
+                console.log("Voce fechou o ComboBox"); }
+              }
+        
+              const onComboboxPress1= () => {
+                setCombo1(combo1+1);
+        
+                if (combo1 % 2 === 0)
+                {
+                    setMb1('15%');
+                    console.log("Voce abriu o ComboBox");}
+        
+                else
+               { setMb1('2%'); 
+                console.log("Voce fechou o ComboBox"); }
+              }
+        
+              const onComboboxPress2= () => {
+                setCombo2(combo2+1);
+        
+                if (combo2 % 2 === 0)
+                {
+                    setMb2('25%');
+                    console.log("Voce abriu o ComboBox");}
+        
+                else
+               { setMb2('2%'); 
+                console.log("Voce fechou o ComboBox"); }
+              }
+
+
+              const [isPneu, setIsPneu] = useState(false);
+            const [isJantes, setIsJantes] = useState(false);
+            const [isPorcas, setIsPorcas] = useState(false);
+            const [isDescanso, setIsDescanso] = useState(false);
+
+              const onPneuS = () => {
+                console.log("Voce clicou em nao no Radio Button Pneu Like");
+                setCheckedPneu('ok');
+                setIsPneu(false);
+              }
+          
+            const onPneuN = () => {
+                  console.log("Voce clicou em nao no Radio Button Pneu Dislike");
+                  setCheckedPneu('notOk');
+                  setIsPneu(true);
+                }
+    
+                const onPreS = () => {
+                    console.log("Voce clicou em nao no Radio Button Pressao Like");
+                    setCheckedPre('ok');
+                    setIsJantes(false);
+                  }
+              
+                const onPreN = () => {
+                      console.log("Voce clicou em nao no Radio Button Pressao Dislike");
+                      setCheckedPre('notOk');
+                      setIsJantes(true);
+                    }
+    
+                const onPorcaS = () => {
+                        console.log("Voce clicou em nao no Radio Button Porca Like");
+                        setCheckedPor('ok');
+                        setIsPorcas(false);
+                      }
+                  
+                const onPorcaN = () => {
+                          console.log("Voce clicou em nao no Radio Button Porca Dislike");
+                          setCheckedPor('notOk');
+                          setIsPorcas(true);
+                        }
+              
+                        
+            const onDeS = () => {
+              console.log("Voce clicou em nao no Radio Button Descanso Like");
+              setCheckedDesc('ok');
+              setIsDescanso(false);
+            }
+                      
+            const onDeN = () => {
+              console.log("Voce clicou em nao no Radio Button Descanso Dislike");
+              setCheckedDesc('notOk');
+              setIsDescanso(true);
+            }
+
+
+            return (
+              <VStack style={styles.container}>
+              <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>SISTEMA DE ABASTECIMENTO</Text>
+
+            
 
                       <HStack justifyContent={'space-evenly'} mt={'5%'}>
-                              <Text fontFamily={fonts.body}>Pneus&nbsp;&nbsp;&nbsp;</Text>
+                              <Text fontFamily={fonts.body}>Bomba de Abastecimento</Text>
                                   
                                       <HStack alignItems={'center'}>
                                           <RadioButton
@@ -609,7 +961,7 @@ import { useState } from 'react';
                       </View>}
 
                       <HStack justifyContent={'space-evenly'} >
-                              <Text fontFamily={fonts.body} alignSelf={'center'}>Pressao</Text>
+                              <Text fontFamily={fonts.body}>Pistola&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
 
                                       <HStack alignItems={'center'}>
                                           <RadioButton
@@ -631,10 +983,10 @@ import { useState } from 'react';
                                           <ThumbsDown color={colors.primary[700]}/>
                                       </HStack>
                                   
-               
+              
                       </HStack>
                       
-                      { isPressao && <View style={{
+                      { isJantes && <View style={{
                       marginBottom: mb1,
                       backgroundColor: 'transparent',
                       alignItems: 'center',
@@ -644,12 +996,12 @@ import { useState } from 'react';
                       <DropDownPicker
                           onPress={onComboboxPress1}
                           placeholder="Selecione a(s) Parte(s)"
-                          open={openPre}
-                          value={valuePre}
-                          items={itemsPre}
-                          setOpen={setOpenPre}
-                          setValue={setValuePre}
-                          setItems={setItemsPre}
+                          open={openJan}
+                          value={valueJan}
+                          items={itemsJan}
+                          setOpen={setOpenJan}
+                          setValue={setValueJan}
+                          setItems={setItemsJan}
 
                           theme="LIGHT"
                           multiple={true}
@@ -659,7 +1011,7 @@ import { useState } from 'react';
                       </View>}
 
                       <HStack justifyContent={'space-evenly'}>
-                              <Text fontFamily={fonts.body} alignSelf={'center'}>Porcas&nbsp;&nbsp;</Text>
+                              <Text fontFamily={fonts.body}>Mangueira&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
 
                                       <HStack alignItems={'center'}>
                                           <RadioButton
@@ -707,194 +1059,58 @@ import { useState } from 'react';
                         />
                       </View>}
 
-                      <HStack justifyContent={'space-evenly'}>
-                              <Text fontFamily={fonts.body} alignSelf={'center'}>Travões</Text>
-         
-                                      <HStack alignItems={'center'}>
-                                          <RadioButton
-                                      color= 'green'
-                                          value="ok"
-                                          status={ checkedTra === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onTravS}
-                                          />
-                                          <ThumbsUp color={colors.primary[700]}/>
-                                      </HStack>
-                                      
-                                      <HStack alignItems={'center'}>
-                                          <RadioButton
-                                          color= 'red'
-                                          value="notOk"
-                                          status={ checkedTra === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onTravN}
-                                          />
-                                          <ThumbsDown color={colors.primary[700]}/>
-                                      </HStack>
-                                  
-                        
-                                         
-                      </HStack>
                       
-                      { isTravoes && <View style={{
-                      marginBottom: mb3,
-                      backgroundColor: 'transparent',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingHorizontal: 15
-                    }}>
-                      <DropDownPicker
-                          onPress={onComboboxPress3}
-                          placeholder="Selecione a(s) Parte(s)"
-                          open={openTrav}
-                          value={valueTrav}
-                          items={itemsTrav}
-                          setOpen={setOpenTrav}
-                          setValue={setValueTrav}
-                          setItems={setItemsTrav}
+                      <HStack justifyContent={'space-evenly'} >
+                                <Text fontFamily={fonts.body}>Contador&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
 
-                          theme="LIGHT"
-                          multiple={true}
-                          mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                        />
-                      </View>}
-
-          </VStack>
-            );
-          }
-
-
-
-
-
-
-
-          function Screen4() {
-
-            const [checkedVidro, setCheckedVidro] = useState('first');
-            const [checkedLimpa, setCheckedLimpa] = useState('first');
-
-            const [openVidro, setOpenVidro] = useState(false);
-            const [valueVidro, setValueVidro] = useState([]);
-            const [itemsVidro, setItemsVidro] = useState([
-              {label: 'Vidro Frontal', value: 'Vidro Frontal'},
-              {label: 'Vidro Traseiro', value: 'Vidro Traseiro'},
-              {label: 'Vidro Lateral esquerdo', value: 'Vidro Lateral esquerdo'},
-              {label: 'Vidro Lateral direito', value: 'Vidro Lateral direito'},
-            ]);
-
-            const [isVidros, setIsVidros] = useState(false);
-
-            const onVidrosS = () => {
-              console.log("Voce clicou em nao no Radio Button Vidro Like");
-              setCheckedVidro('ok');
-              setIsVidros(false);
-            }
-        
-              const onVidrosN = () => {
-                console.log("Voce clicou em nao no Radio Button Vidro Dislike");
-                setCheckedVidro('notOk');
-                setIsVidros(true);
-              }
-
-              const [mb, setMb] = useState('2%');   
-              const [combo, setCombo] = useState(0);  
-
-              const onComboboxPress= () => {
-                setCombo(combo+1);
-        
-                if (combo % 2 === 0)
-                {
-                    setMb('46%');
-                    console.log("Voce abriu o ComboBox");}
-        
-                else
-               { setMb('2%'); 
-                console.log("Voce fechou o ComboBox"); }
-              }
-
-              const {colors} = useTheme();
-    const {fonts} = useTheme();
-
-            return (
-              <VStack style={styles.container}>
-                            <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
-                            >VIDROS/ESPELHOS</Text>
-
-                                    <HStack justifyContent={'space-evenly'} mt={'5%'} >
-                                            <Text fontFamily={fonts.body} alignSelf={'center'}>Vidros/Espelhos&nbsp;&nbsp;&nbsp;</Text>
-
-                                                    <HStack alignItems={'center'}>
-                                                        <RadioButton
-                                                        color= 'green'
-                                                        value="ok"
-                                                        status={ checkedVidro === 'ok' ? 'checked' : 'unchecked' }
-                                                        onPress={onVidrosS}
-                                                        />
-                                                        <ThumbsUp color={colors.primary[700]}/>
-                                                    </HStack>
-                                                    
-                                                    <HStack alignItems={'center'}>
-                                                        <RadioButton
-                                                        color= 'red'
-                                                        value="notOk"
-                                                        status={ checkedVidro === 'notOk' ? 'checked' : 'unchecked' }
-                                                        onPress={onVidrosN}
-                                                        />
-                                                        <ThumbsDown color={colors.primary[700]}/>
-                                                    </HStack>
-                                                
-                                                </HStack>
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'green'
+                                            value="ok"
+                                            status={ checkedDesc === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onDeS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedDesc === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onDeN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
                                     
-                                    { isVidros && <View style={{
-                                    marginBottom: mb,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    paddingHorizontal: 15
-                                  }}>
-                                    <DropDownPicker
-                                        onPress={onComboboxPress}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openVidro}
-                                        value={valueVidro}
-                                        items={itemsVidro}
-                                        setOpen={setOpenVidro}
-                                        setValue={setValueVidro}
-                                        setItems={setItemsVidro}
+                
+                        </HStack>
+                        
+                        { isDescanso && <View style={{
+                        marginBottom: mb1,
+                        backgroundColor: 'transparent',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openDes}
+                            value={valueDes}
+                            items={itemsDes}
+                            setOpen={setOpenDes}
+                            setValue={setValueDes}
+                            setItems={setItemsDes}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                                      />
-                                    </View>}
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
 
-                                    <HStack justifyContent={'space-evenly'}>
-                                            <Text alignSelf={'center'} fontFamily={fonts.body}>Limpa-parabrisas</Text>
-                                                
-                                                    <HStack alignItems={'center'}>
-                                                        <RadioButton
-                                                        color= 'green'
-                                                        value="ok"
-                                                        status={ checkedLimpa === 'ok' ? 'checked' : 'unchecked' }
-                                                        onPress={() => setCheckedLimpa('ok')}
-                                                        />
-                                                        <ThumbsUp color={colors.primary[700]}/>
-                                                    </HStack>
-                                                    
-                                                    <HStack alignItems={'center'}>
-                                                        <RadioButton
-                                                        color= 'red'
-                                                        value="notOk"
-                                                        status={ checkedLimpa === 'notOk' ? 'checked' : 'unchecked' }
-                                                        onPress={() => setCheckedLimpa('notOk')}
-                                                        />
-                                                        <ThumbsDown color={colors.primary[700]}/>
-                                                    </HStack>
-                                              
-                                    </HStack>
-
-
-                        </VStack>
+                </VStack>
+                      
             );
           }
 
@@ -915,9 +1131,8 @@ import { useState } from 'react';
             const [openLuzes, setOpenLuzes] = useState(false);
             const [valueLuzes, setValueLuzes] = useState([]);
             const [itemsLuzes, setItemsLuzes] = useState([
-              {label: 'Frontal esquerdo', value: 'Frontal esquerdo'},
-              {label: 'Frontal direito', value: 'Frontal direito'},
-              {label: 'Indicador frontal esquerdo', value: 'Indicador frontal esquerdo'},
+              {label: 'Bola Gasta', value: 'Bola Gasta'},
+              {label: 'Gancho Gasto', value: 'Gancho Gasto'},
             ]);
 
             const [isLuzes, setIsLuzes] = useState(false);
@@ -934,33 +1149,17 @@ import { useState } from 'react';
                 setIsLuzes(true);
               }
 
-              const [combo, setCombo] = useState(0); 
-
-              const [mb, setMb] = useState('2%');    
-
-              const onComboboxPress= () => {
-                setCombo(combo+1);
-        
-                if (combo % 2 === 0)
-                {
-                    setMb('46%');
-                    console.log("Voce abriu o ComboBox");}
-        
-                else
-               { setMb('2%'); 
-                console.log("Voce fechou o ComboBox"); }
-              }
-        
+             
 
             return (
               <VStack style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
-              >LUZES</Text>
+              >SISTEMA DE ENGATE</Text>
 
               <VStack mt={'5%'}>
 
               <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                              <Text fontFamily={fonts.body}>Luzes</Text>
+                              <Text fontFamily={fonts.body}>Sistema de Engate</Text>
 
                                       <HStack alignItems={'center'}>
                                           <RadioButton
@@ -987,13 +1186,11 @@ import { useState } from 'react';
                </HStack>
                       
                       { isLuzes && <View style={{
-                      marginBottom: mb,
                       alignItems: 'center',
                       justifyContent: 'center',
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
-                          onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openLuzes}
                           value={valueLuzes}
@@ -1022,119 +1219,50 @@ import { useState } from 'react';
 
 
           function Screen6() {
+    
+
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedOleo, setCheckedOleo] = useState('first');
-            const [checkedMotor, setCheckedMotor] = useState('first');
-          
-            const [openOleo, setOpenOleo] = useState(false);
-            const [valueOleo, setValueOleo] = useState([]);
-            const [itemsOleo, setItemsOleo] = useState([
-              {label: 'Oleo de travao', value: 'Oleo de travao'},
-              {label: 'Oleo do motor', value: 'Oleo do motor'},
-              {label: 'Água do radiador', value: 'Água do radiador'},
-              {label: 'Água de limpa-brisa', value: 'Água de limpa-brisa'},
+            const [checkedLuzes, setCheckedLuzes] = useState('first');
+
+            const [openLuzes, setOpenLuzes] = useState(false);
+            const [valueLuzes, setValueLuzes] = useState([]);
+            const [itemsLuzes, setItemsLuzes] = useState([
+              {label: 'Partida', value: 'Partida'},
+              {label: 'Parafuso Solto', value: 'Parafuso Solto'},
+              {label: 'Ponta de mola partida', value: 'Ponta de mola partida'},
             ]);
 
-            const [isOleo, setIsOleo] = useState(false);
+            const [isLuzes, setIsLuzes] = useState(false);
 
-            const onOleoS = () => {
-              console.log("Voce clicou em nao no Radio Button Oleo Like");
-              setCheckedOleo('ok');
-              setIsOleo(false);
+            const onLuzS = () => {
+              console.log("Voce clicou em nao no Radio Button Luz Like");
+              setCheckedLuzes('ok');
+              setIsLuzes(false);
             }
         
-            const onOleoN = () => {
-                console.log("Voce clicou em nao no Radio Button Oleo Dislike");
-                setCheckedOleo('notOk');
-                setIsOleo(true);
+            const onLuzN = () => {
+                console.log("Voce clicou em nao no Radio Button Luz Dislike");
+                setCheckedLuzes('notOk');
+                setIsLuzes(true);
               }
-
-              const [combo, setCombo] = useState(0); 
-
-              const [mb, setMb] = useState('2%');    
-
-              const onComboboxPress= () => {
-                setCombo(combo+1);
-        
-                if (combo % 2 === 0)
-                {
-                    setMb('46%');
-                    console.log("Voce abriu o ComboBox");}
-        
-                else
-               { setMb('2%'); 
-                console.log("Voce fechou o ComboBox"); }
-              }
-        
 
             return (
               <VStack style={styles.container}>
-              <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>MOTOR</Text>
+              <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>MOLAS DE SUSPENSÃO</Text>
 
               <VStack mt={'5%'}>
 
-                    <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                    <Text fontFamily={fonts.body}>Oleo/Agua</Text>
+              <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                              <Text fontFamily={fonts.body}>Molas de Suspensão</Text>
 
-                  
-                  
-                      <HStack alignItems={'center'}>
-                          <RadioButton
-                          color= 'green'
-                          value="ok"
-                          status={ checkedOleo === 'ok' ? 'checked' : 'unchecked' }
-                          onPress={onOleoS}
-                          />
-                          <ThumbsUp color={colors.primary[700]}/>
-                      </HStack>
-                      
-                      <HStack alignItems={'center'}>
-                          <RadioButton
-                          color= 'red'
-                          value="notOk"
-                          status={ checkedOleo === 'notOk' ? 'checked' : 'unchecked' }
-                          onPress={onOleoN}
-                          />
-                          <ThumbsDown color={colors.primary[700]}/>
-                  </HStack>
-                                  
-               </HStack>
-         
-                      
-                      { isOleo && <View style={{
-                      marginBottom: mb,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingHorizontal: 15
-                    }}>
-                      <DropDownPicker
-                          onPress={onComboboxPress}
-                          placeholder="Selecione a(s) Parte(s)"
-                          open={openOleo}
-                          value={valueOleo}
-                          items={itemsOleo}
-                          setOpen={setOpenOleo}
-                          setValue={setValueOleo}
-                          setItems={setItemsOleo}
-
-                          theme="LIGHT"
-                          multiple={true}
-                          mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                        />
-                      </View>}
-
-                      <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                              <Text fontFamily={fonts.body}>Motor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-
-                              <HStack alignItems={'center'}>
+                                      <HStack alignItems={'center'}>
                                           <RadioButton
-                                      color= 'green'
+                                          color= 'green'
                                           value="ok"
-                                          status={ checkedMotor === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={() => setCheckedMotor('ok')}
+                                          status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onLuzS}
                                           />
                                           <ThumbsUp color={colors.primary[700]}/>
                                       </HStack>
@@ -1143,18 +1271,43 @@ import { useState } from 'react';
                                           <RadioButton
                                           color= 'red'
                                           value="notOk"
-                                          status={ checkedMotor === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={() => setCheckedMotor('notOk')}
+                                          status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onLuzN}
                                           />
                                           <ThumbsDown color={colors.primary[700]}/>
                                       </HStack>
-                               
-                      </HStack>
+                                  
+                                  
+                                      
+               </HStack>
+                      
+                      { isLuzes && <View style={{
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      paddingHorizontal: 15
+                    }}>
+                      <DropDownPicker
+                          placeholder="Selecione a(s) Parte(s)"
+                          open={openLuzes}
+                          value={valueLuzes}
+                          items={itemsLuzes}
+                          setOpen={setOpenLuzes}
+                          setValue={setValueLuzes}
+                          setItems={setItemsLuzes}
 
+                          theme="LIGHT"
+                          multiple={true}
+                          mode="BADGE"
+                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                        />
+                      </View>}
+                            
               </VStack>
 
           </VStack>
+          
             );
+
           }
 
 
@@ -1162,367 +1315,51 @@ import { useState } from 'react';
 
 
           function Screen7() {
+
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedCamera, setCheckedCamera] = useState('first');
-            const [checkedMaos, setCheckedMaos] = useState('first');
+            const [checkedLuzes, setCheckedLuzes] = useState('first');
 
-            const [openCam, setOpenCam] = useState(false);
-            const [valueCam, setValueCam] = useState([]);
-            const [itemsCam, setItemsCam] = useState([
-              {label: 'Frontal', value: 'Frontal'},
-              {label: 'Traseira', value: 'Traseira'},
-              {label: 'Mensagem de Erro', value: 'Mensagem de Erro'},
+            const [openLuzes, setOpenLuzes] = useState(false);
+            const [valueLuzes, setValueLuzes] = useState([]);
+            const [itemsLuzes, setItemsLuzes] = useState([
+              {label: 'Rolamento Gasto', value: 'Rolamento Gasto'},
+              {label: 'Ausencia da Tampa', value: 'Ausencia da Tampa'},
             ]);
 
-            const [isCam, setIsCam] = useState(false);
+            const [isLuzes, setIsLuzes] = useState(false);
 
-            const onCamS = () => {
-              console.log("Voce clicou em nao no Radio Button Camera Like");
-              setCheckedCamera('ok');
-              setIsCam(false);
+            const onLuzS = () => {
+              console.log("Voce clicou em nao no Radio Button Luz Like");
+              setCheckedLuzes('ok');
+              setIsLuzes(false);
             }
         
-            const onCamN = () => {
-                console.log("Voce clicou em nao no Radio Button Camera Dislike");
-                setCheckedCamera('notOk');
-                setIsCam(true);
+            const onLuzN = () => {
+                console.log("Voce clicou em nao no Radio Button Luz Dislike");
+                setCheckedLuzes('notOk');
+                setIsLuzes(true);
               }
 
-            const [combo, setCombo] = useState(0); 
+             
 
-            const [mb, setMb] = useState('2%');    
-
-            const onComboboxPress= () => {
-              setCombo(combo+1);
-      
-              if (combo % 2 === 0)
-              {
-                  setMb('36%');
-                  console.log("Voce abriu o ComboBox");}
-      
-              else
-             { setMb('2%'); 
-              console.log("Voce fechou o ComboBox"); }
-            }
-      
-
-            return (
-              <VStack style={styles.container}>
-                            <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
-                            >CAMERA</Text>
-                            
-                            <VStack mt={'5%'}>
-
-                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                                <Text fontFamily={fonts.body}>Camera	&nbsp;	&nbsp;	&nbsp;</Text>
-
-                                <HStack alignItems={'center'}>
-                                      <RadioButton
-                                      color= 'green'
-                                      value="ok"
-                                      status={ checkedCamera === 'ok' ? 'checked' : 'unchecked' }
-                                      onPress={onCamS}
-                                      />
-                                      <ThumbsUp color={colors.primary[700]}/>
-                                  </HStack>
-                                  
-                                  <HStack alignItems={'center'}>
-                                      <RadioButton
-                                      color= 'red'
-                                      value="notOk"
-                                      status={ checkedCamera === 'notOk' ? 'checked' : 'unchecked' }
-                                      onPress={onCamN}
-                                      />
-                                      <ThumbsDown color={colors.primary[700]}/>
-                                </HStack>
-                                                      
-                                  </HStack>
-                                  
-                                  { isCam && <View style={{
-                                  marginBottom: mb,
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  paddingHorizontal: 15
-                                }}>
-                                  <DropDownPicker
-                                      onPress={onComboboxPress}
-                                      placeholder="Selecione a(s) Parte(s)"
-                                      open={openCam}
-                                      value={valueCam}
-                                      items={itemsCam}
-                                      setOpen={setOpenCam}
-                                      setValue={setValueCam}
-                                      setItems={setItemsCam}
-
-                                      theme="LIGHT"
-                                      multiple={true}
-                                      mode="BADGE"
-                                      badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                                    />
-                                  </View>}
-
-                                  <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                                          <Text>Mãos-livre</Text>
-
-                                                  <HStack alignItems={'center'}>
-                                                      <RadioButton
-                                                  color= 'green'
-                                                      value="ok"
-                                                      status={ checkedMaos === 'ok' ? 'checked' : 'unchecked' }
-                                                      onPress={() => setCheckedMaos('ok')}
-                                                      />
-                                                      <ThumbsUp color={colors.primary[700]}/>
-                                                  </HStack>
-                                                  
-                                                  <HStack alignItems={'center'}>
-                                                      <RadioButton
-                                                      color= 'red'
-                                                      value="notOk"
-                                                      status={ checkedMaos === 'notOk' ? 'checked' : 'unchecked' }
-                                                      onPress={() => setCheckedMaos('notOk')}
-                                                      />
-                                                      <ThumbsDown color={colors.primary[700]}/>
-                                                  </HStack>
-                                          
-                                </HStack>
-
-                            </VStack>
-
-                        </VStack>
-            );
-          }
-
-
-
-
-
-          function Screen8() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
-
-            const [checkedExtintor, setCheckedExtintor] = useState('first');
-            const [checkedPri, setCheckedPri] = useState('first');
-            const [checkedCinto, setCheckedCinto] = useState('first');
-            
-            const [openExt, setOpenExt] = useState(false);
-            const [valueExt, setValueExt] = useState([]);
-            const [itemsExt, setItemsExt] = useState([
-              {label: 'Expirou', value: 'Expirou'},
-              {label: 'Nao existe', value: 'Nao existe'},
-            ]);
-          
-            const [openPri, setOpenPri] = useState(false);
-            const [valuePri, setValuePri] = useState([]);
-            const [itemsPri, setItemsPri] = useState([
-              {label: 'Expirou', value: 'Expirou'},
-              {label: 'Nao existe', value: 'Nao existe'},
-            ]);
-          
-            const [openCinto, setOpenCinto] = useState(false);
-            const [valueCinto, setValueCinto] = useState([]);
-            const [itemsCinto, setItemsCinto] = useState([
-              {label: 'Estragado', value: 'Estragado'},
-              {label: 'Nao existe', value: 'Nao existe'},
-            ]);
-          
-
-            const [isExt, setIsExt] = useState(false);
-            const [isPri, setIsPri] = useState(false);
-            const [isCinto, setIsCinto] = useState(false);
-
-            const onExtS = () => {
-              console.log("Voce clicou em nao no Radio Button Extintor Like");
-              setCheckedExtintor('ok');
-              setIsExt(false);
-            }
-        
-          const onExtN = () => {
-                console.log("Voce clicou em nao no Radio Button Extintor Dislike");
-                setCheckedExtintor('notOk');
-                setIsExt(true);
-              }
-  
-              const onPriS = () => {
-                  console.log("Voce clicou em nao no Radio Button Primeiros Like");
-                  setCheckedPri('ok');
-                  setIsPri(false);
-                }
-            
-              const onPriN = () => {
-                    console.log("Voce clicou em nao no Radio Button Primeiros Dislike");
-                    setCheckedPri('notOk');
-                    setIsPri(true);
-                  }
-  
-              const onCintoS = () => {
-                      console.log("Voce clicou em nao no Radio Button Cinto Like");
-                      setCheckedCinto('ok');
-                      setIsCinto(false);
-                    }
-                
-              const onCintoN = () => {
-                        console.log("Voce clicou em nao no Radio Button Cinto Dislike");
-                        setCheckedCinto('notOk');
-                        setIsCinto(true);
-                      }
-
-
-            const [combo, setCombo] = useState(0);  
-            const [combo1, setCombo1] = useState(0);  
-            const [combo2, setCombo2] = useState(0);
-
-            const [mb, setMb] = useState('2%');    
-            const [mb1, setMb1] = useState('2%');
-            const [mb2, setMb2] = useState('2%');
-
-            const onComboboxPress= () => {
-              setCombo(combo+1);
-      
-              if (combo % 2 === 0)
-              {
-                  setMb('25%');
-                  console.log("Voce abriu o ComboBox");}
-      
-              else
-             { setMb('2%'); 
-              console.log("Voce fechou o ComboBox"); }
-            }
-      
-            const onComboboxPress1= () => {
-              setCombo1(combo1+1);
-      
-              if (combo1 % 2 === 0)
-              {
-                  setMb1('25%');
-                  console.log("Voce abriu o ComboBox");}
-      
-              else
-             { setMb1('2%'); 
-              console.log("Voce fechou o ComboBox"); }
-            }
-      
-            const onComboboxPress2= () => {
-              setCombo2(combo2+1);
-      
-              if (combo2 % 2 === 0)
-              {
-                  setMb2('25%');
-                  console.log("Voce abriu o ComboBox");}
-      
-              else
-             { setMb2('2%'); 
-              console.log("Voce fechou o ComboBox"); }
-            }
-
-            const [date, setDate] = useState(new Date());
-            const [mode, setMode] = useState('date');
-            const [show, setShow] = useState (false);
-            const [text, setText] = useState('Data');
-      
-            const onChange = (event, selectedDate) => {
-              setShow(false)
-      
-              const currentDate = selectedDate || date;
-              setDate(selectedDate);
-      
-              let tempDate = new Date(currentDate);
-              let fDate = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
-              setText(fDate)
-            };
-      
-            const showMode = (currentMode) => {
-              setShow(true);
-              setMode(currentMode);
-            }
-        
             return (
               <VStack style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
-              >SEGURANÇA</Text>
+              >FOLGAS NO CUBO</Text>
 
               <VStack mt={'5%'}>
 
-                      <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                                      <Text fontFamily={fonts.body}>&nbsp;&nbsp;Extintor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+              <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                              <Text fontFamily={fonts.body}>Folgas no Cubo</Text>
 
-                                              <HStack alignItems={'center'}>
-                                                  <RadioButton
-                                                  color= 'green'
-                                                  value="ok"
-                                                  status={ checkedExtintor === 'ok' ? 'checked' : 'unchecked' }
-                                                  onPress={onExtS}
-                                                  />
-                                                  <ThumbsUp color={colors.primary[700]}/>
-                                              </HStack>
-                                              
-                                              <HStack alignItems={'center'}>
-                                                  <RadioButton
-                                                  color= 'red'
-                                                  value="notOk"
-                                                  status={ checkedExtintor === 'notOk' ? 'checked' : 'unchecked' }
-                                                  onPress={onExtN}
-                                                  />
-                                                  <ThumbsDown color={colors.primary[700]}/>
-                                              </HStack>
-                                                        
-                      </HStack>
-                              
-                      { isExt && <View style={{
-                      marginBottom: mb,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingHorizontal: 15
-                    }}>
-                      <DropDownPicker
-                          onPress={onComboboxPress}
-                          placeholder="Selecione a(s) Parte(s)"
-                          open={openExt}
-                          value={valueExt}
-                          items={itemsExt}
-                          setOpen={setOpenExt}
-                          setValue={setValueExt}
-                          setItems={setItemsExt}
-
-                          theme="LIGHT"
-                          multiple={true}
-                          mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                        />
-                      </View>}
-
-                      {!isExt && <VStack ml={'8%'}>
-                          <Text fontFamily={fonts.body}>Validade: {text}</Text>
-
-                          <VStack mx={'25%'}>
-                             <Button color={'#12375C'} title='Escolher data' onPress={() => showMode('date')}  />
-                          </VStack>  
-
-                          {
-                            show && (
-                              <DateTimePicker
-                                testID='dateTimePicker'
-                                value={date}
-                                mode={mode}
-                                is24Hour={true}
-                                display='default'
-                                onChange={onChange}
-                              />
-                              
-                            )
-                          }                                        
-                      </VStack>}
-                      
-
-                      <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                              <Text fontFamily={fonts.body}>&nbsp;&nbsp;Pr. Socorros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-                              <HStack alignItems={'center'}>
+                                      <HStack alignItems={'center'}>
                                           <RadioButton
-                                      color= 'green'
+                                          color= 'green'
                                           value="ok"
-                                          status={ checkedPri === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onPriS}
+                                          status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onLuzS}
                                           />
                                           <ThumbsUp color={colors.primary[700]}/>
                                       </HStack>
@@ -1531,77 +1368,29 @@ import { useState } from 'react';
                                           <RadioButton
                                           color= 'red'
                                           value="notOk"
-                                          status={ checkedPri === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onPriN}
+                                          status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onLuzN}
                                           />
                                           <ThumbsDown color={colors.primary[700]}/>
                                       </HStack>
                                   
-                      </HStack>
-                      
-                      { isPri && <View style={{
-                      marginBottom: mb1,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingHorizontal: 15
-                    }}>
-                      <DropDownPicker
-                          onPress={onComboboxPress1}
-                          placeholder="Selecione a(s) Parte(s)"
-                          open={openPri}
-                          value={valuePri}
-                          items={itemsPri}
-                          setOpen={setOpenPri}
-                          setValue={setValuePri}
-                          setItems={setItemsPri}
-
-                          theme="LIGHT"
-                          multiple={true}
-                          mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                        />
-                      </View>}
-
-                      <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                              <Text fontFamily={fonts.body}>&nbsp;&nbsp;Cinto Segurança</Text>
-
-                                      <HStack alignItems={'center'}>
-                                          <RadioButton
-                                      color= 'green'
-                                          value="ok"
-                                          status={ checkedCinto === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onCintoS}
-                                          />
-                                          <ThumbsUp color={colors.primary[700]}/>
-                                      </HStack>
+                                  
                                       
-                                      <HStack alignItems={'center'}>
-                                          <RadioButton
-                                          color= 'red'
-                                          value="notOk"
-                                          status={ checkedCinto === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onCintoN}
-                                          />
-                                          <ThumbsDown color={colors.primary[700]}/>
-                                      </HStack>
-                                         
-                      </HStack>
+               </HStack>
                       
-                      { isCinto && <View style={{
-                      marginBottom: mb2,
+                      { isLuzes && <View style={{
                       alignItems: 'center',
                       justifyContent: 'center',
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
-                          onPress={onComboboxPress2}
                           placeholder="Selecione a(s) Parte(s)"
-                          open={openCinto}
-                          value={valueCinto}
-                          items={itemsCinto}
-                          setOpen={setOpenCinto}
-                          setValue={setValueCinto}
-                          setItems={setItemsCinto}
+                          open={openLuzes}
+                          value={valueLuzes}
+                          items={itemsLuzes}
+                          setOpen={setOpenLuzes}
+                          setValue={setValueLuzes}
+                          setItems={setItemsLuzes}
 
                           theme="LIGHT"
                           multiple={true}
@@ -1609,12 +1398,18 @@ import { useState } from 'react';
                           badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                         />
                       </View>}
-
+                            
               </VStack>
 
-          </VStack> 
+          </VStack>
+          
             );
+
+
           }
+
+
+
 
 
 
@@ -1647,7 +1442,7 @@ import { useState } from 'react';
                   component={Screen2}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Car color={color} size={size}/>} />
+                          <Icon as ={<NumberCircleZero color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1656,7 +1451,7 @@ import { useState } from 'react';
                   component={Screen3}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                          <Icon as ={<NumberCircleZero color={color} size={size}/>} />
+                          <Icon as ={<Headlights color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1665,7 +1460,7 @@ import { useState } from 'react';
                   component={Screen4}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                        <MaterialCommunityIcons name="mirror-rectangle" size={20} color={color} />
+                        <Icon as ={<GasPump color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1674,7 +1469,7 @@ import { useState } from 'react';
                   component={Screen5}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Headlights color={color} size={size}/>} />
+                          <Icon as ={<GitFork color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1683,7 +1478,7 @@ import { useState } from 'react';
                   component={Screen6}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                          <MaterialCommunityIcons name="engine-outline" size={24} color={color} /> 
+                        <Icon as ={<DotsThreeOutlineVertical color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1692,19 +1487,11 @@ import { useState } from 'react';
                   component={Screen7}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                          <Icon as ={<VideoCamera color={color} size={size}/>} />
+                          <Icon as ={<Cube color={color} size={size}/>} />
                       )),
                   }}
                 />
-                <Tab.Screen
-                  name="Profile"
-                  component={Screen8}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<FirstAidKit color={color} size={size}/>} />
-                      )),
-                  }}
-                />
+                
             
               </Tab.Navigator>
             );

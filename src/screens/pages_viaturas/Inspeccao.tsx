@@ -59,7 +59,7 @@ export function Inspeccao() {
       </VStack>
     
        <VStack mb={70} alignSelf={'center'}>
-            <TouchableOpacity style={styles.formButton}   onPress={() => navigate('FormBowser') as never}>
+            <TouchableOpacity style={styles.formButton}   onPress={() => navigate('FormInspeccao') as never}>
                 <Plus size={22} color={colors.green[700]} />
             </TouchableOpacity>
        </VStack>
