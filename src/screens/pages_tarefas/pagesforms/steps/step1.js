@@ -55,7 +55,7 @@ import styles from "./styles";
             <Text
                 style={styles.currentText}
               >O local em que se vai desenvolver a {'\n'}
-             actividade está limpo e organizado
+             actividade está limpo e organizado❓
               </Text>
           </View>
           

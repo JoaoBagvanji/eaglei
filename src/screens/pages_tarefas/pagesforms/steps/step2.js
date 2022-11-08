@@ -44,7 +44,7 @@ export class step2 extends Component {
                 style={styles.currentText}
               > Para a actividade a ser desenvolvida {'\n'}
                 está disponível um kit de derrames {'\n'}
-                ambientais
+                ambientais ❓
               </Text>
         </View>
           
