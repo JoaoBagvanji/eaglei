@@ -9,7 +9,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import FormInspeccao from '../../routes/top.routes';
+import FormInspeccao from '../../routes/insp.routes';
+import FormBowser from '../../routes/bowser.routes';
 
 
 const Stack = createStackNavigator();
@@ -21,6 +22,7 @@ export default function MyStack() {
                initialRouteName='Inspeccao('>
            <Stack.Screen name="Inspeccao" component={Inspeccao} />
            <Stack.Screen name="FormInspeccao" component={FormInspeccao} />
+           <Stack.Screen name="FormBowser" component={FormBowser} />
        </Stack.Navigator>
      </NavigationContainer>
    );
@@ -57,7 +59,7 @@ export function Inspeccao() {
       </VStack>
     
        <VStack mb={70} alignSelf={'center'}>
-            <TouchableOpacity style={styles.formButton}   onPress={() => navigate('FormInspeccao') as never}>
+            <TouchableOpacity style={styles.formButton}   onPress={() => navigate('FormBowser') as never}>
                 <Plus size={22} color={colors.green[700]} />
             </TouchableOpacity>
        </VStack>

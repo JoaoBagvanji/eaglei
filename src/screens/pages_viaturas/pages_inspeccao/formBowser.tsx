@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, Button } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Calendar, Car, ClosedCaptioning, FirstAidKit, Gauge, Headlights, House, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera, XCircle } from 'phosphor-react-native';
+import { Calendar, Car, FirstAidKit,  Headlights, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera,  TagSimple } from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -13,81 +13,131 @@ import { useState } from 'react';
 
 
           function Screen1() {
-        const {colors} = useTheme();
-        const { fonts } = useTheme();
 
-        
-          return (
-          <VStack style={styles.container}>
-              <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}> DADOS GERAIS</Text>
+            const {colors} = useTheme();
+            const { fonts } = useTheme();
 
-              <ScrollView>
-                    <View style={styles.formContainer}>
+            const [openMat, setOpenMat] = useState(false);
+            const [valueMat, setValueMat] = useState([]);
+            const [itemsMat, setItemsMat] = useState([
+                {label: 'AH 711 MC', value: 'AH 711 MC'},
+                {label: 'AH 712 MC', value: 'AH 712 MC'},
+                {label: 'AH 713 MC', value: 'AH 713 MC'},
+                {label: 'AH 710 MC', value: 'AH 710 MC'},
+                {label: 'AH 726 MC', value: 'AH 726 MC'},
+                {label: 'AI 216 MC', value: 'AI 216 MC'},
+                {label: 'AI 217 MC', value: 'AI 217 MC'},
+                {label: 'AH 711 MCZ', value: 'AH 711 MCZ'},
+                {label: 'AH 711 MCX', value: 'AH 711 MCX'},
+                {label: 'AH 711 MCC', value: 'AH 711 MCC'},
+                {label: 'AH 711 MCV', value: 'AH 711 MCV'},
+                {label: 'AH 711 MCB', value: 'AH 711 MCB'},
+                {label: 'NM 712 MC', value: 'NM 712 MC'},
+                {label: 'NM 713 MC', value: 'NM 713 MC'},
+                {label: 'NM 710 MC', value: 'NM 710 MC'},
+                {label: 'NM 726 MC', value: 'NM 726 MC'},
+                {label: 'BI 216 MC', value: 'BI 216 MC'},
+                {label: 'BI 217 MC', value: 'BI 217 MC'},
+ 
+            ]);
 
-      <TextInput
-          style={styles.txtInput}
-          mode='outlined'
-          selectionColor='#12375C'
-          activeOutlineColor='#12375C'
-          outlineColor='#12375C'
-          left={<TextInput.Icon icon = {
-              User
-          }
-          color = {
-              colors.primary[600]
-          } />}
-          label="MOTORISTA"/>
+            const [combo, setCombo] = useState(0);  
+            const [mb, setMb] = useState('2%');   
 
-      <TextInput
-          style={styles.txtInput}
-          mode='outlined'
-          selectionColor='#12375C'
-          activeOutlineColor='#12375C'
-          outlineColor='#12375C'
-          left={<TextInput.Icon icon = {
-              ClosedCaptioning
-          }
-          color = {
-              colors.primary[600]
-          } />}
-          label="MATRICULA"/>
+            const onComboboxPress = () => {
+                setCombo(combo+1);
+  
+                if (combo % 2 === 0)
+                {
+                    setMb('60%');
+                    console.log("Voce abriu o ComboBox");}
+  
+                else
+              { setMb('2%'); 
+                console.log("Voce fechou o ComboBox"); }
+              }
 
-      <TextInput
-          style={styles.txtInput}
-          mode='outlined'
-          selectionColor='#12375C'
-          activeOutlineColor='#12375C'
-          outlineColor='#12375C'
-          left={<TextInput.Icon icon = {
-              Gauge
-          }
-          color = {
-              colors.primary[600]
-          } />}
-          label="KILOMETROS"/>
+              return (
+                <VStack style={styles.container}>
+                    <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}> DADOS GERAIS</Text>
+      
+                          <View style={styles.formContainer}>
+                    
+                            <TextInput
+                                style={styles.txtInput}
+                                mode='outlined'
+                                selectionColor='#12375C'
+                                activeOutlineColor='#12375C'
+                                outlineColor='#12375C'
+                                left={<TextInput.Icon icon = {
+                                    User
+                                }
+                                color = {
+                                    colors.primary[600]
+                                } />}
+                                label="MOTORISTA"/>
+                    
+                                 <Text ml={'10%'} fontFamily={fonts.body}>MATRÍCULA</Text>
+                                    <View style={{
+                                marginBottom: mb,
+                                backgroundColor: 'transparent',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
+                                }}>
+                                <DropDownPicker
+                                listMode="MODAL"
+                                   //autoScroll={true}
+                                    textStyle={{
+                                        fontSize: 14
+                                    }}
+                                    onPress={onComboboxPress}
+                                    onClose={onComboboxPress}
+                                    placeholder="Escolha a opção"
+                                    open={openMat}
+                                    value={valueMat}
+                                    items={itemsMat}
+                                    setOpen={setOpenMat}
+                                    setValue={setValueMat}
+                                    setItems={setItemsMat}
 
-      <TextInput
-          style={styles.txtInput}
-          mode='outlined'
-          selectionColor='#12375C'
-          activeOutlineColor='#12375C'
-          outlineColor='#12375C'
-          left={<TextInput.Icon icon = {
-              Calendar
-          }
-          color = {
-              colors.primary[600]
-          } />}
-          label="DATA E HORA"/>
+                                    theme="LIGHT"
+                                    multiple={false}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                    />
+                                    </View>
 
-                    </View>
-              </ScrollView>
-              
+                            <TextInput
+                                style={styles.txtInput}
+                                mode='outlined'
+                                selectionColor='#12375C'
+                                activeOutlineColor='#12375C'
+                                outlineColor='#12375C'
+                                label="DIESEL BOWSER"/>
+                    
+                            <TextInput
+                                style={styles.txtInput}
+                                mode='outlined'
+                                selectionColor='#12375C'
+                                activeOutlineColor='#12375C'
+                                outlineColor='#12375C'
+                                left={<TextInput.Icon icon = {
+                                    Calendar
+                                }
+                                color = {
+                                    colors.primary[600]
+                                } />}
+                                label="DATA E HORA"/>
+                    
+                          </View>
+               
+                    </VStack>
+                    );
 
-              </VStack>
-              );
-          }
+        }
 
+            
 
 
 
@@ -1570,12 +1620,12 @@ import { useState } from 'react';
 
           const Tab = createMaterialTopTabNavigator();
 
-          export default function FormInspeccao() {
+          export default function FormBowser() {
             const { colors } = useTheme();
             
             return (
               <Tab.Navigator
-                initialRouteName="one"
+                initialRouteName="Feed"
                 screenOptions={{
                   swipeEnabled: false,
                   tabBarShowLabel: false,
@@ -1584,7 +1634,7 @@ import { useState } from 'react';
                 }}
               >
                 <Tab.Screen
-                  name="one"
+                  name="Feed"
                   component={Screen1}
                   options={{
                       tabBarIcon:(({color, size})=>(

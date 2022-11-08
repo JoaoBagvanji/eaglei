@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     },
     txtInput: {
         alignSelf: 'center',
-        backgroundColor: '#e0edf9',
+        //backgroundColor: '#e0edf9',
         fontSize:14,
         textColor: '#12375C',
         height: 40,
