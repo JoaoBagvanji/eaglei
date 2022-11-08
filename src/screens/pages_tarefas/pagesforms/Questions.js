@@ -14,7 +14,7 @@ const allSteps = [
   { name: "step 4", component: Step4 }
 ];
 
-export default class Index extends Component {
+export default class Applicativo extends Component {
   constructor(props) {
     super(props);
 
@@ -29,7 +29,7 @@ export default class Index extends Component {
   };
 
   finish = state => {
-    console.log("TCL: Index -> state", state);
+    console.log("TCL: Applicativo -> state", state);
   };
 
   render() {
