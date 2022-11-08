@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+import colors from "../../../../styles/colors";
+import fonts from "../../../../styles/fonts";
 
 export default StyleSheet.create({
   container: {
@@ -25,18 +27,14 @@ export default StyleSheet.create({
   },
   input: {
     width: "80%",
-    borderColor: "#fff",
+    borderColor: colors.green,
     borderWidth: 2,
     borderRadius: 6,
     paddingHorizontal: 8,
-    marginTop: "6%"
+    marginTop: "6%",
+    fontFamily: fonts.text
   },
   btnStyle: {
-    borderColor: "#fff",
-    borderWidth: 2,
-    borderRadius: 100,
-    width: 60,
-    height: 60,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -52,7 +50,16 @@ export default StyleSheet.create({
     justifyContent: "space-between"
   },
   currentStepText: {
-    color: "#fff",
-    fontSize: 22
+    color: colors.gray_dark,
+    fontSize: 16,
+    fontFamily: fonts.text
+  },
+  currentText: {
+    color: colors.gray_dark,
+    fontSize: 14,
+    fontFamily: fonts.text, 
+    marginBottom: 30,
+    marginTop: 30,
+    
   }
 });

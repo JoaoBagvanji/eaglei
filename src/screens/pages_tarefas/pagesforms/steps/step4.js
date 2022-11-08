@@ -3,6 +3,12 @@ import { Image, View, TouchableOpacity, TextInput, Text } from "react-native";
 
 import styles from "./styles";
 
+
+import {  Icon } from 'native-base';
+
+import {  CaretCircleRight, CaretCircleLeft  } from 'phosphor-react-native'
+import colors from "../../../../styles/colors";
+
 export class step4 extends Component {
   constructor(props) {
     super(props);
@@ -34,29 +40,21 @@ export class step4 extends Component {
           onChangeText={text => this.setState({ text })}
           value={this.state.text}
           placeholder={"Password"}
-          placeholderTextColor="#fff"
+          placeholderTextColor={colors.gray}
         />
         <TextInput
           style={styles.input}
           onChangeText={text => this.setState({ text })}
           value={this.state.text}
           placeholder={"Confirm password"}
-          placeholderTextColor="#fff"
+          placeholderTextColor={colors.gray}
         />
         <View style={[styles.btnContainer, styles.marginAround]}>
           <TouchableOpacity onPress={this.props.back} style={styles.btnStyle}>
-            <Image
-              source={require("../../../../assets/arrow.png")}
-              style={[styles.btnImage, styles.backBtn]}
-              resizeMode="cover"
-            />
+            <Icon as ={<CaretCircleLeft  color={colors.blue} size={60}/>} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.next} style={styles.btnStyle}>
-            <Image
-              source={require("../../../../assets/arrow.png")}
-              style={styles.btnImage}
-              resizeMode="cover"
-            />
+            <Icon as ={<CaretCircleRight color={colors.blue} size={60}/>} />
           </TouchableOpacity>
         </View>
       </View>

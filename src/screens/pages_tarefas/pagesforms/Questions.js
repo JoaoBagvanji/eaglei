@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import colors from "../../../styles/colors";
+import fonts from "../../../styles/fonts";
 import AnimatedMultistep from "./lib";
 
 import Step1 from "./steps/step1";
@@ -34,9 +36,9 @@ export default class Applicativo extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: "#1dd1a1" }}>
+      <View style={{ flex: 1, backgroundColor: colors.white }}>
         <View style={styles.upperContainer}>
-          <Text style={styles.loginText}>Questões</Text>
+          <Text style={styles.loginText}>Avaliação Ambietal</Text>
         </View>
         <View style={styles.lowerContainer}>
           <AnimatedMultistep
@@ -59,8 +61,9 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   loginText: {
-    fontSize: 32,
-    color: "#fff"
+    fontSize: 18,
+    color: colors.blue,
+    fontFamily: fonts.heading
   },
   lowerContainer: {
     flex: 2
