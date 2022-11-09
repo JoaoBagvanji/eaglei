@@ -8,12 +8,20 @@ import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 import Step3 from "./steps/step3";
 import Step4 from "./steps/step4";
+import Step5 from "./steps/step5";
+import Step6 from "./steps/step6";
+import Step7 from "./steps/step7";
+import Step8 from "./steps/step8";
 
 const allSteps = [
   { name: "step 1", component: Step1 },
   { name: "step 2", component: Step2 },
   { name: "step 3", component: Step3 },
-  { name: "step 4", component: Step4 }
+  { name: "step 4", component: Step4 },
+  { name: "step 5", component: Step5 },
+  { name: "step 6", component: Step6 },
+  { name: "step 7", component: Step7 },
+  { name: "step 8", component: Step8 },
 ];
 
 export default class Applicativo extends Component {

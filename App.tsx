@@ -7,6 +7,7 @@ import { Loading } from './src/components/Loading';
 import Routes from './src/routes';
 import React from 'react';
 
+
 console.warn = () => {}
 
 export default function App() {
