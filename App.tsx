@@ -8,7 +8,7 @@ import Routes from './src/routes';
 import React from 'react';
 
 
-
+console.warn = () => {}
 export default function App() {
 
   const [fontsLoaded] = useFonts({ Montserrat_400Regular, Montserrat_600SemiBold })
