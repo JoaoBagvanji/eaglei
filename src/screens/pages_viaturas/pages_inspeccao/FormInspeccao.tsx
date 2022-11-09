@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, Button } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Calendar, Car, ClosedCaptioning, FirstAidKit, Gauge, Headlights, House, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera, XCircle } from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
@@ -11,12 +11,18 @@ import {styles} from './formStyles';
 import { RadioButton, TextInput } from 'react-native-paper';
 import { useState } from 'react';
 
+import FormBowser from './formBowser';
 
-          function Screen1() {
-        const {colors} = useTheme();
-        const { fonts } = useTheme();
+import { NavigationContainerRefContext, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+          const StackRoutes = createStackNavigator();
 
         
+          function Screen1() {
+            const {colors} = useTheme();
+            const {fonts} = useTheme();
+
           return (
           <VStack style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}> DADOS GERAIS</Text>
@@ -96,8 +102,9 @@ import { useState } from 'react';
           
 
           function Screen2() {
+
             const {colors} = useTheme();
-        const { fonts } = useTheme();
+            const {fonts} = useTheme();
 
             const [combo, setCombo] = useState(0);  
             const [combo1, setCombo1] = useState(0);  
@@ -719,6 +726,8 @@ import { useState } from 'react';
 
 
           function Screen4() {
+            const {colors} = useTheme();
+            const {fonts} = useTheme();
 
             const [checkedVidro, setCheckedVidro] = useState('first');
             const [checkedLimpa, setCheckedLimpa] = useState('first');
@@ -761,9 +770,6 @@ import { useState } from 'react';
                { setMb('2%'); 
                 console.log("Voce fechou o ComboBox"); }
               }
-
-              const {colors} = useTheme();
-    const {fonts} = useTheme();
 
             return (
               <VStack style={styles.container}>
@@ -856,7 +862,6 @@ import { useState } from 'react';
 
 
           function Screen5() {
-            
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -1386,186 +1391,223 @@ import { useState } from 'react';
               setShow(true);
               setMode(currentMode);
             }
+
+            type Nav ={
+              navigate : (value: string) => void;
+          }
+          
+          const { navigate } = useNavigation<Nav>();
+
+
+         
         
             return (
-              <VStack style={styles.container}>
-              <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
-              >SEGURANÇA</Text>
 
-              <VStack mt={'5%'}>
+                <VStack style={styles.container}>
+                <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
+                >SEGURANÇA</Text>
 
-                      <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                                      <Text fontFamily={fonts.body}>&nbsp;&nbsp;Extintor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                <VStack mt={'5%'}>
 
-                                              <HStack alignItems={'center'}>
-                                                  <RadioButton
-                                                  color= 'green'
-                                                  value="ok"
-                                                  status={ checkedExtintor === 'ok' ? 'checked' : 'unchecked' }
-                                                  onPress={onExtS}
-                                                  />
-                                                  <ThumbsUp color={colors.primary[700]}/>
-                                              </HStack>
-                                              
-                                              <HStack alignItems={'center'}>
-                                                  <RadioButton
-                                                  color= 'red'
-                                                  value="notOk"
-                                                  status={ checkedExtintor === 'notOk' ? 'checked' : 'unchecked' }
-                                                  onPress={onExtN}
-                                                  />
-                                                  <ThumbsDown color={colors.primary[700]}/>
-                                              </HStack>
-                                                        
-                      </HStack>
-                              
-                      { isExt && <View style={{
-                      marginBottom: mb,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingHorizontal: 15
-                    }}>
-                      <DropDownPicker
-                          onPress={onComboboxPress}
-                          placeholder="Selecione a(s) Parte(s)"
-                          open={openExt}
-                          value={valueExt}
-                          items={itemsExt}
-                          setOpen={setOpenExt}
-                          setValue={setValueExt}
-                          setItems={setItemsExt}
+                        <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                        <Text fontFamily={fonts.body}>&nbsp;&nbsp;Extintor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
 
-                          theme="LIGHT"
-                          multiple={true}
-                          mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                        />
-                      </View>}
+                                                <HStack alignItems={'center'}>
+                                                    <RadioButton
+                                                    color= 'green'
+                                                    value="ok"
+                                                    status={ checkedExtintor === 'ok' ? 'checked' : 'unchecked' }
+                                                    onPress={onExtS}
+                                                    />
+                                                    <ThumbsUp color={colors.primary[700]}/>
+                                                </HStack>
+                                                
+                                                <HStack alignItems={'center'}>
+                                                    <RadioButton
+                                                    color= 'red'
+                                                    value="notOk"
+                                                    status={ checkedExtintor === 'notOk' ? 'checked' : 'unchecked' }
+                                                    onPress={onExtN}
+                                                    />
+                                                    <ThumbsDown color={colors.primary[700]}/>
+                                                </HStack>
+                                                          
+                        </HStack>
+                                
+                        { isExt && <View style={{
+                        marginBottom: mb,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            onPress={onComboboxPress}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openExt}
+                            value={valueExt}
+                            items={itemsExt}
+                            setOpen={setOpenExt}
+                            setValue={setValueExt}
+                            setItems={setItemsExt}
 
-                      {!isExt && <VStack ml={'8%'}>
-                          <Text fontFamily={fonts.body}>Validade: {text}</Text>
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
 
-                          <VStack mx={'25%'}>
-                             <Button color={'#12375C'} title='Escolher data' onPress={() => showMode('date')}  />
-                          </VStack>  
+                        {!isExt && <VStack ml={'8%'}>
+                            <Text fontFamily={fonts.body}>Validade: {text}</Text>
 
-                          {
-                            show && (
-                              <DateTimePicker
-                                testID='dateTimePicker'
-                                value={date}
-                                mode={mode}
-                                is24Hour={true}
-                                display='default'
-                                onChange={onChange}
-                              />
-                              
-                            )
-                          }                                        
-                      </VStack>}
-                      
+                            <VStack mx={'25%'}>
+                              <Button color={'#12375C'} title='Escolher data' onPress={() => showMode('date')}  />
+                            </VStack>  
 
-                      <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                              <Text fontFamily={fonts.body}>&nbsp;&nbsp;Pr. Socorros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-                              <HStack alignItems={'center'}>
-                                          <RadioButton
-                                      color= 'green'
-                                          value="ok"
-                                          status={ checkedPri === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onPriS}
-                                          />
-                                          <ThumbsUp color={colors.primary[700]}/>
-                                      </HStack>
-                                      
-                                      <HStack alignItems={'center'}>
-                                          <RadioButton
-                                          color= 'red'
-                                          value="notOk"
-                                          status={ checkedPri === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onPriN}
-                                          />
-                                          <ThumbsDown color={colors.primary[700]}/>
-                                      </HStack>
-                                  
-                      </HStack>
-                      
-                      { isPri && <View style={{
-                      marginBottom: mb1,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingHorizontal: 15
-                    }}>
-                      <DropDownPicker
-                          onPress={onComboboxPress1}
-                          placeholder="Selecione a(s) Parte(s)"
-                          open={openPri}
-                          value={valuePri}
-                          items={itemsPri}
-                          setOpen={setOpenPri}
-                          setValue={setValuePri}
-                          setItems={setItemsPri}
+                            {
+                              show && (
+                                <DateTimePicker
+                                  testID='dateTimePicker'
+                                  value={date}
+                                  mode={mode}
+                                  is24Hour={true}
+                                  display='default'
+                                  onChange={onChange}
+                                />
+                                
+                              )
+                            }                                        
+                        </VStack>}
+                        
 
-                          theme="LIGHT"
-                          multiple={true}
-                          mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                        />
-                      </View>}
+                        <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                <Text fontFamily={fonts.body}>&nbsp;&nbsp;Pr. Socorros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                                <HStack alignItems={'center'}>
+                                            <RadioButton
+                                        color= 'green'
+                                            value="ok"
+                                            status={ checkedPri === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onPriS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedPri === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onPriN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
+                                    
+                        </HStack>
+                        
+                        { isPri && <View style={{
+                        marginBottom: mb1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            onPress={onComboboxPress1}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openPri}
+                            value={valuePri}
+                            items={itemsPri}
+                            setOpen={setOpenPri}
+                            setValue={setValuePri}
+                            setItems={setItemsPri}
 
-                      <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                              <Text fontFamily={fonts.body}>&nbsp;&nbsp;Cinto Segurança</Text>
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
 
-                                      <HStack alignItems={'center'}>
-                                          <RadioButton
-                                      color= 'green'
-                                          value="ok"
-                                          status={ checkedCinto === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onCintoS}
-                                          />
-                                          <ThumbsUp color={colors.primary[700]}/>
-                                      </HStack>
-                                      
-                                      <HStack alignItems={'center'}>
-                                          <RadioButton
-                                          color= 'red'
-                                          value="notOk"
-                                          status={ checkedCinto === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onCintoN}
-                                          />
-                                          <ThumbsDown color={colors.primary[700]}/>
-                                      </HStack>
-                                         
-                      </HStack>
-                      
-                      { isCinto && <View style={{
-                      marginBottom: mb2,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingHorizontal: 15
-                    }}>
-                      <DropDownPicker
-                          onPress={onComboboxPress2}
-                          placeholder="Selecione a(s) Parte(s)"
-                          open={openCinto}
-                          value={valueCinto}
-                          items={itemsCinto}
-                          setOpen={setOpenCinto}
-                          setValue={setValueCinto}
-                          setItems={setItemsCinto}
+                        <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                <Text fontFamily={fonts.body}>&nbsp;&nbsp;Cinto Segurança</Text>
 
-                          theme="LIGHT"
-                          multiple={true}
-                          mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                        />
-                      </View>}
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                        color= 'green'
+                                            value="ok"
+                                            status={ checkedCinto === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onCintoS}
+                                            />
+                                            <ThumbsUp color={colors.primary[700]}/>
+                                        </HStack>
+                                        
+                                        <HStack alignItems={'center'}>
+                                            <RadioButton
+                                            color= 'red'
+                                            value="notOk"
+                                            status={ checkedCinto === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onCintoN}
+                                            />
+                                            <ThumbsDown color={colors.primary[700]}/>
+                                        </HStack>
+                                          
+                        </HStack>
+                        
+                        { isCinto && <View style={{
+                        marginBottom: mb2,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                            onPress={onComboboxPress2}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openCinto}
+                            value={valueCinto}
+                            items={itemsCinto}
+                            setOpen={setOpenCinto}
+                            setValue={setValueCinto}
+                            setItems={setItemsCinto}
 
-              </VStack>
+                            theme="LIGHT"
+                            multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          />
+                        </View>}
 
-          </VStack> 
+                        <VStack mt={'15%'} mx={'25%'}>
+                              <Button color={'#12375C'} title='Gravar' onPress={() => navigate('FormBowser') as never}  />
+                        </VStack>  
+                </VStack>
+
+                 </VStack> 
             );
           }
 
+
+
+
+
+          function Screen9(){
+            const {colors} = useTheme();
+
+            return(
+                      <StackRoutes.Navigator
+                      screenOptions={{
+                          headerShown:false,
+                          cardStyle:{
+                              backgroundColor: colors.white
+                          }
+                      }}
+                      initialRouteName='Screen8'
+                        >
+                            <StackRoutes.Screen name='Screen8' component={Screen8}/>
+                            <StackRoutes.Screen name='FormBowser' component={FormBowser}/>
+                    
+                        </StackRoutes.Navigator>
+                );
+
+          }
 
 
           const Tab = createMaterialTopTabNavigator();
@@ -1577,7 +1619,7 @@ import { useState } from 'react';
               <Tab.Navigator
                 initialRouteName="one"
                 screenOptions={{
-                  swipeEnabled: false,
+                 // swipeEnabled: false,
                   tabBarShowLabel: false,
                   tabBarActiveTintColor: colors.green[700],
                   tabBarInactiveTintColor: colors.gray[600],
@@ -1648,7 +1690,7 @@ import { useState } from 'react';
                 />
                 <Tab.Screen
                   name="Profile"
-                  component={Screen8}
+                  component={Screen9}
                   options={{
                       tabBarIcon:(({color, size})=>(
                           <Icon as ={<FirstAidKit color={color} size={size}/>} />

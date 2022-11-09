@@ -9,7 +9,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import {styles} from './formStyles';
 import { RadioButton, TextInput } from 'react-native-paper';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {useNavigation } from '@react-navigation/native';
 
 
           function Screen1() {
@@ -43,6 +44,18 @@ import { useState } from 'react';
 
             const [combo, setCombo] = useState(0);  
             const [mb, setMb] = useState('2%');  
+
+            const navigation = useNavigation();
+
+            useEffect(()=>{
+                navigation.getParent().getParent().setOptions( {  tabBarStyle: {display: 'none'} });
+                return()=>{
+                  navigation.getParent().getParent().setOptions( {  tabBarStyle: {display: 'flex'} });
+                };
+            },[]);
+  
+
+
 
               return (
                 <VStack style={styles.container}>
@@ -1422,7 +1435,7 @@ import { useState } from 'react';
               <Tab.Navigator
                 initialRouteName="Feed"
                 screenOptions={{
-                  swipeEnabled: false,
+                  //swipeEnabled: false,
                   tabBarShowLabel: false,
                   tabBarActiveTintColor: colors.green[700],
                   tabBarInactiveTintColor: colors.gray[600],
