@@ -1594,7 +1594,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                           />
                         </View>}
 
-                        <VStack mt={'25%'} mx={'25%'}>
+                        <VStack mt={'40%'} mx={'25%'}>
                               <Button color={'#12375C'} title='Gravar' onPress={onGravar}/>
                         </VStack>  
                 </VStack>

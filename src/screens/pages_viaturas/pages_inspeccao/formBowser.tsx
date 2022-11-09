@@ -12,6 +12,11 @@ import { RadioButton, TextInput } from 'react-native-paper';
 import { useState, useEffect } from 'react';
 import {useNavigation } from '@react-navigation/native';
 
+import Inspeccao from '../Inspeccao';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const StackRoutes = createStackNavigator();
+
 
           function Screen1() {
 
@@ -1355,6 +1360,23 @@ import {useNavigation } from '@react-navigation/native';
                 setIsLuzes(true);
               }
 
+              type Nav ={
+                navigate : (value: string) => void;
+            }
+            
+            const { navigate } = useNavigation<Nav>();
+
+              const navigation = useNavigation();
+
+              const onGravar = () => {
+           
+                navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
+                navigate('Inspeccao') as never;
+               
+               
+              }
+              
+
              
 
             return (
@@ -1414,6 +1436,10 @@ import {useNavigation } from '@react-navigation/native';
                             
               </VStack>
 
+                        <VStack mt={'40%'} mx={'25%'}>
+                              <Button color={'#12375C'} title='Gravar' onPress={onGravar}/>
+                        </VStack>  
+
           </VStack>
           
             );
@@ -1421,7 +1447,27 @@ import {useNavigation } from '@react-navigation/native';
 
           }
 
+          
+          function Screen8(){
+            const {colors} = useTheme();
 
+            return(
+                      <StackRoutes.Navigator
+                      screenOptions={{
+                          headerShown:false,
+                          cardStyle:{
+                              backgroundColor: colors.white
+                          }
+                      }}
+                      initialRouteName='Screen7'
+                        >
+                            <StackRoutes.Screen name='Screen7' component={Screen7}/>
+                            <StackRoutes.Screen name='Inspeccao' component={Inspeccao}/>
+                    
+                        </StackRoutes.Navigator>
+                );
+
+          }
 
 
 
@@ -1497,7 +1543,7 @@ import {useNavigation } from '@react-navigation/native';
                 />
                 <Tab.Screen
                   name="seven"
-                  component={Screen7}
+                  component={Screen8}
                   options={{
                       tabBarIcon:(({color, size})=>(
                           <Icon as ={<Cube color={color} size={size}/>} />
