@@ -45,7 +45,7 @@ export class step8 extends Component {
         </View>
           
           <Radio.Group
-             defaultValue="1" name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}
+              name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}
           > 
             <Stack direction={{
                   base: "row",
@@ -65,6 +65,7 @@ export class step8 extends Component {
                 </Radio>
             </Stack>
           </Radio.Group>
+
         {/* <TextInput
           style={styles.input}
           onChangeText={text => this.setState({ text })}
@@ -79,12 +80,13 @@ export class step8 extends Component {
           placeholder={"Confirm password"}
           placeholderTextColor={colors.gray}
         /> */}
+
         <View style={[styles.btnContainer, styles.marginAround]}>
           <TouchableOpacity onPress={this.props.back} style={styles.btnStyle}>
-            <Icon as ={<CaretCircleLeft  color={colors.blue} size={60}/>} />
+            <Icon as ={<CaretCircleLeft  color={colors.blue} size={50}/>} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.next} style={styles.btnStyle}>
-            <Icon as ={<CaretCircleRight color={colors.blue} size={60}/>} />
+            <Icon as ={<CaretCircleRight color={colors.blue} size={50}/>} />
           </TouchableOpacity>
         </View>
       </View>

@@ -60,7 +60,7 @@ import styles from "./styles";
           </View>
           
           <Radio.Group
-             defaultValue="1" name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}
+              name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}
           > 
             <Stack direction={{
                   base: "row",
