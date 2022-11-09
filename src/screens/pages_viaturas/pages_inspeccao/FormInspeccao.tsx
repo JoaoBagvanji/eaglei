@@ -12,11 +12,16 @@ import { RadioButton, TextInput } from 'react-native-paper';
 import { useState } from 'react';
 
 import FormBowser from './formBowser';
+import Inspeccao from '../Inspeccao';
 
 import { NavigationContainerRefContext, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+    var temBowser = false;
+
           const StackRoutes = createStackNavigator();
+
+          
 
         
           function Screen1() {
@@ -165,12 +170,14 @@ import { createStackNavigator } from '@react-navigation/stack';
               const onBowserS = () => {
                   console.log("Voce clicou em nao no Radio Button Bowser Sim");
                   setCheckedBow('ok');
+                  temBowser=true;
                   setIsBowser(true);
                 }
               
                 const onBowserN = () => {
                   console.log("Voce clicou em nao no Radio Button Bowser Nao");
                   setCheckedBow('notOk');
+                  temBowser=false;
                   setIsBowser(false);
                 }
 
@@ -1398,6 +1405,14 @@ import { createStackNavigator } from '@react-navigation/stack';
           
           const { navigate } = useNavigation<Nav>();
 
+          
+          const onGravar = () => {
+            if(temBowser)
+            navigate('FormBowser') as never;
+           else
+           navigate('Inspeccao');
+          }
+          
 
          
         
@@ -1575,8 +1590,8 @@ import { createStackNavigator } from '@react-navigation/stack';
                           />
                         </View>}
 
-                        <VStack mt={'15%'} mx={'25%'}>
-                              <Button color={'#12375C'} title='Gravar' onPress={() => navigate('FormBowser') as never}  />
+                        <VStack mt={'25%'} mx={'25%'}>
+                              <Button color={'#12375C'} title='Gravar' onPress={onGravar}/>
                         </VStack>  
                 </VStack>
 
@@ -1603,6 +1618,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                         >
                             <StackRoutes.Screen name='Screen8' component={Screen8}/>
                             <StackRoutes.Screen name='FormBowser' component={FormBowser}/>
+                            <StackRoutes.Screen name='Inspeccao' component={Inspeccao}/>
                     
                         </StackRoutes.Navigator>
                 );
@@ -1619,7 +1635,7 @@ import { createStackNavigator } from '@react-navigation/stack';
               <Tab.Navigator
                 initialRouteName="one"
                 screenOptions={{
-                 // swipeEnabled: false,
+                  swipeEnabled: false,
                   tabBarShowLabel: false,
                   tabBarActiveTintColor: colors.green[700],
                   tabBarInactiveTintColor: colors.gray[600],

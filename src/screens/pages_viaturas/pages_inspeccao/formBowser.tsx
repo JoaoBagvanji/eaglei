@@ -1435,7 +1435,7 @@ import {useNavigation } from '@react-navigation/native';
               <Tab.Navigator
                 initialRouteName="Feed"
                 screenOptions={{
-                  //swipeEnabled: false,
+                 //swipeEnabled: false,
                   tabBarShowLabel: false,
                   tabBarActiveTintColor: colors.green[700],
                   tabBarInactiveTintColor: colors.gray[600],

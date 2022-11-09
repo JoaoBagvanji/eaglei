@@ -2,8 +2,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import {HStack} from 'native-base';
-
 import TopTabs from '../screens/pages_viaturas/pages_inspeccao/FormInspeccao';
 
     export default function App() {
