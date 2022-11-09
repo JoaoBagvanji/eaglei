@@ -1405,12 +1405,16 @@ import { createStackNavigator } from '@react-navigation/stack';
           
           const { navigate } = useNavigation<Nav>();
 
-          
+           const navigation = useNavigation();
+
           const onGravar = () => {
             if(temBowser)
             navigate('FormBowser') as never;
-           else
-           navigate('Inspeccao');
+           else{
+            navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
+            navigate('Inspeccao') as never;
+           }
+           
           }
           
 
