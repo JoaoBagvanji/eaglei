@@ -34,7 +34,7 @@ export class index extends Component {
     const {
       animate = true,
       OutOnNext = defaultOutOnNext,
-      duration = 200,
+      duration = 500,
     } = this.props;
     if (currentStep !== totalSteps) {
       this.onNext();
@@ -54,7 +54,7 @@ export class index extends Component {
     const {
       animate = true,
       OutOnBack = defaultOutOnBack,
-      duration = 200,
+      duration = 500,
     } = this.props;
     if (currentStep !== 0) {
       this.onBack();

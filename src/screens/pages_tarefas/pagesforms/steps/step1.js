@@ -54,8 +54,8 @@ import styles from "./styles";
           <View>
             <Text
                 style={styles.currentText}
-              >O local em que se vai desenvolver a {'\n'}
-             actividade está limpo e organizado❓
+              > Estão criadas condições para que os{'\n'}
+                resíduos sejam segregados corretamente ?
               </Text>
           </View>
           
@@ -75,7 +75,7 @@ import styles from "./styles";
                 <Radio colorScheme="secondary" value="2" my={1} size='sm'>
                   não
                 </Radio>
-                <Radio colorScheme="warning" value="3" my={1} size='sm'>
+                <Radio colorScheme="yellow" value="3" my={1} size='sm'>
                   n\a
                 </Radio>
             </Stack>

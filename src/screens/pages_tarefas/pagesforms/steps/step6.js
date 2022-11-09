@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { Image, View, TouchableOpacity, TextInput, Text } from "react-native";
+import {  View, TouchableOpacity, TextInput, Text } from "react-native";
 
 import styles from "./styles";
+
+
 import {  Icon, Radio, Stack } from 'native-base';
 
 import {  CaretCircleRight, CaretCircleLeft  } from 'phosphor-react-native'
 import colors from "../../../../styles/colors";
-export class step2 extends Component {
+
+export class step6 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,12 +26,6 @@ export class step2 extends Component {
     };
   };
 
-  nextStep = () => {
-    const { next, saveState } = this.props;
-    saveState({ email: "joao@test.com" });
-    next();
-  };
-
   render() {
     const { currentStep, totalSteps } = this.state;
     return (
@@ -36,15 +33,14 @@ export class step2 extends Component {
         <View>
           <Text
             style={styles.currentStepText}
-          >{`Questão ${currentStep} de ${totalSteps}`}
-          </Text>
+          >{`Questão ${currentStep} de ${totalSteps}`}</Text>
         </View>
         <View>
             <Text
                 style={styles.currentText}
-              > Para a actividade a ser desenvolvida {'\n'}
-                está disponível um kit de derrames {'\n'}
-                ambientais ?
+              > Os produtos químicos estão {'\n'}
+                devidamente identificados {'\n'}
+                e armazenados ?
               </Text>
         </View>
           
@@ -73,21 +69,21 @@ export class step2 extends Component {
           style={styles.input}
           onChangeText={text => this.setState({ text })}
           value={this.state.text}
-          placeholder={"Email"}
+          placeholder={"Password"}
           placeholderTextColor={colors.gray}
         />
         <TextInput
           style={styles.input}
           onChangeText={text => this.setState({ text })}
           value={this.state.text}
-          placeholder={"Phone Number"}
+          placeholder={"Confirm password"}
           placeholderTextColor={colors.gray}
         /> */}
         <View style={[styles.btnContainer, styles.marginAround]}>
           <TouchableOpacity onPress={this.props.back} style={styles.btnStyle}>
             <Icon as ={<CaretCircleLeft  color={colors.blue} size={60}/>} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.nextStep} style={styles.btnStyle}>
+          <TouchableOpacity onPress={this.props.next} style={styles.btnStyle}>
             <Icon as ={<CaretCircleRight color={colors.blue} size={60}/>} />
           </TouchableOpacity>
         </View>
@@ -96,4 +92,4 @@ export class step2 extends Component {
   }
 }
 
-export default step2;
+export default step6;
