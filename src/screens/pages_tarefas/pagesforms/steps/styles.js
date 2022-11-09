@@ -25,15 +25,6 @@ export default StyleSheet.create({
   step4: {
     flex: 1
   },
-  input: {
-    width: "80%",
-    borderColor: colors.green,
-    borderWidth: 2,
-    borderRadius: 6,
-    paddingHorizontal: 8,
-    marginTop: "6%",
-    fontFamily: fonts.text
-  },
   btnStyle: {
     justifyContent: "center",
     alignItems: "center"
@@ -60,6 +51,29 @@ export default StyleSheet.create({
     fontFamily: fonts.text, 
     marginBottom: 30,
     marginTop: 30,
-    
-  }
+    textAlign: "center",
+    letterSpacing: 0.8
+  },
+  observations: {
+    color: colors.gray_dark,
+    fontSize: 16,
+    fontFamily: fonts.heading
+  },
+  input:{
+    borderBottomWidth:1,
+    borderColor: colors.gray,
+    color: colors.heading,
+    width: 250,
+    fontSize: 18,
+    marginTop: 50,
+    padding:  10,
+    textAlign: 'center',
+    fontFamily: fonts.text
+  },
+  filled:{
+    borderColor: colors.green,
+  },
+  unfilled:{
+    borderColor: colors.gray,
+  },
 });

@@ -44,7 +44,7 @@ export class step5 extends Component {
         </View>
           
           <Radio.Group
-             defaultValue="1" name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}
+              name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}
           > 
             <Stack direction={{
                   base: "row",
@@ -80,10 +80,10 @@ export class step5 extends Component {
         /> */}
         <View style={[styles.btnContainer, styles.marginAround]}>
           <TouchableOpacity onPress={this.props.back} style={styles.btnStyle}>
-            <Icon as ={<CaretCircleLeft  color={colors.blue} size={60}/>} />
+            <Icon as ={<CaretCircleLeft  color={colors.blue} size={50}/>} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.next} style={styles.btnStyle}>
-            <Icon as ={<CaretCircleRight color={colors.blue} size={60}/>} />
+            <Icon as ={<CaretCircleRight color={colors.blue} size={50}/>} />
           </TouchableOpacity>
         </View>
       </View>

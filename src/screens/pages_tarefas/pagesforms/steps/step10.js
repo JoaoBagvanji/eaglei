@@ -9,7 +9,7 @@ import {  Icon, Radio, Stack } from 'native-base';
 import {  CaretCircleRight, CaretCircleLeft  } from 'phosphor-react-native'
 import colors from "../../../../styles/colors";
 
-export class step4 extends Component {
+export class step10 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,10 +38,8 @@ export class step4 extends Component {
         <View>
             <Text
                 style={styles.currentText}
-              > No ambiente em que se vai desenvolver{'\n'}
-                a atividade existem condições para uma {'\n'}
-                correta manutenção e utilização dos {'\n'}
-                veículos e equipamentos ?
+              > Foi efetuada a inspeção {'\n'}
+                diária da viatura ?
               </Text>
         </View>
           
@@ -61,25 +59,12 @@ export class step4 extends Component {
                 <Radio colorScheme="secondary" value="2" my={1} size='sm'>
                   não
                 </Radio>
-                <Radio colorScheme="warning" value="3" my={1} size='sm'>
+                <Radio colorScheme="yellow" value="3" my={1} size='sm'>
                   n\a
                 </Radio>
             </Stack>
           </Radio.Group>
-        {/* <TextInput
-          style={styles.input}
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
-          placeholder={"Password"}
-          placeholderTextColor={colors.gray}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
-          placeholder={"Confirm password"}
-          placeholderTextColor={colors.gray}
-        /> */}
+
         <View style={[styles.btnContainer, styles.marginAround]}>
           <TouchableOpacity onPress={this.props.back} style={styles.btnStyle}>
             <Icon as ={<CaretCircleLeft  color={colors.blue} size={50}/>} />
@@ -93,4 +78,4 @@ export class step4 extends Component {
   }
 }
 
-export default step4;
+export default step10;
