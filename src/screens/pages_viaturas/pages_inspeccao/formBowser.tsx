@@ -389,7 +389,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedPneu === 'ok' ? 'checked' : 'unchecked' }
                                             onPress={onPneuS}
                                             />
-                                            <ThumbsUp color={colors.primary[700]}/>
+                                            <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                         
                                         <HStack alignItems={'center'}>
@@ -399,7 +399,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedPneu === 'notOk' ? 'checked' : 'unchecked' }
                                             onPress={onPneuN}
                                             />
-                                            <ThumbsDown color={colors.primary[700]}/>
+                                            <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                     
                         </HStack>        
@@ -438,7 +438,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedPre === 'ok' ? 'checked' : 'unchecked' }
                                             onPress={onPreS}
                                             />
-                                            <ThumbsUp color={colors.primary[700]}/>
+                                            <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                         
                                         <HStack alignItems={'center'}>
@@ -448,7 +448,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedPre === 'notOk' ? 'checked' : 'unchecked' }
                                             onPress={onPreN}
                                             />
-                                            <ThumbsDown color={colors.primary[700]}/>
+                                            <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                     
                 
@@ -488,7 +488,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedPor === 'ok' ? 'checked' : 'unchecked' }
                                             onPress={onPorcaS}
                                             />
-                                            <ThumbsUp color={colors.primary[700]}/>
+                                            <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                         
                                         <HStack alignItems={'center'}>
@@ -498,7 +498,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedPor === 'notOk' ? 'checked' : 'unchecked' }
                                             onPress={onPorcaN}
                                             />
-                                            <ThumbsDown color={colors.primary[700]}/>
+                                            <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                     
                         </HStack>
@@ -537,7 +537,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedTra === 'ok' ? 'checked' : 'unchecked' }
                                             onPress={onTravS}
                                             />
-                                            <ThumbsUp color={colors.primary[700]}/>
+                                            <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                         
                                         <HStack alignItems={'center'}>
@@ -547,7 +547,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedTra === 'notOk' ? 'checked' : 'unchecked' }
                                             onPress={onTravN}
                                             />
-                                            <ThumbsDown color={colors.primary[700]}/>
+                                            <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                     
                           
@@ -588,7 +588,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedSup === 'ok' ? 'checked' : 'unchecked' }
                                             onPress={onSupS}
                                             />
-                                            <ThumbsUp color={colors.primary[700]}/>
+                                            <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                         
                                         <HStack alignItems={'center'}>
@@ -598,7 +598,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedSup === 'notOk' ? 'checked' : 'unchecked' }
                                             onPress={onSupN}
                                             />
-                                            <ThumbsDown color={colors.primary[700]}/>
+                                            <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                     
                         </HStack>        
@@ -637,7 +637,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedDesc === 'ok' ? 'checked' : 'unchecked' }
                                             onPress={onDeS}
                                             />
-                                            <ThumbsUp color={colors.primary[700]}/>
+                                            <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                         
                                         <HStack alignItems={'center'}>
@@ -647,7 +647,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedDesc === 'notOk' ? 'checked' : 'unchecked' }
                                             onPress={onDeN}
                                             />
-                                            <ThumbsDown color={colors.primary[700]}/>
+                                            <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                     
                 
@@ -732,7 +732,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
                                           onPress={onLuzS}
                                           />
-                                          <ThumbsUp color={colors.primary[700]}/>
+                                          <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                       
                                       <HStack alignItems={'center'}>
@@ -742,7 +742,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
                                           onPress={onLuzN}
                                           />
-                                          <ThumbsDown color={colors.primary[700]}/>
+                                          <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
                                   
@@ -943,7 +943,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedPneu === 'ok' ? 'checked' : 'unchecked' }
                                           onPress={onPneuS}
                                           />
-                                          <ThumbsUp color={colors.primary[700]}/>
+                                          <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                       
                                       <HStack alignItems={'center'}>
@@ -953,7 +953,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedPneu === 'notOk' ? 'checked' : 'unchecked' }
                                           onPress={onPneuN}
                                           />
-                                          <ThumbsDown color={colors.primary[700]}/>
+                                          <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
                       </HStack>        
@@ -992,7 +992,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedPre === 'ok' ? 'checked' : 'unchecked' }
                                           onPress={onPreS}
                                           />
-                                          <ThumbsUp color={colors.primary[700]}/>
+                                          <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                       
                                       <HStack alignItems={'center'}>
@@ -1002,7 +1002,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedPre === 'notOk' ? 'checked' : 'unchecked' }
                                           onPress={onPreN}
                                           />
-                                          <ThumbsDown color={colors.primary[700]}/>
+                                          <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
               
@@ -1042,7 +1042,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedPor === 'ok' ? 'checked' : 'unchecked' }
                                           onPress={onPorcaS}
                                           />
-                                          <ThumbsUp color={colors.primary[700]}/>
+                                          <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                       
                                       <HStack alignItems={'center'}>
@@ -1052,7 +1052,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedPor === 'notOk' ? 'checked' : 'unchecked' }
                                           onPress={onPorcaN}
                                           />
-                                          <ThumbsDown color={colors.primary[700]}/>
+                                          <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
                       </HStack>
@@ -1092,7 +1092,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedDesc === 'ok' ? 'checked' : 'unchecked' }
                                             onPress={onDeS}
                                             />
-                                            <ThumbsUp color={colors.primary[700]}/>
+                                            <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                         
                                         <HStack alignItems={'center'}>
@@ -1102,7 +1102,7 @@ const StackRoutes = createStackNavigator();
                                             status={ checkedDesc === 'notOk' ? 'checked' : 'unchecked' }
                                             onPress={onDeN}
                                             />
-                                            <ThumbsDown color={colors.primary[700]}/>
+                                            <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
                                     
                 
@@ -1190,7 +1190,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
                                           onPress={onLuzS}
                                           />
-                                          <ThumbsUp color={colors.primary[700]}/>
+                                          <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                       
                                       <HStack alignItems={'center'}>
@@ -1200,7 +1200,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
                                           onPress={onLuzN}
                                           />
-                                          <ThumbsDown color={colors.primary[700]}/>
+                                          <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
                                   
@@ -1286,7 +1286,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
                                           onPress={onLuzS}
                                           />
-                                          <ThumbsUp color={colors.primary[700]}/>
+                                          <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                       
                                       <HStack alignItems={'center'}>
@@ -1296,7 +1296,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
                                           onPress={onLuzN}
                                           />
-                                          <ThumbsDown color={colors.primary[700]}/>
+                                          <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
                                   
@@ -1400,7 +1400,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
                                           onPress={onLuzS}
                                           />
-                                          <ThumbsUp color={colors.primary[700]}/>
+                                          <ThumbsUp color={colors.primary[700]}  size={'20'}/>
                                       </HStack>
                                       
                                       <HStack alignItems={'center'}>
@@ -1410,7 +1410,7 @@ const StackRoutes = createStackNavigator();
                                           status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
                                           onPress={onLuzN}
                                           />
-                                          <ThumbsDown color={colors.primary[700]}/>
+                                          <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
                                   
