@@ -17,6 +17,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const StackRoutes = createStackNavigator();
 
+          //Var global a nivel do ficheiro
+            var isFilled = {
+              'kilometragem':'',
+              'carrocaria':'',
+            }
+
 
           function Screen1() {
 
@@ -59,8 +65,6 @@ const StackRoutes = createStackNavigator();
                 };
             },[]);
   
-
-
 
               return (
                 <VStack style={styles.container}>
@@ -1436,7 +1440,7 @@ const StackRoutes = createStackNavigator();
                             
               </VStack>
 
-                        <VStack mt={'40%'} mx={'25%'}>
+                        <VStack mt={'40%'} mx={'38%'}>
                               <Button color={'#12375C'} title='Gravar' onPress={onGravar}/>
                         </VStack>  
 

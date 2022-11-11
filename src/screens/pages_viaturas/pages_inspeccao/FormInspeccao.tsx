@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Button } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Calendar, Car, ClosedCaptioning, FirstAidKit, Gauge, Headlights, House, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera, XCircle } from 'phosphor-react-native';
+import { Calendar, Car, ClosedCaptioning, FileCloud, FirstAidKit, Gauge, Headlights, House, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera, XCircle } from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -17,7 +17,43 @@ import Inspeccao from '../Inspeccao';
 import { NavigationContainerRefContext, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+    //Vars globais
     var temBowser = false;
+    var isFiled = {
+      'kilometragem':'',
+      'carrocaria':'',
+      'bowser':'',
+      'bolareboque':'',
+      'pneus': '',
+      'pressao': '',
+      'porcas':'',
+      'travoes':'',
+      'vidros':'',
+      'limpa_parabrisa':'',
+      'luzes':'',
+      'oleo':'',
+      'motor':'',
+      'camera':'',
+      'maos_livre':'',
+      'extintor':'',
+      'pr_socorros':'',
+      'cintoSeg':'',
+      'razaoCarrocari':[],
+      'razaobolareboque':[],
+      'razaoPneus':[],
+      'razaoPressao':[],
+      'razaoPorcas':[],
+      'razaoTravoes':[],
+      'razaoVidros':[],
+      'razaoLuzes':[],
+      'razaoOleo':[],
+      'razaoCamera':[],
+      'razaoextintor':[],
+	    'razaosocorros':[],
+	    'razaocintoSeg':[],
+      'validade_extintor':''
+  }
+
 
           const StackRoutes = createStackNavigator();
 
@@ -25,8 +61,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 
         
           function Screen1() {
+
+            const [kilom, setKilom] = useState('');
+            isFiled.kilometragem=kilom;
+
             const {colors} = useTheme();
             const {fonts} = useTheme();
+
+            
 
           return (
           <VStack style={styles.container}>
@@ -75,7 +117,10 @@ import { createStackNavigator } from '@react-navigation/stack';
           color = {
               colors.primary[600]
           } />}
-          label="KILOMETROS"/>
+          label="KILOMETROS"
+          onChangeText={text => setKilom(text)}/>
+
+        
 
       <TextInput
           style={styles.txtInput}
@@ -97,13 +142,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 
               </VStack>
               );
+
+              
           }
 
 
 
 
 
-
+           
           
 
           function Screen2() {
@@ -132,9 +179,13 @@ import { createStackNavigator } from '@react-navigation/stack';
               console.log("Voce fechou o ComboBox"); }
             }
 
-              const [checkedCar, setCheckedCar] = useState('first');
-              const [checkedBow, setCheckedBow] = useState('first');
-              const [checkedReb, setCheckedReb] = useState('first');
+              const [checkedCar, setCheckedCar] = useState('');
+              const [checkedBow, setCheckedBow] = useState('');
+              const [checkedReb, setCheckedReb] = useState('');
+
+              isFiled.carrocaria=checkedCar;
+              isFiled.bowser=checkedBow;
+              isFiled.bolareboque=checkedReb;
 
               const [openCar, setOpenCar] = useState(false);
               const [valueCar, setValueCar] = useState([]);
@@ -145,11 +196,15 @@ import { createStackNavigator } from '@react-navigation/stack';
                 {label: 'Porta direita', value: 'Porta direita'},
               ]);
 
+
               const [openReb, setOpenReb] = useState(false);
               const [valueReb, setValueReb] = useState([]);
               const [itemsReb, setItemsReb] = useState([
                 {label: 'Bola Gasta', value: 'Bola Gasta'},
               ]);
+
+              isFiled.razaoCarrocari=valueCar;
+              isFiled.razaobolareboque=valueReb;
 
               const [isCarrocaria, setIsCarrocaria] = useState(false);
               const [isBowser, setIsBowser] = useState(true);
@@ -197,8 +252,6 @@ import { createStackNavigator } from '@react-navigation/stack';
                   <VStack style={styles.container}>
 
                   <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>CARROÇARIA</Text>
-
-              
 
                           <HStack mt={'5%'} alignItems={'center'} justifyContent={'space-evenly'}>
                             <Text fontFamily={fonts.body}>&nbsp;Carroçaria&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
@@ -359,10 +412,15 @@ import { createStackNavigator } from '@react-navigation/stack';
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedPneu, setCheckedPneu] = useState('first');
-            const [checkedPre, setCheckedPre] = useState('first');
-            const [checkedPor, setCheckedPor] = useState('first');
-            const [checkedTra, setCheckedTra] = useState('first');
+            const [checkedPneu, setCheckedPneu] = useState('');
+            const [checkedPre, setCheckedPre] = useState('');
+            const [checkedPor, setCheckedPor] = useState('');
+            const [checkedTra, setCheckedTra] = useState('');
+
+            isFiled.pneus=checkedPneu;
+            isFiled.pressao=checkedPre;
+            isFiled.porcas=checkedPre;
+            isFiled.travoes=checkedTra;
 
             const [openPneu, setOpenPneu] = useState(false);
             const [valuePneu, setValuePneu] = useState([]);
@@ -397,6 +455,13 @@ import { createStackNavigator } from '@react-navigation/stack';
               {label: 'Travão', value: 'Travão'},
               {label: 'Travão de estacionamento', value: 'Travão de estacionamento'},
             ]);
+
+
+
+            isFiled.razaoPneus=valuePneu;
+            isFiled.razaoPressao=valuePre;
+            isFiled.razaoPorcas=valuePorca;
+            isFiled.razaoTravoes=valueTrav;
           
             const [isPneu, setIsPneu] = useState(false);
             const [isPressao, setIsPressao] = useState(false);
@@ -520,8 +585,6 @@ import { createStackNavigator } from '@react-navigation/stack';
             return (
               <VStack style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>RODAS</Text>
-
-             
 
                       <HStack justifyContent={'space-evenly'} mt={'5%'}>
                               <Text fontFamily={fonts.body}>Pneus&nbsp;&nbsp;&nbsp;</Text>
@@ -736,8 +799,12 @@ import { createStackNavigator } from '@react-navigation/stack';
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedVidro, setCheckedVidro] = useState('first');
-            const [checkedLimpa, setCheckedLimpa] = useState('first');
+            const [checkedVidro, setCheckedVidro] = useState('');
+            const [checkedLimpa, setCheckedLimpa] = useState('');
+
+            isFiled.vidros=checkedVidro;
+            isFiled.limpa_parabrisa=checkedLimpa;
+
 
             const [openVidro, setOpenVidro] = useState(false);
             const [valueVidro, setValueVidro] = useState([]);
@@ -747,6 +814,8 @@ import { createStackNavigator } from '@react-navigation/stack';
               {label: 'Vidro Lateral esquerdo', value: 'Vidro Lateral esquerdo'},
               {label: 'Vidro Lateral direito', value: 'Vidro Lateral direito'},
             ]);
+
+            isFiled.razaoVidros=valueVidro;
 
             const [isVidros, setIsVidros] = useState(false);
 
@@ -872,7 +941,9 @@ import { createStackNavigator } from '@react-navigation/stack';
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedLuzes, setCheckedLuzes] = useState('first');
+            const [checkedLuzes, setCheckedLuzes] = useState('');
+
+            isFiled.luzes=checkedLuzes;
 
             const [openLuzes, setOpenLuzes] = useState(false);
             const [valueLuzes, setValueLuzes] = useState([]);
@@ -881,6 +952,8 @@ import { createStackNavigator } from '@react-navigation/stack';
               {label: 'Frontal direito', value: 'Frontal direito'},
               {label: 'Indicador frontal esquerdo', value: 'Indicador frontal esquerdo'},
             ]);
+
+            isFiled.razaoLuzes=valueLuzes;
 
             const [isLuzes, setIsLuzes] = useState(false);
 
@@ -987,8 +1060,11 @@ import { createStackNavigator } from '@react-navigation/stack';
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedOleo, setCheckedOleo] = useState('first');
-            const [checkedMotor, setCheckedMotor] = useState('first');
+            const [checkedOleo, setCheckedOleo] = useState('');
+            const [checkedMotor, setCheckedMotor] = useState('');
+
+            isFiled.oleo=checkedOleo;
+            isFiled.motor=checkedMotor;
           
             const [openOleo, setOpenOleo] = useState(false);
             const [valueOleo, setValueOleo] = useState([]);
@@ -998,6 +1074,8 @@ import { createStackNavigator } from '@react-navigation/stack';
               {label: 'Água do radiador', value: 'Água do radiador'},
               {label: 'Água de limpa-brisa', value: 'Água de limpa-brisa'},
             ]);
+
+            isFiled.razaoOleo = valueOleo;
 
             const [isOleo, setIsOleo] = useState(false);
 
@@ -1127,8 +1205,11 @@ import { createStackNavigator } from '@react-navigation/stack';
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedCamera, setCheckedCamera] = useState('first');
-            const [checkedMaos, setCheckedMaos] = useState('first');
+            const [checkedCamera, setCheckedCamera] = useState('');
+            const [checkedMaos, setCheckedMaos] = useState('');
+
+            isFiled.camera=checkedCamera;
+            isFiled.maos_livre=checkedMaos;
 
             const [openCam, setOpenCam] = useState(false);
             const [valueCam, setValueCam] = useState([]);
@@ -1137,6 +1218,8 @@ import { createStackNavigator } from '@react-navigation/stack';
               {label: 'Traseira', value: 'Traseira'},
               {label: 'Mensagem de Erro', value: 'Mensagem de Erro'},
             ]);
+
+            isFiled.razaoCamera=valueCam;
 
             const [isCam, setIsCam] = useState(false);
 
@@ -1264,9 +1347,13 @@ import { createStackNavigator } from '@react-navigation/stack';
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedExtintor, setCheckedExtintor] = useState('first');
-            const [checkedPri, setCheckedPri] = useState('first');
-            const [checkedCinto, setCheckedCinto] = useState('first');
+            const [checkedExtintor, setCheckedExtintor] = useState('');
+            const [checkedPri, setCheckedPri] = useState('');
+            const [checkedCinto, setCheckedCinto] = useState('');
+
+            isFiled.extintor=checkedExtintor;
+            isFiled.pr_socorros=checkedPri;
+            isFiled.cintoSeg=checkedCinto;
             
             const [openExt, setOpenExt] = useState(false);
             const [valueExt, setValueExt] = useState([]);
@@ -1289,6 +1376,9 @@ import { createStackNavigator } from '@react-navigation/stack';
               {label: 'Nao existe', value: 'Nao existe'},
             ]);
           
+            isFiled.razaoextintor=valueExt;
+            isFiled.razaosocorros=valuePri;
+            isFiled.razaocintoSeg=valueCinto;
 
             const [isExt, setIsExt] = useState(false);
             const [isPri, setIsPri] = useState(false);
@@ -1382,6 +1472,8 @@ import { createStackNavigator } from '@react-navigation/stack';
             const [mode, setMode] = useState('date');
             const [show, setShow] = useState (false);
             const [text, setText] = useState('Data');
+
+            isFiled.validade_extintor = text;
       
             const onChange = (event, selectedDate) => {
               setShow(false)
@@ -1408,14 +1500,62 @@ import { createStackNavigator } from '@react-navigation/stack';
            const navigation = useNavigation();
 
           const onGravar = () => {
-            if(temBowser)
-            navigate('FormBowser') as never;
-           else{
-            navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
-            navigate('Inspeccao') as never;
-           }
-           
-          }
+            
+            if(
+              // isFiled.bolareboque != '' && 
+               isFiled.bowser != '' &&
+               isFiled.camera != '' &&
+               isFiled.carrocaria != '' &&
+               isFiled.cintoSeg != '' &&
+               isFiled.extintor != '' &&
+               isFiled.kilometragem != '' &&
+               isFiled.limpa_parabrisa != '' &&
+               isFiled.luzes != '' &&
+               isFiled.maos_livre != '' &&
+               isFiled.motor != '' &&
+               isFiled.oleo != '' &&
+               isFiled.pneus != '' &&
+               isFiled.porcas != '' &&
+               isFiled.pr_socorros != '' &&
+               isFiled.pressao != '' &&
+               isFiled.travoes != '' &&
+               isFiled.vidros != '' 
+               /*
+               isFiled.razaoCarrocari.length != 0 &&
+               
+               isFiled.razaoCamera.length != 0 &&
+               
+               isFiled.razaoLuzes.length != 0 &&
+               
+               isFiled.razaoOleo.length != 0 &&
+               isFiled.razaoPneus.length != 0 &&
+               
+               isFiled.razaoPorcas.length != 0 &&
+              
+               isFiled.razaoPressao.length != 0 &&
+               isFiled.razaoTravoes.length != 0 &&
+               
+               isFiled.razaoVidros.length != 0 &&
+               isFiled.razaobolareboque.length != 0 &&
+               isFiled.razaocintoSeg.length != 0 &&
+               isFiled.razaoextintor.length != 0 &&
+               isFiled.razaosocorros.length != 0 &&
+              
+               isFiled.validade_extintor != '' 
+               */              
+               ){
+                  if(temBowser)
+                  navigate('FormBowser') as never;
+                else{
+                  navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
+                  navigate('Inspeccao') as never;
+                }
+            }
+            else
+              alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
+            }
+
+          
           
 
          
@@ -1594,7 +1734,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                           />
                         </View>}
 
-                        <VStack mt={'40%'} mx={'25%'}>
+                        <VStack mt={'30%'} mx={'38%'}>
                               <Button color={'#12375C'} title='Gravar' onPress={onGravar}/>
                         </VStack>  
                 </VStack>
