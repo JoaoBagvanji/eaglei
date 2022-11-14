@@ -19,12 +19,44 @@ const StackRoutes = createStackNavigator();
 
           //Var global a nivel do ficheiro
             var isFilled = {
-              'kilometragem':'',
-              'carrocaria':'',
-            }
+              'matricula':[],
+              'diesel_bowser':'',
+              'pneus':'',
+               'jantes':'',
+               'porcas':'',
+               'travoes':'',
+               'rodaSuplente':'',
+               'rodaDescanso':'',
+               'luzes':'',
+               'bomba':'',
+               'pistola':'',
+               'mangueira':'',
+               'contador':'',
+               'sistema':'',
+               'molas':'',
+               'folgas':'',
+               'razao_pneus':[],
+               'razao_jantes':[],
+               'razao_porcas':[],
+               'razao_travoes':[],
+               'razao_rodaSuplente':[],
+               'razao_rodaDescanso':[],
+               'razao_luzes':[],
+               'razao_bomba':[],
+               'razao_pistola':[],
+               'razao_mangueira':[],
+               'razao_contador':[],
+               'razao_sistema':[],
+               'razao_molas':[],
+               'razao_folgas':[],
+            };
 
 
           function Screen1() {
+
+            const [dieselb, setDieselb] = useState('');
+            isFilled.diesel_bowser=dieselb;
+
 
             const {colors} = useTheme();
             const { fonts } = useTheme();
@@ -52,6 +84,8 @@ const StackRoutes = createStackNavigator();
                 {label: 'BI 217 MC', value: 'BI 217 MC'},
  
             ]);
+
+            isFilled.matricula=valueMat;
 
             const [combo, setCombo] = useState(0);  
             const [mb, setMb] = useState('2%');  
@@ -121,7 +155,8 @@ const StackRoutes = createStackNavigator();
                                 selectionColor='#12375C'
                                 activeOutlineColor='#12375C'
                                 outlineColor='#12375C'
-                                label="DIESEL BOWSER"/>
+                                label="DIESEL BOWSER"
+                                onChangeText={text => setDieselb(text)}/>
                     
                             <TextInput
                                 style={styles.txtInput}
@@ -157,12 +192,21 @@ const StackRoutes = createStackNavigator();
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedPneu, setCheckedPneu] = useState('first');
-            const [checkedPre, setCheckedPre] = useState('first');
-            const [checkedPor, setCheckedPor] = useState('first');
-            const [checkedTra, setCheckedTra] = useState('first');
-            const [checkedSup, setCheckedSup] = useState('first');
-            const [checkedDesc, setCheckedDesc] = useState('first');
+            const [checkedPneu, setCheckedPneu] = useState('');
+            const [checkedJan, setCheckedJan] = useState('');
+            const [checkedPor, setCheckedPor] = useState('');
+            const [checkedTra, setCheckedTra] = useState('');
+            const [checkedSup, setCheckedSup] = useState('');
+            const [checkedDesc, setCheckedDesc] = useState('');
+
+            
+            isFilled.pneus=checkedPneu;
+            isFilled.jantes=checkedJan;
+            isFilled.porcas=checkedJan;
+            isFilled.travoes=checkedTra;
+            isFilled.rodaSuplente=checkedSup;
+            isFilled.rodaDescanso=checkedDesc;
+
 
             const [openPneu, setOpenPneu] = useState(false);
             const [valuePneu, setValuePneu] = useState([]);
@@ -206,7 +250,14 @@ const StackRoutes = createStackNavigator();
               {label: 'Empenada', value: 'Empenada'},
               {label: 'Rachada', value: 'Rachada'},
             ]);
-          
+
+            isFilled.razao_pneus=valuePneu;
+            isFilled.razao_jantes=valueJan;
+            isFilled.razao_porcas=valuePorca;
+            isFilled.razao_travoes=valueTrav;
+            isFilled.razao_rodaSuplente=valueSup;
+            isFilled.razao_rodaDescanso=valueDes;
+
             const [isPneu, setIsPneu] = useState(false);
             const [isJantes, setIsJantes] = useState(false);
             const [isPorcas, setIsPorcas] = useState(false);
@@ -226,15 +277,15 @@ const StackRoutes = createStackNavigator();
                 setIsPneu(true);
               }
   
-              const onPreS = () => {
+              const onJanS = () => {
                   console.log("Voce clicou em nao no Radio Button Pressao Like");
-                  setCheckedPre('ok');
+                  setCheckedJan('ok');
                   setIsJantes(false);
                 }
             
-              const onPreN = () => {
+              const onJanN = () => {
                     console.log("Voce clicou em nao no Radio Button Pressao Dislike");
-                    setCheckedPre('notOk');
+                    setCheckedJan('notOk');
                     setIsJantes(true);
                   }
   
@@ -435,8 +486,8 @@ const StackRoutes = createStackNavigator();
                                             <RadioButton
                                             color= 'green'
                                             value="ok"
-                                            status={ checkedPre === 'ok' ? 'checked' : 'unchecked' }
-                                            onPress={onPreS}
+                                            status={ checkedJan === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onJanS}
                                             />
                                             <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
@@ -445,8 +496,8 @@ const StackRoutes = createStackNavigator();
                                             <RadioButton
                                             color= 'red'
                                             value="notOk"
-                                            status={ checkedPre === 'notOk' ? 'checked' : 'unchecked' }
-                                            onPress={onPreN}
+                                            status={ checkedJan === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onJanN}
                                             />
                                             <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
@@ -692,7 +743,8 @@ const StackRoutes = createStackNavigator();
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedLuzes, setCheckedLuzes] = useState('first');
+            const [checkedLuzes, setCheckedLuzes] = useState('');
+            isFilled.luzes=checkedLuzes;
 
             const [openLuzes, setOpenLuzes] = useState(false);
             const [valueLuzes, setValueLuzes] = useState([]);
@@ -701,6 +753,8 @@ const StackRoutes = createStackNavigator();
               {label: 'Cabo', value: 'Cabo'},
               {label: 'Ficha Femea', value: 'Ficha Femea'},
             ]);
+
+            isFilled.razao_luzes=valueLuzes;
 
             const [isLuzes, setIsLuzes] = useState(false);
 
@@ -774,7 +828,7 @@ const StackRoutes = createStackNavigator();
 
           </VStack>
           
-            );
+         );
           }
 
           
@@ -790,45 +844,55 @@ const StackRoutes = createStackNavigator();
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedPneu, setCheckedPneu] = useState('first');
-            const [checkedPre, setCheckedPre] = useState('first');
-            const [checkedPor, setCheckedPor] = useState('first');
-            const [checkedDesc, setCheckedDesc] = useState('first');
+            const [checkedBomba, setCheckedBomba] = useState('');
+            const [checkedPistola, setCheckedPistola] = useState('');
+            const [checkedMan, setCheckedMan] = useState('');
+            const [checkedCont, setCheckedCont] = useState('');
 
-            const [openPneu, setOpenPneu] = useState(false);
-            const [valuePneu, setValuePneu] = useState([]);
-            const [itemsPneu, setItemsPneu] = useState([
+            isFilled.bomba=checkedBomba;
+            isFilled.pistola=checkedPistola;
+            isFilled.mangueira=checkedMan;
+            isFilled.contador=checkedCont;
+
+            const [openBomba, setOpenBomba] = useState(false);
+            const [valueBomba, setValueBomba] = useState([]);
+            const [itemsBomba, setItemsBomba] = useState([
               {label: 'Não Funciona', value: 'Não Funciona'},
               {label: 'Lenta', value: 'Lenta'},
             ]);
           
-            const [openJan, setOpenJan] = useState(false);
-            const [valueJan, setValueJan] = useState([]);
-            const [itemsJan, setItemsJan] = useState([
+            const [openPis, setOpenPis] = useState(false);
+            const [valuePis, setValuePis] = useState([]);
+            const [itemsPis, setItemsPis] = useState([
               {label: 'Quebrada', value: 'Quebrada'},
             ]);
           
-            const [openPorca, setOpenPorca] = useState(false);
-            const [valuePorca, setValuePorca] = useState([]);
-            const [itemsPorca, setItemsPorca] = useState([
+            const [openMan, setOpenMan] = useState(false);
+            const [valueMan, setValueMan] = useState([]);
+            const [itemsMan, setItemsMan] = useState([
               {label: 'Furada', value: 'Furada'},
               {label: 'Cortada', value: 'Cortada'},
             ]);
 
-            const [openDes, setOpenDes] = useState(false);
-            const [valueDes, setValueDes] = useState([]);
-            const [itemsDes, setItemsDes] = useState([
+            const [openCont, setOpenCont] = useState(false);
+            const [valueCont, setValueCont] = useState([]);
+            const [itemsCont, setItemsCont] = useState([
               {label: 'Ecrã Partido', value: 'Ecrã Partido'},
               {label: 'Não Marca', value: 'Não Marca'},
               {label: 'Ausência', value: 'Ausência'},
             ]);
+
+            isFilled.razao_bomba=valueBomba;
+            isFilled.razao_pistola=valuePis;
+            isFilled.razao_mangueira=valueMan;
+            isFilled.razao_contador=valueCont;
           
 
             const [combo, setCombo] = useState(0);  
             const [combo1, setCombo1] = useState(0);  
             const [combo2, setCombo2] = useState(0);
 
-            const [mb, setMb] = useState('2%');    
+              const [mb, setMb] = useState('2%');    
               const [mb1, setMb1] = useState('2%');
               const [mb2, setMb2] = useState('2%');
 
@@ -872,58 +936,58 @@ const StackRoutes = createStackNavigator();
               }
 
 
-              const [isPneu, setIsPneu] = useState(false);
-            const [isJantes, setIsJantes] = useState(false);
-            const [isPorcas, setIsPorcas] = useState(false);
-            const [isDescanso, setIsDescanso] = useState(false);
+              const [isBomba, setIsBomba] = useState(false);
+            const [isPistola, setIsPistola] = useState(false);
+            const [isMan, setIsMan] = useState(false);
+            const [isContador, setIsContador] = useState(false);
 
-              const onPneuS = () => {
+              const onBombaS = () => {
                 console.log("Voce clicou em nao no Radio Button Pneu Like");
-                setCheckedPneu('ok');
-                setIsPneu(false);
+                setCheckedBomba('ok');
+                setIsBomba(false);
               }
           
-            const onPneuN = () => {
+            const onBombaN = () => {
                   console.log("Voce clicou em nao no Radio Button Pneu Dislike");
-                  setCheckedPneu('notOk');
-                  setIsPneu(true);
+                  setCheckedBomba('notOk');
+                  setIsBomba(true);
                 }
     
-                const onPreS = () => {
+                const onPistolaS = () => {
                     console.log("Voce clicou em nao no Radio Button Pressao Like");
-                    setCheckedPre('ok');
-                    setIsJantes(false);
+                    setCheckedPistola('ok');
+                    setIsPistola(false);
                   }
               
-                const onPreN = () => {
+                const onPistolaN = () => {
                       console.log("Voce clicou em nao no Radio Button Pressao Dislike");
-                      setCheckedPre('notOk');
-                      setIsJantes(true);
+                      setCheckedPistola('notOk');
+                      setIsPistola(true);
                     }
     
-                const onPorcaS = () => {
+                const onMangueiraS = () => {
                         console.log("Voce clicou em nao no Radio Button Porca Like");
-                        setCheckedPor('ok');
-                        setIsPorcas(false);
+                        setCheckedMan('ok');
+                        setIsMan(false);
                       }
                   
-                const onPorcaN = () => {
+                const onMangueiraN = () => {
                           console.log("Voce clicou em nao no Radio Button Porca Dislike");
-                          setCheckedPor('notOk');
-                          setIsPorcas(true);
+                          setCheckedMan('notOk');
+                          setIsMan(true);
                         }
               
                         
-            const onDeS = () => {
+            const onContadorS = () => {
               console.log("Voce clicou em nao no Radio Button Descanso Like");
-              setCheckedDesc('ok');
-              setIsDescanso(false);
+              setCheckedCont('ok');
+              setIsContador(false);
             }
                       
-            const onDeN = () => {
+            const onContadorN = () => {
               console.log("Voce clicou em nao no Radio Button Descanso Dislike");
-              setCheckedDesc('notOk');
-              setIsDescanso(true);
+              setCheckedCont('notOk');
+              setIsContador(true);
             }
 
 
@@ -940,8 +1004,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                       color= 'green'
                                           value="ok"
-                                          status={ checkedPneu === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onPneuS}
+                                          status={ checkedBomba === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onBombaS}
                                           />
                                           <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -950,15 +1014,15 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'red'
                                           value="notOk"
-                                          status={ checkedPneu === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onPneuN}
+                                          status={ checkedBomba === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onBombaN}
                                           />
                                           <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
                       </HStack>        
                       
-                      { isPneu && <View style={{
+                      { isBomba && <View style={{
                       marginBottom: mb,
                       backgroundColor: 'transparent',
                       alignItems: 'center',
@@ -968,12 +1032,12 @@ const StackRoutes = createStackNavigator();
                       <DropDownPicker
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
-                          open={openPneu}
-                          value={valuePneu}
-                          items={itemsPneu}
-                          setOpen={setOpenPneu}
-                          setValue={setValuePneu}
-                          setItems={setItemsPneu}
+                          open={openBomba}
+                          value={valueBomba}
+                          items={itemsBomba}
+                          setOpen={setOpenBomba}
+                          setValue={setValueBomba}
+                          setItems={setItemsBomba}
 
                           theme="LIGHT"
                           multiple={true}
@@ -989,8 +1053,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'green'
                                           value="ok"
-                                          status={ checkedPre === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onPreS}
+                                          status={ checkedPistola === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onPistolaS}
                                           />
                                           <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -999,8 +1063,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'red'
                                           value="notOk"
-                                          status={ checkedPre === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onPreN}
+                                          status={ checkedPistola === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onPistolaN}
                                           />
                                           <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -1008,7 +1072,7 @@ const StackRoutes = createStackNavigator();
               
                       </HStack>
                       
-                      { isJantes && <View style={{
+                      { isPistola && <View style={{
                       marginBottom: mb1,
                       backgroundColor: 'transparent',
                       alignItems: 'center',
@@ -1018,12 +1082,12 @@ const StackRoutes = createStackNavigator();
                       <DropDownPicker
                           onPress={onComboboxPress1}
                           placeholder="Selecione a(s) Parte(s)"
-                          open={openJan}
-                          value={valueJan}
-                          items={itemsJan}
-                          setOpen={setOpenJan}
-                          setValue={setValueJan}
-                          setItems={setItemsJan}
+                          open={openPis}
+                          value={valuePis}
+                          items={itemsPis}
+                          setOpen={setOpenPis}
+                          setValue={setValuePis}
+                          setItems={setItemsPis}
 
                           theme="LIGHT"
                           multiple={true}
@@ -1039,8 +1103,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                       color= 'green'
                                           value="ok"
-                                          status={ checkedPor === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onPorcaS}
+                                          status={ checkedMan === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onMangueiraS}
                                           />
                                           <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -1049,15 +1113,15 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'red'
                                           value="notOk"
-                                          status={ checkedPor === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onPorcaN}
+                                          status={ checkedMan === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onMangueiraN}
                                           />
                                           <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
                                   
                       </HStack>
                       
-                      { isPorcas && <View style={{
+                      { isMan && <View style={{
                       marginBottom: mb2,
                       backgroundColor: 'transparent',
                       alignItems: 'center',
@@ -1067,12 +1131,12 @@ const StackRoutes = createStackNavigator();
                       <DropDownPicker
                           onPress={onComboboxPress2}
                           placeholder="Selecione a(s) Parte(s)"
-                          open={openPorca}
-                          value={valuePorca}
-                          items={itemsPorca}
-                          setOpen={setOpenPorca}
-                          setValue={setValuePorca}
-                          setItems={setItemsPorca}
+                          open={openMan}
+                          value={valueMan}
+                          items={itemsMan}
+                          setOpen={setOpenMan}
+                          setValue={setValueMan}
+                          setItems={setItemsMan}
 
                           theme="LIGHT"
                           multiple={true}
@@ -1089,8 +1153,8 @@ const StackRoutes = createStackNavigator();
                                             <RadioButton
                                             color= 'green'
                                             value="ok"
-                                            status={ checkedDesc === 'ok' ? 'checked' : 'unchecked' }
-                                            onPress={onDeS}
+                                            status={ checkedCont === 'ok' ? 'checked' : 'unchecked' }
+                                            onPress={onContadorS}
                                             />
                                             <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                         </HStack>
@@ -1099,8 +1163,8 @@ const StackRoutes = createStackNavigator();
                                             <RadioButton
                                             color= 'red'
                                             value="notOk"
-                                            status={ checkedDesc === 'notOk' ? 'checked' : 'unchecked' }
-                                            onPress={onDeN}
+                                            status={ checkedCont === 'notOk' ? 'checked' : 'unchecked' }
+                                            onPress={onContadorN}
                                             />
                                             <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                         </HStack>
@@ -1108,7 +1172,7 @@ const StackRoutes = createStackNavigator();
                 
                         </HStack>
                         
-                        { isDescanso && <View style={{
+                        { isContador && <View style={{
                         marginBottom: mb1,
                         backgroundColor: 'transparent',
                         alignItems: 'center',
@@ -1117,12 +1181,12 @@ const StackRoutes = createStackNavigator();
                       }}>
                         <DropDownPicker
                             placeholder="Selecione a(s) Parte(s)"
-                            open={openDes}
-                            value={valueDes}
-                            items={itemsDes}
-                            setOpen={setOpenDes}
-                            setValue={setValueDes}
-                            setItems={setItemsDes}
+                            open={openCont}
+                            value={valueCont}
+                            items={itemsCont}
+                            setOpen={setOpenCont}
+                            setValue={setValueCont}
+                            setItems={setItemsCont}
 
                             theme="LIGHT"
                             multiple={true}
@@ -1148,27 +1212,28 @@ const StackRoutes = createStackNavigator();
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedLuzes, setCheckedLuzes] = useState('first');
+            const [checkedSistema, setCheckedSistema] = useState('');
+            isFilled.sistema=checkedSistema;
 
-            const [openLuzes, setOpenLuzes] = useState(false);
-            const [valueLuzes, setValueLuzes] = useState([]);
-            const [itemsLuzes, setItemsLuzes] = useState([
+            const [openSitema, setOpenSitema] = useState(false);
+            const [valueSitema, setValueSitema] = useState([]);
+            const [itemsSitema, setItemsSitema] = useState([
               {label: 'Bola Gasta', value: 'Bola Gasta'},
               {label: 'Gancho Gasto', value: 'Gancho Gasto'},
             ]);
 
-            const [isLuzes, setIsLuzes] = useState(false);
+            const [isSistema, setIsSistema] = useState(false);
 
-            const onLuzS = () => {
-              console.log("Voce clicou em nao no Radio Button Luz Like");
-              setCheckedLuzes('ok');
-              setIsLuzes(false);
+            const onSistemaS = () => {
+              console.log("Voce clicou em nao no Radio Button Sistema Like");
+              setCheckedSistema('ok');
+              setIsSistema(false);
             }
         
-            const onLuzN = () => {
-                console.log("Voce clicou em nao no Radio Button Luz Dislike");
-                setCheckedLuzes('notOk');
-                setIsLuzes(true);
+            const onSistemaN = () => {
+                console.log("Voce clicou em nao no Radio Button Sistema Dislike");
+                setCheckedSistema('notOk');
+                setIsSistema(true);
               }
 
              
@@ -1187,8 +1252,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'green'
                                           value="ok"
-                                          status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onLuzS}
+                                          status={ checkedSistema === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onSistemaS}
                                           />
                                           <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -1197,8 +1262,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'red'
                                           value="notOk"
-                                          status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onLuzN}
+                                          status={ checkedSistema === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onSistemaN}
                                           />
                                           <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -1207,19 +1272,19 @@ const StackRoutes = createStackNavigator();
                                       
                </HStack>
                       
-                      { isLuzes && <View style={{
+                      { isSistema && <View style={{
                       alignItems: 'center',
                       justifyContent: 'center',
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
                           placeholder="Selecione a(s) Parte(s)"
-                          open={openLuzes}
-                          value={valueLuzes}
-                          items={itemsLuzes}
-                          setOpen={setOpenLuzes}
-                          setValue={setValueLuzes}
-                          setItems={setItemsLuzes}
+                          open={openSitema}
+                          value={valueSitema}
+                          items={itemsSitema}
+                          setOpen={setOpenSitema}
+                          setValue={setValueSitema}
+                          setItems={setItemsSitema}
 
                           theme="LIGHT"
                           multiple={true}
@@ -1246,28 +1311,32 @@ const StackRoutes = createStackNavigator();
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedLuzes, setCheckedLuzes] = useState('first');
+            const [checkedMolas, setCheckedMolas] = useState('');
 
-            const [openLuzes, setOpenLuzes] = useState(false);
-            const [valueLuzes, setValueLuzes] = useState([]);
-            const [itemsLuzes, setItemsLuzes] = useState([
+            isFilled.molas=checkedMolas;
+
+            const [openMolas, setOpenMolas] = useState(false);
+            const [valueMolas, setValueMolas] = useState([]);
+            const [itemsMolas, setItemsMolas] = useState([
               {label: 'Partida', value: 'Partida'},
               {label: 'Parafuso Solto', value: 'Parafuso Solto'},
               {label: 'Ponta de mola partida', value: 'Ponta de mola partida'},
             ]);
 
-            const [isLuzes, setIsLuzes] = useState(false);
+            isFilled.razao_molas=valueMolas;
 
-            const onLuzS = () => {
-              console.log("Voce clicou em nao no Radio Button Luz Like");
-              setCheckedLuzes('ok');
-              setIsLuzes(false);
+            const [isMolas, setIsMolas] = useState(false);
+
+            const onMolasS = () => {
+              console.log("Voce clicou em nao no Radio Button Molas Like");
+              setCheckedMolas('ok');
+              setIsMolas(false);
             }
         
-            const onLuzN = () => {
-                console.log("Voce clicou em nao no Radio Button Luz Dislike");
-                setCheckedLuzes('notOk');
-                setIsLuzes(true);
+            const onMolasN = () => {
+                console.log("Voce clicou em nao no Radio Button Molas Dislike");
+                setCheckedMolas('notOk');
+                setIsMolas(true);
               }
 
             return (
@@ -1283,8 +1352,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'green'
                                           value="ok"
-                                          status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onLuzS}
+                                          status={ checkedMolas === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onMolasS}
                                           />
                                           <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -1293,8 +1362,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'red'
                                           value="notOk"
-                                          status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onLuzN}
+                                          status={ checkedMolas === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onMolasN}
                                           />
                                           <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -1303,19 +1372,19 @@ const StackRoutes = createStackNavigator();
                                       
                </HStack>
                       
-                      { isLuzes && <View style={{
+                      { isMolas && <View style={{
                       alignItems: 'center',
                       justifyContent: 'center',
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
                           placeholder="Selecione a(s) Parte(s)"
-                          open={openLuzes}
-                          value={valueLuzes}
-                          items={itemsLuzes}
-                          setOpen={setOpenLuzes}
-                          setValue={setValueLuzes}
-                          setItems={setItemsLuzes}
+                          open={openMolas}
+                          value={valueMolas}
+                          items={itemsMolas}
+                          setOpen={setOpenMolas}
+                          setValue={setValueMolas}
+                          setItems={setItemsMolas}
 
                           theme="LIGHT"
                           multiple={true}
@@ -1341,27 +1410,28 @@ const StackRoutes = createStackNavigator();
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [checkedLuzes, setCheckedLuzes] = useState('first');
+            const [checkedFolgas, setCheckedFolgas] = useState('');
+            isFilled.folgas=checkedFolgas;
 
-            const [openLuzes, setOpenLuzes] = useState(false);
-            const [valueLuzes, setValueLuzes] = useState([]);
-            const [itemsLuzes, setItemsLuzes] = useState([
+            const [openFolgas, setOpenFolgas] = useState(false);
+            const [valueFolgas, setValueFolgas] = useState([]);
+            const [itemsFolgas, setItemsFolgas] = useState([
               {label: 'Rolamento Gasto', value: 'Rolamento Gasto'},
               {label: 'Ausencia da Tampa', value: 'Ausencia da Tampa'},
             ]);
 
-            const [isLuzes, setIsLuzes] = useState(false);
+            const [isFolgas, setIsFolgas] = useState(false);
 
-            const onLuzS = () => {
-              console.log("Voce clicou em nao no Radio Button Luz Like");
-              setCheckedLuzes('ok');
-              setIsLuzes(false);
+            const onFolgasS = () => {
+              console.log("Voce clicou em nao no Radio Button Folgas Like");
+              setCheckedFolgas('ok');
+              setIsFolgas(false);
             }
         
-            const onLuzN = () => {
-                console.log("Voce clicou em nao no Radio Button Luz Dislike");
-                setCheckedLuzes('notOk');
-                setIsLuzes(true);
+            const onFolgasN = () => {
+                console.log("Voce clicou em nao no Radio Button Folgas Dislike");
+                setCheckedFolgas('notOk');
+                setIsFolgas(true);
               }
 
               type Nav ={
@@ -1372,13 +1442,38 @@ const StackRoutes = createStackNavigator();
 
               const navigation = useNavigation();
 
-              const onGravar = () => {
+
+           const onGravar = () => {
+
+            if (
            
-                navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
-                navigate('Inspeccao') as never;
-               
-               
-              }
+              isFilled.matricula.length != 0 &&
+              isFilled.diesel_bowser != '' &&
+               /*
+              isFilled.pneus != '' && 
+              isFilled.jantes != '' &&
+                */
+              isFilled.porcas != '' && 
+              isFilled.travoes != '' && 
+              isFilled.rodaSuplente != '' && 
+              isFilled.rodaDescanso != '' && 
+              isFilled.luzes != '' &&
+              isFilled.bomba != '' &&
+              isFilled.pistola != '' && 
+              isFilled.mangueira != '' && 
+              isFilled.contador != '' &&
+              isFilled.sistema != '' &&
+              isFilled.molas != '' &&
+              isFilled.folgas != ''
+            ) {
+              navigation.getParent().setOptions({tabBarStyle: {display: 'none'}});
+              navigate('Inspeccao') as never;
+            }else 
+            alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
+    }
+    
+
+             
               
 
              
@@ -1390,6 +1485,10 @@ const StackRoutes = createStackNavigator();
 
               <VStack mt={'5%'}>
 
+                <Text>
+                  {isFilled.contador}_{isFilled.sistema}_{isFilled.molas}_{isFilled.folgas}
+                </Text>
+
               <HStack justifyContent={'space-evenly'} alignItems={'center'}>
                               <Text fontFamily={fonts.body}>Folgas no Cubo</Text>
 
@@ -1397,8 +1496,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'green'
                                           value="ok"
-                                          status={ checkedLuzes === 'ok' ? 'checked' : 'unchecked' }
-                                          onPress={onLuzS}
+                                          status={ checkedFolgas === 'ok' ? 'checked' : 'unchecked' }
+                                          onPress={onFolgasS}
                                           />
                                           <ThumbsUp color={colors.primary[700]}  size={'20'}/>
                                       </HStack>
@@ -1407,8 +1506,8 @@ const StackRoutes = createStackNavigator();
                                           <RadioButton
                                           color= 'red'
                                           value="notOk"
-                                          status={ checkedLuzes === 'notOk' ? 'checked' : 'unchecked' }
-                                          onPress={onLuzN}
+                                          status={ checkedFolgas === 'notOk' ? 'checked' : 'unchecked' }
+                                          onPress={onFolgasN}
                                           />
                                           <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                       </HStack>
@@ -1417,19 +1516,19 @@ const StackRoutes = createStackNavigator();
                                       
                </HStack>
                       
-                      { isLuzes && <View style={{
+                      { isFolgas && <View style={{
                       alignItems: 'center',
                       justifyContent: 'center',
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
                           placeholder="Selecione a(s) Parte(s)"
-                          open={openLuzes}
-                          value={valueLuzes}
-                          items={itemsLuzes}
-                          setOpen={setOpenLuzes}
-                          setValue={setValueLuzes}
-                          setItems={setItemsLuzes}
+                          open={openFolgas}
+                          value={valueFolgas}
+                          items={itemsFolgas}
+                          setOpen={setOpenFolgas}
+                          setValue={setValueFolgas}
+                          setItems={setItemsFolgas}
 
                           theme="LIGHT"
                           multiple={true}
@@ -1452,6 +1551,8 @@ const StackRoutes = createStackNavigator();
           }
 
           
+
+
           function Screen8(){
             const {colors} = useTheme();
 
