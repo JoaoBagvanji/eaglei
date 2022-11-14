@@ -28,22 +28,6 @@ const EmailInput = ({ value, setValue }) => {
 };
 
 const styles= StyleSheet.create({
-  uinputView:{
-      marginTop: "5%",
-      height:56,
-      width: "100%",
-      justifyContent: 'center',
-      borderRadius: 6,
-  },
-
-  pinputView:{
-      marginVertical: "8%",
-      width: "100%",
-      height:56,
-      justifyContent: 'center',
-      borderRadius: 6
-  },
-
   txtInput:{
       backgroundColor: '#e0edf9',
       textColor: '#12375C',
