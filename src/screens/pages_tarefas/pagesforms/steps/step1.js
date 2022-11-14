@@ -80,21 +80,7 @@ import styles from "./styles";
                 </Radio>
             </Stack>
           </Radio.Group>
-          {/* <TextInput
-            style={styles.input}
-            onChangeText={text => this.setState({ text })}
-            value={this.state.text}
-            placeholder={"Primeiro nome"}
-            placeholderTextColor= {colors.gray}
-            
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={text => this.setState({ text })}
-            value={this.state.text}
-            placeholder={"Apelido"}
-            placeholderTextColor={colors.gray}
-          /> */}
+          
           <View style={styles.btnContainer}>
             <TouchableOpacity onPress={this.nextStep} style={styles.btnStyle}>
               <Icon as ={<CaretCircleRight color={colors.blue} size={50}/>} />

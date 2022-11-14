@@ -69,20 +69,7 @@ export class step2 extends Component {
                 </Radio>
             </Stack>
           </Radio.Group>
-        {/* <TextInput
-          style={styles.input}
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
-          placeholder={"Email"}
-          placeholderTextColor={colors.gray}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
-          placeholder={"Phone Number"}
-          placeholderTextColor={colors.gray}
-        /> */}
+        
         <View style={[styles.btnContainer, styles.marginAround]}>
           <TouchableOpacity onPress={this.props.back} style={styles.btnStyle}>
             <Icon as ={<CaretCircleLeft  color={colors.blue} size={50}/>} />
