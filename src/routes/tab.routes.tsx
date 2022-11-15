@@ -10,13 +10,10 @@ import  Inventario  from '../screens/Inventario';
 import  Viatura  from '../screens/Viatura';
 import  Users  from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
-<<<<<<< HEAD
 
 
 import * as Animatable from 'react-native-animatable';
-=======
 import { Header } from '../components/Header';
->>>>>>> 1d98468746d311f53a4972dece5e11a1aa7e5846
 
 const AppTab = createBottomTabNavigator();
 
