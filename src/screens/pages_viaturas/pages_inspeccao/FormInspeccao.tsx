@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Calendar, Car, ClosedCaptioning, FileCloud, FirstAidKit, Gauge, Headlights, House, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera, XCircle } from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
@@ -18,7 +18,9 @@ import { NavigationContainerRefContext, useNavigation } from '@react-navigation/
 import { createStackNavigator } from '@react-navigation/stack';
 
     //Vars globais a nivel do ficheiro
+
     var temBowser = false;
+
     var isFiled = {
       'kilometragem':'',
       'carrocaria':'',
@@ -1532,6 +1534,8 @@ import { createStackNavigator } from '@react-navigation/stack';
           const { navigate } = useNavigation<Nav>();
 
            const navigation = useNavigation();
+           
+           let nullAtributes ={};
 
           const onGravar = () => {
             
@@ -1561,8 +1565,32 @@ import { createStackNavigator } from '@react-navigation/stack';
                   navigate('Inspeccao') as never;
                 }
             }
-            else
+            else{
+              
+              /*
+              Object.keys(isFiled).forEach(function(item){
+
+                if(isFiled[item] === ''){
+                  
+                  nullAtributes = item;
+                }
+               });
+               */
+               
+
               alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
+            
+             // alert(nullAtributes);
+            }
+              
+
+
+
+
+
+
+
+
             }
 
           
@@ -1628,11 +1656,13 @@ import { createStackNavigator } from '@react-navigation/stack';
                           />
                         </View>}
 
-                        {!isExt && <VStack ml={'8%'}>
+                        {!isExt && <HStack ml={'8%'}>
                             <Text fontFamily={fonts.body}>Validade: {text}</Text>
 
-                            <VStack mx={'25%'}>
-                              <Button color={'#12375C'} title='Escolher data' onPress={() => showMode('date')}  />
+                            <VStack ml={'8%'}>
+                              <TouchableOpacity onPress={() => showMode('date')}> 
+                                  <Calendar size={28} color={'#12375C'} />
+                              </TouchableOpacity>
                             </VStack>  
 
                             {
@@ -1648,7 +1678,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                 
                               )
                             }                                        
-                        </VStack>}
+                        </HStack>}
                         
 
                         <HStack justifyContent={'space-evenly'} alignItems={'center'}>
