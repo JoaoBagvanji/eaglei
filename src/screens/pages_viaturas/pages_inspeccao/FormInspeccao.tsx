@@ -162,8 +162,8 @@ import { createStackNavigator } from '@react-navigation/stack';
             const [combo1, setCombo1] = useState(0);  
               
 
-            const [mb, setMb] = useState('2%');    
-            const [mb1, setMb1] = useState('2%');
+            const [mb, setMb] = useState('8%');    
+            const [mb1, setMb1] = useState('8%');
 
 
             const onComboboxPress= () => {
@@ -175,9 +175,11 @@ import { createStackNavigator } from '@react-navigation/stack';
                   console.log("Voce abriu o ComboBox");}
 
               else
-            { setMb('2%'); 
+            { setMb('8%'); 
               console.log("Voce fechou o ComboBox"); }
             }
+
+
             const onComboboxPress1= () => {
               setCombo1(combo1+1);
       
@@ -187,7 +189,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                   console.log("Voce abriu o ComboBox");}
       
               else
-             { setMb1('2%'); 
+             { setMb1('8%'); 
               console.log("Voce fechou o ComboBox"); }
             }
 
@@ -302,6 +304,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                           paddingHorizontal: 15
                         }}>
                           <DropDownPicker
+                          dropDownDirection="BOTTOM"
                           listMode="SCROLLVIEW"
                               textStyle={{
                                 fontSize: 14
@@ -318,7 +321,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                               theme="LIGHT"
                               multiple={true}
                               mode="BADGE"
-                              badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                              //badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                             />
                           </View>}
 
@@ -537,10 +540,10 @@ import { createStackNavigator } from '@react-navigation/stack';
               const [combo2, setCombo2] = useState(0);
               const [combo3, setCombo3] = useState(0);    
 
-              const [mb, setMb] = useState('2%');    
-              const [mb1, setMb1] = useState('2%');
-              const [mb2, setMb2] = useState('2%');
-              const [mb3, setMb3] = useState('2%');
+              const [mb, setMb] = useState('8%');    
+              const [mb1, setMb1] = useState('8%');
+              const [mb2, setMb2] = useState('8%');
+              const [mb3, setMb3] = useState('8%');
 
                           const onComboboxPress= () => {
                             setCombo(combo+1);
@@ -551,7 +554,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb('2%'); 
+                           { setMb('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
                     
@@ -564,7 +567,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb1('2%'); 
+                           { setMb1('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
                     
@@ -577,7 +580,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb2('2%'); 
+                           { setMb2('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
                       
@@ -590,7 +593,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb3('2%'); 
+                           { setMb3('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
 
@@ -634,6 +637,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                           listMode="SCROLLVIEW"
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
@@ -685,6 +689,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                       listMode="SCROLLVIEW"
                           onPress={onComboboxPress1}
                           placeholder="Selecione a(s) Parte(s)"
@@ -735,6 +740,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                       listMode="SCROLLVIEW"
                           onPress={onComboboxPress2}
                           placeholder="Selecione a(s) Parte(s)"
@@ -787,6 +793,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                       listMode="SCROLLVIEW"
                           onPress={onComboboxPress3}
                           placeholder="Selecione a(s) Parte(s)"
@@ -850,7 +857,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                 setIsVidros(true);
               }
 
-              const [mb, setMb] = useState('2%');   
+              const [mb, setMb] = useState('8%');   
               const [combo, setCombo] = useState(0);  
 
               const onComboboxPress= () => {
@@ -862,7 +869,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                     console.log("Voce abriu o ComboBox");}
         
                 else
-               { setMb('2%'); 
+               { setMb('8%'); 
                 console.log("Voce fechou o ComboBox"); }
               }
 
@@ -903,6 +910,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                     paddingHorizontal: 15
                                   }}>
                                     <DropDownPicker
+                                    dropDownDirection="BOTTOM"
                                     listMode="SCROLLVIEW"
                                         onPress={onComboboxPress}
                                         placeholder="Selecione a(s) Parte(s)"
@@ -991,7 +999,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
               const [combo, setCombo] = useState(0); 
 
-              const [mb, setMb] = useState('2%');    
+              const [mb, setMb] = useState('8%');    
 
               const onComboboxPress= () => {
                 setCombo(combo+1);
@@ -1002,7 +1010,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                     console.log("Voce abriu o ComboBox");}
         
                 else
-               { setMb('2%'); 
+               { setMb('8%'); 
                 console.log("Voce fechou o ComboBox"); }
               }
         
@@ -1048,6 +1056,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                       listMode="SCROLLVIEW"
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
@@ -1114,7 +1123,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
               const [combo, setCombo] = useState(0); 
 
-              const [mb, setMb] = useState('2%');    
+              const [mb, setMb] = useState('8%');    
 
               const onComboboxPress= () => {
                 setCombo(combo+1);
@@ -1125,7 +1134,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                     console.log("Voce abriu o ComboBox");}
         
                 else
-               { setMb('2%'); 
+               { setMb('8%'); 
                 console.log("Voce fechou o ComboBox"); }
               }
         
@@ -1171,6 +1180,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                       listMode="SCROLLVIEW"
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
@@ -1259,7 +1269,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
             const [combo, setCombo] = useState(0); 
 
-            const [mb, setMb] = useState('2%');    
+            const [mb, setMb] = useState('8%');    
 
             const onComboboxPress= () => {
               setCombo(combo+1);
@@ -1270,7 +1280,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                   console.log("Voce abriu o ComboBox");}
       
               else
-             { setMb('2%'); 
+             { setMb('8%'); 
               console.log("Voce fechou o ComboBox"); }
             }
       
@@ -1314,6 +1324,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                   paddingHorizontal: 15
                                 }}>
                                   <DropDownPicker
+                                  dropDownDirection="BOTTOM"
                                   listMode="SCROLLVIEW"
                                       onPress={onComboboxPress}
                                       placeholder="Selecione a(s) Parte(s)"
@@ -1448,9 +1459,9 @@ import { createStackNavigator } from '@react-navigation/stack';
             const [combo1, setCombo1] = useState(0);  
             const [combo2, setCombo2] = useState(0);
 
-            const [mb, setMb] = useState('2%');    
-            const [mb1, setMb1] = useState('2%');
-            const [mb2, setMb2] = useState('2%');
+            const [mb, setMb] = useState('8%');    
+            const [mb1, setMb1] = useState('8%');
+            const [mb2, setMb2] = useState('8%');
 
             const onComboboxPress= () => {
               setCombo(combo+1);
@@ -1461,7 +1472,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                   console.log("Voce abriu o ComboBox");}
       
               else
-             { setMb('2%'); 
+             { setMb('8%'); 
               console.log("Voce fechou o ComboBox"); }
             }
       
@@ -1474,7 +1485,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                   console.log("Voce abriu o ComboBox");}
       
               else
-             { setMb1('2%'); 
+             { setMb1('8%'); 
               console.log("Voce fechou o ComboBox"); }
             }
       
@@ -1487,7 +1498,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                   console.log("Voce abriu o ComboBox");}
       
               else
-             { setMb2('2%'); 
+             { setMb2('8%'); 
               console.log("Voce fechou o ComboBox"); }
             }
 
@@ -1525,7 +1536,6 @@ import { createStackNavigator } from '@react-navigation/stack';
           const onGravar = () => {
             
             if(
-              // isFiled.bolareboque != '' && 
                isFiled.bowser != '' &&
                isFiled.camera != '' &&
                isFiled.carrocaria != '' &&
@@ -1542,30 +1552,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                isFiled.pr_socorros != '' &&
                isFiled.pressao != '' &&
                isFiled.travoes != '' &&
-               isFiled.vidros != '' 
-               /*
-               isFiled.razaoCarrocari.length != 0 &&
-               
-               isFiled.razaoCamera.length != 0 &&
-               
-               isFiled.razaoLuzes.length != 0 &&
-               
-               isFiled.razaoOleo.length != 0 &&
-               isFiled.razaoPneus.length != 0 &&
-               
-               isFiled.razaoPorcas.length != 0 &&
-              
-               isFiled.razaoPressao.length != 0 &&
-               isFiled.razaoTravoes.length != 0 &&
-               
-               isFiled.razaoVidros.length != 0 &&
-               isFiled.razaobolareboque.length != 0 &&
-               isFiled.razaocintoSeg.length != 0 &&
-               isFiled.razaoextintor.length != 0 &&
-               isFiled.razaosocorros.length != 0 &&
-              
-               isFiled.validade_extintor != '' 
-               */              
+               isFiled.vidros != ''          
                ){
                   if(temBowser)
                   navigate('FormBowser') as never;
@@ -1623,6 +1610,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                         listMode="SCROLLVIEW"
                             onPress={onComboboxPress}
                             placeholder="Selecione a(s) Parte(s)"
@@ -1694,6 +1682,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                         listMode="SCROLLVIEW"
                             onPress={onComboboxPress1}
                             placeholder="Selecione a(s) Parte(s)"
@@ -1743,6 +1732,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                         listMode="SCROLLVIEW"
                             onPress={onComboboxPress2}
                             placeholder="Selecione a(s) Parte(s)"
@@ -1760,7 +1750,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                           />
                         </View>}
 
-                        <VStack mt={'25%'} mx={'38%'}>
+                        <VStack mt={'7%'} mx={'38%'}>
                               <Button color={'#12375C'} title='Gravar' onPress={onGravar}/>
                         </VStack>  
                 </VStack>

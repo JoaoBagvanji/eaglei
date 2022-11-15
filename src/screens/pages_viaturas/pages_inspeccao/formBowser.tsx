@@ -347,12 +347,12 @@ const StackRoutes = createStackNavigator();
               const [combo4, setCombo4] = useState(0);
               const [combo5, setCombo5] = useState(0);   
 
-              const [mb, setMb] = useState('2%');    
-              const [mb1, setMb1] = useState('2%');
-              const [mb2, setMb2] = useState('2%');
-              const [mb3, setMb3] = useState('2%');
-              const [mb4, setMb4] = useState('2%');
-              const [mb5, setMb5] = useState('2%');
+              const [mb, setMb] = useState('8%');    
+              const [mb1, setMb1] = useState('8%');
+              const [mb2, setMb2] = useState('8%');
+              const [mb3, setMb3] = useState('8%');
+              const [mb4, setMb4] = useState('8%');
+              const [mb5, setMb5] = useState('8%');
 
                           const onComboboxPress= () => {
                             setCombo(combo+1);
@@ -363,7 +363,7 @@ const StackRoutes = createStackNavigator();
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb('2%'); 
+                           { setMb('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
                     
@@ -376,7 +376,7 @@ const StackRoutes = createStackNavigator();
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb1('2%'); 
+                           { setMb1('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
                     
@@ -389,7 +389,7 @@ const StackRoutes = createStackNavigator();
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb2('2%'); 
+                           { setMb2('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
                       
@@ -402,7 +402,7 @@ const StackRoutes = createStackNavigator();
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb3('2%'); 
+                           { setMb3('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
 
@@ -415,19 +415,20 @@ const StackRoutes = createStackNavigator();
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb4('2%'); 
+                           { setMb4('8%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
+
                           const onComboboxPress5= () => {
                             setCombo5(combo5+1);
                     
-                            if (combo5 % 2 != 0)
+                            if (combo5 % 2 === 0)
                             {
-                                setMb5('15%');
+                                setMb5('30%');
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb5('2%'); 
+                           { setMb5('15%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
                       
@@ -476,6 +477,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                          listMode="SCROLLVIEW"
                             onPress={onComboboxPress}
                             placeholder="Selecione a(s) Parte(s)"
@@ -527,6 +529,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                          listMode="SCROLLVIEW"
                             onPress={onComboboxPress1}
                             placeholder="Selecione a(s) Parte(s)"
@@ -577,6 +580,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                          listMode="SCROLLVIEW"
                             onPress={onComboboxPress2}
                             placeholder="Selecione a(s) Parte(s)"
@@ -629,6 +633,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                          listMode="SCROLLVIEW"
                             onPress={onComboboxPress3}
                             placeholder="Selecione a(s) Parte(s)"
@@ -679,6 +684,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                          listMode="SCROLLVIEW"
                             onPress={onComboboxPress4}
                             placeholder="Selecione a(s) Parte(s)"
@@ -730,6 +736,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        dropDownDirection="BOTTOM"
                          onPress={onComboboxPress5}
                          listMode="SCROLLVIEW"
                             placeholder="Selecione a(s) Parte(s)"
@@ -829,6 +836,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                        listMode="SCROLLVIEW"
                           placeholder="Selecione a(s) Parte(s)"
                           open={openLuzes}
@@ -912,10 +920,12 @@ const StackRoutes = createStackNavigator();
             const [combo, setCombo] = useState(0);  
             const [combo1, setCombo1] = useState(0);  
             const [combo2, setCombo2] = useState(0);
+            const [combo3, setCombo3] = useState(0);
 
-              const [mb, setMb] = useState('2%');    
-              const [mb1, setMb1] = useState('2%');
-              const [mb2, setMb2] = useState('2%');
+              const [mb, setMb] = useState('8%');    
+              const [mb1, setMb1] = useState('8%');
+              const [mb2, setMb2] = useState('8%');
+              const [mb3, setMb3] = useState('8%');
 
               const onComboboxPress= () => {
                 setCombo(combo+1);
@@ -926,7 +936,7 @@ const StackRoutes = createStackNavigator();
                     console.log("Voce abriu o ComboBox");}
         
                 else
-               { setMb('2%'); 
+               { setMb('8%'); 
                 console.log("Voce fechou o ComboBox"); }
               }
         
@@ -939,7 +949,7 @@ const StackRoutes = createStackNavigator();
                     console.log("Voce abriu o ComboBox");}
         
                 else
-               { setMb1('2%'); 
+               { setMb1('8%'); 
                 console.log("Voce fechou o ComboBox"); }
               }
         
@@ -952,10 +962,22 @@ const StackRoutes = createStackNavigator();
                     console.log("Voce abriu o ComboBox");}
         
                 else
-               { setMb2('2%'); 
+               { setMb2('8%'); 
                 console.log("Voce fechou o ComboBox"); }
               }
 
+              const onComboboxPress3= () => {
+                setCombo3(combo3+1);
+        
+                if (combo3 % 2 === 0)
+                {
+                    setMb3('26%');
+                    console.log("Voce abriu o ComboBox");}
+        
+                else
+               { setMb3('8%'); 
+                console.log("Voce fechou o ComboBox"); }
+              }
 
               const [isBomba, setIsBomba] = useState(false);
             const [isPistola, setIsPistola] = useState(false);
@@ -1051,6 +1073,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                        listMode="SCROLLVIEW"
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
@@ -1102,6 +1125,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                           onPress={onComboboxPress1}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openPis}
@@ -1151,6 +1175,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                          dropDownDirection="BOTTOM"
                           onPress={onComboboxPress2}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openMan}
@@ -1195,13 +1220,15 @@ const StackRoutes = createStackNavigator();
                         </HStack>
                         
                         { isContador && <View style={{
-                        marginBottom: mb1,
+                        marginBottom: mb3,
                         backgroundColor: 'transparent',
                         alignItems: 'center',
                         justifyContent: 'center',
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        onPress={onComboboxPress3}
+                        dropDownDirection="BOTTOM"
                             placeholder="Selecione a(s) Parte(s)"
                             open={openCont}
                             value={valueCont}
@@ -1300,6 +1327,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                        listMode="SCROLLVIEW"
                           placeholder="Selecione a(s) Parte(s)"
                           open={openSitema}
@@ -1401,6 +1429,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                        listMode="SCROLLVIEW"
                           placeholder="Selecione a(s) Parte(s)"
                           open={openMolas}
@@ -1509,10 +1538,6 @@ const StackRoutes = createStackNavigator();
 
               <VStack mt={'5%'}>
 
-                <Text>
-                  {isFilled.contador}_{isFilled.sistema}_{isFilled.molas}_{isFilled.folgas}
-                </Text>
-
               <HStack justifyContent={'space-evenly'} alignItems={'center'}>
                               <Text fontFamily={fonts.body}>Folgas no Cubo</Text>
 
@@ -1546,6 +1571,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      dropDownDirection="BOTTOM"
                        listMode="SCROLLVIEW"
                           placeholder="Selecione a(s) Parte(s)"
                           open={openFolgas}
