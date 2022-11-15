@@ -71,10 +71,10 @@ import { createStackNavigator } from '@react-navigation/stack';
             
 
           return (
-          <VStack style={styles.container}>
+          <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}> DADOS GERAIS</Text>
 
-              <ScrollView>
+              
                     <View style={styles.formContainer}>
 
       <TextInput
@@ -137,10 +137,10 @@ import { createStackNavigator } from '@react-navigation/stack';
           label="DATA E HORA"/>
 
                     </View>
-              </ScrollView>
+            
               
 
-              </VStack>
+              </ScrollView>
               );
 
               
@@ -176,6 +176,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 
               else
             { setMb('2%'); 
+              console.log("Voce fechou o ComboBox"); }
+            }
+            const onComboboxPress1= () => {
+              setCombo1(combo1+1);
+      
+              if (combo1 % 2 === 0)
+              {
+                  setMb1('15%');
+                  console.log("Voce abriu o ComboBox");}
+      
+              else
+             { setMb1('2%'); 
               console.log("Voce fechou o ComboBox"); }
             }
 
@@ -249,12 +261,12 @@ import { createStackNavigator } from '@react-navigation/stack';
                   }
 
                 return (
-                  <VStack style={styles.container}>
+                  <ScrollView style={styles.container}>
 
                   <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>CARROÇARIA</Text>
 
                           <HStack mt={'5%'} alignItems={'center'} justifyContent={'space-evenly'}>
-                            <Text fontFamily={fonts.body}>&nbsp;Carroçaria&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                            <Text fontFamily={fonts.body}>&nbsp;Carroçaria&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
 
                                     <HStack alignItems={'center'}>
                                       <RadioButton
@@ -290,6 +302,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                           paddingHorizontal: 15
                         }}>
                           <DropDownPicker
+                          listMode="SCROLLVIEW"
                               textStyle={{
                                 fontSize: 14
                               }}
@@ -311,7 +324,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
                           
                           <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                            <Text fontFamily={fonts.body}>&nbsp;&nbsp;Bowser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                            <Text fontFamily={fonts.body}>&nbsp;&nbsp;Bowser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
 
                                     <HStack alignItems={'center'}>
                                       <RadioButton
@@ -377,6 +390,8 @@ import { createStackNavigator } from '@react-navigation/stack';
                           paddingHorizontal: 15
                         }}>
                           <DropDownPicker
+                          listMode="SCROLLVIEW"
+                          onPress={onComboboxPress1}
                               placeholder="Selecione a(s) Parte(s)"
                               open={openReb}
                               value={valueReb}
@@ -398,7 +413,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                           
               
 
-              </VStack>
+              </ScrollView>
             );
           }
 
@@ -583,7 +598,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>RODAS</Text>
 
                       <HStack justifyContent={'space-evenly'} mt={'5%'}>
@@ -619,6 +634,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                          listMode="SCROLLVIEW"
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openPneu}
@@ -669,6 +685,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      listMode="SCROLLVIEW"
                           onPress={onComboboxPress1}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openPre}
@@ -718,6 +735,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      listMode="SCROLLVIEW"
                           onPress={onComboboxPress2}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openPorca}
@@ -769,6 +787,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      listMode="SCROLLVIEW"
                           onPress={onComboboxPress3}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openTrav}
@@ -785,7 +804,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                         />
                       </View>}
 
-          </VStack>
+          </ScrollView>
             );
           }
 
@@ -848,7 +867,7 @@ import { createStackNavigator } from '@react-navigation/stack';
               }
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
                             <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
                             >VIDROS/ESPELHOS</Text>
 
@@ -884,6 +903,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                     paddingHorizontal: 15
                                   }}>
                                     <DropDownPicker
+                                    listMode="SCROLLVIEW"
                                         onPress={onComboboxPress}
                                         placeholder="Selecione a(s) Parte(s)"
                                         open={openVidro}
@@ -926,7 +946,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                     </HStack>
 
 
-                        </VStack>
+                        </ScrollView>
             );
           }
 
@@ -988,7 +1008,7 @@ import { createStackNavigator } from '@react-navigation/stack';
         
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
               >LUZES</Text>
 
@@ -1028,6 +1048,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      listMode="SCROLLVIEW"
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openLuzes}
@@ -1046,7 +1067,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                             
               </VStack>
 
-          </VStack>
+          </ScrollView>
           
             );
           }
@@ -1110,7 +1131,7 @@ import { createStackNavigator } from '@react-navigation/stack';
         
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>MOTOR</Text>
 
               <VStack mt={'5%'}>
@@ -1150,6 +1171,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                      listMode="SCROLLVIEW"
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openOleo}
@@ -1193,7 +1215,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
               </VStack>
 
-          </VStack>
+          </ScrollView>
             );
           }
 
@@ -1254,7 +1276,7 @@ import { createStackNavigator } from '@react-navigation/stack';
       
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
                             <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
                             >CAMERA</Text>
                             
@@ -1292,6 +1314,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                   paddingHorizontal: 15
                                 }}>
                                   <DropDownPicker
+                                  listMode="SCROLLVIEW"
                                       onPress={onComboboxPress}
                                       placeholder="Selecione a(s) Parte(s)"
                                       open={openCam}
@@ -1335,7 +1358,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
                             </VStack>
 
-                        </VStack>
+                        </ScrollView>
             );
           }
 
@@ -1562,7 +1585,7 @@ import { createStackNavigator } from '@react-navigation/stack';
         
             return (
 
-                <VStack style={styles.container}>
+                <ScrollView style={styles.container}>
                 <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
                 >SEGURANÇA</Text>
 
@@ -1600,6 +1623,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        listMode="SCROLLVIEW"
                             onPress={onComboboxPress}
                             placeholder="Selecione a(s) Parte(s)"
                             open={openExt}
@@ -1670,6 +1694,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        listMode="SCROLLVIEW"
                             onPress={onComboboxPress1}
                             placeholder="Selecione a(s) Parte(s)"
                             open={openPri}
@@ -1718,6 +1743,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                        listMode="SCROLLVIEW"
                             onPress={onComboboxPress2}
                             placeholder="Selecione a(s) Parte(s)"
                             open={openCinto}
@@ -1734,12 +1760,12 @@ import { createStackNavigator } from '@react-navigation/stack';
                           />
                         </View>}
 
-                        <VStack mt={'30%'} mx={'38%'}>
+                        <VStack mt={'25%'} mx={'38%'}>
                               <Button color={'#12375C'} title='Gravar' onPress={onGravar}/>
                         </VStack>  
                 </VStack>
 
-                 </VStack> 
+                 </ScrollView> 
             );
           }
 
@@ -1768,6 +1794,8 @@ import { createStackNavigator } from '@react-navigation/stack';
                 );
 
           }
+
+
 
 
           const Tab = createMaterialTopTabNavigator();

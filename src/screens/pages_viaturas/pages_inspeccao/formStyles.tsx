@@ -4,9 +4,10 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container:{
         flex: 1, 
+        flexDirection:'column',
         alignContent:'center',
         marginBottom:'20%',
-        backgroundColor:'white'
+        backgroundColor:'white',
     },
     formContainer: {
         marginTop: '10%'

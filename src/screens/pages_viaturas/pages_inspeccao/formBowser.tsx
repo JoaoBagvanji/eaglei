@@ -101,7 +101,7 @@ const StackRoutes = createStackNavigator();
   
 
               return (
-                <VStack style={styles.container}>
+                <ScrollView style={styles.container}>
                     <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}> DADOS GERAIS</Text>
       
                           <View style={styles.formContainer}>
@@ -174,7 +174,7 @@ const StackRoutes = createStackNavigator();
                     
                           </View>
                
-                    </VStack>
+                    </ScrollView>
                     );
 
         }
@@ -407,17 +407,30 @@ const StackRoutes = createStackNavigator();
                           }
 
                           const onComboboxPress4= () => {
-                            setCombo2(combo2+1);
+                            setCombo4(combo4+1);
                     
-                            if (combo2 % 2 === 0)
+                            if (combo4 % 2 === 0)
                             {
-                                setMb2('26%');
+                                setMb4('26%');
                                 console.log("Voce abriu o ComboBox");}
                     
                             else
-                           { setMb2('2%'); 
+                           { setMb4('2%'); 
                             console.log("Voce fechou o ComboBox"); }
                           }
+                          const onComboboxPress5= () => {
+                            setCombo5(combo5+1);
+                    
+                            if (combo5 % 2 != 0)
+                            {
+                                setMb5('15%');
+                                console.log("Voce abriu o ComboBox");}
+                    
+                            else
+                           { setMb5('2%'); 
+                            console.log("Voce fechou o ComboBox"); }
+                          }
+                      
                       
                          
 
@@ -425,7 +438,7 @@ const StackRoutes = createStackNavigator();
 
 
             return (
-                <VStack style={styles.container}>
+                <ScrollView style={styles.container}>
                 <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>RODAS</Text>
 
               
@@ -463,6 +476,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                         listMode="SCROLLVIEW"
                             onPress={onComboboxPress}
                             placeholder="Selecione a(s) Parte(s)"
                             open={openPneu}
@@ -513,6 +527,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                         listMode="SCROLLVIEW"
                             onPress={onComboboxPress1}
                             placeholder="Selecione a(s) Parte(s)"
                             open={openJan}
@@ -562,6 +577,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                         listMode="SCROLLVIEW"
                             onPress={onComboboxPress2}
                             placeholder="Selecione a(s) Parte(s)"
                             open={openPorca}
@@ -613,6 +629,7 @@ const StackRoutes = createStackNavigator();
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                         listMode="SCROLLVIEW"
                             onPress={onComboboxPress3}
                             placeholder="Selecione a(s) Parte(s)"
                             open={openTrav}
@@ -655,13 +672,14 @@ const StackRoutes = createStackNavigator();
                         </HStack>        
                         
                         { isSuplente && <View style={{
-                        marginBottom: mb,
+                        marginBottom: mb4,
                         backgroundColor: 'transparent',
                         alignItems: 'center',
                         justifyContent: 'center',
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                         listMode="SCROLLVIEW"
                             onPress={onComboboxPress4}
                             placeholder="Selecione a(s) Parte(s)"
                             open={openSup}
@@ -705,13 +723,15 @@ const StackRoutes = createStackNavigator();
                         </HStack>
                         
                         { isDescanso && <View style={{
-                        marginBottom: mb1,
+                        marginBottom: mb5,
                         backgroundColor: 'transparent',
                         alignItems: 'center',
                         justifyContent: 'center',
                         paddingHorizontal: 15
                       }}>
                         <DropDownPicker
+                         onPress={onComboboxPress5}
+                         listMode="SCROLLVIEW"
                             placeholder="Selecione a(s) Parte(s)"
                             open={openDes}
                             value={valueDes}
@@ -727,7 +747,7 @@ const StackRoutes = createStackNavigator();
                           />
                         </View>}
 
-                </VStack>
+                </ScrollView>
             );
 
           }
@@ -771,7 +791,7 @@ const StackRoutes = createStackNavigator();
               }
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>LUZES</Text>
 
               <VStack mt={'5%'}>
@@ -809,6 +829,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                       listMode="SCROLLVIEW"
                           placeholder="Selecione a(s) Parte(s)"
                           open={openLuzes}
                           value={valueLuzes}
@@ -826,7 +847,7 @@ const StackRoutes = createStackNavigator();
                             
               </VStack>
 
-          </VStack>
+          </ScrollView>
           
          );
           }
@@ -992,7 +1013,7 @@ const StackRoutes = createStackNavigator();
 
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>SISTEMA DE ABASTECIMENTO</Text>
 
             
@@ -1030,6 +1051,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                       listMode="SCROLLVIEW"
                           onPress={onComboboxPress}
                           placeholder="Selecione a(s) Parte(s)"
                           open={openBomba}
@@ -1195,7 +1217,7 @@ const StackRoutes = createStackNavigator();
                           />
                         </View>}
 
-                </VStack>
+                </ScrollView>
                       
             );
           }
@@ -1239,7 +1261,7 @@ const StackRoutes = createStackNavigator();
              
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
               >SISTEMA DE ENGATE</Text>
 
@@ -1278,6 +1300,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                       listMode="SCROLLVIEW"
                           placeholder="Selecione a(s) Parte(s)"
                           open={openSitema}
                           value={valueSitema}
@@ -1295,7 +1318,7 @@ const StackRoutes = createStackNavigator();
                             
               </VStack>
 
-          </VStack>
+          </ScrollView>
           
             );
           }
@@ -1340,7 +1363,7 @@ const StackRoutes = createStackNavigator();
               }
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>MOLAS DE SUSPENSÃO</Text>
 
               <VStack mt={'5%'}>
@@ -1378,6 +1401,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                       listMode="SCROLLVIEW"
                           placeholder="Selecione a(s) Parte(s)"
                           open={openMolas}
                           value={valueMolas}
@@ -1395,7 +1419,7 @@ const StackRoutes = createStackNavigator();
                             
               </VStack>
 
-          </VStack>
+          </ScrollView>
           
             );
 
@@ -1479,7 +1503,7 @@ const StackRoutes = createStackNavigator();
              
 
             return (
-              <VStack style={styles.container}>
+              <ScrollView style={styles.container}>
               <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
               >FOLGAS NO CUBO</Text>
 
@@ -1522,6 +1546,7 @@ const StackRoutes = createStackNavigator();
                       paddingHorizontal: 15
                     }}>
                       <DropDownPicker
+                       listMode="SCROLLVIEW"
                           placeholder="Selecione a(s) Parte(s)"
                           open={openFolgas}
                           value={valueFolgas}
@@ -1543,7 +1568,7 @@ const StackRoutes = createStackNavigator();
                               <Button color={'#12375C'} title='Gravar' onPress={onGravar}/>
                         </VStack>  
 
-          </VStack>
+          </ScrollView>
           
             );
 
