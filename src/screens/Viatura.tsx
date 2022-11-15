@@ -76,7 +76,7 @@ export  function Viatura() {
                 entre as viaturas
             </Text>
             </View>
-            <Icon as ={<Car color={colors.green[700]}/>} />
+            <Icon as ={<Car color={colors.blueGray[400]}/>} />
         </HStack>
    
     </VStack>

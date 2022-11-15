@@ -48,6 +48,13 @@ export function Tarefa() {
         navigate : (value: string) => void;
     }
       
+<<<<<<< HEAD
+      const { navigate } = useNavigation<Nav>()
+      
+    
+        const { fonts } = useTheme();
+        const { colors } = useTheme();
+=======
     const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -57,6 +64,7 @@ export function Tarefa() {
      
         navigate(item.component_name) as never
     }
+>>>>>>> 1d98468746d311f53a4972dece5e11a1aa7e5846
 
   return (
 <VStack flex={1} pb={6} bg="white">
@@ -73,7 +81,7 @@ export function Tarefa() {
             entre as Tarefas
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.green[700]}/>} />
+            <Icon as ={<Wrench color={colors.blueGray[400]}/>} />
         </HStack>
    
     </VStack>

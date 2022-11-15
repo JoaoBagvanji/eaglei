@@ -5,8 +5,10 @@ import { useFonts, Montserrat_400Regular, Montserrat_600SemiBold } from '@expo-g
 import { THEME } from './src/styles/theme';
 import { Loading } from './src/components/Loading';
 import Routes from './src/routes';
+import React from 'react';
 
 
+console.warn = () => {}
 
 export default function App() {
 

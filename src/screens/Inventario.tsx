@@ -21,7 +21,11 @@ import Inventarios from './Inventarios';
 
 
 const Stack = createStackNavigator();
+<<<<<<< HEAD
+const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
+=======
 
+>>>>>>> 1d98468746d311f53a4972dece5e11a1aa7e5846
 
 const inventarios = [
 
@@ -58,10 +62,20 @@ export default function MyStack() {
   }
 
 export  function Inventario() {
+
     type Nav ={
         navigate : (value: string) => void;
     }
       
+<<<<<<< HEAD
+      const { navigate } = useNavigation<Nav>()
+      
+    
+        const { fonts } = useTheme();
+        const { colors } = useTheme();
+        const [loadingMore, setLoadingMore] = useState(false);
+        
+=======
     const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -74,6 +88,7 @@ export  function Inventario() {
         navigate(posicao.name) as never
     }
 
+>>>>>>> 1d98468746d311f53a4972dece5e11a1aa7e5846
   return (
 <VStack flex={1} pb={6} bg="white">
 
@@ -87,11 +102,35 @@ export  function Inventario() {
                 entre os Inventarios
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.green[700]}/>} />
+            <Icon as ={<Wrench color={colors.blueGray[400]}/>} />
         </HStack>
    
     </VStack>
 
+<<<<<<< HEAD
+        <VStack flex={5}>
+            <SafeAreaView>
+                <FlatList
+                    numColumns={2} 
+                    data={inventarios} 
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={ ( {item} ) => (
+                    <RectButton 
+                    style={styles.container}>
+                        <Inventarios inventario={item}/>
+                    </RectButton>
+                    )}
+                    showsVerticalScrollIndicator ={false}
+                    onEndReachedThreshold={0.1}
+                    ListFooterComponent ={
+                        loadingMore 
+                        ? <ActivityIndicator color={colors.green[700]} />
+                        : <></>
+    
+                    }
+                />
+            </SafeAreaView>
+=======
         <VStack flex={4} mx={2}>
                 <SafeAreaView>
                         <FlatList
@@ -109,6 +148,7 @@ export  function Inventario() {
                             }
                         />
                 </SafeAreaView>
+>>>>>>> 1d98468746d311f53a4972dece5e11a1aa7e5846
         </VStack>
 
 </VStack>  );

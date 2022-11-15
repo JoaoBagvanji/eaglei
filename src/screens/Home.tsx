@@ -20,11 +20,11 @@ export function Home() {
   //   return <Load />
   
   return (
-    <VStack flex={1} pb={6} bg="white">
+    <VStack flex={1} bg="white">
       
 
       <VStack flex={1} px={6}>
-        <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+        <HStack w="full" justifyContent="space-between" alignItems='center' flexDirection="row">
           <View>
           <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
             Navegue 
@@ -37,28 +37,10 @@ export function Home() {
         </HStack>
       </VStack>
 
-      <SafeAreaView style={styles.container}>
-        
-        <View flex={1} alignItems='center' justifyContent='center' display='flex' flexDirection='column'>
+      <HStack>
 
-            <Image source={missaoImg} resizeMode='contain' height={Dimensions.get('window').width * 0.7} alt='Missao e Visao'/>
-            <Image source={innoqImage} resizeMode='contain' height={Dimensions.get('window').width * 0.7} alt='Inno'/>
-
-            
-          
-        </View>
-
-      </SafeAreaView>
-
-
-
+      </HStack>
 
     </VStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-  },
-})
