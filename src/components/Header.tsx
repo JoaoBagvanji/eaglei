@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { VStack, HStack, IconButton, useTheme, Image, Text, View } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import  userImg  from '../assets/Joao.png';
+import  userImg  from '../assets/helio.png';
 import Logo from '../assets/eagle I 1.svg' ;
 
 
@@ -12,15 +12,6 @@ export function Header() {
     const { fonts } = useTheme();
     const [userName, setUserName] = useState<string>();
 
-
-    useEffect(()=>{
-        async function loadStorageUserName(){
-            const user = await AsyncStorage.getItem('@eaglei:user');
-            setUserName(user || "");
-        }
-
-        loadStorageUserName();
-    },[]);
 
   return (
     <VStack flex={1} pb={6} bg="white">
@@ -52,7 +43,7 @@ export function Header() {
                     fontSize='sm'
                     fontWeight='semibold'
                 >
-                    João Bagvanji Jr.
+                    Helio Mahesse.
                 </Text>
            </View>
             

@@ -3,8 +3,20 @@
     "name": "eaglei",
     "slug": "eaglei",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.comserv.eagleI"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

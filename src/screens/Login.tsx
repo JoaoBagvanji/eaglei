@@ -15,6 +15,7 @@ import axios from 'axios';
 import Logo from '../assets/eagle I 1.svg' ;
 import { Button } from '../components/Button';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
 
 const config = {
     header: {
@@ -48,6 +49,7 @@ export default function Login({history}){
     //       history.push("/");
     //     }
     //   }, [history]);
+    
     const loginUser = async (email, senha) => {
         
          

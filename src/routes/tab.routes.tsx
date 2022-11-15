@@ -1,24 +1,34 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTheme, Icon } from 'native-base';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Car, House, Package, Gear, Users as Usuarios, Truck, Wrench } from 'phosphor-react-native'
+import { useTheme, Icon, HStack, VStack } from 'native-base';
+
+import {  House, Package, Users as Usuarios, Truck, Wrench } from 'phosphor-react-native'
 
 import { Home } from '../screens/Home';
 
 import  Inventario  from '../screens/Inventario';
-import  Viaturas  from '../screens/Viaturas';
+import  Viatura  from '../screens/Viatura';
 import  Users  from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
+<<<<<<< HEAD
 
 
 import * as Animatable from 'react-native-animatable';
+=======
+import { Header } from '../components/Header';
+>>>>>>> 1d98468746d311f53a4972dece5e11a1aa7e5846
 
 const AppTab = createBottomTabNavigator();
 
 export default function AuthRoutes() {
+ 
     const { colors } = useTheme();
+
     return(
+        <>
+           <HStack>
+                <Header />
+            </HStack>
         <AppTab.Navigator
             screenOptions={{
                 tabBarActiveTintColor: colors.green[700],
@@ -55,7 +65,7 @@ export default function AuthRoutes() {
                 />
                 <AppTab.Screen 
                     name='Viatura'
-                    component={Viaturas}
+                    component={Viatura}
                     options={{
                         tabBarIcon:(({ size, color})=>(
                             <Icon as ={<Truck color={color} size={size}/>} />
@@ -96,5 +106,6 @@ export default function AuthRoutes() {
                 
 
         </AppTab.Navigator>
+        </>
     )
 }
