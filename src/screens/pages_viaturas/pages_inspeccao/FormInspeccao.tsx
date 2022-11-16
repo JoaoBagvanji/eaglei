@@ -1383,7 +1383,7 @@ export default function FormInspeccao() {
                                             <DateTimePicker
                                               testID='dateTimePicker'
                                               value={date}
-                                              mode={mode}
+                                              mode='time'
                                               is24Hour={true}
                                               display='default'
                                               onChange={onChange}
