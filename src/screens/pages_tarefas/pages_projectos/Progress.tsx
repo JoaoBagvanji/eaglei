@@ -9,6 +9,7 @@ import Questions from '../pagesforms/Questions';
 import Gerador from './pages/Gerador';
 import Credelec from './pages/Credelec';
 import Spares from './pages/Spares';
+import Submit from './pages/Submit';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +20,8 @@ export default function MyStack() {
              initialRouteName='Progress'>
          <Stack.Screen name="Gerador" component={Gerador} />
          <Stack.Screen name="Credelec" component={Credelec} />
-         <Stack.Screen name="Spares" component={Spares} />      
+         <Stack.Screen name="Spares" component={Spares} />
+         <Stack.Screen name="Submit" component={Submit} />      
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Progress" component={Progress} />
      </Stack.Navigator>
@@ -49,6 +51,10 @@ function handleTelaCredelec(){
 
 function handleTelaSpares(){
   navigate('Spares') as never;
+}
+
+function handleTelaSubmit(){
+  navigate('Submit') as never;
 }
 
     const data = [
@@ -157,7 +163,10 @@ function handleTelaSpares(){
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon5}</Icon>
+                  <TouchableOpacity onPress={handleTelaSubmit}>
+                    <Icon>{item.icon5}</Icon>
+                  </TouchableOpacity>
+                  
                 </View>
 
                 
