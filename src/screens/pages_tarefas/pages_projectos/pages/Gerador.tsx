@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon  } from 'native-base';
-import { Lightning,Check, User, FloppyDisk  } from 'phosphor-react-native'
-import { TextInput } from 'react-native-paper'
+import { Lightning, FloppyDisk  } from 'phosphor-react-native'
 
 
-import {  StyleSheet, KeyboardAvoidingView,Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
-import colors from "../../../../styles/colors";
-import fonts from "../../../../styles/fonts";
+
+import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
+
 import Horas from '../../../../components/Horas';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import HorasReabastecimento from '../../../../components/HorasReabastecimento';

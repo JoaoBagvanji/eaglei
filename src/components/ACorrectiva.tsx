@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useTheme } from "native-base";
-import { CurrencyCircleDollar } from 'phosphor-react-native';
+import { CircleWavyCheck } from 'phosphor-react-native';
 
-const Preco = ({ value, setValue}) => {
+const ACorrectiva = ({ value, setValue}) => {
 
     const { colors } = useTheme();
     const { fonts } = useTheme();
@@ -16,10 +16,10 @@ const Preco = ({ value, setValue}) => {
           outlineColor='#cce3f9'
           activeOutlineColor='#12375C' 
           underlineColor='#12375C' 
-          left={<TextInput.Icon icon={CurrencyCircleDollar}
+          left={<TextInput.Icon icon={CircleWavyCheck}
           color={colors.green[600]} />}
           mode="outlined"
-          label="Preço por (Litros)"
+          label="Acção Correctiva"
           theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
           value={value}
           onChangeText={(text) => setValue(text)}
@@ -42,4 +42,4 @@ const styles= StyleSheet.create({
     },
   })
 
-export default Preco;
+export default ACorrectiva;
