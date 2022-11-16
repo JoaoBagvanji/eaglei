@@ -1376,6 +1376,29 @@ import { createStackNavigator } from '@react-navigation/stack';
           }
 
 
+                                    {!isExt && <View>
+                                        <Text style={{fontWeight:'bold', fontSize:20}}>Validade: {text}</Text>
+
+                                        <View>
+                                           <Button title='Escolher data' onPress={() => showMode('date')}  />
+                                        </View>  
+
+                                        {
+                                          show && (
+                                            <DateTimePicker
+                                              testID='dateTimePicker'
+                                              value={date}
+                                              mode='time'
+                                              is24Hour={true}
+                                              display='default'
+                                              onChange={onChange}
+                                            />
+                                            
+                                          )
+                                        }                                        
+                                    </View>}
+
+
 
 
 
