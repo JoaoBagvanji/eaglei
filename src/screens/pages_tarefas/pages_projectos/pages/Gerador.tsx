@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon  } from 'native-base';
-import { Lightning,Check, User  } from 'phosphor-react-native'
+import { Lightning,Check, User, FloppyDisk  } from 'phosphor-react-native'
 import { TextInput } from 'react-native-paper'
 
 
@@ -14,6 +14,7 @@ import HorasFuncionamento from '../../../../components/HorasFuncionamento';
 import HorasAtuais from '../../../../components/HorasAtuais';
 import Reabastecimento from '../../../../components/Reabastecimento';
 import Preco from '../../../../components/Preco';
+import { Button } from '../../../../components/Button';
 
 export default function Gerador() {
     const { fonts } = useTheme();
@@ -147,6 +148,12 @@ export default function Gerador() {
                                 <Select.Item label="No" value="no" />
                                 </Select>
                             </Box>
+                        </View>
+                        <View style={styles.uinputView}>
+                            <Button
+                            title='Guardar'
+                            leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} ml={4}/>}
+                            />
                         </View>
                 </ScrollView>
             </KeyboardAvoidingView>

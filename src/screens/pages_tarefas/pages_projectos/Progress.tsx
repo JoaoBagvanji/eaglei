@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import Questions from '../pagesforms/Questions';
 import Gerador from './pages/Gerador';
+import Credelec from './pages/Credelec';
 
 const Stack = createStackNavigator();
 
@@ -15,7 +16,8 @@ export default function MyStack() {
    <NavigationContainer independent={true}>
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Progress'>
-         <Stack.Screen name="Gerador" component={Gerador} />     
+         <Stack.Screen name="Gerador" component={Gerador} />
+         <Stack.Screen name="Credelec" component={Credelec} />     
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Progress" component={Progress} />
      </Stack.Navigator>
@@ -38,7 +40,10 @@ function handleTelas(){
 function handleTelaGerador(){
   navigate('Gerador') as never;
 }
-  
+
+function handleTelaCredelec(){
+  navigate('Credelec') as never;
+}
   
     const data = [
         {
@@ -129,7 +134,10 @@ function handleTelaGerador(){
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
+                  <TouchableOpacity onPress={handleTelaCredelec}>
+                    <Icon>{item.icon2}</Icon>
+                  </TouchableOpacity>
+                  
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
