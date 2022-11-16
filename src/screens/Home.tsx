@@ -37,10 +37,30 @@ export function Home() {
         </HStack>
       </VStack>
 
-      <HStack>
+      <SafeAreaView style={styles.container}>
+        
+        <View flex={1} alignItems='center'  justifyContent='center'>
+            <View  alignItems='center'  justifyContent='center'>
+              <Image source={missaoImg} resizeMode='contain' height={Dimensions.get('window').width * 0.6} alt='Missao e Visao'/>
+              <Image source={innoqImage} resizeMode='contain' height={Dimensions.get('window').width * 0.4} alt='Inno'/>
+            </View>
+        </View>
 
-      </HStack>
+      </SafeAreaView>
+
+
+
 
     </VStack>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+      aligItems:'center',
+      display:'flex',
+      flexDirection:'column',
+      marginBottom: '64%'
+
+  },
+})
