@@ -21,11 +21,7 @@ import Inventarios from './Inventarios';
 
 
 const Stack = createStackNavigator();
-<<<<<<< HEAD
-const ImagemEstac= 'https://images.unsplash.com/photo-1662581871665-f299ba8ace07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80'
-=======
 
->>>>>>> 1d98468746d311f53a4972dece5e11a1aa7e5846
 
 const inventarios = [
 

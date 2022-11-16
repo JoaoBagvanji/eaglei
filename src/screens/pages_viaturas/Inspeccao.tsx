@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { MagnifyingGlass, Plus } from 'phosphor-react-native'
 import { Header } from '../../components/Header';
@@ -9,7 +9,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import FormInspeccao from './pages_inspeccao/FormInspeccao';
+import FormInspeccao from '../../routes/insp.routes';
+import FormBowser from '../../routes/bowser.routes';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default function MyStack() {
                initialRouteName='Inspeccao('>
            <Stack.Screen name="Inspeccao" component={Inspeccao} />
            <Stack.Screen name="FormInspeccao" component={FormInspeccao} />
+           <Stack.Screen name="FormBowser" component={FormBowser} />
        </Stack.Navigator>
      </NavigationContainer>
    );
@@ -36,6 +38,12 @@ export function Inspeccao() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
     
+    const navigation = useNavigation();
+
+    useEffect(()=>{
+        navigation.goBack; 
+    },[]);
+
 
 
   return (
@@ -60,7 +68,6 @@ export function Inspeccao() {
                 <Plus size={22} color={colors.green[700]} />
             </TouchableOpacity>
        </VStack>
-            
 
     </VStack>
   );
