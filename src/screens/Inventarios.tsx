@@ -21,6 +21,7 @@ class Inventarios extends React.Component<any, any> {
 }
 
 export default Inventarios;
+
 const styles = StyleSheet.create({
     text:{   
         textAlign: 'center',

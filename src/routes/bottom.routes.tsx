@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTheme, Icon, HStack, VStack } from 'native-base';
+import { useTheme, Icon, HStack} from 'native-base';
 
 import {  House, Package, Users as Usuarios, Truck, Wrench } from 'phosphor-react-native'
 
@@ -10,6 +10,9 @@ import  Inventario  from '../screens/Inventario';
 import  Viatura  from '../screens/Viatura';
 import  Users  from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
+
+
+import * as Animatable from 'react-native-animatable';
 import { Header } from '../components/Header';
 
 const AppTab = createBottomTabNavigator();

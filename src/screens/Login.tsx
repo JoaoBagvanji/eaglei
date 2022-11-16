@@ -72,7 +72,7 @@ export default function Login({history}){
 
     return(
         <VStack flex={1} alignItems="center" bg="white" px={8} pt={8} justifyContent='center'>
-            < Logo />
+            < Logo/>
             <HStack  mb={4} justifyContent="center" alignItems='center'>
                 <Text fontFamily={fonts.heading} color="secondary.700" fontSize="xl" mt={20} mb={6} alignItems='center'>
                     Acesse a tua conta
