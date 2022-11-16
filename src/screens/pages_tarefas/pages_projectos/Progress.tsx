@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Questions from '../pagesforms/Questions';
 import Gerador from './pages/Gerador';
 import Credelec from './pages/Credelec';
+import Spares from './pages/Spares';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,8 @@ export default function MyStack() {
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Progress'>
          <Stack.Screen name="Gerador" component={Gerador} />
-         <Stack.Screen name="Credelec" component={Credelec} />     
+         <Stack.Screen name="Credelec" component={Credelec} />
+         <Stack.Screen name="Spares" component={Spares} />      
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Progress" component={Progress} />
      </Stack.Navigator>
@@ -44,7 +46,11 @@ function handleTelaGerador(){
 function handleTelaCredelec(){
   navigate('Credelec') as never;
 }
-  
+
+function handleTelaSpares(){
+  navigate('Spares') as never;
+}
+
     const data = [
         {
             id: 1,
@@ -102,7 +108,7 @@ function handleTelaCredelec(){
     ];
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
-    const [ showPosition, setShowPosition ] = useState()
+    
 
 
     async function handleDropDownItems(position){
@@ -137,11 +143,13 @@ function handleTelaCredelec(){
                   <TouchableOpacity onPress={handleTelaCredelec}>
                     <Icon>{item.icon2}</Icon>
                   </TouchableOpacity>
-                  
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon3}</Icon>
+                  <TouchableOpacity onPress={handleTelaSpares}>
+                    <Icon>{item.icon3}</Icon>
+                  </TouchableOpacity>
+                  
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
