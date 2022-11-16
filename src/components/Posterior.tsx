@@ -19,7 +19,7 @@ const Posterior = ({ value, setValue}) => {
           left={<TextInput.Icon icon={ArrowFatLinesRight}
           color={colors.green[600]} />}
           mode="outlined"
-          label="Km/h Posterior"
+          label="Kw/h Posterior"
           theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
           value={value}
           onChangeText={(text) => setValue(text)}
