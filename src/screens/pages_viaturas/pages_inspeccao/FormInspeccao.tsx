@@ -1,15 +1,11 @@
 import * as React from 'react';
-import {HStack, VStack, useTheme} from 'native-base';
-import { useState } from 'react';
-import {View, Text, StyleSheet, Button, Platform} from 'react-native';
-import {TextInput, RadioButton} from "react-native-paper";
-import {Gauge, Calendar, User, ClosedCaptioning, ThumbsDown, ThumbsUp} from 'phosphor-react-native';
 import { View, Button, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Calendar, Car, ClosedCaptioning, FileCloud, FirstAidKit, Gauge, Headlights, House, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera, XCircle } from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import {styles} from './formStyles';
 import { RadioButton, TextInput } from 'react-native-paper';
@@ -226,10 +222,21 @@ import { createStackNavigator } from '@react-navigation/stack';
               isFiled.razaoCarrocari=valueCar;
               isFiled.razaobolareboque=valueReb;
 
+              const [isCarrocaria, setIsCarrocaria] = useState(false);
+              const [isBowser, setIsBowser] = useState(true);
+              const [isReboque, setIsReboque] = useState(false);
 
+              const onCarrocariaS = () => {
+                console.log("Voce clicou em nao no Radio Button Carroocaria Like");
+                setCheckedCar('ok');
+                setIsCarrocaria(false);
+              }
 
-    return (
-        <VStack flex={1} pb={6} bg="white">
+              const onCarrocariaN = () => {
+                  console.log("Voce clicou em nao no Radio Button Carrocaria Dislike");
+                  setCheckedCar('notOk');
+                  setIsCarrocaria(true);
+                }
 
               const onBowserS = () => {
                   console.log("Voce clicou em nao no Radio Button Bowser Sim");
@@ -1380,53 +1387,267 @@ import { createStackNavigator } from '@react-navigation/stack';
             const [checkedPri, setCheckedPri] = useState('');
             const [checkedCinto, setCheckedCinto] = useState('');
 
-                            <HStack justifyContent={'space-between'} alignItems={'center'}>
-                                            <Text>Extintor</Text>
+            isFiled.extintor=checkedExtintor;
+            isFiled.pr_socorros=checkedPri;
+            isFiled.cintoSeg=checkedCinto;
+            
+            const [openExt, setOpenExt] = useState(false);
+            const [valueExt, setValueExt] = useState([]);
+            const [itemsExt, setItemsExt] = useState([
+              {label: 'Expirou', value: 'Expirou'},
+              {label: 'Nao existe', value: 'Nao existe'},
+            ]);
+          
+            const [openPri, setOpenPri] = useState(false);
+            const [valuePri, setValuePri] = useState([]);
+            const [itemsPri, setItemsPri] = useState([
+              {label: 'Expirou', value: 'Expirou'},
+              {label: 'Nao existe', value: 'Nao existe'},
+            ]);
+          
+            const [openCinto, setOpenCinto] = useState(false);
+            const [valueCinto, setValueCinto] = useState([]);
+            const [itemsCinto, setItemsCinto] = useState([
+              {label: 'Estragado', value: 'Estragado'},
+              {label: 'Nao existe', value: 'Nao existe'},
+            ]);
+          
+            isFiled.razaoextintor=valueExt;
+            isFiled.razaosocorros=valuePri;
+            isFiled.razaocintoSeg=valueCinto;
 
-                                                <HStack justifyContent={'space-evenly'} alignItems={'center'}>
-                                                
-                                                    <HStack alignItems={'center'}>
-                                                        <RadioButton
-                                                    color= '#12375c'
-                                                        value="first"
-                                                        status={ checkedExtintor === 'first' ? 'checked' : 'unchecked' }
-                                                        onPress={onExtS}
-                                                        />
-                                                        <ThumbsUp color={colors.primary[700]}/>
-                                                    </HStack>
-                                                    
-                                                    <HStack alignItems={'center'} ml={5}>
-                                                        <RadioButton
-                                                        color= '#12375c'
-                                                        value="second"
-                                                        status={ checkedExtintor === 'second' ? 'checked' : 'unchecked' }
-                                                        onPress={onExtN}
-                                                        />
-                                                        <ThumbsDown color={colors.primary[700]}/>
-                                                    </HStack>
-                                                
+            const [isExt, setIsExt] = useState(false);
+            const [isPri, setIsPri] = useState(false);
+            const [isCinto, setIsCinto] = useState(false);
+
+            const onExtS = () => {
+              console.log("Voce clicou em nao no Radio Button Extintor Like");
+              setCheckedExtintor('ok');
+              setIsExt(false);
+            }
+        
+          const onExtN = () => {
+                console.log("Voce clicou em nao no Radio Button Extintor Dislike");
+                setCheckedExtintor('notOk');
+                setIsExt(true);
+              }
+  
+              const onPriS = () => {
+                  console.log("Voce clicou em nao no Radio Button Primeiros Like");
+                  setCheckedPri('ok');
+                  setIsPri(false);
+                }
+            
+              const onPriN = () => {
+                    console.log("Voce clicou em nao no Radio Button Primeiros Dislike");
+                    setCheckedPri('notOk');
+                    setIsPri(true);
+                  }
+  
+              const onCintoS = () => {
+                      console.log("Voce clicou em nao no Radio Button Cinto Like");
+                      setCheckedCinto('ok');
+                      setIsCinto(false);
+                    }
+                
+              const onCintoN = () => {
+                        console.log("Voce clicou em nao no Radio Button Cinto Dislike");
+                        setCheckedCinto('notOk');
+                        setIsCinto(true);
+                      }
+
+
+            const [combo, setCombo] = useState(0);  
+            const [combo1, setCombo1] = useState(0);  
+            const [combo2, setCombo2] = useState(0);
+
+            const [mb, setMb] = useState('8%');    
+            const [mb1, setMb1] = useState('8%');
+            const [mb2, setMb2] = useState('8%');
+
+            const onComboboxPress= () => {
+              setCombo(combo+1);
+      
+              if (combo % 2 === 0)
+              {
+                  setMb('25%');
+                  console.log("Voce abriu o ComboBox");}
+      
+              else
+             { setMb('8%'); 
+              console.log("Voce fechou o ComboBox"); }
+            }
+      
+            const onComboboxPress1= () => {
+              setCombo1(combo1+1);
+      
+              if (combo1 % 2 === 0)
+              {
+                  setMb1('25%');
+                  console.log("Voce abriu o ComboBox");}
+      
+              else
+             { setMb1('8%'); 
+              console.log("Voce fechou o ComboBox"); }
+            }
+      
+            const onComboboxPress2= () => {
+              setCombo2(combo2+1);
+      
+              if (combo2 % 2 === 0)
+              {
+                  setMb2('25%');
+                  console.log("Voce abriu o ComboBox");}
+      
+              else
+             { setMb2('8%'); 
+              console.log("Voce fechou o ComboBox"); }
+            }
+
+            const [date, setDate] = useState(new Date());
+            const [mode, setMode] = useState('date');
+            const [show, setShow] = useState (false);
+            const [text, setText] = useState('Data');
+
+            isFiled.validade_extintor = text;
+      
+            const onChange = (event, selectedDate) => {
+              setShow(false)
+      
+              const currentDate = selectedDate || date;
+              setDate(selectedDate);
+      
+              let tempDate = new Date(currentDate);
+              let fDate = tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
+              setText(fDate)
+            };
+      
+            const showMode = (currentMode) => {
+              setShow(true);
+              setMode(currentMode);
+            }
+
+            type Nav ={
+              navigate : (value: string) => void;
+          }
+          
+          const { navigate } = useNavigation<Nav>();
+
+           const navigation = useNavigation();
+           
+           let nullAtributes ={};
+
+          const onGravar = () => {
+            
+            if(
+               isFiled.bowser != '' &&
+               isFiled.camera != '' &&
+               isFiled.carrocaria != '' &&
+               isFiled.cintoSeg != '' &&
+               isFiled.extintor != '' &&
+               isFiled.kilometragem != '' &&
+               isFiled.limpa_parabrisa != '' &&
+               isFiled.luzes != '' &&
+               isFiled.maos_livre != '' &&
+               isFiled.motor != '' &&
+               isFiled.oleo != '' &&
+               isFiled.pneus != '' &&
+               isFiled.porcas != '' &&
+               isFiled.pr_socorros != '' &&
+               isFiled.pressao != '' &&
+               isFiled.travoes != '' &&
+               isFiled.vidros != ''          
+               ){
+                  if(temBowser)
+                  navigate('FormBowser') as never;
+                else{
+                  navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
+                  navigate('Inspeccao') as never;
+                }
+            }
+            else{
+              
+              /*
+              Object.keys(isFiled).forEach(function(item){
+
+                if(isFiled[item] === ''){
+                  
+                  nullAtributes = item;
+                }
+               });
+               */
+               
+
+              alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
+            
+             // alert(nullAtributes);
+            }
+              
+
+
+
+
+
+
+
+
+            }
+
+          
+          
+
+         
+        
+            return (
+
+                <ScrollView style={styles.container}>
+                <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
+                >SEGURANÇA</Text>
+
+                <VStack mt={'5%'}>
+
+                        <HStack justifyContent={'space-evenly'} alignItems={'center'}>
+                                        <Text fontFamily={fonts.body}>&nbsp;&nbsp;Extintor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+
+                                                <HStack alignItems={'center'}>
+                                                    <RadioButton
+                                                    color= 'green'
+                                                    value="ok"
+                                                    status={ checkedExtintor === 'ok' ? 'checked' : 'unchecked' }
+                                                    onPress={onExtS}
+                                                    />
+                                                    <ThumbsUp color={colors.primary[700]} size={'20'}/>
                                                 </HStack>
                                                 
-
-                                                
-                                    </HStack>
-                                    
-                                    { isExt && <View style={{
-                                    marginBottom: mb,
-                                    backgroundColor: '#171717',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    paddingHorizontal: 15
-                                  }}>
-                                    <DropDownPicker
-                                        onPress={onComboboxPress}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openExt}
-                                        value={valueExt}
-                                        items={itemsExt}
-                                        setOpen={setOpenExt}
-                                        setValue={setValueExt}
-                                        setItems={setItemsExt}
+                                                <HStack alignItems={'center'}>
+                                                    <RadioButton
+                                                    color= 'red'
+                                                    value="notOk"
+                                                    status={ checkedExtintor === 'notOk' ? 'checked' : 'unchecked' }
+                                                    onPress={onExtN}
+                                                    />
+                                                    <ThumbsDown color={colors.primary[700]} size={'20'}/>
+                                                </HStack>
+                                                          
+                        </HStack>
+                                
+                        { isExt && <View style={{
+                        marginBottom: mb,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 15
+                      }}>
+                        <DropDownPicker
+                        dropDownDirection="BOTTOM"
+                        listMode="SCROLLVIEW"
+                            onPress={onComboboxPress}
+                            placeholder="Selecione a(s) Parte(s)"
+                            open={openExt}
+                            value={valueExt}
+                            items={itemsExt}
+                            setOpen={setOpenExt}
+                            setValue={setValueExt}
+                            setItems={setItemsExt}
 
                             theme="LIGHT"
                             multiple={true}
@@ -1435,9 +1656,14 @@ import { createStackNavigator } from '@react-navigation/stack';
                           />
                         </View>}
 
+                        {!isExt && <HStack ml={'8%'}>
+                            <Text fontFamily={fonts.body}>Validade: {text}</Text>
 
-                                    <HStack justifyContent={'space-between'} alignItems={'center'}>
-                                            <Text>Pr. Socorros</Text>
+                            <VStack ml={'8%'}>
+                              <TouchableOpacity onPress={() => showMode('date')}> 
+                                  <Calendar size={28} color={'#12375C'} />
+                              </TouchableOpacity>
+                            </VStack>  
 
                             {
                               show && (
