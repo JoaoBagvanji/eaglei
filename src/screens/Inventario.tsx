@@ -58,6 +58,7 @@ export default function MyStack() {
   }
 
 export  function Inventario() {
+
     type Nav ={
         navigate : (value: string) => void;
     }

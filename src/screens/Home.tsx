@@ -61,6 +61,5 @@ const styles = StyleSheet.create({
       display:'flex',
       flexDirection:'column',
       marginBottom: '64%'
-
   },
 })
