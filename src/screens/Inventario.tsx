@@ -18,9 +18,12 @@ import Pedido from './pages_inventario/Pedido';
 import StockReturn from './pages_inventario/StockReturn';
 import Utilizadores from './pages_inventario/Utilizadores';
 import Inventarios from './Inventarios';
-
+import { useNavigate } from 'react-router-dom'
 
 const Stack = createStackNavigator();
+
+
+
 
 
 const inventarios = [
@@ -60,7 +63,7 @@ export  function Inventario() {
     type Nav ={
         navigate : (value: string) => void;
     }
-      
+    
     const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -73,6 +76,8 @@ export  function Inventario() {
         navigate(posicao.name) as never
     }
 
+    
+    
   return (
 <VStack flex={1} pb={6} bg="white">
 
