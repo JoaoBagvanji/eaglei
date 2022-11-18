@@ -14,20 +14,29 @@ import  Tarefa  from '../screens/Tarefa';
 
 import * as Animatable from 'react-native-animatable';
 import { Header } from '../components/Header';
+import { useNavigation } from '@react-navigation/native';
 
 const AppTab = createBottomTabNavigator();
 
+
+
 export default function AuthRoutes() {
- 
+    
+
     const { colors } = useTheme();
 
+
+   
     return(
         <>
            <HStack>
                 <Header />
             </HStack>
+
+
         <AppTab.Navigator
             screenOptions={{
+                tabBarHideOnKeyboard:true,
                 tabBarActiveTintColor: colors.green[700],
                 tabBarInactiveTintColor: colors.gray[600],
                 tabBarLabelPosition: 'below-icon',
@@ -45,8 +54,7 @@ export default function AuthRoutes() {
                 tabBarItemStyle:{
                     borderRadius: 10,
                     alignItems:'center',
-                    padding: 6,
-                    
+                    padding: 6, 
                 },
 
             }}

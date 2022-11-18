@@ -9,7 +9,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import {styles} from './formStyles';
 import { RadioButton, TextInput } from 'react-native-paper';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import FormBowser from './formBowser';
 import Inspeccao from '../Inspeccao';
@@ -17,10 +17,10 @@ import Inspeccao from '../Inspeccao';
 import { NavigationContainerRefContext, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+
     //Vars globais a nivel do ficheiro
-
     var temBowser = false;
-
+    var isInspg = true;
     var isFiled = {
       'kilometragem':'',
       'carrocaria':'',
@@ -59,7 +59,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
           const StackRoutes = createStackNavigator();
 
-          
+        
 
         
           function Screen1() {
@@ -1376,6 +1376,11 @@ import { createStackNavigator } from '@react-navigation/stack';
           }
 
 
+       
+        
+       
+
+
 
 
 
@@ -1527,19 +1532,20 @@ import { createStackNavigator } from '@react-navigation/stack';
               setMode(currentMode);
             }
 
+          const [isInspe,setIsIsnpe] = useState(true);
+          isInspg=isInspe;
+
             type Nav ={
               navigate : (value: string) => void;
           }
           
           const { navigate } = useNavigation<Nav>();
 
-           const navigation = useNavigation();
-           
-           let nullAtributes ={};
-
+            const navigation = useNavigation();
+                    
           const onGravar = () => {
-            
-            if(
+
+                if(
                isFiled.bowser != '' &&
                isFiled.camera != '' &&
                isFiled.carrocaria != '' &&
@@ -1558,40 +1564,24 @@ import { createStackNavigator } from '@react-navigation/stack';
                isFiled.travoes != '' &&
                isFiled.vidros != ''          
                ){
-                  if(temBowser)
-                  navigate('FormBowser') as never;
+                  if(temBowser){
+                    setIsIsnpe(false);
+                    alert("Preencha a seguir o formulário de inspeção do bowser");
+                    navigate('FormBowser') as never;
+                  }
+                 
                 else{
-                  navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
+                  setIsIsnpe(false);
+                 navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
                   navigate('Inspeccao') as never;
                 }
             }
             else{
-              
-              /*
-              Object.keys(isFiled).forEach(function(item){
-
-                if(isFiled[item] === ''){
-                  
-                  nullAtributes = item;
-                }
-               });
-               */
-               
-
               alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
-            
-             // alert(nullAtributes);
             }
-              
-
-
-
-
-
-
-
 
             }
+
 
           
           
@@ -1659,9 +1649,9 @@ import { createStackNavigator } from '@react-navigation/stack';
                         {!isExt && <HStack ml={'8%'}>
                             <Text fontFamily={fonts.body}>Validade: {text}</Text>
 
-                            <VStack ml={'8%'}>
+                            <VStack ml={'9%'}>
                               <TouchableOpacity onPress={() => showMode('date')}> 
-                                  <Calendar size={28} color={'#12375C'} />
+                                  <Calendar size={25} color={'#12375C'} />
                               </TouchableOpacity>
                             </VStack>  
 
@@ -1791,7 +1781,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
 
-
+          
 
           function Screen9(){
             const {colors} = useTheme();
@@ -1816,14 +1806,46 @@ import { createStackNavigator } from '@react-navigation/stack';
           }
 
 
-
-
+        
+          
           const Tab = createMaterialTopTabNavigator();
 
           export default function FormInspeccao() {
-            const { colors } = useTheme();
+            const {colors} = useTheme();
+            const {fonts} = useTheme();
+
+            useEffect(()=>{
+              (async()=>{
+                  
+              //    navigation.dispatch(StackActions.popToTop());
+      
+                 console.log('Ola');
+          //     // const alvo  =  dadoss.data; 
+              
+              
+              })()
+              
+          
+             },[])
+       
+             
+             
             
             return (
+              <>
+             {isInspg &&
+             <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
+             <View>
+             <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+             Inspeção diária
+             </Text>
+             </View>
+             </HStack>
+             }
+               
+              
+     
+
               <Tab.Navigator
                 initialRouteName="one"
                 screenOptions={{
@@ -1907,5 +1929,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                 />
             
               </Tab.Navigator>
+              </>
+             
             );
           }

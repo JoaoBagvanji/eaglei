@@ -16,8 +16,7 @@ export function Home() {
   const { colors } = useTheme();
   const [loading, setLoading ] = useState(true);
 
-  // if(loading)
-  //   return <Load />
+
   
   return (
     <VStack flex={1} bg="white">
