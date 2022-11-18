@@ -10,7 +10,7 @@ export default function Utilizadores() {
         {
             id: 1,
             nome: '4552, Polana Cimento A',
-            info: 'Mario Mahesse, estado: novos',
+            info: 'Mario Mahesse',
             image: require('../../assets/avatars/users.png'),
             icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
@@ -18,7 +18,7 @@ export default function Utilizadores() {
         {
             id: 2,
             nome: '4352, Polana Cimento B',
-            info: 'Mateus Macuacua, estado: novos',
+            info: 'Mateus Macuacua',
             image: require('../../assets/avatars/users.png'),
             icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
@@ -27,7 +27,7 @@ export default function Utilizadores() {
         {
             id: 3,
             nome: '4652, Polana Caniço A',
-            info: 'Davison Matsinhe, estado: novos',
+            info: 'Davison Matsinhe',
             image: require('../../assets/avatars/users.png'),
             icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
@@ -36,7 +36,7 @@ export default function Utilizadores() {
         {
           id: 4,
           nome: '5992, Polana Caniço B',
-          info: 'Mateus Joaquim, estado: novos',
+          info: 'Mateus Joaquim',
           image: require('../../assets/avatars/users.png'),
           icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
