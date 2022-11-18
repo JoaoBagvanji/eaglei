@@ -1,110 +1,146 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image } from 'native-base';
-import { Info, CircleWavyCheck ,CaretDown, CaretUp, ThumbsDown ,ThumbsUp } from 'phosphor-react-native';
+import { Info, CircleWavyCheck ,CaretDown, CaretUp } from 'phosphor-react-native';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
-export default function Aprovado() {
+
+import Gerador from '../pages_tarefas/pages_projectos/pages/Gerador';
+
+const Stack = createStackNavigator();
+
+export default function MyStack() {
+  return (
+   <NavigationContainer independent={true}>
+     <Stack.Navigator  screenOptions={{headerShown: false}} 
+             initialRouteName='Aprovado'>
+         <Stack.Screen name="Gerador" component={Gerador} />
+         <Stack.Screen name="Aprovado" component={Aprovado} />
+     </Stack.Navigator>
+   </NavigationContainer>
+ ); 
+}
+
+
   
+
+export function Aprovado() {
+  type Nav ={
+    navigate : (value: string) => void;
+}
+  const { navigate } = useNavigation<Nav>()
   
-    const data = [
-        {
-            id: 1,
-            nome: '4552, T3',
-            info: 'Mario Mahesse, estado: novos',
-            image: require('../../assets/avatars/boxstock.png'),
-            icon: require('../../assets/avatars/cart.png'),
-            icon2: require('../../assets/avatars/box.png'),
-        },
-        {
-            id: 2,
-            nome: '4352, Mulotana',
-            info: 'Mateus Macuacua, estado: novos',
-            image: require('../../assets/avatars/boxstock.png'),
-            icon: require('../../assets/avatars/cart.png'),
-            icon2: require('../../assets/avatars/box.png'),
-            
-        },
-        {
-            id: 3,
-            nome: '4652, Av.Julius Nyerere',
-            info: 'Davison Matsinhe, estado: novos',
-            image: require('../../assets/avatars/boxstock.png'),
-            icon: require('../../assets/avatars/cart.png'),
-            icon2: require('../../assets/avatars/box.png'),
-            
-        },
-        {
-          id: 4,
-          nome: '5992, Polana Cimento A',
-          info: 'Mateus Joaquim, estado: novos',
-          image: require('../../assets/avatars/boxstock.png'),
-          icon: require('../../assets/avatars/cart.png'),
-          icon2: require('../../assets/avatars/box.png'),
-          
-      },
+
+function handleTelas(){
+  navigate('Gerador') as never;
+}
+
+
+  
+
+const data = [
+    {
+        id: 1,
+        nome: '4552, T3',
+        info: 'Mario Mahesse, estado: novos',
+        image: require('../../assets/avatars/boxstock.png'),
+        icon: require('../../assets/avatars/cart.png'),
+        icon2: require('../../assets/avatars/box.png'),
+    },
+    {
+        id: 2,
+        nome: '4352, Mulotana',
+        info: 'Mateus Macuacua, estado: novos',
+        image: require('../../assets/avatars/boxstock.png'),
+        icon: require('../../assets/avatars/cart.png'),
+        icon2: require('../../assets/avatars/box.png'),
         
-    ];
-    const val_init = Array.from({ length: data.length}, (v,p) => false)
-    const [shouldShow, setShouldShow] = useState(val_init);
+    },
+    {
+        id: 3,
+        nome: '4652, Av.Julius Nyerere',
+        info: 'Davison Matsinhe, estado: novos',
+        image: require('../../assets/avatars/boxstock.png'),
+        icon: require('../../assets/avatars/cart.png'),
+        icon2: require('../../assets/avatars/box.png'),
+        
+    },
+    {
+      id: 4,
+      nome: '5992, Polana Cimento A',
+      info: 'Mateus Joaquim, estado: novos',
+      image: require('../../assets/avatars/boxstock.png'),
+      icon: require('../../assets/avatars/cart.png'),
+      icon2: require('../../assets/avatars/box.png'),
+      
+  },
+    
+];
+const val_init = Array.from({ length: data.length}, (v,p) => false)
+const [shouldShow, setShouldShow] = useState(val_init);
 
-    async function handleDropDownItems(position){
-      let val_sec = await Array.from({ length: data.length}, (v,p) => false)
-      val_sec[position] = true;
-      setShouldShow(val_sec);
-    }
-    async function handleHideItems(position){
-      let val_sec = await Array.from({ length: data.length}, (v,p) => false)
-      setShouldShow(val_sec);
-    }
+async function handleDropDownItems(position){
+  let val_sec = await Array.from({ length: data.length}, (v,p) => false)
+  val_sec[position] = true;
+  setShouldShow(val_sec);
+}
+async function handleHideItems(position){
+  let val_sec = await Array.from({ length: data.length}, (v,p) => false)
+  setShouldShow(val_sec);
+}
 
-    const oneUser = ( {item} ) =>(
-        <View style={styles.item}>
-            <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
-            </View>
-            <Box flexDirection={'column'}>
-            
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
-            <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Image source={item.icon} style={styles.image}/>
-                </View>
-
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                <Image source={item.icon2} style={styles.image}/>
-                </View>
-
-                
-              </View>) : null}
+const oneUser = ( {item} ) =>(
+    <View style={styles.item}>
+        <View style={styles.avatarContainer }>
+          <Image source={item.image} style={styles.avatar}/>
+        </View>
+        <Box flexDirection={'column'}>
+        
+        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
+        <View flexDirection={'column'} margin='0.5' >
+          <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
+          {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
+            <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+              <TouchableOpacity onPress={handleTelas}>
+                <Image source={item.icon} style={styles.image}/>
+              </TouchableOpacity>
               
             </View>
-            </Box>
-            <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
-              <Icon as ={<Info color={colors.blueGray[400]}/>} />
-              </TouchableOpacity>
-              <View >
-                {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
-                  icon={<CaretDown  color={colors.primary[700]} size={10}/>}
-                  onPress={() => handleDropDownItems(item.id)}
-                  />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
-                  icon={<CaretUp   color={colors.primary[700]} size={10}/>}
-                  onPress={() => handleHideItems(item.id)}
-                  />)} 
-              </View>
+
+            <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+              <Image source={item.icon2} style={styles.image}/>
             </View>
+
             
-        </View>   
-    )
+          </View>) : null}
+          
+        </View>
+        </Box>
+        <View display='flex' flexDirection='column' alignContent='space-between'>
+          <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+          <Icon as ={<Info color={colors.blueGray[400]}/>} />
+          </TouchableOpacity>
+          <View >
+            {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
+              icon={<CaretDown  color={colors.primary[700]} size={10}/>}
+              onPress={() => handleDropDownItems(item.id)}
+              />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
+              icon={<CaretUp   color={colors.primary[700]} size={10}/>}
+              onPress={() => handleHideItems(item.id)}
+              />)} 
+          </View>
+        </View>
+        
+    </View>   
+)
 
-    function itemSeparator(){
-        return <View style={styles.separator}/>
-    }
+  function itemSeparator(){
+      return <View style={styles.separator}/>
+  }
 
-    const { fonts } = useTheme();
-    const { colors } = useTheme();
+  const { fonts } = useTheme();
+  const { colors } = useTheme();
 
   return (
     <VStack flex={1} pb={6} bg="white">
