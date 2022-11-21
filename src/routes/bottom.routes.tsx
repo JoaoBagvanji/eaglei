@@ -12,7 +12,7 @@ import  Users  from '../screens/Users';
 import  Tarefa  from '../screens/Tarefa';
 
 
-import * as Animatable from 'react-native-animatable';
+
 import { Header } from '../components/Header';
 import { useNavigation } from '@react-navigation/native';
 

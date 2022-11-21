@@ -18,21 +18,23 @@ import Pedido from './pages_inventario/Pedido';
 import StockReturn from './pages_inventario/StockReturn';
 import Utilizadores from './pages_inventario/Utilizadores';
 import Inventarios from './Inventarios';
-
+import { useNavigate } from 'react-router-dom'
 
 const Stack = createStackNavigator();
+
+
+
 
 
 const inventarios = [
 
     {brand: 'Comserv', type: 'Pedido', name: 'Pedido', qtd: 22000,    icon: <Notification color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>},
     {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10,    icon: <Checks color='#A1C861'/>},
     {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20,    icon: <Handshake   color='#A1C861'/>},
     {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340,    icon: <Nut  color='#A1C861'/>},
     {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230,  icon: <UsersThree  color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Atenção', name: 'Attention', qtd: 660,  icon: <ArrowsCounterClockwise   color='#A1C861'/>},
     {brand: 'Comserv', type: 'Retorno', name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>}
 
 ]
 
@@ -44,7 +46,6 @@ export default function MyStack() {
                 initialRouteName='Inventario'>
             <Stack.Screen name="Aprovado" component={Aprovado} />
             <Stack.Screen name="Armazem" component={Armazem} />
-            <Stack.Screen name="Attention" component={Attention} />
             <Stack.Screen name="Despacho" component={Despacho} />
             <Stack.Screen name="Finalizado" component={Finalizado} />
             <Stack.Screen name="Pedido" component={Pedido} />
@@ -62,7 +63,7 @@ export  function Inventario() {
     type Nav ={
         navigate : (value: string) => void;
     }
-      
+    
     const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -75,6 +76,8 @@ export  function Inventario() {
         navigate(posicao.name) as never
     }
 
+    
+    
   return (
 <VStack flex={1} pb={6} bg="white">
 

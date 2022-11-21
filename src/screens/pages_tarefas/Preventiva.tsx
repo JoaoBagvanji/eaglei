@@ -1,8 +1,8 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { HourglassMedium, CheckCircle, FilePlus, Warning} from 'phosphor-react-native';
-import { Header } from '../../components/Header';
-import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator,TouchableOpacity } from 'react-native';
+import { HourglassMedium, CheckCircle, FilePlus, Calendar , ClockCounterClockwise } from 'phosphor-react-native';
+
+import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
@@ -22,10 +22,10 @@ const Stack = createStackNavigator();
 
 const preventivas = [
     {label: 'Plano de hoje', component_name: 'PlanoHoje', qtd: 22000, icon: <FilePlus color='#A1C861' size={25} />},
-    {label: 'Plano mensal', component_name: 'PlanoMensal', qtd: 10, icon: <Icon as ={<HourglassMedium color='#A1C861' size={25} />} />}, 
-    {label: 'EmProgresso', component_name: 'EmProgresso', qtd:340, icon: <Warning color='#A1C861' size={25}/> },
+    {label: 'Plano mensal', component_name: 'PlanoMensal', qtd: 10, icon: <Icon as ={<Calendar  color='#A1C861' size={25} />} />}, 
+    {label: 'Em Progresso', component_name: 'EmProgresso', qtd:340, icon: <HourglassMedium color='#A1C861' size={25}/> },
     {label: 'Completos', component_name: 'Completos', qtd: 20, icon: <CheckCircle color='#A1C861' size={25} />},
-    {label: 'Atrasados', component_name: 'Atrasados', qtd:340, icon: <Warning color='#A1C861' size={25}/> },
+    {label: 'Atrasados', component_name: 'Atrasados', qtd:340, icon: <ClockCounterClockwise color='#A1C861' size={25}/> },
 ]
 
 
