@@ -113,10 +113,10 @@ export default function Despacho() {
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                  Lista 
+                  Por 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                  Despachos
+                  Despachar
                 </Text>
                 </View>
                 <Icon as ={<ThumbsUp color={colors.green[700]}/>} />

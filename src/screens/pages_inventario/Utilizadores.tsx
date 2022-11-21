@@ -8,39 +8,36 @@ export default function Utilizadores() {
   
     const data = [
         {
-            id: 1,
-            nome: '4552, Polana Cimento A',
-            info: 'Mario Mahesse, estado: novos',
-            image: require('../../assets/avatars/users.png'),
-            icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+          id: 1,
+          nome: '4552, Polana Cimento A',
+          info: 'Mario Mahesse',
+          image: require('../../assets/avatars/users.png'),
+          icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
+          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
         },
         {
-            id: 2,
-            nome: '4352, Polana Cimento B',
-            info: 'Mateus Macuacua, estado: novos',
-            image: require('../../assets/avatars/users.png'),
-            icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
-            
+          id: 2,
+          nome: '4352, Polana Cimento B',
+          info: 'Mateus Macuacua',
+          image: require('../../assets/avatars/users.png'),
+          icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
+          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
         },
         {
-            id: 3,
-            nome: '4652, Polana Caniço A',
-            info: 'Davison Matsinhe, estado: novos',
-            image: require('../../assets/avatars/users.png'),
-            icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
-            
+          id: 3,
+          nome: '4652, Polana Caniço A',
+          info: 'Davison Matsinhe',
+          image: require('../../assets/avatars/users.png'),
+          icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
+          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,  
         },
         {
           id: 4,
           nome: '5992, Polana Caniço B',
-          info: 'Mateus Joaquim, estado: novos',
+          info: 'Mateus Joaquim',
           image: require('../../assets/avatars/users.png'),
           icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
-          
+          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,   
       },
         
     ];
