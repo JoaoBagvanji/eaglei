@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
 import { Info, Users ,CaretDown, CaretUp, Eye ,PencilLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
@@ -9,35 +9,47 @@ export default function Utilizadores() {
     const data = [
         {
           id: 1,
-          nome: '4552, Polana Cimento A',
-          info: 'Mario Mahesse',
+          nome: 'Mario Mahesse',
+          info: 'Maputo, Maputo Cidade',
           image: require('../../assets/avatars/users.png'),
-          icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+          icon:  require('../../assets/avatars/tools.png'),
+          icon2: require('../../assets/avatars/healthy.png'),
+          icon3: require('../../assets/avatars/devices.png'),
+          icon4: require('../../assets/avatars/tires.png'),
+          icon5: require('../../assets/avatars/inventario.png'),
         },
         {
           id: 2,
-          nome: '4352, Polana Cimento B',
-          info: 'Mateus Macuacua',
+          nome: 'Mateus Macuacua',
+          info: 'Maputo, Maputo Cidade',
           image: require('../../assets/avatars/users.png'),
-          icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+          icon:  require('../../assets/avatars/tools.png'),
+          icon2: require('../../assets/avatars/healthy.png'),
+          icon3: require('../../assets/avatars/devices.png'),
+          icon4: require('../../assets/avatars/tires.png'),
+          icon5: require('../../assets/avatars/inventario.png'),
         },
         {
           id: 3,
-          nome: '4652, Polana Caniço A',
-          info: 'Davison Matsinhe',
+          nome: 'Davison Matsinhe',
+          info: 'Maputo, Maputo Cidade',
           image: require('../../assets/avatars/users.png'),
-          icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,  
+          icon:  require('../../assets/avatars/tools.png'),
+          icon2: require('../../assets/avatars/healthy.png'),
+          icon3: require('../../assets/avatars/devices.png'),
+          icon4: require('../../assets/avatars/tires.png'),
+          icon5: require('../../assets/avatars/inventario.png'),  
         },
         {
           id: 4,
-          nome: '5992, Polana Caniço B',
-          info: 'Mateus Joaquim',
+          nome: 'Mateus Joaquim',
+          info: 'Maputo, Maputo Cidade',
           image: require('../../assets/avatars/users.png'),
-          icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<Eye color='#A1C861' size={16} />} />,   
+          icon:  require('../../assets/avatars/tools.png'),
+          icon2: require('../../assets/avatars/healthy.png'),
+          icon3: require('../../assets/avatars/devices.png'),
+          icon4: require('../../assets/avatars/tires.png'),
+          icon5: require('../../assets/avatars/inventario.png'),  
       },
         
     ];
@@ -66,11 +78,23 @@ export default function Utilizadores() {
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon}</Icon>
+                  <Imagens source={item.icon} style={styles.image}/>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
+                  <Imagens source={item.icon2} style={styles.image}/>
+                </View>
+
+                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <Imagens source={item.icon3} style={styles.image}/>
+                </View>
+
+                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <Imagens source={item.icon4} style={styles.image}/>
+                </View>
+
+                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <Imagens source={item.icon5} style={styles.image}/>
                 </View>
 
                 
@@ -164,5 +188,10 @@ const styles=StyleSheet.create({
     avatar:{
         height: 35,
         width: 35,
+    },
+    image:{
+      width:40,
+      height:20,
+      alignItems:'center'
     }
 })

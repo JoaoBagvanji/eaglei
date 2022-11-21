@@ -5,7 +5,7 @@ import { useFonts, Montserrat_400Regular, Montserrat_600SemiBold } from '@expo-g
 import { THEME } from './src/styles/theme';
 import { Loading } from './src/components/Loading';
 import Routes from './src/routes';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 
 console.warn = () => {}
@@ -13,6 +13,7 @@ console.warn = () => {}
 export default function App() {
 
   const [fontsLoaded] = useFonts({ Montserrat_400Regular, Montserrat_600SemiBold })
+  
   return (
     <NativeBaseProvider theme={THEME}>
       <StatusBar 

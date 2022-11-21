@@ -42,16 +42,16 @@ function handleTelas(){
 const data = [
     {
         id: 1,
-        nome: '4552, T3',
-        info: 'Mario Mahesse, estado: novos',
+        nome: 'Mario Mahesse',
+        info: 'Armazém de Maputo aprovado',
         image: require('../../assets/avatars/boxstock.png'),
         icon: require('../../assets/avatars/cart.png'),
         icon2: require('../../assets/avatars/box.png'),
     },
     {
         id: 2,
-        nome: '4352, Mulotana',
-        info: 'Mateus Macuacua, estado: novos',
+        nome: 'Mateus Macuacua',
+        info: 'Armazém da Matola, aprovado',
         image: require('../../assets/avatars/boxstock.png'),
         icon: require('../../assets/avatars/cart.png'),
         icon2: require('../../assets/avatars/box.png'),
@@ -59,8 +59,8 @@ const data = [
     },
     {
         id: 3,
-        nome: '4652, Av.Julius Nyerere',
-        info: 'Davison Matsinhe, estado: novos',
+        nome: 'Davison Matsinhe',
+        info: 'Armazém de Maputo, expedido',
         image: require('../../assets/avatars/boxstock.png'),
         icon: require('../../assets/avatars/cart.png'),
         icon2: require('../../assets/avatars/box.png'),
@@ -68,8 +68,8 @@ const data = [
     },
     {
       id: 4,
-      nome: '5992, Polana Cimento A',
-      info: 'Mateus Joaquim, estado: novos',
+      nome: 'Mateus Joaquim',
+      info: 'Armazém de Vilankulos, expedido',
       image: require('../../assets/avatars/boxstock.png'),
       icon: require('../../assets/avatars/cart.png'),
       icon2: require('../../assets/avatars/box.png'),
