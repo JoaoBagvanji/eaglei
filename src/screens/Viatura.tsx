@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React , {useState,useEffect}from 'react';
-=======
-import React , {useState, useEffect}from 'react';
->>>>>>> master
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { Car, ArrowsLeftRight, FileSearch} from 'phosphor-react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -10,11 +6,7 @@ import { faTrailer } from '@fortawesome/free-solid-svg-icons';
 
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-<<<<<<< HEAD
 import { NavigationContainer, StackActions } from '@react-navigation/native';
-=======
-import { NavigationContainer, CommonActions } from '@react-navigation/native';
->>>>>>> master
 import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 

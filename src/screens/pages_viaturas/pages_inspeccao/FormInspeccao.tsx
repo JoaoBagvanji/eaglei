@@ -1814,23 +1814,6 @@ import { createStackNavigator } from '@react-navigation/stack';
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            useEffect(()=>{
-              (async()=>{
-                  
-              //    navigation.dispatch(StackActions.popToTop());
-      
-                 console.log('Ola');
-          //     // const alvo  =  dadoss.data; 
-              
-              
-              })()
-              
-          
-             },[])
-       
-             
-             
-            
             return (
               <>
              {isInspg &&

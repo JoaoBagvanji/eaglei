@@ -41,14 +41,6 @@ export function Inspeccao({navigation}) {
     const { colors } = useTheme();
     
     
-    
-    React.useEffect(
-        () => navigation.addListener('blur', () => navigation.dispatch(StackActions.popToTop())),
-        []
-      );
-
-
-
   return (
     <VStack flex={1} pb={6} bg="white">
         
