@@ -158,7 +158,7 @@ export default function Completas() {
                 Completas
                 </Text>
                 </View>
-                <Icon as ={<CheckCircle   color={colors.green[700]}/>} />
+                <Icon as ={<Handshake   color={colors.green[700]}/>} />
             </HStack>
             <View>
                 <FlatList            
