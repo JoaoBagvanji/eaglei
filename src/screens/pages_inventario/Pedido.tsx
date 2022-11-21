@@ -9,16 +9,16 @@ export default function Pedidos() {
     const data = [
         {
             id: 1,
-            nome: '4552, T3',
-            info: 'Mario Mahesse, estado: novos',
+            nome: 'Armazém de Maputo',
+            info: 'Antonio M. data Req: 12/08/2022',
             image: require('../../assets/avatars/boxstock.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsDown color='#A1C861' size={16} />} />,
         },
         {
             id: 2,
-            nome: '4352, Mulotana',
-            info: 'Mateus Macuacua, estado: novos',
+            nome: 'Armazém de Beira',
+            info: 'Mateus M. data Req: 23/09/2022',
             image: require('../../assets/avatars/boxstock.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsDown color='#A1C861' size={16} />} />,
@@ -26,8 +26,8 @@ export default function Pedidos() {
         },
         {
             id: 3,
-            nome: '4652, Av.Julius Nyerere',
-            info: 'Davison Matsinhe, estado: novos',
+            nome: 'Armazém de Matola',
+            info: 'Davison M. data Req: 11/12/2022',
             image: require('../../assets/avatars/boxstock.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsDown color='#A1C861' size={16} />} />,
@@ -35,8 +35,8 @@ export default function Pedidos() {
         },
         {
           id: 4,
-          nome: '5992, Polana Cimento A',
-          info: 'Mateus Joaquim, estado: novos',
+          nome: 'Armazém de Vilankulos',
+          info: 'Mateus J. data Req: 19/10/2022',
           image: require('../../assets/avatars/boxstock.png'),
           icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<ThumbsDown color='#A1C861' size={16} />} />,
