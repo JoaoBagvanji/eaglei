@@ -3,13 +3,13 @@ import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { Car, ArrowsLeftRight, FileSearch} from 'phosphor-react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrailer } from '@fortawesome/free-solid-svg-icons';
-import { Header } from '../components/Header';
+
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, StackActions, CommonActions } from '@react-navigation/native';
+import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
-import { useNavigate } from 'react-router-dom';
+
 import colors from '../styles/colors';
 
 import Atrelado from './pages_viaturas/Atrelado';
@@ -58,18 +58,12 @@ export  function Viatura() {
     const { colors } = useTheme();
     const [loadingMore, setLoadingMore] = useState(false);
 
+
     function handleTelas(item){
         navigate(item.component_name) as never;
     }
 
-    useEffect(()=>{
-        (async()=>{
-            CommonActions.reset({
-                index:1,
-                routes:[{name: 'Viatura'}]
-            })
-        })()
-    },[])
+   
 
   return (
 <VStack flex={1} pb={6} bg="white">
