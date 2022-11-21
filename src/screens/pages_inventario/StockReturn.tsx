@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
-import { Info, KeyReturn  ,CaretDown, CaretUp, Eye ,ThumbsUp } from 'phosphor-react-native';
+import { Info, KeyReturn  ,CaretDown, CaretUp, Eye ,ThumbsUp, ThumbsDown } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 export default function StockReturn() {
@@ -13,24 +13,27 @@ export default function StockReturn() {
             info: 'Mario Mahesse, estado: novos',
             image: require('../../assets/avatars/stockreturn.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
+            icon2: require('../../assets/avatars/box.png'),
+            icon3: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
         },
         {
             id: 2,
             nome: '4352, Polana Cimento B',
-            info: 'Mateus Macuacua, estado: novos',
+            info: 'Mateus Macuacua, estado: aprovados',
             image: require('../../assets/avatars/stockreturn.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
+            icon2: require('../../assets/avatars/box.png'),
+            icon3: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
             
         },
         {
             id: 3,
             nome: '4652, Polana Caniço A',
-            info: 'Davison Matsinhe, estado: novos',
+            info: 'Davison Matsinhe, estado: finalizados',
             image: require('../../assets/avatars/stockreturn.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
+            icon2: require('../../assets/avatars/box.png'),
+            icon3: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
             
         },
         {
@@ -39,7 +42,8 @@ export default function StockReturn() {
           info: 'Mateus Joaquim, estado: novos',
           image: require('../../assets/avatars/stockreturn.png'),
           icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-          icon2: require('../../assets/avatars/HAND.png'),
+          icon2: require('../../assets/avatars/box.png'),
+          icon3: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
           
       },
         
@@ -70,6 +74,10 @@ export default function StockReturn() {
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon}</Icon>
+                </View>
+
+                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <Icon>{item.icon3}</Icon>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
@@ -113,10 +121,10 @@ export default function StockReturn() {
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                  Lista 
+                  Devolução 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                  De Stock Devolvido
+                  De Stock 
                 </Text>
                 </View>
                 <Icon as ={<KeyReturn color={colors.green[700]}/>} />

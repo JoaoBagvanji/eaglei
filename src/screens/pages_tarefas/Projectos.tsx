@@ -1,8 +1,7 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { ProjectorScreen, HandsClapping , FolderPlus, ArrowsCounterClockwise } from 'phosphor-react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faTrailer } from '@fortawesome/free-solid-svg-icons';
+import { ProjectorScreen, Handshake  , FolderPlus, ArrowsCounterClockwise } from 'phosphor-react-native';
+
 
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -36,7 +35,7 @@ export default function MyStack() {
   const projectos = [
 
     {label: 'Novos', component_name: 'Novos', qtd: 2200, icon: <Icon as ={<FolderPlus   color='#A1C861' size={30} />} />}, 
-    {label: 'Completos', component_name: 'Completos', qtd: 10, icon: <Icon as ={<HandsClapping  color='#A1C861' size={30} />} />}, 
+    {label: 'Completos', component_name: 'Completos', qtd: 10, icon: <Icon as ={<Handshake   color='#A1C861' size={30} />} />}, 
     {label: 'Progress', component_name: 'Progress', qtd: 20, icon: <Icon as ={<ArrowsCounterClockwise  color='#A1C861' size={30} />} />},
     
 ]

@@ -43,7 +43,7 @@ const data = [
     {
         id: 1,
         nome: 'Mario Mahesse',
-        info: 'Armazém de Maputo aprovado',
+        info: 'Armazém de Maputo, aprovado',
         image: require('../../assets/avatars/boxstock.png'),
         icon: require('../../assets/avatars/cart.png'),
         icon2: require('../../assets/avatars/box.png'),
