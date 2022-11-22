@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
 import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp ,MapPinLine,MagnifyingGlass  } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../../styles/colors';
@@ -17,7 +17,7 @@ export default function Progress() {
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine  color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -34,7 +34,7 @@ export default function Progress() {
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -51,7 +51,7 @@ export default function Progress() {
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -68,7 +68,7 @@ export default function Progress() {
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
           icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
           icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-          icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+          icon5: require('../../../assets/avatars/HAND.png'),
           icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
           icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
       },
@@ -120,7 +120,7 @@ export default function Progress() {
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon5}</Icon>
+                  <Imagens source={item.icon5} style={styles.image}/>
                 </View>
                 
                 
@@ -234,5 +234,9 @@ const styles=StyleSheet.create({
     },
     unfilled:{
       backgroundColor: colors.red
+    }, image:{
+      width:40,
+      height:20,
+      alignItems:'center'
     }
 })
