@@ -200,43 +200,44 @@ export default function Progress() {
 
 
 const styles=StyleSheet.create({
-    listHeader:{
-        height: 55,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    separator:{
-        height: 1,
-        width: '100%',
-        backgroundColor: '#f2f2f2'
-    },
-    item:{
-        flex:1,
-        flexDirection: 'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        paddingVertical:13
-    },
-    avatarContainer:{
-        backgroundColor: '#f5f5f5',
-        borderRadius: 100,
-        height: 50,
-        width: 50,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    avatar:{
-        height: 35,
-        width: 35,
-    },
-    filled:{
-      backgroundColor: colors.green,
-    },
-    unfilled:{
-      backgroundColor: colors.red
-    }, image:{
-      width:40,
-      height:20,
-      alignItems:'center'
-    }
+  listHeader:{
+    height: 55,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  separator:{
+    height: 1,
+    width: '100%',
+    backgroundColor: '#f2f2f2'
+  },
+  item:{
+    flex:1,
+    flexDirection: 'row',
+    justifyContent:'space-between',
+    alignItems:'center',
+    paddingVertical:13
+  },
+  avatarContainer:{
+    backgroundColor: '#f5f5f5',
+    borderRadius: 100,
+    height: 50,
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  avatar:{
+    height: 35,
+    width: 35,
+  },
+  filled:{
+    backgroundColor: colors.green,
+  },
+  unfilled:{
+    backgroundColor: colors.red
+  }, 
+  image:{
+    width:40,
+    height:20,
+    alignItems:'center'
+  }
 })
