@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Button, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Calendar, Car, ClosedCaptioning, FileCloud, FirstAidKit, Gauge, Headlights, House, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera, XCircle } from 'phosphor-react-native';
+import { Calendar, Car, ClosedCaptioning, FirstAidKit, Gauge, Headlights, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera} from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -9,12 +9,12 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import {styles} from './formStyles';
 import { RadioButton, TextInput } from 'react-native-paper';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 
 import FormBowser from './formBowser';
 import Inspeccao from '../Inspeccao';
 
-import { NavigationContainerRefContext, useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
@@ -1660,8 +1660,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                 <DateTimePicker
                                   testID='dateTimePicker'
                                   value={date}
-                                  mode='time'
-                                  is24Hour={true}
+                                  mode='date'
                                   display='default'
                                   onChange={onChange}
                                 />
@@ -1787,7 +1786,8 @@ import { createStackNavigator } from '@react-navigation/stack';
             const {colors} = useTheme();
 
             return(
-                      <StackRoutes.Navigator
+            
+                            <StackRoutes.Navigator
                       screenOptions={{
                           headerShown:false,
                           cardStyle:{
@@ -1801,6 +1801,8 @@ import { createStackNavigator } from '@react-navigation/stack';
                             <StackRoutes.Screen name='Inspeccao' component={Inspeccao}/>
                     
                         </StackRoutes.Navigator>
+          
+              
                 );
 
           }
