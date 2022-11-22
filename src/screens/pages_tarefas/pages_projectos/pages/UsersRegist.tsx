@@ -14,6 +14,19 @@ import { ButtonCancel } from '../../../../components/ButtonCancel';
 import Nome from '../../../../components/Nome';
 import DataNasc from '../../../../components/DataNasc';
 import CartaConducao from '../../../../components/CartaConducao';
+import ValidadeCarta from '../../../../components/ValidadeCarta';
+import Telefone from '../../../../components/Telefone';
+import Supervisor from '../../../../components/Supervisor';
+import Matricula from '../../../../components/Matricula';
+import Modelo from '../../../../components/Modelo';
+import Kilometragem from '../../../../components/Kilometragem';
+import Marca from '../../../../components/Marca';
+import Ano from '../../../../components/Ano';
+import CellPhone from '../../../../components/CellPhone';
+import EmailUser from '../../../../components/EmailUser';
+import Prettycash from '../../../../components/Prettycash';
+import Username from '../../../../components/Username';
+import PasswordUser from '../../../../components/PasswordUser';
 
 export default function UsersRegist() {
     const { fonts } = useTheme();
@@ -27,8 +40,18 @@ export default function UsersRegist() {
     const [ actuais, setActuais ] = useState("");
     const [ reabasteceLitros, setReabasteceLitros ] = useState("");
     const [ preco, setPreco ] = useState("");
-    const [ details, setDetails ] = useState("");
     const [ substituido, setSubstituido ] = useState("");
+    const [ details, setDetails ] = useState("");
+    const [ matricula, setMatricula ] = useState("");
+    const [ modelo, setModelo ] = useState("");
+    const [ kilometragem, setKilometragem ] = useState("");
+    const [ marca, setMarca ] = useState("");
+    const [ ano, setAno ] = useState("");
+    const [ cellphone, setCellphone ] = useState("");
+    const [ email, setEmail ] = useState("");
+    const [ prettycash, setPrettycash ] = useState("");
+    const [ name, setName ] = useState("");
+    const [ password, setPassword ] = useState("");
 
   return (
     <VStack flex={1} pb={4} mb={16} bg="white">
@@ -86,11 +109,16 @@ export default function UsersRegist() {
 
 
                     <View style={styles.uinputView}>
-                        <Descricao value={reabastecimento} setValue={setReabastecimento}/>
+                        <ValidadeCarta value={reabastecimento} setValue={setReabastecimento}/>
                     </View>
 
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Categoria </Text>
+                        <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Local de Trabalho </Text>
+                    </View>
+                    <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
+
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Região </Text>
                     </View>
                     <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                         <Box maxW='300'>
@@ -98,42 +126,15 @@ export default function UsersRegist() {
                             bg: "primary.500",
                             endIcon: <CheckIcon  size='5' />
                         }} onValueChange={itemValue => setDetails(itemValue)}>
-                            <Select.Item label="DLA" value="dla" />
-                            <Select.Item label="Ferramenta" value="ferramenta" />
-                            <Select.Item label="Frota" value="frota" />
-                            <Select.Item label="IT" value="it" />
-                            <Select.Item label="SST" value="sst" />
+                            <Select.Item label="Sul" value="sul" />
+                            <Select.Item label="Centro" value="centro" />
+                            <Select.Item label="Norte" value="norte" />
                             </Select>
                         </Box>
                     </View>
-
-                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Item serializado </Text>
-                    </View>
-
-                    <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                        <Radio.Group
-                            name="exampleGroup" accessibilityLabel="favorite colorscheme"
-                        > 
-                            <Stack direction={{
-                                base: "row",
-                                md: "row"
-                                }} alignItems={{
-                                base: "flex-start",
-                                md: "center"
-                                }} space={10} w="75%" maxW="300px">
-                                <Radio colorScheme="emerald" value="1" my={1} size='sm'>
-                                sim
-                                </Radio>
-                                <Radio colorScheme="secondary" value="2" my={1} size='sm'>
-                                não
-                                </Radio>
-                            </Stack>
-                        </Radio.Group>
-                    </View>
                 
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Proprietário </Text>
+                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Província </Text>
                     </View>
                     <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                         <Box maxW='300'>
@@ -141,11 +142,125 @@ export default function UsersRegist() {
                             bg: "primary.500",
                             endIcon: <CheckIcon  size='5' />
                         }} onValueChange={itemValue => setRepair(itemValue)}>
-                            <Select.Item label="Comserv" value="comserv" />
-                            <Select.Item label="Huawei" value="huawei" />
-                            <Select.Item label="Vodacom" value="vodacom" />
+                            <Select.Item label="Maputo" value="Maputo" />
+                            <Select.Item label="Gaza" value="Gaza" />
+                            <Select.Item label="Inhambane" value="Inhambane" />
+                            <Select.Item label="Sofala" value="Sofala" />
+                            <Select.Item label="Manica" value="Manica" />
+                            <Select.Item label="Zambezia" value="Zambezia" />
+                            <Select.Item label="Tete" value="Tete" />
+                            <Select.Item label="Nampula" value="Nampula" />
+                            <Select.Item label="Niassa" value="Niassa" />
+                            <Select.Item label="Cabo Delgado" value="cabo" />
                             </Select>
                         </Box>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <Telefone value={substituido} setValue={setSubstituido}/>
+                    </View>
+
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Departamento </Text>
+                    </View>
+                    <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
+                        <Box maxW='300'>
+                                <Select selectedValue={preco} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                            bg: "primary.500",
+                            endIcon: <CheckIcon  size='5' />
+                        }} onValueChange={itemValue => setPreco(itemValue)}>
+                            <Select.Item label="Telco" value="Telco" />
+                            <Select.Item label="Climatização e Electricidade" value="climatização" />
+                            <Select.Item label="Financeiro" value="Financeiro" />
+                            <Select.Item label="Tecnologias de Informação" value="tecnologias" />
+                            <Select.Item label="Centro de Dados" value="centrodedados" />
+                            <Select.Item label="Energia" value="Energia" />
+                            <Select.Item label="Administrativo" value="Administrativo" />
+                            <Select.Item label="Qualidade e Otimização" value="qualidade" />
+                            <Select.Item label="Centro de Suporte de Operações" value="cso" />
+                            <Select.Item label="Logística e Armazém" value="logística" />
+                            <Select.Item label="Recursos Humanos" value="rh" />
+                            </Select>
+                        </Box>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <Supervisor value={reabasteceLitros} setValue={setReabasteceLitros}/>
+                    </View>
+
+                    
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Função </Text>
+                    </View>
+                    <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
+                        <Box maxW='300'>
+                                <Select selectedValue={value} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                            bg: "primary.500",
+                            endIcon: <CheckIcon  size='5' />
+                        }} onValueChange={itemValue => setValue(itemValue)}>
+                            <Select.Item label="Assistente" value="Assistente" />
+                            <Select.Item label="Gestor Regional" value="gestor" />
+                            <Select.Item label="Supervisor" value="Supervisor" />
+                            <Select.Item label="Commercial" value="commercial" />
+                            <Select.Item label="Procurement" value="procurement" />
+                            <Select.Item label="Tecnico" value="Tecnico" />
+                            <Select.Item label="Director Geral" value="dg" />
+                            <Select.Item label="Diector Técnico" value="dt" />
+                            <Select.Item label="Director do Departamento" value="dp" />
+                            </Select>
+                        </Box>
+                    </View>
+
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Viatura </Text>
+                    </View>
+                    <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
+
+                    <View style={styles.uinputView}>
+                        <Matricula value={matricula} setValue={setMatricula}/>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <Modelo value={modelo} setValue={setModelo}/>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <Kilometragem value={kilometragem} setValue={setKilometragem}/>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <Marca value={marca} setValue={setMarca}/>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <Ano value={ano} setValue={setAno}/>
+                    </View>
+                    
+                    <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="80%" ml='10%' mt={6}/>
+
+                    <View style={styles.uinputView}>
+                        <CellPhone value={cellphone} setValue={setCellphone}/>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <EmailUser value={email} setValue={setEmail}/>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <Prettycash value={prettycash} setValue={setPrettycash}/>
+                    </View>
+
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Credenciais </Text>
+                    </View>
+                    <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
+
+                    <View style={styles.uinputView}>
+                        <Username value={name} setValue={setName}/>
+                    </View>
+
+                    <View style={styles.uinputView}>
+                        <PasswordUser value={password} setValue={setPassword}/>
                     </View>
 
                     <View marginLeft='30%' marginTop='15%' alignItems='center' justifyContent='space-around' display='flex' flexDirection='row'>
