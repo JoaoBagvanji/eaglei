@@ -1,7 +1,7 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { Wrench, Notification, Checks, Handshake , Nut , UsersThree,ArrowsCounterClockwise , KeyReturn, ThumbsUp} from 'phosphor-react-native'
-import { Header } from '../components/Header';
+import { Wrench, Notification, Checks, Handshake , Nut , UsersThree,Bookmarks  , KeyReturn, ThumbsUp} from 'phosphor-react-native'
+
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,14 +11,14 @@ import colors from '../styles/colors';
 
 import Aprovado from './pages_inventario/Aprovado';
 import Armazem from './pages_inventario/Armazem';
-import Attention from './pages_inventario/Attention';
+import Artigos from './pages_inventario/Artigos';
 import Despacho from './pages_inventario/Despacho';
 import Finalizado from './pages_inventario/Finalizado';
 import Pedido from './pages_inventario/Pedido';
 import StockReturn from './pages_inventario/StockReturn';
 import Utilizadores from './pages_inventario/Utilizadores';
 import Inventarios from './Inventarios';
-import { useNavigate } from 'react-router-dom'
+
 
 const Stack = createStackNavigator();
 
@@ -35,6 +35,7 @@ const inventarios = [
     {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340,    icon: <Nut  color='#A1C861'/>},
     {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230,  icon: <UsersThree  color='#A1C861'/>},
     {brand: 'Comserv', type: 'Retorno', name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Artigos', name: 'Artigos', qtd: 100, icon: <Bookmarks  color='#A1C861'/>},
 
 ]
 
@@ -51,7 +52,7 @@ export default function MyStack() {
             <Stack.Screen name="Pedido" component={Pedido} />
             <Stack.Screen name="StockReturn" component={StockReturn} />
             <Stack.Screen name="Utilizadores" component={Utilizadores} />
-
+            <Stack.Screen name="Artigos" component={Artigos} />
             <Stack.Screen name="Inventario" component={Inventario} />    
         </Stack.Navigator>
       </NavigationContainer>
