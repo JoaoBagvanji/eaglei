@@ -2,55 +2,81 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
 import { Info, Users ,CaretDown, CaretUp, Eye ,PencilLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { ButtonHandle } from '../../components/ButtonHandle';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import Gerador from '../pages_tarefas/pages_projectos/pages/Gerador';
+import Item from '../pages_tarefas/pages_projectos/pages/Item';
+import UsersRegist from '../pages_tarefas/pages_projectos/pages/UsersRegist';
 
-export default function Utilizadores() {
-  
-  
-    const data = [
-        {
-          id: 1,
-          nome: 'Mario Mahesse',
-          info: 'Maputo, Maputo Cidade',
-          image: require('../../assets/avatars/users.png'),
-          icon:  require('../../assets/avatars/tools.png'),
-          icon2: require('../../assets/avatars/healthy.png'),
-          icon3: require('../../assets/avatars/devices.png'),
-          icon4: require('../../assets/avatars/tires.png'),
-          icon5: require('../../assets/avatars/inventario.png'),
-        },
-        {
-          id: 2,
-          nome: 'Mateus Macuacua',
-          info: 'Maputo, Maputo Cidade',
-          image: require('../../assets/avatars/users.png'),
-          icon:  require('../../assets/avatars/tools.png'),
-          icon2: require('../../assets/avatars/healthy.png'),
-          icon3: require('../../assets/avatars/devices.png'),
-          icon4: require('../../assets/avatars/tires.png'),
-          icon5: require('../../assets/avatars/inventario.png'),
-        },
-        {
-          id: 3,
-          nome: 'Davison Matsinhe',
-          info: 'Maputo, Maputo Cidade',
-          image: require('../../assets/avatars/users.png'),
-          icon:  require('../../assets/avatars/tools.png'),
-          icon2: require('../../assets/avatars/healthy.png'),
-          icon3: require('../../assets/avatars/devices.png'),
-          icon4: require('../../assets/avatars/tires.png'),
-          icon5: require('../../assets/avatars/inventario.png'),  
-        },
-        {
-          id: 4,
-          nome: 'Mateus Joaquim',
-          info: 'Maputo, Maputo Cidade',
-          image: require('../../assets/avatars/users.png'),
-          icon:  require('../../assets/avatars/tools.png'),
-          icon2: require('../../assets/avatars/healthy.png'),
-          icon3: require('../../assets/avatars/devices.png'),
-          icon4: require('../../assets/avatars/tires.png'),
-          icon5: require('../../assets/avatars/inventario.png'),  
-      },
+
+
+const Stack = createStackNavigator();
+
+export default function MyStack() {
+  return (
+   <NavigationContainer independent={true}>
+     <Stack.Navigator  screenOptions={{headerShown: false}} 
+             initialRouteName='Utilizadores'>
+         <Stack.Screen name="Gerador" component={Gerador} />
+         <Stack.Screen name="UsersRegist" component={UsersRegist} />
+         <Stack.Screen name="Utilizadores" component={Utilizadores} />
+     </Stack.Navigator>
+   </NavigationContainer>
+ ); 
+}
+
+
+export  function Utilizadores() {
+  type Nav ={
+    navigate : (value: string) => void;
+}
+  const { navigate } = useNavigation<Nav>()
+  const data = [
+    {
+      id: 1,
+      nome: 'Mario Mahesse',
+      info: 'Maputo, Maputo Cidade',
+      image: require('../../assets/avatars/users.png'),
+      icon:  require('../../assets/avatars/tools.png'),
+      icon2: require('../../assets/avatars/healthy.png'),
+      icon3: require('../../assets/avatars/devices.png'),
+      icon4: require('../../assets/avatars/tires.png'),
+      icon5: require('../../assets/avatars/inventario.png'),
+    },
+    {
+      id: 2,
+      nome: 'Mateus Macuacua',
+      info: 'Maputo, Maputo Cidade',
+      image: require('../../assets/avatars/users.png'),
+      icon:  require('../../assets/avatars/tools.png'),
+      icon2: require('../../assets/avatars/healthy.png'),
+      icon3: require('../../assets/avatars/devices.png'),
+      icon4: require('../../assets/avatars/tires.png'),
+      icon5: require('../../assets/avatars/inventario.png'),
+    },
+    {
+      id: 3,
+      nome: 'Davison Matsinhe',
+      info: 'Maputo, Maputo Cidade',
+      image: require('../../assets/avatars/users.png'),
+      icon:  require('../../assets/avatars/tools.png'),
+      icon2: require('../../assets/avatars/healthy.png'),
+      icon3: require('../../assets/avatars/devices.png'),
+      icon4: require('../../assets/avatars/tires.png'),
+      icon5: require('../../assets/avatars/inventario.png'),  
+    },
+    {
+      id: 4,
+      nome: 'Mateus Joaquim',
+      info: 'Maputo, Maputo Cidade',
+      image: require('../../assets/avatars/users.png'),
+      icon:  require('../../assets/avatars/tools.png'),
+      icon2: require('../../assets/avatars/healthy.png'),
+      icon3: require('../../assets/avatars/devices.png'),
+      icon4: require('../../assets/avatars/tires.png'),
+      icon5: require('../../assets/avatars/inventario.png'),  
+  },
         
     ];
     const val_init = Array.from({ length: data.length}, (v,p) => false)

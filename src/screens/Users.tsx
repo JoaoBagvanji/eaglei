@@ -5,9 +5,31 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import axios from "axios";
 
 import { Header } from '../components/Header';
+import { ButtonHandle } from '../components/ButtonHandle';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import UsersRegist from './pages_tarefas/pages_projectos/pages/UsersRegist';
 
-export default function Users() {
 
+const Stack = createStackNavigator();
+export default function MyStack() {
+    return (
+     <NavigationContainer independent={true}>
+       <Stack.Navigator  screenOptions={{headerShown: false}} 
+               initialRouteName='Users'>
+           <Stack.Screen name="UsersRegist" component={UsersRegist
+        } />
+           <Stack.Screen name="Users" component={Users} />
+       </Stack.Navigator>
+     </NavigationContainer>
+   ); 
+}
+
+export function Users() {
+    type Nav ={
+        navigate : (value: string) => void;
+    }
+      const { navigate } = useNavigation<Nav>()
 
 
 const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
@@ -127,6 +149,16 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
                     keyExtractor = { data => data._id }
                     showsVerticalScrollIndicator={false}
+                />
+            </View>
+            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='60%'>
+                <ButtonHandle
+                    title='+'
+                    w={14}
+                    onPress={() => {
+                        navigate("UsersRegist") as never;
+                    }}
+
                 />
             </View>
 
