@@ -18,6 +18,9 @@ import Transfers from './pages_viaturas/Transfers';
 import Vehicles from './pages_viaturas/Vehicles';
 import Viaturas from './Viaturas'
 
+import { ButtonHandle } from '../components/ButtonHandle';
+import ViaturasRegist from './pages_tarefas/pages_projectos/pages/ViaturasRegist';
+
 const Stack = createStackNavigator();
 
 
@@ -39,6 +42,8 @@ export default function MyStack() {
             <Stack.Screen name="Inspeccao" component={Inspeccao} />
             <Stack.Screen name="Transfers" component={Transfers} />
             <Stack.Screen name="Vehicles" component={Vehicles} />
+            <Stack.Screen name="ViaturasRegist" component={ViaturasRegist} />
+
             <Stack.Screen name="Viatura" component={Viatura} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -101,6 +106,17 @@ export  function Viatura() {
         
                         }
                     />
+                    <View  alignItems='flex-end' justifyContent='center' display='flex' mt='5%'>
+                    <ButtonHandle
+                        title='+'
+                        w={14}
+                        onPress={() => {
+                            navigate("ViaturasRegist") as never;
+                        }}
+
+                    />
+            </View>
+
             </SafeAreaView>
     </VStack>
 

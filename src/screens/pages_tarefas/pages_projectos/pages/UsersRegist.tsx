@@ -8,8 +8,6 @@ import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '../../../../components/Button';
-import CodigoProduto from '../../../../components/CodigoProduto';
-import Descricao from '../../../../components/Descricao';
 import { ButtonCancel } from '../../../../components/ButtonCancel';
 import Nome from '../../../../components/Nome';
 import DataNasc from '../../../../components/DataNasc';
@@ -263,7 +261,7 @@ export default function UsersRegist() {
                         <PasswordUser value={password} setValue={setPassword}/>
                     </View>
 
-                    <View marginLeft='30%' marginTop='15%' alignItems='center' justifyContent='space-around' display='flex' flexDirection='row'>
+                    <View marginLeft='30%' marginTop='15%' mb="10%" alignItems='center' justifyContent='space-around' display='flex' flexDirection='row'>
                         <View style={styles.uinputViewbutton}>
                             <Button
                             title='Registar'
