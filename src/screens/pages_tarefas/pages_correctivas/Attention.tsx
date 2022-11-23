@@ -19,7 +19,7 @@ export default function Attention() {
                     Tarefas 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                    Correctivas em Espera 
+                    Correctivas Warning 
                 </Text>
                 </View>
                 <Icon as ={<Warning color={colors.green[700]}/>} />

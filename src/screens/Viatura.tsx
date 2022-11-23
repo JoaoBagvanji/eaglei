@@ -107,16 +107,7 @@ export  function Viatura() {
         
                         }
                     />
-                    <View  alignItems='flex-end' justifyContent='center' display='flex' mt='5%'>
-                    <ButtonHandle
-                        title='+'
-                        w={14}
-                        onPress={() => {
-                            navigate("ViaturasRegist") as never;
-                        }}
-
-                    />
-            </View>
+                    
 
             </SafeAreaView>
     </VStack>
