@@ -2,8 +2,35 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
 import { Info, KeyReturn  ,CaretDown, CaretUp, Eye ,ThumbsUp, ThumbsDown, Pencil } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { AtribuicaoViatura } from './AtribuicaoViatura';
 
-export default function Vehicles() {
+
+
+
+const Stack = createStackNavigator();
+export default function MyStack() {
+  return (
+   <NavigationContainer independent={true}>
+     <Stack.Navigator  screenOptions={{headerShown: false}} 
+             initialRouteName='Vehicles'>
+         <Stack.Screen name="AtribuicaoViatura" component={AtribuicaoViatura} />
+         <Stack.Screen name="Vehicles" component={Vehicles} />
+     </Stack.Navigator>
+   </NavigationContainer>
+ );
+}
+export function Vehicles() {
+  type Nav ={
+    navigate : (value: string) => void;
+}
+  
+const { navigate } = useNavigation<Nav>()
+
+function handleTelas(){
+  navigate('AtribuicaoViatura') as never;
+}
   
   
     const data = [
@@ -77,7 +104,11 @@ export default function Vehicles() {
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Imagens source={item.icon2} style={styles.image}/>
+                  
+                  <TouchableOpacity onPress={handleTelas}>
+                    <Imagens source={item.icon2} style={styles.image}/>
+                  </TouchableOpacity>
+                  
                 </View>
 
                 

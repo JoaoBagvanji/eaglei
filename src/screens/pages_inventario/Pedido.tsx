@@ -2,10 +2,30 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, FilePlus,CaretDown, CaretUp, ThumbsDown ,ThumbsUp } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { ButtonHandle } from '../../components/ButtonHandle';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import StockRequest from '../pages_tarefas/pages_projectos/pages/StockRequest';
 
-export default function Pedidos() {
-  
-  
+const Stack = createStackNavigator();
+export default function MyStack() {
+    return (
+     <NavigationContainer independent={true}>
+       <Stack.Navigator  screenOptions={{headerShown: false}} 
+               initialRouteName='Pedidos'>
+           <Stack.Screen name="StockRequest" component={StockRequest} />
+           <Stack.Screen name="Pedidos" component={Pedidos} />
+       </Stack.Navigator>
+     </NavigationContainer>
+   ); 
+}
+
+export  function Pedidos() {
+  type Nav ={
+    navigate : (value: string) => void;
+}
+  const { navigate } = useNavigation<Nav>()
+
     const data = [
         {
             id: 1,
@@ -130,6 +150,16 @@ export default function Pedidos() {
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
+                />
+            </View>
+            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='10%'>
+                <ButtonHandle
+                    title='+'
+                    w={14}
+                    onPress={() => {
+                        navigate("StockRequest") as never;
+                    }}
+
                 />
             </View>
       </VStack>
