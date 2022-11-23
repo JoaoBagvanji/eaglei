@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon, Radio, Stack   } from 'native-base';
-import { UserPlus , FloppyDisk, XCircle  } from 'phosphor-react-native'
+import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon  } from 'native-base';
+import { KeyReturn  , FloppyDisk, XCircle  } from 'phosphor-react-native'
 
 
 
@@ -10,21 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../../../../components/Button';
 import { ButtonCancel } from '../../../../components/ButtonCancel';
 import Nome from '../../../../components/Nome';
-import DataNasc from '../../../../components/DataNasc';
-import CartaConducao from '../../../../components/CartaConducao';
-import ValidadeCarta from '../../../../components/ValidadeCarta';
-import Telefone from '../../../../components/Telefone';
-import Supervisor from '../../../../components/Supervisor';
-import Matricula from '../../../../components/Matricula';
-import Modelo from '../../../../components/Modelo';
-import Kilometragem from '../../../../components/Kilometragem';
-import Marca from '../../../../components/Marca';
-import Ano from '../../../../components/Ano';
-import CellPhone from '../../../../components/CellPhone';
-import EmailUser from '../../../../components/EmailUser';
-import Prettycash from '../../../../components/Prettycash';
-import Username from '../../../../components/Username';
-import PasswordUser from '../../../../components/PasswordUser';
+
 import DataUso from '../../../../components/DataUso';
 import Razoes from '../../../../components/Razoes';
 import Quantidade from '../../../../components/Quantidade';
@@ -59,7 +45,7 @@ export default function StockReturnP() {
                 </Text>
                 </View>
                 <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
-                    <Icon as ={<UserPlus color={colors.white}/>} />
+                    <Icon as ={<KeyReturn  color={colors.white}/>} />
                 </View>
             </HStack>
       </VStack>
