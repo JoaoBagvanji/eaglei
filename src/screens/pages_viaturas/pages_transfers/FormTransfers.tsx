@@ -18,8 +18,7 @@ import Transfers from '../Transfers';
 
 
     //Vars globais a nivel do ficheiro
-    var temBowser = false;
-    var isInspg = true;
+  
     var isFiled = {
       'carrocaria':'',
       'pneus': '',
@@ -41,6 +40,7 @@ import Transfers from '../Transfers';
       'razaoLuzes':[],
       'razaoOleo':[],
       'razaoCamera':[],
+      'show': true
   }
 
 
@@ -138,14 +138,8 @@ import Transfers from '../Transfers';
                                 selectionColor='#12375C'
                                 activeOutlineColor='#12375C'
                                 outlineColor='#12375C'
-                                left={<TextInput.Icon icon = {
-                                    Gauge
-                                }
-                                color = {
-                                    colors.primary[600]
-                                } />}
                                 label="Marca & Modelo"
-                                onChangeText={text => setKilom(text)}/>
+                               />
 
                               <Text ml={'10%'} fontFamily={fonts.body}>Para</Text>
                               <View style={{
@@ -1153,6 +1147,8 @@ import Transfers from '../Transfers';
 
             const navigation = useNavigation();
 
+            const [mostra, setMostra] = useState(true);
+            
 
             const onGravar = () => {
 
@@ -1166,11 +1162,12 @@ import Transfers from '../Transfers';
                 isFiled.luzes != '' &&
                 isFiled.oleo != '' &&
                 isFiled.camera != '' &&
-                isFiled.camera != '' &&
+                isFiled.maos_livre != '' &&
                 isFiled.para.length != 0
                 ){
-                navigation.setOptions( {  tabBarStyle: {display: 'none'} });
-                navigate('Transfers') as never;
+                navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
+                navigation.navigate('Transfers');
+                setMostra(false);
               }
           else
             alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
@@ -1178,7 +1175,7 @@ import Transfers from '../Transfers';
 
           }
 
-      
+          isFiled.show=mostra;
 
             return (
               <ScrollView style={styles.container}>
@@ -1291,7 +1288,7 @@ import Transfers from '../Transfers';
                               backgroundColor: colors.white
                           }
                       }}
-                      initialRouteName='Screen8'
+                      initialRouteName='Screen7'
                         >
                             <StackRoutes.Screen name='Screen7' component={Screen7}/>
                             <StackRoutes.Screen name='Transfers' component={Transfers}/>
@@ -1314,14 +1311,14 @@ import Transfers from '../Transfers';
 
             return (
               <>
-             
+             {isFiled.show &&
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
              <View>
              <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-             Formulário de transferência de viatura
+             Transferência de viatura
              </Text>
              </View>
-             </HStack>
+             </HStack>}
              
                
               
@@ -1392,7 +1389,7 @@ import Transfers from '../Transfers';
                 />
                 <Tab.Screen
                   name="seven"
-                  component={Screen7}
+                  component={Screen8}
                   options={{
                       tabBarIcon:(({color, size})=>(
                           <Icon as ={<VideoCamera color={color} size={size}/>} />

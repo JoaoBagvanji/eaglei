@@ -20,7 +20,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
     //Vars globais a nivel do ficheiro
     var temBowser = false;
-    var isInspg = true;
+    var isInspg = true;                                                             
     var isFiled = {
       'kilometragem':'',
       'carrocaria':'',
@@ -1533,7 +1533,7 @@ import { createStackNavigator } from '@react-navigation/stack';
             }
 
           const [isInspe,setIsIsnpe] = useState(true);
-          isInspg=isInspe;
+          
 
             type Nav ={
               navigate : (value: string) => void;
@@ -1568,12 +1568,14 @@ import { createStackNavigator } from '@react-navigation/stack';
                     setIsIsnpe(false);
                     alert("Preencha a seguir o formulário de inspeção do bowser");
                     navigate('FormBowser') as never;
+                    setIsIsnpe(false);
                   }
                  
                 else{
                   setIsIsnpe(false);
                  navigation.getParent().setOptions( {  tabBarStyle: {display: 'none'} });
                   navigate('Inspeccao') as never;
+                  setIsIsnpe(false);
                 }
             }
             else{
@@ -1582,7 +1584,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
             }
 
-
+            isInspg=isInspe;
           
           
 
