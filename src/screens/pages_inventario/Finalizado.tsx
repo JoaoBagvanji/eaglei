@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { Truck } from 'phosphor-react-native'
+import { Handshake, Truck } from 'phosphor-react-native'
 import { Header } from '../../components/Header';
 
 export default function Finalizado() {
@@ -16,14 +16,14 @@ export default function Finalizado() {
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.heading}>
-                    Navegue 
+                <Text color="primary.600" fontSize="md" fontFamily={fonts.heading}>
+                    Lista 
                 </Text>
-                <Text color="green.500" fontSize="md" fontFamily={fonts.body}>
-                    entre os Finalizados
+                <Text color="primary.600" fontSize="md" fontFamily={fonts.body}>
+                    dos Finalizados
                 </Text>
                 </View>
-                <Icon as ={<Truck color={colors.green[500]}/>} />
+                <Icon as ={<Handshake color={colors.green[700]}/>} />
             </HStack>
       </VStack>
     </VStack>

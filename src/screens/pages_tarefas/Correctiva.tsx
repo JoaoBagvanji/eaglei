@@ -1,6 +1,6 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { HourglassMedium, CheckCircle, FilePlus, Warning} from 'phosphor-react-native';
+import { HourglassMedium, CheckCircle, FilePlus, Warning, Wrench, Handshake} from 'phosphor-react-native';
 import { Header } from '../../components/Header';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
 const correctivas = [
     {label: 'Novas', component_name: 'Novos', qtd: 22000, icon: <FilePlus color='#A1C861' size={25} />},
     {label: 'Em progresso', component_name: 'Progress', qtd: 10, icon: <Icon as ={<HourglassMedium color='#A1C861' size={25} />} />}, 
-    {label: 'Completas', component_name: 'Completos', qtd: 20, icon: <CheckCircle color='#A1C861' size={25} />},
+    {label: 'Completas', component_name: 'Completos', qtd: 20, icon: <Handshake color='#A1C861' size={25} />},
     {label: 'Atenção', component_name: 'Attention', qtd:340, icon: <Warning color='#A1C861' size={25}/> },
 ]
 
@@ -72,7 +72,7 @@ export function Correctiva() {
             Correctivas
             </Text>
             </View>
-            <Icon as ={<CheckCircle color={colors.green[700]}/>} />
+            <Icon as ={<Wrench color={colors.green[700]}/>} />
         </HStack>
    
     </VStack>

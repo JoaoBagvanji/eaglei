@@ -1,6 +1,6 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { Wrench, Notification, Checks, Handshake , Nut , UsersThree,Bookmarks  , KeyReturn, ThumbsUp} from 'phosphor-react-native'
+import { Wrench, Notification, Checks, Handshake , Nut , UsersThree,Bookmarks  , KeyReturn, ThumbsUp, Package, House, HouseLine} from 'phosphor-react-native'
 
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -32,7 +32,7 @@ const inventarios = [
     {brand: 'Comserv', type: 'Despacho', name: 'Despacho', qtd: 80, icon: <ThumbsUp  color='#A1C861'/>},
     {brand: 'Comserv', type: 'Aprovados', name: 'Aprovado', qtd: 10,    icon: <Checks color='#A1C861'/>},
     {brand: 'Comserv', type: 'Finalizados', name: 'Finalizado', qtd: 20,    icon: <Handshake   color='#A1C861'/>},
-    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340,    icon: <Nut  color='#A1C861'/>},
+    {brand: 'Comserv', type: 'Armazem', name: 'Armazem', qtd:340,    icon: <HouseLine  color='#A1C861'/>},
     {brand: 'Comserv', type: 'Utilizadores', name: 'Utilizadores', qtd: 230,  icon: <UsersThree  color='#A1C861'/>},
     {brand: 'Comserv', type: 'Retorno', name: 'StockReturn', qtd: 90, icon: <KeyReturn color='#A1C861'/>},
     {brand: 'Comserv', type: 'Artigos', name: 'Artigos', qtd: 100, icon: <Bookmarks  color='#A1C861'/>},
@@ -92,7 +92,7 @@ export  function Inventario() {
                 entre os Inventarios
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.blueGray[400]}/>} />
+            <Icon as ={<Package color={colors.blueGray[400]}/>} />
         </HStack>
    
     </VStack>

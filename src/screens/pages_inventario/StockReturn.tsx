@@ -32,8 +32,8 @@ export  function StockReturn() {
     const data = [
         {
             id: 1,
-            nome: '4552, Polana Cimento A',
-            info: 'Mario Mahesse, estado: novos',
+            nome: 'Armazém de: Maputo',
+            info: 'Mario Mahesse, estado: aprovados',
             image: require('../../assets/avatars/stockreturn.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
             icon2: require('../../assets/avatars/box.png'),
@@ -41,7 +41,7 @@ export  function StockReturn() {
         },
         {
             id: 2,
-            nome: '4352, Polana Cimento B',
+            nome: 'Armazém de: Matola',
             info: 'Mateus Macuacua, estado: aprovados',
             image: require('../../assets/avatars/stockreturn.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
@@ -51,7 +51,7 @@ export  function StockReturn() {
         },
         {
             id: 3,
-            nome: '4652, Polana Caniço A',
+            nome: 'Armazém de: Gaza',
             info: 'Davison Matsinhe, estado: finalizados',
             image: require('../../assets/avatars/stockreturn.png'),
             icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
@@ -61,8 +61,8 @@ export  function StockReturn() {
         },
         {
           id: 4,
-          nome: '5992, Polana Caniço B',
-          info: 'Mateus Joaquim, estado: novos',
+          nome: 'Armazém de: Vilankulos',
+          info: 'Mateus Joaquim, estado: aprovados',
           image: require('../../assets/avatars/stockreturn.png'),
           icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
           icon2: require('../../assets/avatars/box.png'),
