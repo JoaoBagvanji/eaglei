@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image } from 'native-base';
-import { Info, CircleWavyCheck ,CaretDown, CaretUp, Plus } from 'phosphor-react-native';
+import { Info, CircleWavyCheck ,CaretDown, CaretUp, Plus, PencilLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -48,7 +48,7 @@ const data = [
         nome: 'Mario Mahesse',
         info: 'Armazém de Maputo, aprovado',
         image: require('../../assets/avatars/artigo.png'),
-        icon: require('../../assets/avatars/cart.png'),
+        icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
         icon2: require('../../assets/avatars/box.png'),
     },
     {
@@ -56,7 +56,7 @@ const data = [
         nome: 'Mateus Macuacua',
         info: 'Armazém da Matola, aprovado',
         image: require('../../assets/avatars/artigo.png'),
-        icon: require('../../assets/avatars/cart.png'),
+        icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
         icon2: require('../../assets/avatars/box.png'),
         
     },
@@ -65,7 +65,7 @@ const data = [
         nome: 'Davison Matsinhe',
         info: 'Armazém de Maputo, expedido',
         image: require('../../assets/avatars/artigo.png'),
-        icon: require('../../assets/avatars/cart.png'),
+        icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
         icon2: require('../../assets/avatars/box.png'),
         
     },
@@ -74,7 +74,7 @@ const data = [
       nome: 'Mateus Joaquim',
       info: 'Armazém de Vilankulos, expedido',
       image: require('../../assets/avatars/artigo.png'),
-      icon: require('../../assets/avatars/cart.png'),
+      icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
       icon2: require('../../assets/avatars/box.png'),
       
   },
@@ -106,7 +106,7 @@ const oneUser = ( {item} ) =>(
           {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
             <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
               <TouchableOpacity onPress={handleTelas}>
-                <Image source={item.icon} style={styles.image}/>
+                <Icon>{item.icon}</Icon>
               </TouchableOpacity>
               
             </View>

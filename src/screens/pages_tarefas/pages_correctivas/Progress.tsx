@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
-import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp ,MapPinLine,MagnifyingGlass  } from 'phosphor-react-native';
+import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp ,MapPinLine,MagnifyingGlass, HourglassMedium  } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../../styles/colors';
 
@@ -180,7 +180,7 @@ export default function Progress() {
                 em Progresso
                 </Text>
                 </View>
-                <Icon as ={<ProjectorScreenChart  color={colors.green[700]}/>} />
+                <Icon as ={<HourglassMedium   color={colors.green[700]}/>} />
             </HStack>
             <View>
                 <FlatList            
