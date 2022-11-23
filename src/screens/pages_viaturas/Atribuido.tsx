@@ -6,7 +6,7 @@ import { Car , FloppyDisk, XCircle  } from 'phosphor-react-native'
 
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Parque from '../../components/Parque';
+import Parque from '../../components/Parque'
 import Modelo from '../../components/Modelo';
 import Matricula from '../../components/Matricula';
 import Marca from '../../components/Marca';
