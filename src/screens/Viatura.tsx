@@ -1,4 +1,4 @@
-import React , {useState, useEffect}from 'react';
+import React , {useState,useEffect}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { Car, ArrowsLeftRight, FileSearch} from 'phosphor-react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -6,7 +6,7 @@ import { faTrailer } from '@fortawesome/free-solid-svg-icons';
 
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, CommonActions } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -16,7 +16,7 @@ import Atrelado from './pages_viaturas/Atrelado';
 import Inspeccao from './pages_viaturas/Inspeccao';
 import Transfers from './pages_viaturas/Transfers';
 import Vehicles from './pages_viaturas/Vehicles';
-import Viaturas from './Viaturas'
+import Viaturas from './Viaturas';
 
 import { ButtonHandle } from '../components/ButtonHandle';
 import ViaturasRegist from './pages_tarefas/pages_projectos/pages/ViaturasRegist';
@@ -52,9 +52,10 @@ export default function MyStack() {
 
 
 export  function Viatura() {
-   
 
-    type Nav ={
+    const navigation = useNavigation();
+
+     type Nav ={
         navigate : (value: string) => void;
     }
       

@@ -10,7 +10,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../../../../components/Button';
 import { ButtonCancel } from '../../../../components/ButtonCancel';
 import Nome from '../../../../components/Nome';
-
 import DataUso from '../../../../components/DataUso';
 import Razoes from '../../../../components/Razoes';
 import Quantidade from '../../../../components/Quantidade';

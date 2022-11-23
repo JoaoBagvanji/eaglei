@@ -5,7 +5,7 @@ import { Header } from '../../components/Header';
 import colors from '../../styles/colors';
 
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -16,9 +16,11 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
     return (
-     <NavigationContainer independent={true}>
+     <NavigationContainer 
+     independent={true}
+     >
        <Stack.Navigator  screenOptions={{headerShown: false}} 
-               initialRouteName='Inspeccao('>
+               initialRouteName='Inspeccao'>
            <Stack.Screen name="Inspeccao" component={Inspeccao} />
            <Stack.Screen name="FormInspeccao" component={FormInspeccao} />
            <Stack.Screen name="FormBowser" component={FormBowser} />
@@ -27,7 +29,7 @@ export default function MyStack() {
    );
  }
 
-export function Inspeccao() {
+export function Inspeccao({navigation}) {
 
     type Nav ={
         navigate : (value: string) => void;
@@ -38,14 +40,7 @@ export function Inspeccao() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
     
-    const navigation = useNavigation();
-
-    useEffect(()=>{
-        navigation.goBack; 
-    },[]);
-
-
-
+    
   return (
     <VStack flex={1} pb={6} bg="white">
         
@@ -63,8 +58,8 @@ export function Inspeccao() {
             </HStack>
       </VStack>
     
-       <VStack mb={70} alignSelf={'center'}>
-            <TouchableOpacity style={styles.formButton}   onPress={() => navigate('FormInspeccao') as never}>
+       <VStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
+            <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormInspeccao') as never}>
                 <Plus size={22} color={colors.green[700]} />
             </TouchableOpacity>
        </VStack>
