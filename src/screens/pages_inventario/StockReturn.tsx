@@ -2,8 +2,31 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
 import { Info, KeyReturn  ,CaretDown, CaretUp, Eye ,ThumbsUp, ThumbsDown } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { ButtonHandle } from '../../components/ButtonHandle';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import StockReturnP from '../pages_tarefas/pages_projectos/pages/StockReturnP';
 
-export default function StockReturn() {
+
+
+const Stack = createStackNavigator();
+export default function MyStack() {
+    return (
+     <NavigationContainer independent={true}>
+       <Stack.Navigator  screenOptions={{headerShown: false}} 
+               initialRouteName='StockReturn'>
+           <Stack.Screen name="StockReturnP" component={StockReturnP} />
+           <Stack.Screen name="StockReturn" component={StockReturn} />
+       </Stack.Navigator>
+     </NavigationContainer>
+   ); 
+}
+export  function StockReturn() {
+  type Nav ={
+    navigate : (value: string) => void;
+}
+  const { navigate } = useNavigation<Nav>()
+
   
   
     const data = [
@@ -138,6 +161,16 @@ export default function StockReturn() {
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
+                />
+            </View>
+            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='10%'>
+                <ButtonHandle
+                    title='+'
+                    w={14}
+                    onPress={() => {
+                        navigate("StockReturnP") as never;
+                    }}
+
                 />
             </View>
       </VStack>
