@@ -1,6 +1,10 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
+
+import { ProjectorScreenChart, Scroll, Calendar , Wrench} from 'phosphor-react-native';
+
 import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle, Calendar} from 'phosphor-react-native';
+
 
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -19,7 +23,9 @@ const Stack = createStackNavigator();
 
 
 const tarefas = [
-    
+
+    {label: 'Correctiva', component_name: 'Correctiva', qtd: 22000, icon: <Wrench  color='#A1C861' size={25} />},
+    {label: 'Preventiva', component_name: 'Preventiva', qtd: 10, icon: <Icon as ={<Calendar  color='#A1C861' size={25} />} />}, 
     {label: 'Correctiva', component_name: 'Correctiva', qtd: 22000, icon: <Wrench color='#A1C861' size={25} />},
     {label: 'Preventiva', component_name: 'Preventiva', qtd: 10, icon: <Icon as ={<Calendar color='#A1C861' size={25} />} />}, 
     {label: 'Relatórios', component_name: 'Relatorios', qtd: 20, icon: <Scroll color='#A1C861' size={25} />},

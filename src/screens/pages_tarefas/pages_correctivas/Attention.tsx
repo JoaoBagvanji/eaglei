@@ -57,7 +57,6 @@ export default function Attention() {
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
 
-
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       val_sec[position] = true;
@@ -87,6 +86,28 @@ export default function Attention() {
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon2}</Icon>
                 </View>
+                
+              </View>) : null}
+              
+            </View>
+            </Box>
+            <View display='flex' flexDirection='column' alignContent='space-between'>
+              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <Icon as ={<Info color={colors.blueGray[400]}/>} />
+              </TouchableOpacity>
+              <View >
+                {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
+                  icon={<CaretDown  color={colors.primary[700]} size={10}/>}
+                  onPress={() => handleDropDownItems(item.id)}
+                  />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
+                  icon={<CaretUp   color={colors.primary[700]} size={10}/>}
+                  onPress={() => handleHideItems(item.id)}
+                  />)} 
+              </View>
+            </View>
+            
+        </View>   
+    )
 
 
                 
@@ -129,10 +150,16 @@ export default function Attention() {
                 Correctivas 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+
+                  Novas
+                </Text>
+                </View>
+                <Icon as ={<Warning   color={colors.green[700]}/>} />
                   em Atenção
                 </Text>
                 </View>
                 <Icon as ={<Warning  color={colors.green[700]}/>} />
+
             </HStack>
             <View>
                 <FlatList            

@@ -72,7 +72,8 @@ export function Correctiva() {
             Correctivas
             </Text>
             </View>
-            <Icon as ={<Wrench color={colors.green[700]}/>} />
+            <Icon as ={<Wrench  color={colors.green[700]}/>} />
+
         </HStack>
    
     </VStack>
