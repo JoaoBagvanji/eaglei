@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
 import { Info, FilePlus,CaretDown, CaretUp, ThumbsDown ,ThumbsUp } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { ButtonHandle } from '../../components/ButtonHandle';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import StockRequest from '../pages_tarefas/pages_projectos/pages/StockRequest';
+import  userImg  from '../../assets/avatars/notification.png';
 
 const Stack = createStackNavigator();
 export default function MyStack() {
@@ -139,7 +140,11 @@ export  function Pedidos() {
                   Pedidos
                 </Text>
                 </View>
-                <Icon as ={<FilePlus   color={colors.green[700]}/>} />
+                <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
+                <Imagens
+                  source={userImg} width='30' height='30' borderRadius='40' alt='Imagem de notification'/>
+                </View>
+                
             </HStack>
             <View>
                 <FlatList            

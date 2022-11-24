@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
-import { ClockCounterClockwise } from 'phosphor-react-native'
+import { Calendar, ClockCounterClockwise } from 'phosphor-react-native'
 import { Header } from '../../../components/Header';
 
 export default function PlanoMensal() {
@@ -21,7 +21,7 @@ export default function PlanoMensal() {
                       Mensais
                 </Text>
                 </View>
-                <Icon as ={<ClockCounterClockwise color={colors.green[700]}/>} />
+                <Icon as ={<Calendar color={colors.green[700]}/>} />
             </HStack>
       </VStack>
     </VStack>
