@@ -3,7 +3,6 @@ import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 
 import { ProjectorScreenChart, Scroll, Calendar , Wrench} from 'phosphor-react-native';
 
-import { ProjectorScreenChart, Scroll, ClockCounterClockwise, Wrench, CheckCircle, Calendar} from 'phosphor-react-native';
 
 
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
@@ -20,8 +19,6 @@ import Correctiva from './pages_tarefas/Correctiva';
 import Tarefas from './Tarefas';
 
 const Stack = createStackNavigator();
-
-
 const tarefas = [
 
     {label: 'Correctiva', component_name: 'Correctiva', qtd: 22000, icon: <Wrench  color='#A1C861' size={25} />},
