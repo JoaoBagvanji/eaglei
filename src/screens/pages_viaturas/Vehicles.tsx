@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
-import { Info, KeyReturn  ,CaretDown, CaretUp, Eye ,ThumbsUp, ThumbsDown, Pencil } from 'phosphor-react-native';
+import { Info, KeyReturn  ,CaretDown, CaretUp, Eye ,ThumbsUp, ThumbsDown, Pencil, Jeep } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AtribuicaoViatura } from './AtribuicaoViatura';
-
+import { ButtonHandle } from '../../components/ButtonHandle';
+import ViaturasRegist from '../pages_tarefas/pages_projectos/pages/ViaturasRegist';
 
 
 
@@ -16,6 +17,7 @@ export default function MyStack() {
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Vehicles'>
          <Stack.Screen name="AtribuicaoViatura" component={AtribuicaoViatura} />
+         <Stack.Screen name="ViaturasRegist" component={ViaturasRegist} />
          <Stack.Screen name="Vehicles" component={Vehicles} />
      </Stack.Navigator>
    </NavigationContainer>
@@ -36,41 +38,41 @@ function handleTelas(){
     const data = [
         {
             id: 1,
-            nome: 'Ford ,Mat: AFW 136 MP',
+            nome: 'Ford , AFW 136 MP',
             info: 'Maputo, Motorisra: oficina',
             image: require('../../assets/avatars/car.png'),
             icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
             icon2: require('../../assets/avatars/HAND.png'),
-            icon3: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
+            icon3: require('../../assets/avatars/Park.png'),
         },
         {
             id: 2,
-            nome: 'Toyota ,Mat: AFW 177 MP',
+            nome: 'Toyota , AFW 177 MP',
             info: 'Gaza, Motorisra: oficina',
             image: require('../../assets/avatars/car.png'),
             icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
             icon2: require('../../assets/avatars/HAND.png'),
-            icon3: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
+            icon3: require('../../assets/avatars/Park.png'),
             
         },
         {
             id: 3,
-            nome: 'Mazda ,Mat: AFW 177 MP',
+            nome: 'Mazda , AFW 177 MP',
             info: 'Vilankulos, Motorisra: oficina',
             image: require('../../assets/avatars/car.png'),
             icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
             icon2: require('../../assets/avatars/HAND.png'),
-            icon3: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
+            icon3: require('../../assets/avatars/Park.png'),
             
         },
         {
           id: 4,
-          nome: 'Mits. ,Mat: AFW 177 MP',
+          nome: 'Mitsubishi , AFW 177 MP',
           info: 'Sofala, Motorisra: oficina',
           image: require('../../assets/avatars/car.png'),
           icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
           icon2: require('../../assets/avatars/HAND.png'),
-          icon3: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
+          icon3: require('../../assets/avatars/Park.png'),
           
       },
         
@@ -104,11 +106,15 @@ function handleTelas(){
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  
                   <TouchableOpacity onPress={handleTelas}>
                     <Imagens source={item.icon2} style={styles.image}/>
                   </TouchableOpacity>
-                  
+                </View>
+
+                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <TouchableOpacity onPress={handleTelas}>
+                    <Imagens source={item.icon3} style={styles.image}/>
+                  </TouchableOpacity>
                 </View>
 
                 
@@ -148,13 +154,13 @@ function handleTelas(){
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                  Devolução 
+                  Lista 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                  De Stock 
+                  De Viaturas 
                 </Text>
                 </View>
-                <Icon as ={<KeyReturn color={colors.green[700]}/>} />
+                <Icon as ={<Jeep color={colors.green[700]}/>} />
             </HStack>
             <View>
                 <FlatList            
@@ -167,6 +173,16 @@ function handleTelas(){
                     showsVerticalScrollIndicator={false}
                 />
             </View>
+            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='10%'>
+                    <ButtonHandle
+                        title='+'
+                        w={14}
+                        onPress={() => {
+                            navigate("ViaturasRegist") as never;
+                        }}
+
+                    />
+              </View>
       </VStack>
     </VStack>
   );

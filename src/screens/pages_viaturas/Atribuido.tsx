@@ -46,26 +46,13 @@ export  function Atribuido() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [ disposicao, setDisposicao ] = useState("");
-    const [ abastecimento, setAbastecimento ] = useState("");
-    const [ repair, setRepair ] = useState("");
-    const [ value, setValue ] = useState("");
-    const [ reabastecimento, setReabastecimento ] = useState("");
-    const [ funcionamento, setFuncionamento ] = useState("");
-    const [ actuais, setActuais ] = useState("");
-    const [ reabasteceLitros, setReabasteceLitros ] = useState("");
-    const [ preco, setPreco ] = useState("");
-    const [ substituido, setSubstituido ] = useState("");
     const [ details, setDetails ] = useState("");
     const [ matricula, setMatricula ] = useState("");
     const [ modelo, setModelo ] = useState("");
     const [ kilometragem, setKilometragem ] = useState("");
     const [ marca, setMarca ] = useState("");
     const [ ano, setAno ] = useState("");
-    const [ cellphone, setCellphone ] = useState("");
-    const [ email, setEmail ] = useState("");
-    const [ prettycash, setPrettycash ] = useState("");
-    const [ name, setName ] = useState("");
-    const [ password, setPassword ] = useState("");
+    
 
   return (
     <VStack flex={1} pb={4} mb={16} bg="white">
