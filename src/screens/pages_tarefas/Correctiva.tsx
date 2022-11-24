@@ -32,7 +32,7 @@ export default function MyStack() {
       <NavigationContainer independent={true}>
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Correctiva'>
-            <Stack.Screen name="Attention" component={Attention} />
+            <Stack.Screen name="Attention" component={Attention}/>
             <Stack.Screen name="Completos" component={Completos} />
             <Stack.Screen name="Novos" component={Novos} />
             <Stack.Screen name="Progress" component={Progress} />
