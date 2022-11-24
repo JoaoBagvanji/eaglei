@@ -89,7 +89,7 @@ export  function Inventario() {
                 Navegue 
             </Text>
             <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                entre os Inventarios
+                entre os Inventários
             </Text>
             </View>
             <Icon as ={<Package color={colors.blueGray[400]}/>} />
