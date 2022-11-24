@@ -52,9 +52,9 @@ export default function StockReturnP() {
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                        <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Formulário Do Pedido</Text>
+                        <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Formulário De Retorno</Text>
                     </View>
-                    <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
+                    <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="55%" ml='24%' mt={2}/>
                     
                     <View style={styles.uinputView}>
                         <Nome value={disposicao} setValue={setDisposicao}/>

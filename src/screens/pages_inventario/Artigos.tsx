@@ -4,7 +4,7 @@ import { Info, CircleWavyCheck ,CaretDown, CaretUp, Plus, PencilLine } from 'pho
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-
+import  userImg  from '../../assets/avatars/artigos.png';
 
 import Gerador from '../pages_tarefas/pages_projectos/pages/Gerador';
 import Item from '../pages_tarefas/pages_projectos/pages/Item';
@@ -36,7 +36,7 @@ export function Artigos() {
   
 
 function handleTelas(){
-  navigate('Gerador') as never;
+  navigate('Item') as never;
 }
 
 
@@ -158,7 +158,10 @@ const oneUser = ( {item} ) =>(
                   Artigos
                 </Text>
                 </View>
-                <Icon as ={<CircleWavyCheck color={colors.green[700]}/>} />
+                <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
+                <Image
+                  source={userImg} width='35' height='35' borderRadius='40' alt='Imagem de artigos'/>
+                </View>
             </HStack>
             <View>
                 <FlatList            

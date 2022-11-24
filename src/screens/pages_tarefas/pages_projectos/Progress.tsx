@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass } from 'phosphor-react-native';
+import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
@@ -228,7 +228,7 @@ function handleTelaSubmit(){
                   em Progresso
                 </Text>
                 </View>
-                <Icon as ={<ProjectorScreenChart  color={colors.green[700]}/>} />
+                <Icon as ={<HourglassMedium  color={colors.green[700]}/>} />
             </HStack>
             <View>
                 <FlatList            
