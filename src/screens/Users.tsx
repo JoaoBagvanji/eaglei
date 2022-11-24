@@ -151,7 +151,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     showsVerticalScrollIndicator={false}
                 />
             </View>
-            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='60%'>
+            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='50%'>
                 <ButtonHandle
                     title='+'
                     w={14}
