@@ -86,14 +86,14 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     useEffect(()=>{
     (async()=>{
         
-    await axiosinstant.get("utilizador/").then(d=>{
-        setDados(d.data)
-        console.log(d.data)
+    // await axiosinstant.get("utilizador/").then(d=>{
+    //     setDados(data)
+    //     console.log(data)
 
-    });
+    // });
     // const alvo  =  dadoss.data; 
     
-    
+        setDados(data)
     })()
     
 
@@ -150,8 +150,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     keyExtractor = { data => data._id }
                     showsVerticalScrollIndicator={false}
                 />
-            </View>
-            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='60%'>
+                <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' mt='110%' marginLeft='100%'>
                 <ButtonHandle
                     title='+'
                     w={14}
@@ -161,6 +160,8 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
 
                 />
             </View>
+            </View>
+            
 
       </VStack>
     </VStack>

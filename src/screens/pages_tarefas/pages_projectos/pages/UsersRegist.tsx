@@ -73,7 +73,7 @@ export default function UsersRegist() {
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                        <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Dados Básicos</Text>
+                        <Text color='Primary.500' fontFamily={fonts.body} fontSize='md'> Dados Básicos</Text>
                     </View>
                     <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
@@ -111,7 +111,7 @@ export default function UsersRegist() {
                     </View>
 
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                        <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Local de Trabalho </Text>
+                        <Text color='Primary.500' fontFamily={fonts.body} fontSize='md'> Local de Trabalho </Text>
                     </View>
                     <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
 
