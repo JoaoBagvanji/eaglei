@@ -203,7 +203,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
-                    keyExtractor = { data => data._id }
+                    keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
                 <View px={6} alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='90%' mt={'128%'} >
