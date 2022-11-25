@@ -27,7 +27,7 @@ const tarefas = [
 
 export default function MyStack() {
       return (
-      <NavigationContainer independent={true}>
+ 
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Tarefa'>
             <Stack.Screen name="Correctiva" component={Correctiva} />
@@ -37,7 +37,7 @@ export default function MyStack() {
             <Stack.Screen name="Tarefa" component={Tarefa} />
     
         </Stack.Navigator>
-      </NavigationContainer>
+
     );
       }
 

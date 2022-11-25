@@ -10,6 +10,14 @@ export default function Atrelado() {
     const { colors } = useTheme();
 
     const navigation = useNavigation();
+    
+    React.useEffect(
+      () =>
+        navigation.addListener('blur', () =>
+          navigation.dispatch(StackActions.popToTop())
+        ),
+      []
+    );
 
  
   return (

@@ -15,15 +15,13 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
     return (
-     <NavigationContainer 
-     independent={true}
-     >
+
        <Stack.Navigator  screenOptions={{headerShown: false}} 
                initialRouteName='Transferencia'>
            <Stack.Screen name="Transferencia" component={Transferencia} />
            <Stack.Screen name="FormTransferencia" component={FormTransferencia} />
        </Stack.Navigator>
-     </NavigationContainer>
+
    );
  }
 

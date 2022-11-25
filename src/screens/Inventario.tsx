@@ -42,7 +42,7 @@ const inventarios = [
 
 export default function MyStack() {
     return (
-      <NavigationContainer independent={true}>
+    
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Inventario'>
             <Stack.Screen name="Aprovado" component={Aprovado} />
@@ -55,7 +55,7 @@ export default function MyStack() {
             <Stack.Screen name="Artigos" component={Artigos} />
             <Stack.Screen name="Inventario" component={Inventario} />    
         </Stack.Navigator>
-      </NavigationContainer>
+
     );
   }
 

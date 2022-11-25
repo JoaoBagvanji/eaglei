@@ -16,16 +16,14 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
     return (
-     <NavigationContainer 
-     independent={true}
-     >
+   
        <Stack.Navigator  screenOptions={{headerShown: false}} 
                initialRouteName='Inspeccao'>
            <Stack.Screen name="Inspeccao" component={Inspeccao} />
            <Stack.Screen name="FormInspeccao" component={FormInspeccao} />
            <Stack.Screen name="FormBowser" component={FormBowser} />
        </Stack.Navigator>
-     </NavigationContainer>
+ 
    );
  }
 

@@ -35,7 +35,7 @@ const viaturas = [
 
 export default function MyStack() {
      return (
-      <NavigationContainer independent={true}>
+   
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Viatura'>
             <Stack.Screen name="Atrelado" component={Atrelado} />
@@ -46,7 +46,7 @@ export default function MyStack() {
 
             <Stack.Screen name="Viatura" component={Viatura} />
         </Stack.Navigator>
-      </NavigationContainer>
+   
     );
   }
 

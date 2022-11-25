@@ -13,14 +13,14 @@ import ViaturasRegist from '../pages_tarefas/pages_projectos/pages/ViaturasRegis
 const Stack = createStackNavigator();
 export default function MyStack() {
   return (
-   <NavigationContainer independent={true}>
+
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Vehicles'>
          <Stack.Screen name="AtribuicaoViatura" component={AtribuicaoViatura} />
          <Stack.Screen name="ViaturasRegist" component={ViaturasRegist} />
          <Stack.Screen name="Vehicles" component={Vehicles} />
      </Stack.Navigator>
-   </NavigationContainer>
+
  );
 }
 export function Vehicles() {

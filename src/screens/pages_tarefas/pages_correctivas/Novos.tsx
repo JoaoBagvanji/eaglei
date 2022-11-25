@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { StackActions } from "@react-navigation/native";
 
 export default function Novas() {
   
+ 
   
     const data = [
         {
@@ -53,6 +55,7 @@ export default function Novas() {
       },
         
     ];
+    
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
@@ -63,6 +66,7 @@ export default function Novas() {
       val_sec[position] = true;
       setShouldShow(val_sec);
     }
+
     async function handleHideItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
@@ -99,10 +103,12 @@ export default function Novas() {
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
-                {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
+                {!shouldShow[item.id] ? 
+                (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.primary[700]} size={10}/>}
                   onPress={() => handleDropDownItems(item.id)}
-                  />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
+                  />) :
+                   (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
                   icon={<CaretUp   color={colors.primary[700]} size={10}/>}
                   onPress={() => handleHideItems(item.id)}
                   />)} 
