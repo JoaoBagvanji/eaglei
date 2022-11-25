@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { VStack, HStack, IconButton, useTheme, Image, Text, View } from 'native-base';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState } from 'react';
+import { VStack, HStack, useTheme, Image, Text, View } from 'native-base';
 
 import  userImg  from '../assets/helio.png';
 import Logo from '../assets/eagle I 1.svg' ;
+import PopupMenu from './PopupMenu';
 
 
 export function Header() {
@@ -47,8 +47,7 @@ export function Header() {
                 </Text>
            </View>
             
-            <Image
-                source={userImg} width='30' height='30' borderRadius='40' alt='Imagem de usuário'
+            <PopupMenu
             />
             
         </HStack>

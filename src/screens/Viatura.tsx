@@ -72,7 +72,7 @@ export  function Viatura() {
    
 
   return (
-<VStack flex={1} pb={6} bg="white">
+<VStack flex={1} pb={6} bg="white" >
 
     
 
