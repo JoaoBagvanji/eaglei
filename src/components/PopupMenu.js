@@ -8,7 +8,7 @@ import { Modal,
 import {  useTheme, View, Icon as Icons } from 'native-base';
 import { Camera, Gear, Power, User } from "phosphor-react-native";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import {  useNavigation } from '@react-navigation/native';
 
 const PopupMenu = () => {
     const  navigate  = useNavigation()
