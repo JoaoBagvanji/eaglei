@@ -280,11 +280,7 @@ import Transfers from '../Transfers';
                                       />
                                       <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                     </HStack>
-                                
-                              
-                                
-
-                              
+                            
                           </HStack>
                           
                           { isCarrocaria && <View style={{
@@ -1088,7 +1084,7 @@ import Transfers from '../Transfers';
 
 
 
-          function Screen7() {
+          function Screen7({navigation}) {
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -1145,7 +1141,7 @@ import Transfers from '../Transfers';
           
           const { navigate } = useNavigation<Nav>();
 
-            const navigation = useNavigation();
+          
 
             const [mostra, setMostra] = useState(true);
             

@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine } from 'phosphor-react-native';
+import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton} from 'native-base';
+import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, Plus } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { StackActions } from "@react-navigation/native";
+import { StackActions, useNavigation } from "@react-navigation/native";
+import colors from '../../../styles/colors';
+import FormTelco  from '../pages_correctivas/formsNovos/formTelco';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function Novas() {
+const Stack = createStackNavigator();
+ 
+export default function MyStack(){
+  return (
+
+    <Stack.Navigator   screenOptions={{headerShown: false}} 
+            initialRouteName='Novas'>
+        <Stack.Screen name="Novas" component={Novas} />
+        <Stack.Screen name="FormTelco" component={FormTelco} />
+    </Stack.Navigator>
+
+);
+}
+
+ function Novas() {
   
  
   
@@ -122,6 +139,12 @@ export default function Novas() {
         return <View style={styles.separator}/>
     }
 
+    type Nav ={
+      navigate : (value: string) => void;
+  }
+    
+  const { navigate } = useNavigation<Nav>()
+
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
@@ -150,6 +173,14 @@ export default function Novas() {
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
+
+
+              <VStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
+                    <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
+                        <Plus size={22} color={colors.green[700]} />
+                    </TouchableOpacity>
+              </VStack>
+
             </View>
       </VStack>
     </VStack>
@@ -158,6 +189,14 @@ export default function Novas() {
 
 
 const styles=StyleSheet.create({
+  formButton:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.blue,
+    borderRadius: 25,
+    height: 50,
+    width:50
+},
     listHeader:{
         height: 55,
         alignItems: 'center',
