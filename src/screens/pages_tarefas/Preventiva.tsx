@@ -31,7 +31,7 @@ const preventivas = [
 
 export default function MyStack() {
      return (
-      <NavigationContainer independent={true}>
+    
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Preventiva'>
             <Stack.Screen name="PlanoHoje" component={PlanoHoje} />
@@ -41,7 +41,7 @@ export default function MyStack() {
             <Stack.Screen name="Atrasados" component={Atrasados} />
             <Stack.Screen name="Preventiva" component={Preventiva} />
         </Stack.Navigator>
-      </NavigationContainer>
+    
     );
       }
 

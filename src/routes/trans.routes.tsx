@@ -6,9 +6,9 @@ import TopTabs from '../screens/pages_viaturas/pages_transfers/FormTransfers';
     export default function App() {
           
       return (
-           <NavigationContainer independent={true}>
+           
             <TopTabs />
-        </NavigationContainer>    
+        
       );
     }
 

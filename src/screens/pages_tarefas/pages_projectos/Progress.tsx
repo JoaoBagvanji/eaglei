@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
   return (
-   <NavigationContainer independent={true}>
+
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Progress'>
          <Stack.Screen name="Gerador" component={Gerador} />
@@ -25,7 +25,7 @@ export default function MyStack() {
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Progress" component={Progress} />
      </Stack.Navigator>
-   </NavigationContainer>
+  
  ); 
 }
 

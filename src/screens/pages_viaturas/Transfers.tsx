@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 export default function MyStack() {
     return (
 
-       <Stack.Navigator  screenOptions={{headerShown: false}} 
+       <Stack.Navigator   screenOptions={{headerShown: false}} 
                initialRouteName='Transferencia'>
            <Stack.Screen name="Transferencia" component={Transferencia} />
            <Stack.Screen name="FormTransferencia" component={FormTransferencia} />

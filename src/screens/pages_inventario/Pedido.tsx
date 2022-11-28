@@ -11,13 +11,13 @@ import  userImg  from '../../assets/avatars/notification.png';
 const Stack = createStackNavigator();
 export default function MyStack() {
     return (
-     <NavigationContainer independent={true}>
+
        <Stack.Navigator  screenOptions={{headerShown: false}} 
                initialRouteName='Pedidos'>
            <Stack.Screen name="StockRequest" component={StockRequest} />
            <Stack.Screen name="Pedidos" component={Pedidos} />
        </Stack.Navigator>
-     </NavigationContainer>
+   
    ); 
 }
 

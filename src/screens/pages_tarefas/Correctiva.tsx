@@ -1,10 +1,8 @@
 import React , {useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { HourglassMedium, CheckCircle, FilePlus, Warning, Wrench, Handshake} from 'phosphor-react-native';
-import { Header } from '../../components/Header';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import colors from '../../styles/colors';
@@ -29,7 +27,7 @@ const correctivas = [
 
 export default function MyStack() {
      return (
-      <NavigationContainer independent={true}>
+     
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Correctiva'>
             <Stack.Screen name="Attention" component={Attention}/>
@@ -38,7 +36,7 @@ export default function MyStack() {
             <Stack.Screen name="Progress" component={Progress} />
             <Stack.Screen name="Correctiva" component={Correctiva} />
         </Stack.Navigator>
-      </NavigationContainer>
+     
     );
       }
 
