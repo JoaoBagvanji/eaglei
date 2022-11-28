@@ -129,7 +129,7 @@ export  function Utilizadores() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: '10%', marginLeft: '1%'}}>
+              <TouchableOpacity style={{ paddingBottom: '20%', marginLeft: '1%'}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
