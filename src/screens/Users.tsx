@@ -180,10 +180,10 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     const { colors } = useTheme();
 
   return (
-    <VStack flex={1} pb={6} bg="white">
+    <VStack flex={1} pb='6%' bg="white">
 
 
-        <VStack flex={16} px={6}>
+        <VStack flex={16} px='6%'>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>

@@ -4,7 +4,6 @@ import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { ProjectorScreenChart, Scroll, Calendar , Wrench} from 'phosphor-react-native';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import colors from '../styles/colors';
@@ -58,11 +57,11 @@ export function Tarefa() {
     }
 
   return (
-<VStack flex={1} pb={6} bg="white">
+<VStack flex={1} pb='6%' bg="white">
 
 
 
-    <VStack flex={1} px={6}>
+    <VStack flex={1} px='6%'>
         <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
             <View>
             <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
@@ -77,7 +76,7 @@ export function Tarefa() {
    
     </VStack>
 
-        <VStack flex={4} mx={2} py={20}>
+        <VStack flex={4} mx='2%' py='20%'>
                 <SafeAreaView>
                         <FlatList
                             numColumns={2} 
