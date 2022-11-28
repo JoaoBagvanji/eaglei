@@ -11,14 +11,6 @@ export default function Atrelado() {
 
     const navigation = useNavigation();
     
-    React.useEffect(
-      () =>
-        navigation.addListener('blur', () =>
-          navigation.dispatch(StackActions.popToTop())
-        ),
-      []
-    );
-
  
   return (
    
