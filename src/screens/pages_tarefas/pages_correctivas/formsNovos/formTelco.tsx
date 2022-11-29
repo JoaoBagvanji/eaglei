@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon, } from 'native-base';
-import { UserPlus , FloppyDisk, XCircle, IdentificationCard, Calendar  } from 'phosphor-react-native';
+import { UserPlus, Calendar, Plus  } from 'phosphor-react-native';
 
 
 
@@ -9,52 +9,18 @@ import {TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '../../../../components/Button';
-import { ButtonCancel } from '../../../../components/ButtonCancel';
-import Nome from '../../../../components/Nome';
-import DataNasc from '../../../../components/DataNasc';
-import CartaConducao from '../../../../components/CartaConducao';
-import ValidadeCarta from '../../../../components/ValidadeCarta';
-import Telefone from '../../../../components/Telefone';
-import Supervisor from '../../../../components/Supervisor';
-import Matricula from '../../../../components/Matricula';
-import Modelo from '../../../../components/Modelo';
-import Kilometragem from '../../../../components/Kilometragem';
-import Marca from '../../../../components/Marca';
-import Ano from '../../../../components/Ano';
-import CellPhone from '../../../../components/CellPhone';
-import EmailUser from '../../../../components/EmailUser';
-import Prettycash from '../../../../components/Prettycash';
-import Username from '../../../../components/Username';
-import PasswordUser from '../../../../components/PasswordUser';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { text } from '@fortawesome/fontawesome-svg-core';
+import colors from '../../../../styles/colors';
+
 
 export default function FormTelco() {
-    const { fonts } = useTheme();
-    const { colors } = useTheme();
-    const [ disposicao, setDisposicao ] = useState("");
+
+
     const [ abastecimento, setAbastecimento ] = useState("");
-    const [ repair, setRepair ] = useState("");
     const [ value, setValue ] = useState("");
-    const [ reabastecimento, setReabastecimento ] = useState("");
-    const [ funcionamento, setFuncionamento ] = useState("");
-    const [ actuais, setActuais ] = useState("");
-    const [ reabasteceLitros, setReabasteceLitros ] = useState("");
-    const [ preco, setPreco ] = useState("");
-    const [ substituido, setSubstituido ] = useState("");
-    const [ details, setDetails ] = useState("");
-    const [ matricula, setMatricula ] = useState("");
-    const [ modelo, setModelo ] = useState("");
-    const [ kilometragem, setKilometragem ] = useState("");
-    const [ marca, setMarca ] = useState("");
-    const [ ano, setAno ] = useState("");
-    const [ cellphone, setCellphone ] = useState("");
-    const [ email, setEmail ] = useState("");
-    const [ prettycash, setPrettycash ] = useState("");
-    const [ name, setName ] = useState("");
-    const [ password, setPassword ] = useState("");
+
 
     const [openCausa, setOpenCausa] = useState(false);
     const [valueCausa, setValueCausa] = useState([]);
@@ -96,7 +62,8 @@ export default function FormTelco() {
                         const [show, setShow] = useState (false);
                         const [text, setText] = useState('Data');
 
-
+                        const { fonts } = useTheme();
+                        const { colors } = useTheme();
             
                             
                         const onChange = (event, selectedDate) => {
@@ -129,9 +96,14 @@ export default function FormTelco() {
                             'data':'',
                             'hora':'',
                             'filial':'',
-                            'motor':'',
-                            'camera':'',
-                           }
+                            'regiao':'',
+                            'provincia':'',
+                            'local':'',
+                            'pessoa_d_contacto':'',
+                            'equip_tecnica':'',
+                            'matricula':[],
+                            'data_prevista': new Date(),
+                            }
 
 
 
@@ -182,16 +154,30 @@ export default function FormTelco() {
                         const [hour, setHour] = useState("");
                         isFiled.hora=hour;
                         
-                        const [filial, setFillial] = useState("");
-                        isFiled.filial=filial;
+                        const [fillial, setFillial] = useState("");
+                        isFiled.filial=fillial;
 
+                        const [region, setRegion] = useState("");
+                        isFiled.regiao=region;
+
+                        const [prov, setProv] = useState("");
+                        isFiled.provincia=prov;
+
+                        const [place, setPlace] = useState("");
+                        isFiled.local=place;  
                         
+                        const [person, setPerson] = useState("");
+                        isFiled.pessoa_d_contacto=person;  
 
-                        
+                        const [team, setTeam] = useState("");
+                        isFiled.equip_tecnica=team;  
+
+                        isFiled.matricula=valueMat;
+
+                        isFiled.data_prevista=date; 
 
 
-
-  return (
+return (
     <VStack flex={1} pb={4} mb={16} bg="white">
 
         <SafeAreaView style={styles.container}>
@@ -455,7 +441,7 @@ export default function FormTelco() {
 
                             <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                                 <Box maxW='300'>
-                                        <Select selectedValue={filial} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                        <Select selectedValue={fillial} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                     bg: "primary.500",
                                     endIcon: <CheckIcon  size='5' />
                                 }} onValueChange={itemValue => setFillial(itemValue)}>
@@ -471,10 +457,10 @@ export default function FormTelco() {
 
                             <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                                 <Box maxW='300'>
-                                        <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                        <Select selectedValue={region} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                     bg: "primary.500",
                                     endIcon: <CheckIcon  size='5' />
-                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                                }} onValueChange={itemValue => setRegion(itemValue)}>
                                 
                                         </Select>
                                 </Box>
@@ -486,10 +472,10 @@ export default function FormTelco() {
 
                             <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                                 <Box maxW='300'>
-                                        <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                        <Select selectedValue={prov} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                     bg: "primary.500",
                                     endIcon: <CheckIcon  size='5' />
-                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                                }} onValueChange={itemValue => setProv(itemValue)}>
                                     <Select.Item label="Maputo" value="Maputo" />
                                     <Select.Item label="Nampula" value="Nampula" />
                                     <Select.Item label="Cabo Delgado" value="Cabo Delgado" />
@@ -511,8 +497,8 @@ export default function FormTelco() {
                                 mode="outlined"
                                 label="Local"
                                 theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                value={value}
-                                onChangeText={(text) => setValue(text)}
+                                value={place}
+                                onChangeText={(text) => setPlace(text)}
                                 autoComplete='off'
                                 />
                             </View>
@@ -523,10 +509,10 @@ export default function FormTelco() {
 
                             <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                                 <Box maxW='300'>
-                                        <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                        <Select selectedValue={person} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                     bg: "primary.500",
                                     endIcon: <CheckIcon  size='5' />
-                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                                }} onValueChange={itemValue => setPerson(itemValue)}>
                                 
                                         </Select>
                                 </Box>
@@ -543,10 +529,10 @@ export default function FormTelco() {
 
                             <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                                 <Box maxW='300'>
-                                <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                <Select selectedValue={team} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                     bg: "primary.500",
                                     endIcon: <CheckIcon  size='5' />
-                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                                }} onValueChange={itemValue => setTeam(itemValue)}>
                                     <Select.Item label="Abdul Emilia" value="Abdul Emilia" />
                                     <Select.Item label="Abdul Tauate" value="Abdul Tauate" />
                                     <Select.Item label="Abilio Mabunda" value="Abilio Mabunda" />
@@ -592,10 +578,10 @@ export default function FormTelco() {
 
                                             <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                                                 <Box maxW='300'>
-                                                        <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                                        <Select selectedValue={priority} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                                     bg: "primary.500",
                                                     endIcon: <CheckIcon  size='5' />
-                                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                                                }} onValueChange={itemValue => setPriority(itemValue)}>
                                                     <Select.Item label="Alta" value="Alta" />
                                                     <Select.Item label="Média" value="Média" />
                                                     <Select.Item label="BAixa" value="BAixa" />
@@ -637,8 +623,8 @@ export default function FormTelco() {
                                     mode="outlined"
                                     label="Motivo"
                                     theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={value}
-                                    onChangeText={(text) => setValue(text)}
+                                    value={reason}
+                                    onChangeText={(text) => setReason(text)}
                                     autoComplete='off'
                                     />
                             </View>
@@ -666,16 +652,28 @@ export default function FormTelco() {
                                 </Box>
                             </View>
                             
-                            <View display='flex' mt={4}>
-                                <Text color='Primary.500'  ml={'8%'} fontFamily={fonts.body} fontSize='md'> Tecnicos Permitidos </Text>
-                            </View>
+                            <HStack>
+                                <View display='flex' mt={4}>
+                                    <Text color='Primary.500'  ml={'8%'} fontFamily={fonts.body} fontSize='md'> Tecnicos Permitidos </Text>
+                                </View>
 
-                            <View alignSelf={'center'} borderBottomColor={colors.primary[600]} borderBottomWidth={1} width="85%"  mt={'4%'}/>
+                                <View alignSelf={'center'} borderBottomColor={colors.primary[600]} borderBottomWidth={1} width="85%"  mt={'4%'}/>
+
+                                <VStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
+                                    <TouchableOpacity style={styles.formButton} >
+                                        <Plus size={22} color={colors.green[700]} />
+                                    </TouchableOpacity>
+                                </VStack>
+                            </HStack>
+
+                           
 
                             <Button title='Criar' alignSelf={'center'} my={'10%'} width={'30%'}></Button>
                         
                     </View>}
-
+                    
+                  
+                
                 </ScrollView>
             </KeyboardAvoidingView>
         </VStack>
@@ -716,7 +714,12 @@ const styles =StyleSheet.create({
         marginLeft: '20%'
         
     },
-   
-
-   
+    formButton:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.blue,
+        borderRadius: 25,
+        height: 50,
+        width:50
+} 
 })
