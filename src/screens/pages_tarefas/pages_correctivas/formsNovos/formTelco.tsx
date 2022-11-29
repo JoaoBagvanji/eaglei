@@ -65,11 +65,7 @@ export default function FormTelco() {
       {label: 'Centro de Dados Centro de Dados', value: 'Centro de Dados Centro de Dados'},
     ]);
 
-    /**
-                         
-              
-
-     */
+ 
 
                         const [openMat, setOpenMat] = useState(false);
                         const [valueMat, setValueMat] = useState([]);
@@ -99,6 +95,8 @@ export default function FormTelco() {
                         const [mode, setMode] = useState('date');
                         const [show, setShow] = useState (false);
                         const [text, setText] = useState('Data');
+
+
             
                             
                         const onChange = (event, selectedDate) => {
@@ -117,14 +115,33 @@ export default function FormTelco() {
                         setMode(currentMode);
                         }
 
+
+                        var isFiled = {
+                            'departamento':'',
+                            'cliente':'',
+                            'ticket_number':'',
+                            'causa':[],
+                            'site': '',
+                            'tecnico': '',
+                            'razao':'',
+                            'prioridade':'',
+                            'operador':'',
+                            'data':'',
+                            'hora':'',
+                            'filial':'',
+                            'motor':'',
+                            'camera':'',
+                           }
+
+
+
                         const [mostraTelco, setMostraTelco] = useState(false);
                         const [mostraEnergia, setMostraEnergia] = useState(false);
 
                         const mudaform = (e) => {
                        
-                            console.log(e);
-                            
-                            
+                            isFiled.departamento=e;
+                                                    
                             if(e == 'Telco' || e == 'Centro de Dados')
                               {
                                 
@@ -135,6 +152,44 @@ export default function FormTelco() {
                                 setMostraEnergia(true);
                               }
                         }
+
+                        const [ticket, setTicket] = useState("");
+                        isFiled.ticket_number=ticket;
+
+                        const [client, setClient] = useState("");
+                        isFiled.cliente=client;    
+
+                        isFiled.causa=valueCausa; 
+
+                        const [sait, setSait] = useState("");
+                        isFiled.site=sait;
+
+                        const [teknico, setTeknico] = useState("");
+                        isFiled.tecnico=teknico;    
+
+                        const [reason, setReason] = useState("");
+                        isFiled.razao=reason;
+
+                        const [priority, setPriority] = useState("");
+                        isFiled.prioridade=priority;
+
+                        const [operator, setOpereator] = useState("");
+                        isFiled.operador=operator;
+
+                        const [deit, setDeit] = useState("");
+                        isFiled.data=deit;
+
+                        const [hour, setHour] = useState("");
+                        isFiled.hora=hour;
+                        
+                        const [filial, setFillial] = useState("");
+                        isFiled.filial=filial;
+
+                        
+
+                        
+
+
 
   return (
     <VStack flex={1} pb={4} mb={16} bg="white">
@@ -178,20 +233,37 @@ export default function FormTelco() {
                             </Select>
                         </Box>
                     </View>
+
+                            <View style={styles.uinputView}>
+                            <TextInput
+                                style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='#cce3f9'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Ticket Number"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={ticket}
+                                onChangeText={(text) => setTicket(text)}
+                                autoComplete='off'
+                                />
+                                
+                            </View>
                 
                     {mostraTelco && 
                     <View>
 
-                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                         <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Cliente</Text>
                     </View>
 
                     <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                         <Box maxW='300'>
-                                <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                <Select selectedValue={client} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                             bg: "primary.500",
                             endIcon: <CheckIcon  size='5' />
-                        }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                        }} onValueChange={itemValue => setClient(itemValue)}>
                             <Select.Item label="Vm,Sa" value="Vm,Sa" />
                             <Select.Item label="Vodacom Tete" value="Vodacom Tete" />
                             <Select.Item label="Vodashop Quelimane" value="Vodashop Quelimane" />
@@ -241,8 +313,8 @@ export default function FormTelco() {
                         mode="outlined"
                         label="Site"
                         theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                        value={value}
-                        onChangeText={(text) => setValue(text)}
+                        value={sait}
+                        onChangeText={(text) => setSait(text)}
                         autoComplete='off'
                         />
                     </View>
@@ -253,10 +325,10 @@ export default function FormTelco() {
 
                     <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                         <Box maxW='300'>
-                                <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                <Select selectedValue={teknico} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                             bg: "primary.500",
                             endIcon: <CheckIcon  size='5' />
-                        }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                        }} onValueChange={itemValue => setTeknico(itemValue)}>
                             <Select.Item label="Abdul Emilia" value="Abdul Emilia" />
                             <Select.Item label="Abdul Tauate" value="Abdul Tauate" />
                             <Select.Item label="Abilio Mabunda" value="Abilio Mabunda" />
@@ -275,8 +347,8 @@ export default function FormTelco() {
                         mode="outlined"
                         label="Razão"
                         theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                        value={value}
-                        onChangeText={(text) => setValue(text)}
+                        value={reason}
+                        onChangeText={(text) => setReason(text)}
                         autoComplete='off'
                         />
                     </View>
@@ -287,10 +359,10 @@ export default function FormTelco() {
 
                     <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                         <Box maxW='300'>
-                                <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                <Select selectedValue={priority} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                             bg: "primary.500",
                             endIcon: <CheckIcon  size='5' />
-                        }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                        }} onValueChange={itemValue => setPriority(itemValue)}>
                             <Select.Item label="Alta" value="Alta" />
                             <Select.Item label="Média" value="Média" />
                             <Select.Item label="BAixa" value="BAixa" />
@@ -324,8 +396,8 @@ export default function FormTelco() {
                         mode="outlined"
                         label="Data relatada"
                         theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                        value={value}
-                        onChangeText={(text) => setValue(text)}
+                        value={deit}
+                        onChangeText={(text) => setDeit(text)}
                         autoComplete='off'
                         />
                     </View>
@@ -340,8 +412,8 @@ export default function FormTelco() {
                         mode="outlined"
                         label="Hora relatada"
                         theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                        value={value}
-                        onChangeText={(text) => setValue(text)}
+                        value={hour}
+                        onChangeText={(text) => setHour(text)}
                         autoComplete='off'
                         />
                     </View>
@@ -354,22 +426,6 @@ export default function FormTelco() {
 
                     {mostraEnergia &&
                     <View>
-                            <View style={styles.uinputView}>
-                            <TextInput
-                                style={styles.txtInput} 
-                                selectionColor='#12375C' 
-                                outlineColor='#cce3f9'
-                                activeOutlineColor='#12375C' 
-                                underlineColor='#12375C' 
-                                mode="outlined"
-                                label="Ticket Number"
-                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                value={value}
-                                onChangeText={(text) => setValue(text)}
-                                autoComplete='off'
-                                />
-                            </View>
-
                             <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                                 <Text color='Primary.500' fontFamily={fonts.body} fontSize='md'> Criar Tarefa </Text>
                             </View>
@@ -381,10 +437,10 @@ export default function FormTelco() {
 
                             <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                                 <Box maxW='300'>
-                                        <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                        <Select selectedValue={client} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                     bg: "primary.500",
                                     endIcon: <CheckIcon  size='5' />
-                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                                }} onValueChange={itemValue => setClient(itemValue)}>
                                     <Select.Item label="Vm,Sa" value="Vm,Sa" />
                                     <Select.Item label="Vodacom Tete" value="Vodacom Tete" />
                                     <Select.Item label="Vodashop Quelimane" value="Vodashop Quelimane" />
@@ -399,10 +455,10 @@ export default function FormTelco() {
 
                             <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                                 <Box maxW='300'>
-                                        <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                        <Select selectedValue={filial} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                     bg: "primary.500",
                                     endIcon: <CheckIcon  size='5' />
-                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                                }} onValueChange={itemValue => setFillial(itemValue)}>
                                     <Select.Item label="Carlos Carvalho" value="Carlos Carvalho" />
                                     <Select.Item label="Nova" value="Nova" />
                                         </Select>
