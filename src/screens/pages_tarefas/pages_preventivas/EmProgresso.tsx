@@ -2,8 +2,25 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
 import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp, MapPinLine, MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Questions from '../pagesforms/Questions';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Progress() {
+const Stack = createStackNavigator();
+
+export default function MyStack() {
+  return (
+
+     <Stack.Navigator  screenOptions={{headerShown: false}} 
+             initialRouteName='Progress'>
+         <Stack.Screen name="Progress" component={Progress} />
+         <Stack.Screen name="Questions" component={Questions} />
+     </Stack.Navigator>
+  
+ ); 
+}
+
+ function Progress() {
   
   
     const data = [
@@ -76,6 +93,19 @@ export default function Progress() {
       setShouldShow(val_sec);
     }
 
+    type Nav ={
+      navigate : (value: string) => void;
+    }
+
+    const { navigate } = useNavigation<Nav>()
+
+
+    function handleTelas(){
+      navigate('Questions') as never;
+    }
+
+
+
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <View style={styles.avatarContainer }>
@@ -116,7 +146,9 @@ export default function Progress() {
                   </View>
 
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <TouchableOpacity onPress={handleTelas}>
                     <Icon>{item.icon7}</Icon>
+                  </TouchableOpacity>
                   </View>
                 </View>
                 </>

@@ -112,6 +112,7 @@ function handleTelaSubmit(){
       },
         
     ];
+
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     
@@ -122,6 +123,7 @@ function handleTelaSubmit(){
       val_sec[position] = true;
       setShouldShow(val_sec);
     }
+
     async function handleHideItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
@@ -129,9 +131,11 @@ function handleTelaSubmit(){
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
+
             <View style={styles.avatarContainer }>
               <Image source={item.image} style={styles.avatar}/>
             </View>
+            
             <Box flexDirection={'column'}>
             
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
@@ -236,7 +240,7 @@ function handleTelaSubmit(){
                     data = {data}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                    ListEmptyComponent =  {<Text>Esta é uma lista de projectos</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
