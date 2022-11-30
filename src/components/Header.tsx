@@ -20,7 +20,7 @@ export function Header() {
             justifyContent="space-between"
             alignItems="center"
             bg="white"
-            pt={12}
+            pt={8}
             pb={5}
             px={6}
             flexDirection="row"
