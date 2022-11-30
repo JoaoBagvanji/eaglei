@@ -166,7 +166,7 @@ import Transfers from '../Transfers';
                                   theme="LIGHT"
                                   multiple={false}
                                   mode="BADGE"
-                                  badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                  badgeDotColors={["#A1C861"]}
                                   />
             </View>
 
@@ -308,7 +308,7 @@ import Transfers from '../Transfers';
                               theme="LIGHT"
                               multiple={true}
                               mode="BADGE"
-                              //badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                              badgeDotColors={["#A1C861"]}
                             />
                           </View>}
 
@@ -512,7 +512,7 @@ import Transfers from '../Transfers';
                           theme="LIGHT"
                           multiple={true}
                           mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          badgeDotColors={["#A1C861"]}
                         />
                       </View>}
 
@@ -564,7 +564,7 @@ import Transfers from '../Transfers';
                           theme="LIGHT"
                           multiple={true}
                           mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          badgeDotColors={["#A1C861"]}
                         />
                       </View>}
 
@@ -615,7 +615,7 @@ import Transfers from '../Transfers';
                           theme="LIGHT"
                           multiple={true}
                           mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          badgeDotColors={["#A1C861"]}
                         />
                       </View>}
 
@@ -731,7 +731,7 @@ import Transfers from '../Transfers';
                                         theme="LIGHT"
                                         multiple={true}
                                         mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                        badgeDotColors={["#A1C861"]}
                                       />
                                     </View>}
 
@@ -853,7 +853,7 @@ import Transfers from '../Transfers';
                           theme="LIGHT"
                           multiple={true}
                           mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          badgeDotColors={["#A1C861"]}
                         />
                       </View>}
                             
@@ -1019,7 +1019,7 @@ import Transfers from '../Transfers';
                           theme="LIGHT"
                           multiple={true}
                           mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          badgeDotColors={["#A1C861"]}
                         />
                       </View>}
 
@@ -1070,7 +1070,7 @@ import Transfers from '../Transfers';
                           theme="LIGHT"
                           multiple={true}
                           mode="BADGE"
-                          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                          badgeDotColors={["#A1C861"]}
                         />
                       </View>}
 

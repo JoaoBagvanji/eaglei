@@ -13,9 +13,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import colors from '../../../../styles/colors';
+import { color } from 'native-base/lib/typescript/theme/styled-system';
 
 
-export default function FormTelco() {
+export default function FormTelco({navigation}) {
 
 
     const [ abastecimento, setAbastecimento ] = useState("");
@@ -28,7 +29,7 @@ export default function FormTelco() {
       {label: 'Radio', value: 'Radio'},
       {label: 'Transmissao', value: 'Transmissao'},
       {label: 'Energia', value: 'Energia'},
-      {label: 'Centro de Dados Centro de Dados', value: 'Centro de Dados Centro de Dados'},
+      {label: 'Centro de Dados', value: 'Centro de Dados'},
     ]);
 
  
@@ -54,7 +55,32 @@ export default function FormTelco() {
                             {label: 'NM 726 MC', value: 'NM 726 MC'},
                             {label: 'BI 216 MC', value: 'BI 216 MC'},
                             {label: 'BI 217 MC', value: 'BI 217 MC'},
-             
+                        ]);
+
+                       
+                        const [openTec, setOpenTec] = useState(false);
+                        const [valueTec, setValueTec] = useState([]);
+                        const [itemsTec, setItemsTec] = useState([
+                            {label:"Abdul Emilia", value:"Abdul Emilia" },
+                            {label:"Abdul Tauate", value:"Abdul Tauate"}, 
+                            {label:"Abilio Mabunda", value:"Abilio Mabunda"}, 
+                            {label:"Aboo Bakar", value:"Aboo Bakar" },
+                            {label:"Artur Emilia", value:"Artur Emilia" },
+                            {label:"Bento Tauate", value:"Bento Tauate"}, 
+                            {label:"Bernardo Mabunda", value: "Bernardo Mabunda"}, 
+                            {label:"Baloi Bakar", value:"Baloi Bakar" },
+                            {label:"Carlos Emilia", value:"Carlos Emilia" },
+                            {label:"Carla Tauate", value:"Carla Tauate"}, 
+                            {label:"Camilo Mabunda", value: "Camilo Mabunda"}, 
+                            {label:"Cleyton Bakar", value:"Cleyton Bakar" },
+                            {label:"Dercio Emilia", value:"Dercio Emilia" },
+                            {label:"Daniel Tauate", value:"Daniel Tauate"}, 
+                            {label:"Danilo Mabunda", value: "Danilo Mabunda"}, 
+                            {label:"Dicarson Bakar", value:"Dicarson Bakar" },
+                            {label:"Ernesto Emilia", value:"Ernesto Emilia" },
+                            {label:"Eduardo Tauate", value:"Eduardo Tauate"}, 
+                            {label:"Emilio Mabunda", value: "Emilio Mabunda"}, 
+                            {label:"Emerson Bakar", value:"Emerson Bakar" }, 
                         ]);
 
                         const [date, setDate] = useState(new Date());
@@ -103,6 +129,7 @@ export default function FormTelco() {
                             'equip_tecnica':'',
                             'matricula':[],
                             'data_prevista': new Date(),
+                            'assistente': []
                             }
 
 
@@ -110,21 +137,23 @@ export default function FormTelco() {
                         const [mostraTelco, setMostraTelco] = useState(false);
                         const [mostraEnergia, setMostraEnergia] = useState(false);
 
-                        const mudaform = (e) => {
-                       
-                            isFiled.departamento=e;
-                                                    
-                            if(e == 'Telco' || e == 'Centro de Dados')
+                        const mudaform = (selectedDep) => {
+                   
+                               setDep(selectedDep);                     
+                            if(selectedDep == 'Telco' || selectedDep == 'Centro de Dados')
                               {
                                 
                                 setMostraTelco(true);
                                 setMostraEnergia(false);
-                              }else if(e == 'Energia' || e == 'Climatização e Eletricidade'){
+                              }else if(selectedDep == 'Energia' || selectedDep == 'Climatização e Eletricidade'){
                                 setMostraTelco(false);
                                 setMostraEnergia(true);
                               }
                         }
 
+                        const [dep, setDep] = useState("");
+                        isFiled.departamento=dep;                
+                        
                         const [ticket, setTicket] = useState("");
                         isFiled.ticket_number=ticket;
 
@@ -176,6 +205,75 @@ export default function FormTelco() {
 
                         isFiled.data_prevista=date; 
 
+                        isFiled.assistente=valueTec;  
+
+                        const onGravaTelco = () => {
+
+                            if(
+                              dep !='' &&
+                              isFiled.ticket_number != '' &&
+                              isFiled.cliente != '' &&
+                              isFiled.causa.length != 0 &&
+                              isFiled.site != '' &&
+                              isFiled.tecnico != '' &&
+                              isFiled.razao != '' &&
+                              isFiled.prioridade != '' &&
+                              isFiled.operador != '' &&
+                              isFiled.data != '' &&
+                              isFiled.hora != ''
+                              ){
+                                alert("Formulário submetido com sucesso");
+                                navigation.goBack();
+                              }
+                               
+                        else
+                           alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
+                        }
+
+                        const onGravaEnergia = () => {
+
+                            if(
+                              isFiled.departamento !='' &&
+                              isFiled.ticket_number != '' &&
+                              isFiled.cliente != '' &&
+                              isFiled.filial != '' &&
+                             // isFiled.regiao != '' &&
+                              isFiled.razao != '' &&
+                              isFiled.provincia != '' &&
+                              isFiled.local != '' &&
+                             // isFiled.pessoa_d_contacto != '' &&
+                              isFiled.equip_tecnica != '' &&
+                              isFiled.matricula.length != 0 &&
+                              isFiled.prioridade != '' &&
+                              isFiled.data_prevista != new Date() &&
+                              isFiled.razao != '' &&
+                              isFiled.assistente.length != 0
+                              ){
+                                alert("Formulário submetido com sucesso");
+                                navigation.goBack();
+                            }
+                        else
+                        {
+                            alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
+                        }
+                  
+                        }
+
+                        const [mb, setMb] = useState('0%');
+                        const [combo, setCombo] = useState(0); 
+
+                        const onComboboxPress= () => {
+                            setCombo(combo+1);
+                    
+                            if (combo % 2 === 0)
+                            {
+                                setMb('43%');
+                                console.log("Voce abriu o ComboBox");}
+                    
+                            else
+                           { setMb('0%'); 
+                            console.log("Voce fechou o ComboBox"); }
+                          }
 
 return (
     <VStack flex={1} pb={4} mb={16} bg="white">
@@ -208,10 +306,10 @@ return (
 
                     <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                         <Box maxW='300'>
-                                <Select onValueChange={mudaform}  minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                        <Select selectedValue={dep} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                             bg: "primary.500",
                             endIcon: <CheckIcon  size='5' />
-                        }} >
+                        }} onValueChange={mudaform}>
                             <Select.Item label="Telco" value="Telco" />
                             <Select.Item label="Climatização e Eletricidade" value="Climatização e Eletricidade" />
                             <Select.Item label="Centro de Dados" value="Centro de Dados" />
@@ -263,6 +361,7 @@ return (
                     </View>
 
                     <View style={{
+                          marginBottom: mb,
                           backgroundColor: 'transparent',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -271,8 +370,15 @@ return (
                     <DropDownPicker
                           dropDownDirection="BOTTOM"
                           listMode="SCROLLVIEW"
+                          onPress={onComboboxPress}
                               textStyle={{
-                                fontSize: 14
+                                color: '#AAB2AD'
+                              }}
+                              style={{
+                                borderColor:'#AAB2AD'
+                              }}
+                              dropDownContainerStyle={{
+                                borderColor:'#AAB2AD'
                               }}
                               placeholder="Selecione a(s) Parte(s)"
                               open={openCausa}
@@ -281,28 +387,26 @@ return (
                               setOpen={setOpenCausa}
                               setValue={setValueCausa}
                               setItems={setItemsCausa}
-                              theme="LIGHT"
+                            
                               multiple={true}
                               mode="BADGE"
-                              //badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                              badgeDotColors={["#A1C861"]}
                             />
                      </View>
                         
+                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Site </Text>
+                    </View>
 
-                     <View style={styles.uinputView}>
-                    <TextInput
-                        style={styles.txtInput} 
-                        selectionColor='#12375C' 
-                        outlineColor='#cce3f9'
-                        activeOutlineColor='#12375C' 
-                        underlineColor='#12375C' 
-                        mode="outlined"
-                        label="Site"
-                        theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                        value={sait}
-                        onChangeText={(text) => setSait(text)}
-                        autoComplete='off'
-                        />
+                     <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
+                        <Box maxW='300'>
+                                <Select selectedValue={sait} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                            bg: "primary.500",
+                            endIcon: <CheckIcon  size='5' />
+                        }} onValueChange={itemValue => setSait(itemValue)}>
+                          
+                            </Select>
+                        </Box>
                     </View>
 
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
@@ -351,7 +455,7 @@ return (
                         }} onValueChange={itemValue => setPriority(itemValue)}>
                             <Select.Item label="Alta" value="Alta" />
                             <Select.Item label="Média" value="Média" />
-                            <Select.Item label="BAixa" value="BAixa" />
+                            <Select.Item label="Baixa" value="Baixa" />
                             </Select>
                         </Box>
                     </View>
@@ -366,8 +470,8 @@ return (
                         mode="outlined"
                         label="Operador NMC"
                         theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                        value={value}
-                        onChangeText={(text) => setValue(text)}
+                        value={operator}
+                        onChangeText={(text) => setOpereator(text)}
                         autoComplete='off'
                         />
                     </View>
@@ -404,8 +508,10 @@ return (
                         />
                     </View>
                     
-                 
-                        <Button title='Criar' alignSelf={'center'} my={'10%'} height={'5%'} width={'30%'}></Button>
+                 <TouchableOpacity onPress={onGravaTelco}>
+                        <Button  title='Criar' alignSelf={'center'} my={'10%'} width={'30%'}></Button>
+                 </TouchableOpacity>
+                        
 
                     
                     </View>}
@@ -554,9 +660,15 @@ return (
                                         <DropDownPicker
                                         listMode="MODAL"
                                         //autoScroll={true}
-                                            textStyle={{
-                                                fontSize: 14
-                                            }}
+                                        textStyle={{
+                                           // color: '#AAB2AD',
+                                          }}
+                                          style={{
+                                            borderColor:'#AAB2AD'
+                                          }}
+                                          dropDownContainerStyle={{
+                                            borderColor:'#AAB2AD'
+                                          }}
                                             placeholder="Escolha a opção"
                                             open={openMat}
                                             value={valueMat}
@@ -568,7 +680,7 @@ return (
                                             theme="LIGHT"
                                             multiple={false}
                                             mode="BADGE"
-                                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                            badgeDotColors={["#A1C861"]}
                                             />
                             </View>
 
@@ -584,7 +696,7 @@ return (
                                                 }} onValueChange={itemValue => setPriority(itemValue)}>
                                                     <Select.Item label="Alta" value="Alta" />
                                                     <Select.Item label="Média" value="Média" />
-                                                    <Select.Item label="BAixa" value="BAixa" />
+                                                    <Select.Item label="Baixa" value="Baixa" />
                                                     </Select>
                                                 </Box>
                                             </View>
@@ -636,39 +748,38 @@ return (
 
                             <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                                 <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Assistentes </Text>
-                            </View>
+                            </View>                             
 
-                            <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                                <Box maxW='300'>
-                                <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
-                                    bg: "primary.500",
-                                    endIcon: <CheckIcon  size='5' />
-                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
-                                    <Select.Item label="Abdul Emilia" value="Abdul Emilia" />
-                                    <Select.Item label="Abdul Tauate" value="Abdul Tauate" />
-                                    <Select.Item label="Abilio Mabunda" value="Abilio Mabunda" />
-                                    <Select.Item label="Aboo Bakar" value="Aboo Bakar" />
-                                    </Select>
-                                </Box>
-                            </View>
+                            <View style={{
+                          backgroundColor: 'transparent',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          paddingHorizontal: '8%'
+                        }}>
+                          <DropDownPicker
+                             listMode="MODAL"
+                             dropDownDirection="BOTTOM"
+                              textStyle={{
+                                fontSize: 14
+                              }}
+                              placeholder="Selecione o(s) Tecnico(s)"
+                              open={openTec}
+                              value={valueTec}
+                              items={itemsTec}
+                              setOpen={setOpenTec}
+                              setValue={setValueTec}
+                              setItems={setItemsTec}
+
+                              theme="LIGHT"
+                              multiple={true}
+                              mode="BADGE"
+                              badgeDotColors={["#A1C861"]}
+                            />
+                          </View>
                             
-                            <HStack>
-                                <View display='flex' mt={4}>
-                                    <Text color='Primary.500'  ml={'8%'} fontFamily={fonts.body} fontSize='md'> Tecnicos Permitidos </Text>
-                                </View>
-
-                                <View alignSelf={'center'} borderBottomColor={colors.primary[600]} borderBottomWidth={1} width="85%"  mt={'4%'}/>
-
-                                <VStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
-                                    <TouchableOpacity style={styles.formButton} >
-                                        <Plus size={22} color={colors.green[700]} />
-                                    </TouchableOpacity>
-                                </VStack>
-                            </HStack>
-
-                           
-
-                            <Button title='Criar' alignSelf={'center'} my={'10%'} width={'30%'}></Button>
+                            <TouchableOpacity onPress={onGravaEnergia}>
+                                <Button  title='Criar' alignSelf={'center'} my={'10%'}  width={'30%'}></Button>
+                            </TouchableOpacity>
                         
                     </View>}
                     
