@@ -67,7 +67,7 @@ function handleTelaSubmit(){
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine  color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -80,7 +80,7 @@ function handleTelaSubmit(){
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine   color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -93,7 +93,7 @@ function handleTelaSubmit(){
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -106,7 +106,7 @@ function handleTelaSubmit(){
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
           icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
           icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-          icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+          icon5: require('../../../assets/avatars/HAND.png'),
           icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
           icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
       },
@@ -168,7 +168,7 @@ function handleTelaSubmit(){
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaSubmit}>
-                    <Icon>{item.icon5}</Icon>
+                  <Image source={item.icon5} style={styles.avatar}/>
                   </TouchableOpacity>
                   
                 </View>
