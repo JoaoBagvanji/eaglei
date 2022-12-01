@@ -22,7 +22,8 @@ export function Home() {
     <VStack flex={1} bg="white">
       
 
-      <VStack flex={1} px='6%' mt='15%'>
+
+      <VStack flex={1} px={6} mt='18%'>
         <HStack w="full" justifyContent="space-between" alignItems='center' flexDirection="row">
           <View>
           <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>

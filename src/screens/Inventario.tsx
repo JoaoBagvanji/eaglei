@@ -82,7 +82,7 @@ export  function Inventario() {
   return (
 <VStack flex={1} pb='6%' bg="white">
 
-    <VStack flex={1} px='6%'>
+    <VStack flex={1} px={6} mt='10%'>
         <HStack w="full" mt={8} justifyContent="space-between" alignItems='center' flexDirection="row">
             <View>
             <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
