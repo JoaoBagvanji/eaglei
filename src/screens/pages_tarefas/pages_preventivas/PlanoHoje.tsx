@@ -3,7 +3,7 @@ import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'nat
 import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Action from '../pages_projectos/pages/Action';
+import Action from '../pages_projectos/pages/ActionPreventiva';
 
 const Stack = createStackNavigator();
  

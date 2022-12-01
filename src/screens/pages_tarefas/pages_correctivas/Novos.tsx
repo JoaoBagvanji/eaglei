@@ -6,7 +6,7 @@ import { StackActions, useNavigation } from "@react-navigation/native";
 import colors from '../../../styles/colors';
 import FormTelco  from '../pages_correctivas/formsNovos/formTelco';
 import { createStackNavigator } from '@react-navigation/stack';
-import Action from '../pages_projectos/pages/Action';
+import Action from '../pages_projectos/pages/ActionCorrectiva';
 
 const Stack = createStackNavigator();
  

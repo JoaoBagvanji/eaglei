@@ -3,7 +3,7 @@ import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as I
 import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp, MapPinLine, MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Questions from '../pagesforms/Questions';
+import Questions from '../form/PreventivasQuestions';
 import { useNavigation } from '@react-navigation/native';
 import Credelec from '../pages_projectos/pages/Credelec';
 import Gerador from '../pages_projectos/pages/Gerador';

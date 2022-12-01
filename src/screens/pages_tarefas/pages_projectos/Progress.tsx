@@ -5,7 +5,7 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
-import Questions from '../pagesforms/Questions';
+import Questions from '../form/ProjectQuestions';
 import Gerador from './pages/Gerador';
 import Credelec from './pages/Credelec';
 import Spares from './pages/Spares';
