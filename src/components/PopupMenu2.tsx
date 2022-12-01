@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import {
     StyleSheet, 
 } from "react-native";
-import {  useTheme, View, Icon, Image, Box, Menu, Pressable, HamburgerIcon,  } from 'native-base';
-import { Camera, Gear, Power, ThumbsUp, User } from "phosphor-react-native";
+import {  useTheme, Icon, Image, Box, Menu, Pressable,  } from 'native-base';
+import { Camera, Gear, Power } from "phosphor-react-native";
 import {  useNavigation } from '@react-navigation/native';
 import profile from '../assets/helio.png'
 import { Dropdown } from 'react-native-element-dropdown';

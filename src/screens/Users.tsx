@@ -127,7 +127,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     <VStack flex={1} pb={6} bg="white">
 
 
-        <VStack flex={16} px={6}>
+        <VStack flex={1} px={6} mt='10%'>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
@@ -150,7 +150,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
-                <View px={6} alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='90%' mt={'128%'} >
+                <View px={6} alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='95%' mt={'128%'} >
                     <ButtonHandle
                         title='+'
                         w={14}
