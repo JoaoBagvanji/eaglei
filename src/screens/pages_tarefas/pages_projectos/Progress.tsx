@@ -5,7 +5,7 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
-import Questions from '../pagesforms/Questions';
+import Questions from '../form/ProjectQuestions';
 import Gerador from './pages/Gerador';
 import Credelec from './pages/Credelec';
 import Spares from './pages/Spares';
@@ -142,6 +142,7 @@ function handleTelaSubmit(){
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
               {shouldShow[item.id] ? (item.info.indexOf('local')!= -1 ? (<View display='flex' flexDirection='row' justifyContent='space-between'>
+                
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaGerador}>
                     <Icon>{item.icon}</Icon>

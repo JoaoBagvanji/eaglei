@@ -6,6 +6,7 @@ import { StackActions, useNavigation } from "@react-navigation/native";
 import colors from '../../../styles/colors';
 import FormTelco  from '../pages_correctivas/formsNovos/formTelco';
 import { createStackNavigator } from '@react-navigation/stack';
+import Action from '../pages_projectos/pages/ActionCorrectiva';
 
 const Stack = createStackNavigator();
  
@@ -16,6 +17,7 @@ export default function MyStack(){
             initialRouteName='Novas'>
         <Stack.Screen name="Novas" component={Novas} />
         <Stack.Screen name="FormTelco" component={FormTelco} />
+        <Stack.Screen name="Action" component={Action} />
     </Stack.Navigator>
 
 );
@@ -101,7 +103,9 @@ export default function MyStack(){
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon}</Icon>
+                <TouchableOpacity onPress={handleAction}>
+                        <Icon>{item.icon}</Icon>
+                  </TouchableOpacity> 
                 </View>
 
                 
@@ -144,6 +148,11 @@ export default function MyStack(){
   }
     
   const { navigate } = useNavigation<Nav>()
+
+    const handleAction = () => {
+        navigate('Action') as never;
+    }
+
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
