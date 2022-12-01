@@ -10,8 +10,9 @@ import { Dropdown } from 'react-native-element-dropdown';
 import Login from "../screens/Login";
 import Users from "../screens/Users";
 import { Inventario } from "../screens/Inventario";
+import  Config  from "../screens/Config";
 
-const PopupMenu = () => {
+export default function PopupMenu () {
     type Nav ={
         navigate : (value: string) => void;
     }
@@ -22,18 +23,20 @@ const PopupMenu = () => {
      
     const [value, setValue] = useState(null);
     const [Focus, setFocus] = useState(false);
+    
     return <Box w="10%" alignItems="center" >
-      <Menu w="190" marginTop='8%' backgroundColor='transparent' shadow='none' trigger={triggerProps => {
+      <Menu w="190" marginTop='14%' backgroundColor='transparent' shadow='none' trigger={triggerProps => {
       return <Pressable accessibilityLabel="More options menu" {...triggerProps}>
               <Image source={profile} style={styles.icon}/>
             </Pressable>;
     }}>
         <Menu.Item alignItems='center' marginLeft='55%' onPress={()=>navigate('Login')}><Icon as ={<Power  color='#12375C' size={22} />} /></Menu.Item>
         <Menu.Item alignItems='center' marginLeft='55%' onPress={()=>navigate('Tarefa')}><Icon as ={<Camera  color='#12375C' size={22} />} /></Menu.Item>
-        <Menu.Item alignItems='center' marginLeft='55%' onPress={()=>navigate('Inventario')}><Icon as ={<Gear  color='#12375C' size={22} />} /></Menu.Item>
+        <Menu.Item alignItems='center' marginLeft='55%' onPress={() => {navigate("Config") as never}}><Icon as ={<Gear  color='#12375C' size={22} />} /></Menu.Item>
       </Menu>
     </Box>;
 }
+
  
 const styles = StyleSheet.create({
     container: {
@@ -67,4 +70,3 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 });
-export default PopupMenu;
