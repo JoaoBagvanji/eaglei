@@ -142,6 +142,7 @@ function handleTelaSubmit(){
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
               {shouldShow[item.id] ? (item.info.indexOf('local')!= -1 ? (<View display='flex' flexDirection='row' justifyContent='space-between'>
+                
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaGerador}>
                     <Icon>{item.icon}</Icon>

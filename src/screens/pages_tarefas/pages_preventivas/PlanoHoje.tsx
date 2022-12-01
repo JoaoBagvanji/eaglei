@@ -2,10 +2,29 @@ import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Action from '../pages_projectos/pages/Action';
 
-export default function PlanoHoje() {
+const Stack = createStackNavigator();
+ 
+export default function MyStack(){
+  return (
+
+    <Stack.Navigator   screenOptions={{headerShown: false}} 
+            initialRouteName='Novas'>
+        <Stack.Screen name="Novas" component={PlanoHoje} />
+        <Stack.Screen name="Action" component={Action} />
+    </Stack.Navigator>
+
+);
+}
+
+ function PlanoHoje({navigation}) {
   
-  
+  const handleAction = () => {
+    navigation.navigate('Action') as never;
+}
+
     const data = [
         {
             id: 1,
@@ -53,6 +72,7 @@ export default function PlanoHoje() {
       },
         
     ];
+
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
@@ -80,7 +100,9 @@ export default function PlanoHoje() {
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon}</Icon>
+                  <TouchableOpacity onPress={handleAction}>
+                        <Icon>{item.icon}</Icon>
+                  </TouchableOpacity>  
                 </View>
 
                 

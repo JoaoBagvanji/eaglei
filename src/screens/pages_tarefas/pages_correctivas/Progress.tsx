@@ -7,6 +7,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Questions from '../pagesforms/Questions';
 import { useNavigation } from '@react-navigation/native';
+import Credelec from '../pages_projectos/pages/Credelec';
+import Gerador from '../pages_projectos/pages/Gerador';
+import Spares from '../pages_projectos/pages/Spares';
+import Submit from '../pages_projectos/pages/Submit';
 
 
 const Stack = createStackNavigator();
@@ -18,6 +22,11 @@ export default function MyStack() {
              initialRouteName='Progress'>
          <Stack.Screen name="Progress" component={Progress} />
          <Stack.Screen name="Questions" component={Questions} />
+
+         <Stack.Screen name="Gerador" component={Gerador} />
+         <Stack.Screen name="Credelec" component={Credelec} />
+         <Stack.Screen name="Spares" component={Spares} />
+         <Stack.Screen name="Submit" component={Submit} /> 
      </Stack.Navigator>
   
  ); 
@@ -120,7 +129,21 @@ function Progress() {
       navigate('Questions') as never;
     }
 
-
+    function handleTelaGerador(){
+      navigate('Gerador') as never;
+    }
+    
+    function handleTelaCredelec(){
+      navigate('Credelec') as never;
+    }
+    
+    function handleTelaSpares(){
+      navigate('Spares') as never;
+    }
+    
+    function handleTelaSubmit(){
+      navigate('Submit') as never;
+    }
 
 
     const oneUser = ( {item} ) =>(
@@ -135,15 +158,21 @@ function Progress() {
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
               {shouldShow[item.id] ? (item.info.indexOf('local')!= -1 ?(<View display='flex' flexDirection='row' justifyContent='space-between'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon}</Icon>
+                <TouchableOpacity onPress={handleTelaGerador}>
+                    <Icon>{item.icon}</Icon>
+                  </TouchableOpacity>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
+                <TouchableOpacity onPress={handleTelaCredelec}>
+                    <Icon>{item.icon2}</Icon>
+                  </TouchableOpacity>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon3}</Icon>
+                <TouchableOpacity onPress={handleTelaSpares}>
+                    <Icon>{item.icon3}</Icon>
+                  </TouchableOpacity>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
@@ -151,7 +180,9 @@ function Progress() {
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Imagens source={item.icon5} style={styles.image}/>
+                <TouchableOpacity onPress={handleTelaSubmit}>
+                  <Image source={item.icon5} style={styles.avatar}/>
+                  </TouchableOpacity>
                 </View>
                 
                 
