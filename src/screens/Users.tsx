@@ -180,12 +180,12 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     const { colors } = useTheme();
 
   return (
-    <VStack flex={1} pb='6%' bg="white">
+    <VStack flex={1} bg="white">
 
 
 
         <VStack flex={1} px={6} mt='10%'>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+            <HStack w="full" mt={8} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
                     Navegue 
@@ -207,7 +207,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
-                <View px={6} alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='95%' mt={'128%'} >
+                <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='90%' mt={'123%'} >
                     <ButtonHandle
                         title='+'
                         w={14}
