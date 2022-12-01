@@ -36,6 +36,7 @@ export default function AuthRoutes() {
 
         <AppTab.Navigator
             screenOptions={{
+                unmountOnBlur:true,
                 tabBarHideOnKeyboard:true,
                 tabBarActiveTintColor: colors.green[700],
                 tabBarInactiveTintColor: colors.gray[600],

@@ -35,7 +35,7 @@ const viaturas = [
 
 export default function MyStack() {
      return (
-      <NavigationContainer independent={true}>
+   
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Viatura'>
             <Stack.Screen name="Atrelado" component={Atrelado} />
@@ -46,7 +46,7 @@ export default function MyStack() {
 
             <Stack.Screen name="Viatura" component={Viatura} />
         </Stack.Navigator>
-      </NavigationContainer>
+   
     );
   }
 
@@ -72,9 +72,10 @@ export  function Viatura() {
    
 
   return (
-<VStack flex={1} pb={6} bg="white" >
+<VStack flex={1} pb='6%' bg="white" >
 
     
+
 
     <VStack flex={1} px={6} mt='10%'>
         <HStack w="full" mt={8}  justifyContent="space-between" alignItems='center' flexDirection="row">
@@ -91,7 +92,7 @@ export  function Viatura() {
    
     </VStack>
 
-    <VStack flex={4} mx={2}>
+    <VStack flex={4} mx='5%'>
             <SafeAreaView>
                     <FlatList
                         numColumns={2} 

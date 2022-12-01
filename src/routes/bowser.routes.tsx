@@ -14,9 +14,9 @@ import { View } from 'react-native';
         <>
        
 
-        <NavigationContainer independent={true}>
+        
             <TopTabs />
-        </NavigationContainer>
+ 
 
         </>
       );

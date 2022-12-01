@@ -10,7 +10,7 @@ export default function Atrelado() {
     const { colors } = useTheme();
 
     const navigation = useNavigation();
-
+    
  
   return (
    

@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Box } from 'native-base';
-import { Info, Users as Usuarios } from 'phosphor-react-native';
+import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
+import { CaretDown, CaretUp, Eye, Info, Pencil, Users as Usuarios } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import axios from "axios";
 
@@ -9,19 +9,22 @@ import { ButtonHandle } from '../components/ButtonHandle';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import UsersRegist from './pages_tarefas/pages_projectos/pages/UsersRegist';
+import UsersEdit from './pages_tarefas/pages_projectos/pages/UsersEdit';
+import UsersDetails from './pages_tarefas/pages_projectos/pages/UsersDetails';
 
 
 const Stack = createStackNavigator();
 export default function MyStack() {
     return (
-     <NavigationContainer independent={true}>
+
        <Stack.Navigator  screenOptions={{headerShown: false}} 
                initialRouteName='Users'>
-           <Stack.Screen name="UsersRegist" component={UsersRegist
-        } />
+           <Stack.Screen name="UsersRegist" component={UsersRegist } />
+           <Stack.Screen name="UsersDetails" component={UsersDetails } />
+           <Stack.Screen name="UsersEdit" component={UsersEdit } />
            <Stack.Screen name="Users" component={Users} />
        </Stack.Navigator>
-     </NavigationContainer>
+
    ); 
 }
 
@@ -42,42 +45,57 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
             id: 1,
             nome: 'Cyber',
             image: require('../assets/avatars/avatar.png'),
+            icon: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+            icon2: <Icon as ={<Pencil color='#A1C861' size={16} />} />,
         },
         {
             id: 2,
             nome: 'Cláudio',
             image: require('../assets/avatars/avatar3.png'),
-
+            icon: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+            icon2: <Icon as ={<Pencil color='#A1C861' size={16} />} />,
         },
         {
             id: 3,
             nome: 'Helio',
             image: require('../assets/avatars/avatar.png'),
+            icon: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+            icon2: <Icon as ={<Pencil color='#A1C861' size={16} />} />,
         },
         {
             id: 4,
             nome: 'Tovela',
             image: require('../assets/avatars/avatar4.png'),
+            icon: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+            icon2: <Icon as ={<Pencil color='#A1C861' size={16} />} />,
         },
         {
             id: 5,
             nome: 'Constantino',
             image: require('../assets/avatars/avatar2.png'),
+            icon: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+            icon2: <Icon as ={<Pencil color='#A1C861' size={16} />} />,
         },
         {
             id: 6,
             nome: 'Walcyr',
             image: require('../assets/avatars/avatar3.png'),
+            icon: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+            icon2: <Icon as ={<Pencil color='#A1C861' size={16} />} />,
         },
         {
             id: 7,
             nome: 'Xeron',
             image: require('../assets/avatars/avatar3.png'),
+            icon: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+            icon2: <Icon as ={<Pencil color='#A1C861' size={16} />} />,
         },
         {
             id: 8,
             nome: 'Yanick',
             image: require('../assets/avatars/avatar3.png'),
+            icon: <Icon as ={<Eye color='#A1C861' size={16} />} />,
+            icon2: <Icon as ={<Pencil color='#A1C861' size={16} />} />,
         }
     ];
 
@@ -100,6 +118,19 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     },[])
 
 
+    async function handleDropDownItems(position){
+        let val_sec = await Array.from({ length: data.length}, (v,p) => false)
+        val_sec[position] = true;
+        setShouldShow(val_sec);
+      }
+  
+      async function handleHideItems(position){
+        let val_sec = await Array.from({ length: data.length}, (v,p) => false)
+        setShouldShow(val_sec);
+      }
+
+    const val_init = Array.from({ length: data.length}, (v,p) => false);
+    const [shouldShow, setShouldShow] = useState(val_init);
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
@@ -108,11 +139,36 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                 <Image source={data[2].image} style={styles.avatar}/>
             </View>
             <Text fontFamily={fonts.body} color={colors.primary[600]} marginLeft={4}>{item.nome}</Text>
+
+            {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between' alignSelf={'flex-end'}>
+                <TouchableOpacity onPress={() => { navigate("UsersDetails") as never}} >
+                    <View marginLeft={8} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                    <Icon>{item.icon}</Icon>
+                    </View>
+                </TouchableOpacity>
+                
+
+                <TouchableOpacity onPress={() => { navigate("UsersEdit") as never}}>
+                        <View marginLeft={10} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                        <Icon>{item.icon2}</Icon>
+                        </View>
+                </TouchableOpacity>
+             
+
+                
+              </View>) : null}
+
             </Box>
            
-            <TouchableOpacity>
-                <Icon as ={<Info color={colors.blueGray[400]}/>} />
-            </TouchableOpacity>
+            {!shouldShow[item.id] ? 
+                (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
+                  icon={<CaretDown  color={colors.primary[700]} size={10}/>}
+                  onPress={() => handleDropDownItems(item.id)}
+                  />) :
+                   (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
+                  icon={<CaretUp   color={colors.primary[700]} size={10}/>}
+                  onPress={() => handleHideItems(item.id)}
+                  />)} 
         </View>   
     )
 
@@ -124,7 +180,8 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     const { colors } = useTheme();
 
   return (
-    <VStack flex={1} pb={6} bg="white">
+    <VStack flex={1} pb='6%' bg="white">
+
 
 
         <VStack flex={1} px={6} mt='10%'>

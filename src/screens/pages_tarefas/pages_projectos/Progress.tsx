@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
   return (
-   <NavigationContainer independent={true}>
+
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Progress'>
          <Stack.Screen name="Gerador" component={Gerador} />
@@ -25,7 +25,7 @@ export default function MyStack() {
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Progress" component={Progress} />
      </Stack.Navigator>
-   </NavigationContainer>
+  
  ); 
 }
 
@@ -67,7 +67,7 @@ function handleTelaSubmit(){
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine  color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -80,7 +80,7 @@ function handleTelaSubmit(){
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine   color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -93,7 +93,7 @@ function handleTelaSubmit(){
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
             icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+            icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
         },
@@ -106,12 +106,13 @@ function handleTelaSubmit(){
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
           icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
           icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-          icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+          icon5: require('../../../assets/avatars/HAND.png'),
           icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
           icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
       },
         
     ];
+
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     
@@ -122,6 +123,7 @@ function handleTelaSubmit(){
       val_sec[position] = true;
       setShouldShow(val_sec);
     }
+
     async function handleHideItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
@@ -129,9 +131,11 @@ function handleTelaSubmit(){
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
+
             <View style={styles.avatarContainer }>
               <Image source={item.image} style={styles.avatar}/>
             </View>
+            
             <Box flexDirection={'column'}>
             
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
@@ -164,7 +168,7 @@ function handleTelaSubmit(){
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaSubmit}>
-                    <Icon>{item.icon5}</Icon>
+                  <Image source={item.icon5} style={styles.avatar}/>
                   </TouchableOpacity>
                   
                 </View>
@@ -236,7 +240,7 @@ function handleTelaSubmit(){
                     data = {data}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                    ListEmptyComponent =  {<Text>Esta é uma lista de projectos</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />

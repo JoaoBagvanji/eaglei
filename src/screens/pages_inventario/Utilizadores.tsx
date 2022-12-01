@@ -15,14 +15,14 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
   return (
-   <NavigationContainer independent={true}>
+
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Utilizadores'>
          <Stack.Screen name="Gerador" component={Gerador} />
          <Stack.Screen name="UsersRegist" component={UsersRegist} />
          <Stack.Screen name="Utilizadores" component={Utilizadores} />
      </Stack.Navigator>
-   </NavigationContainer>
+ 
  ); 
 }
 
@@ -99,27 +99,27 @@ export  function Utilizadores() {
             </View>
             <Box flexDirection={'column'}>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft='5%'>{item.nome}</Text>
             <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
+              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft='5%'>{item.info}</Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft='5%' marginTop='3%' backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Imagens source={item.icon} style={styles.image}/>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft='5%' marginTop='3%' backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Imagens source={item.icon2} style={styles.image}/>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft='5%' marginTop='3%' backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Imagens source={item.icon3} style={styles.image}/>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft='5%' marginTop='3%' backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Imagens source={item.icon4} style={styles.image}/>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                <View marginLeft='5%' marginTop='3%' backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Imagens source={item.icon5} style={styles.image}/>
                 </View>
 
@@ -129,7 +129,7 @@ export  function Utilizadores() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity style={{ paddingBottom: '20%', marginLeft: '1%'}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
@@ -154,10 +154,10 @@ export  function Utilizadores() {
     const { colors } = useTheme();
 
   return (
-    <VStack flex={1} pb={6} bg="white">
+    <VStack flex={1} pb='6%' bg="white">
         
-        <VStack flex={1} px={6}>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+        <VStack flex={1} px='6%'>
+            <HStack w="full" mt='8%' mb='8%' justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
                   Lista 

@@ -4,7 +4,6 @@ import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { ProjectorScreenChart, Scroll, Calendar , Wrench} from 'phosphor-react-native';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import colors from '../styles/colors';
@@ -27,8 +26,9 @@ const tarefas = [
 
 export default function MyStack() {
       return (
-      <NavigationContainer independent={true}>
-        <Stack.Navigator  screenOptions={{headerShown: false}} 
+ 
+        <Stack.Navigator  screenOptions={{headerShown: false}}    
+        
                 initialRouteName='Tarefa'>
             <Stack.Screen name="Correctiva" component={Correctiva} />
             <Stack.Screen name="Projectos" component={Projectos} />
@@ -37,7 +37,7 @@ export default function MyStack() {
             <Stack.Screen name="Tarefa" component={Tarefa} />
     
         </Stack.Navigator>
-      </NavigationContainer>
+
     );
       }
 
@@ -57,7 +57,8 @@ export function Tarefa() {
     }
 
   return (
-<VStack flex={1} pb={6} bg="white">
+<VStack flex={1} pb='6%' bg="white">
+
 
 
 

@@ -1,10 +1,29 @@
 import React, { useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine } from 'phosphor-react-native';
+import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton} from 'native-base';
+import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, Plus } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { StackActions, useNavigation } from "@react-navigation/native";
+import colors from '../../../styles/colors';
+import FormTelco  from '../pages_correctivas/formsNovos/formTelco';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function Novas() {
+const Stack = createStackNavigator();
+ 
+export default function MyStack(){
+  return (
+
+    <Stack.Navigator   screenOptions={{headerShown: false}} 
+            initialRouteName='Novas'>
+        <Stack.Screen name="Novas" component={Novas} />
+        <Stack.Screen name="FormTelco" component={FormTelco} />
+    </Stack.Navigator>
+
+);
+}
+
+ function Novas() {
   
+ 
   
     const data = [
         {
@@ -53,6 +72,7 @@ export default function Novas() {
       },
         
     ];
+    
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
@@ -63,6 +83,7 @@ export default function Novas() {
       val_sec[position] = true;
       setShouldShow(val_sec);
     }
+
     async function handleHideItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
@@ -99,10 +120,12 @@ export default function Novas() {
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
-                {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
+                {!shouldShow[item.id] ? 
+                (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.primary[700]} size={10}/>}
                   onPress={() => handleDropDownItems(item.id)}
-                  />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
+                  />) :
+                   (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
                   icon={<CaretUp   color={colors.primary[700]} size={10}/>}
                   onPress={() => handleHideItems(item.id)}
                   />)} 
@@ -115,6 +138,12 @@ export default function Novas() {
     function itemSeparator(){
         return <View style={styles.separator}/>
     }
+
+    type Nav ={
+      navigate : (value: string) => void;
+  }
+    
+  const { navigate } = useNavigation<Nav>()
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
@@ -144,6 +173,14 @@ export default function Novas() {
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
+
+
+              <VStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
+                    <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
+                        <Plus size={22} color={colors.green[700]} />
+                    </TouchableOpacity>
+              </VStack>
+
             </View>
       </VStack>
     </VStack>
@@ -152,6 +189,14 @@ export default function Novas() {
 
 
 const styles=StyleSheet.create({
+  formButton:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.blue,
+    borderRadius: 25,
+    height: 50,
+    width:50
+},
     listHeader:{
         height: 55,
         alignItems: 'center',

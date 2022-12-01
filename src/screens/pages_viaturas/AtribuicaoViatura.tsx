@@ -26,13 +26,13 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
   return (
-   <NavigationContainer independent={true}>
+  
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Aprovado'>
          <Stack.Screen name="Gerador" component={Gerador} />
          <Stack.Screen name="Aprovado" component={Aprovado} />
      </Stack.Navigator>
-   </NavigationContainer>
+
  ); 
 }
 

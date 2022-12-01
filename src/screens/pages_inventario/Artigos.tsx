@@ -14,14 +14,14 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
   return (
-   <NavigationContainer independent={true}>
+  
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Artigos'>
          <Stack.Screen name="Gerador" component={Gerador} />
          <Stack.Screen name="Item" component={Item} />
          <Stack.Screen name="Artigos" component={Artigos} />
      </Stack.Navigator>
-   </NavigationContainer>
+   
  ); 
 }
 

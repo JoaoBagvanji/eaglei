@@ -12,13 +12,13 @@ import StockReturnP from '../pages_tarefas/pages_projectos/pages/StockReturnP';
 const Stack = createStackNavigator();
 export default function MyStack() {
     return (
-     <NavigationContainer independent={true}>
+    
        <Stack.Navigator  screenOptions={{headerShown: false}} 
                initialRouteName='StockReturn'>
            <Stack.Screen name="StockReturnP" component={StockReturnP} />
            <Stack.Screen name="StockReturn" component={StockReturn} />
        </Stack.Navigator>
-     </NavigationContainer>
+     
    ); 
 }
 export  function StockReturn() {

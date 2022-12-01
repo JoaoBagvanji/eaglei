@@ -14,7 +14,7 @@ import {useState } from 'react';
 import FormBowser from './formBowser';
 import Inspeccao from '../Inspeccao';
 
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import {useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 

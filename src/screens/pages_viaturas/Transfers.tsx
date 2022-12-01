@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme } from 'native-base';
 import { MagnifyingGlass, Plus } from 'phosphor-react-native'
 import { Header } from '../../components/Header';
 import colors from '../../styles/colors';
 
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import {  StackActions } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -15,19 +15,19 @@ const Stack = createStackNavigator();
 
 export default function MyStack() {
     return (
-     <NavigationContainer 
-     independent={true}
-     >
-       <Stack.Navigator  screenOptions={{headerShown: false}} 
+
+       <Stack.Navigator   screenOptions={{headerShown: false}} 
                initialRouteName='Transferencia'>
            <Stack.Screen name="Transferencia" component={Transferencia} />
            <Stack.Screen name="FormTransferencia" component={FormTransferencia} />
        </Stack.Navigator>
-     </NavigationContainer>
+
    );
  }
 
 export function Transferencia({navigation}) {
+
+
 
     type Nav ={
         navigate : (value: string) => void;
