@@ -107,8 +107,7 @@ export default function Despacho() {
     const { colors } = useTheme();
 
   return (
-    <VStack flex={1} pb={6} bg="white">
-        
+    <VStack flex={1} pb={6} bg="white">    
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
