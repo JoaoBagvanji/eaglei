@@ -5,10 +5,10 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Questions from '../form/PreventivasQuestions';
 import { useNavigation } from '@react-navigation/native';
-import Credelec from '../pages_projectos/pages/Credelec';
-import Gerador from '../pages_projectos/pages/Gerador';
-import Spares from '../pages_projectos/pages/Spares';
-import Submit from '../pages_projectos/pages/Submit';
+import Credelec from './pages_prev/Credelec';
+import Gerador from './pages_prev/Gerador';
+import Spares from './pages_prev/Spares';
+import Submit from './pages_prev/Submit';
 
 const Stack = createStackNavigator();
 

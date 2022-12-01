@@ -6,10 +6,10 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Questions from '../form/ProjectQuestions';
-import Gerador from './pages/Gerador';
-import Credelec from './pages/Credelec';
-import Spares from './pages/Spares';
-import Submit from './pages/Submit';
+import Gerador from './pages/pages_proj/Gerador';
+import Credelec from './pages/pages_proj/Credelec';
+import Spares from './pages/pages_proj/Spares';
+import Submit from './pages/pages_proj/Submit';
 
 const Stack = createStackNavigator();
 

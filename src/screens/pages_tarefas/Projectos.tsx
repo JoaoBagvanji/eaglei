@@ -5,7 +5,6 @@ import { ProjectorScreen, Handshake  , FolderPlus, ArrowsCounterClockwise, Hourg
 
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import colors from '../../styles/colors';

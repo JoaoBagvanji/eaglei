@@ -3,10 +3,10 @@ import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image } fr
 import { Info, CircleWavyCheck ,CaretDown, CaretUp } from 'phosphor-react-native';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import {  useNavigation } from '@react-navigation/native';
 
 
-import Gerador from '../pages_tarefas/pages_projectos/pages/Gerador';
+import Gerador from './pages_aprov/Gerador';
 
 const Stack = createStackNavigator();
 
