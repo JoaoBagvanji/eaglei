@@ -3,7 +3,7 @@ import { VStack, HStack, useTheme, Image, Text, View } from 'native-base';
 
 import  userImg  from '../assets/helio.png';
 import Logo from '../assets/eagle I 1.svg' ;
-import PopupMenu from './PopupMenu';
+import PopupMenu from './PopupMenu2';
 
 
 export function Header() {
