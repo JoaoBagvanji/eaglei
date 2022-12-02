@@ -16,7 +16,7 @@ import { Button } from '../components/Button';
 import { ButtonHandle } from '../components/ButtonHandle';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Gerador from './pages_tarefas/pages_projectos/pages/Gerador';
+
 import Idioma from '../components/Idioma';
 import usuario from '../assets/helio.png'
 import UserRegisto from './pages_tarefas/pages_projectos/pages/UserRegisto';
@@ -28,7 +28,6 @@ export default function MyStack() {
 
         <Stack.Navigator  screenOptions={{headerShown: false}} 
                 initialRouteName='Config'>
-            <Stack.Screen name="Gerador" component={Gerador} />
             <Stack.Screen name="UserRegisto" component={UserRegisto}/>
             <Stack.Screen name="Config" component={Config} />
         </Stack.Navigator>
