@@ -31,7 +31,7 @@ export default function PopupMenu () {
             </Pressable>;
     }}>
         <Menu.Item alignItems='center' marginLeft='55%' onPress={()=>navigate('Login')}><Icon as ={<Power  color='#12375C' size={22} />} /></Menu.Item>
-        <Menu.Item alignItems='center' marginLeft='55%' onPress={()=>navigate('Tarefa')}><Icon as ={<Camera  color='#12375C' size={22} />} /></Menu.Item>
+        <Menu.Item alignItems='center' marginLeft='55%' onPress={()=>navigate('ConfigPerfil')}><Icon as ={<Camera  color='#12375C' size={22} />} /></Menu.Item>
         <Menu.Item alignItems='center' marginLeft='55%' onPress={() => {navigate("Config") as never}}><Icon as ={<Gear  color='#12375C' size={22} />} /></Menu.Item>
       </Menu>
     </Box>;
