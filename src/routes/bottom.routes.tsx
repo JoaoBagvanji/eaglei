@@ -16,6 +16,7 @@ import  Tarefa  from '../screens/Tarefa';
 import { Header } from '../components/Header';
 import { createStackNavigator } from '@react-navigation/stack';
 import  Config  from '../screens/Config';
+import  ConfigPerfil  from '../screens/ConfigPerfil';
 
 const AppTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -69,6 +70,7 @@ export default function AuthRoutes() {
                         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Home'>
                             <Stack.Screen name="Home" component={Home} />
                             <Stack.Screen name="Config" component={Config} />
+                            <Stack.Screen name="ConfigPerfil" component={ConfigPerfil} />
                         </Stack.Navigator>
                     )}
                 </AppTab.Screen>
@@ -81,6 +83,7 @@ export default function AuthRoutes() {
                         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Viatura'>
                             <Stack.Screen name="Viatura" component={Viatura} />
                             <Stack.Screen name="Config" component={Config} />
+                            <Stack.Screen name="ConfigPerfil" component={ConfigPerfil} />
                         </Stack.Navigator>
                     )}
                 </AppTab.Screen>
@@ -94,6 +97,7 @@ export default function AuthRoutes() {
                         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Tarefa'>
                             <Stack.Screen name="Tarefa" component={Tarefa} />
                             <Stack.Screen name="Config" component={Config} />
+                            <Stack.Screen name="ConfigPerfil" component={ConfigPerfil} />
                         </Stack.Navigator>
                     )}
                 </AppTab.Screen>
@@ -107,6 +111,7 @@ export default function AuthRoutes() {
                         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Inventario'>
                             <Stack.Screen name="Inventario" component={Inventario} />
                             <Stack.Screen name="Config" component={Config} />
+                            <Stack.Screen name="ConfigPerfil" component={ConfigPerfil} />
                         </Stack.Navigator>
                     )}
                 </AppTab.Screen>
@@ -120,6 +125,7 @@ export default function AuthRoutes() {
                     <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Users'>
                         <Stack.Screen name="Usuarios" component={Users} />
                         <Stack.Screen name="Config" component={Config} />
+                        <Stack.Screen name="ConfigPerfil" component={ConfigPerfil} />
                     </Stack.Navigator>
                     )}
                 </AppTab.Screen>
