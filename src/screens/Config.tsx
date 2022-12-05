@@ -16,7 +16,7 @@ import { Button } from '../components/Button';
 import { ButtonHandle } from '../components/ButtonHandle';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Gerador from './pages_tarefas/pages_projectos/pages/Gerador';
+import Gerador from './pages_config/Gerador';
 import Idioma from '../components/Idioma';
 import usuario from '../assets/helio.png'
 import UserRegisto from './pages_tarefas/pages_projectos/pages/UserRegisto';

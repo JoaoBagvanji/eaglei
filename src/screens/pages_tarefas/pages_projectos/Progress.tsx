@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
+import { Info,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
-
+import { useState} from 'react';
 import Questions from '../form/ProjectQuestions';
 import Gerador from './pages/pages_proj/Gerador';
 import Credelec from './pages/pages_proj/Credelec';
 import Spares from './pages/pages_proj/Spares';
 import Submit from './pages/pages_proj/Submit';
+import Fotos from './pages/pages_proj/Fotos';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ export default function MyStack() {
          <Stack.Screen name="Submit" component={Submit} />      
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Progress" component={Progress} />
+         <Stack.Screen name="Fotos" component={Fotos} />
      </Stack.Navigator>
   
  ); 
@@ -36,6 +38,10 @@ export function Progress() {
 }
   
 const { navigate } = useNavigation<Nav>()
+
+function handleCamera(){
+  navigate('Fotos') as never;
+}
 
 function handleTelas(){
   navigate('Questions') as never;
@@ -164,7 +170,10 @@ function handleTelaSubmit(){
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <TouchableOpacity onPress={handleCamera}>
                   <Icon>{item.icon4}</Icon>
+                  </TouchableOpacity>
+               
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
