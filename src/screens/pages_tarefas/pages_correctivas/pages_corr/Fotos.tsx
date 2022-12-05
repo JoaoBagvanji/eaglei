@@ -6,8 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { Button, Image} from 'react-native';
 
-import colors from '../../../../../styles/colors';
-import fonts from "../../../../../styles/fonts";
+import colors from '../../../../styles/colors';
+import fonts from "../../../../styles/fonts";
 
 import * as ImagePicker from "expo-image-picker";
 import { border } from 'native-base/lib/typescript/theme/styled-system';
