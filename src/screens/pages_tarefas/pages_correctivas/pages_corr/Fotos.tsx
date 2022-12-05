@@ -188,7 +188,6 @@ const styles =StyleSheet.create({
         backgroundColor: colors.blue_light,
         height: 60,
         width:'46%',
-        border: '5%',
-        
+        border: '5%',   
 } 
 })
