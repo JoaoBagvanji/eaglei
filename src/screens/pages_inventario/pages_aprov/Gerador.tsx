@@ -166,7 +166,7 @@ export default function Gerador() {
 const styles =StyleSheet.create({
     
     uinputView:{
-        marginTop: "5%",
+        marginVertical: "5%",
         height:56,
         width: "100%",
         justifyContent: 'center',

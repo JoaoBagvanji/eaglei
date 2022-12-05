@@ -170,7 +170,7 @@ const styles =StyleSheet.create({
     },
 
     uinputViewbutton:{
-        marginTop: "5%",
+        marginVertical: "5%",
         height:56,
         width: "100%",
         display: 'flex',
