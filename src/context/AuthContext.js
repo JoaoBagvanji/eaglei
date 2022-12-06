@@ -44,7 +44,8 @@ const loginUser = (dispatch) => {
         email: email,
         senha: senha,
       },
-      config);
+      config)
+      console.log(data.data);
 
 
       await AsyncStorage.setItem("token", data.data.token);
