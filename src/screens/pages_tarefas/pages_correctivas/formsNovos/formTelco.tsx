@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon, } from 'native-base';
 import { UserPlus, Calendar, Plus  } from 'phosphor-react-native';
-
-
-
+import { useState} from 'react';
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';

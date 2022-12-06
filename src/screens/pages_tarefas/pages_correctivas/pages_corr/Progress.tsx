@@ -5,12 +5,11 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
-import Questions from '../form/CorrectivasQuestions';
-import Gerador from './pages_corr/Gerador';
-import Credelec from './pages_corr/Credelec';
-import Spares from './pages_corr/Spares';
-import Submit from './pages_corr/Submit';
-import Fotos from './pages_corr/Fotos';
+import Questions from '../../form/CorrectivasQuestions';
+import Gerador from './Gerador';
+import Credelec from './Credelec';
+import Spares from './Spares';
+import Submit from './Submit';
 
 const Stack = createStackNavigator();
 
@@ -19,13 +18,12 @@ export default function MyStack() {
 
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Progress'>
-          <Stack.Screen name="Progress" component={Progress} />
          <Stack.Screen name="Gerador" component={Gerador} />
          <Stack.Screen name="Credelec" component={Credelec} />
          <Stack.Screen name="Spares" component={Spares} />
          <Stack.Screen name="Submit" component={Submit} />      
          <Stack.Screen name="Questions" component={Questions} />
-         <Stack.Screen name="Fotos" component={Fotos} />
+         <Stack.Screen name="Progress" component={Progress} />
      </Stack.Navigator>
   
  ); 
@@ -118,9 +116,7 @@ function handleTelaSubmit(){
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     
-    function handleCamera(){
-      navigate('Fotos') as never;
-    }
+
 
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
@@ -168,9 +164,7 @@ function handleTelaSubmit(){
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                <TouchableOpacity onPress={handleCamera}>
                   <Icon>{item.icon4}</Icon>
-                  </TouchableOpacity>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>

@@ -5,10 +5,11 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Questions from '../form/PreventivasQuestions';
 import { useNavigation } from '@react-navigation/native';
-import Credelec from '../pages_projectos/pages/Credelec';
-import Gerador from '../pages_projectos/pages/Gerador';
-import Spares from '../pages_projectos/pages/Spares';
-import Submit from '../pages_projectos/pages/Submit';
+import Credelec from './pages_prev/Credelec';
+import Gerador from './pages_prev/Gerador';
+import Spares from './pages_prev/Spares';
+import Submit from './pages_prev/Submit';
+import Fotos from './pages_prev/Fotos';
 
 const Stack = createStackNavigator();
 
@@ -19,8 +20,8 @@ export default function MyStack() {
              initialRouteName='Progress'>
          <Stack.Screen name="Progress" component={Progress} />
          <Stack.Screen name="Questions" component={Questions} />
-
          <Stack.Screen name="Gerador" component={Gerador} />
+         <Stack.Screen name="Fotos" component={Fotos} />
          <Stack.Screen name="Credelec" component={Credelec} />
          <Stack.Screen name="Spares" component={Spares} />
          <Stack.Screen name="Submit" component={Submit} /> 
@@ -113,6 +114,10 @@ export default function MyStack() {
       navigate('Questions') as never;
     }
 
+    function handleCamera(){
+      navigate('Fotos') as never;
+    }
+
     function handleTelaGerador(){
       navigate('Gerador') as never;
     }
@@ -161,7 +166,9 @@ export default function MyStack() {
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                    <TouchableOpacity onPress={handleCamera}>
                   <Icon>{item.icon4}</Icon>
+                  </TouchableOpacity>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>

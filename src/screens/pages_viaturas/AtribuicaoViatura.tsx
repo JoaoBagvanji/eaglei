@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon, Radio   } from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme, ScrollView} from 'native-base';
 import { Key  , FloppyDisk, XCircle  } from 'phosphor-react-native'
 
 
 
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Parque from '../../components/Parque';
 import Modelo from '../../components/Modelo';
 import Matricula from '../../components/Matricula';
 import Marca from '../../components/Marca';
-import Ano from '../../components/Ano';
 import Kilometragem from '../../components/Kilometragem';
 import { Button } from '../../components/Button';
 import { ButtonCancel } from '../../components/ButtonCancel';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Gerador from '../pages_tarefas/pages_projectos/pages/Gerador';
+import Gerador from './pages_atri/Gerador';
 import { Aprovado } from '../pages_inventario/Aprovado';
 import Utilizadores from '../../components/Utilizadores';
 import DatatHora from '../../components/DatatHora';
@@ -38,6 +36,7 @@ export default function MyStack() {
 
 
 export  function AtribuicaoViatura() {
+    
     type Nav ={
         navigate : (value: string) => void;
     }

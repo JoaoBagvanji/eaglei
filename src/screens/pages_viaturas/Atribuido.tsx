@@ -16,7 +16,7 @@ import { Button } from '../../components/Button';
 import { ButtonCancel } from '../../components/ButtonCancel';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Gerador from '../pages_tarefas/pages_projectos/pages/Gerador';
+import Gerador from '../pages_tarefas/pages_projectos/pages/pages_corr/Gerador';
 import { Aprovado } from '../pages_inventario/Aprovado';
 
 const Stack = createStackNavigator();

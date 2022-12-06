@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import  userImg  from '../../assets/avatars/artigos.png';
 
-import Gerador from '../pages_tarefas/pages_projectos/pages/Gerador';
+import Gerador from './pages_artig/Gerador';
 import Item from '../pages_tarefas/pages_projectos/pages/Item';
 import { ButtonHandle } from '../../components/ButtonHandle';
 
