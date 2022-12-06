@@ -92,7 +92,7 @@ export  function ConfigPerfil() {
             </HStack>
       </VStack>
         <VStack mt='10%' mb='12%'>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                         {image && <Image source={{ uri: image }} borderRadius={100} resizeMode='contain' style={{ width: 200, height: 200 }} />}

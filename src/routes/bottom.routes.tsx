@@ -17,6 +17,7 @@ import { Header } from '../components/Header';
 import { createStackNavigator } from '@react-navigation/stack';
 import  Config  from '../screens/Config';
 import  ConfigPerfil  from '../screens/ConfigPerfil';
+import { Platform } from 'react-native';
 
 const AppTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -38,7 +39,7 @@ export default function AuthRoutes() {
         <AppTab.Navigator
             screenOptions={{
                 unmountOnBlur:true,
-                tabBarHideOnKeyboard:true,
+                tabBarHideOnKeyboard:Platform.OS === 'android' ? true : false,
                 tabBarActiveTintColor: colors.green[700],
                 tabBarInactiveTintColor: colors.gray[600],
                 tabBarLabelPosition: 'below-icon',

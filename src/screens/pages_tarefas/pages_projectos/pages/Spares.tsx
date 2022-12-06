@@ -33,7 +33,7 @@ export default function Spares() {
             </HStack>
       </VStack>
         <VStack mt='10%' mb='12%'>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                         <View justifyContent="center" alignItems='center' mt='50%'>
                             <Text fontFamily={fonts.heading} color={colors.primary[700]}> Estoque pessoal indisponível</Text>

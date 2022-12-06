@@ -49,7 +49,7 @@ export default function Gerador() {
             </HStack>
       </VStack>
         <VStack mt='10%' mb='12%'>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                         <View alignItems='center' justifyContent='center' display='flex'>
                             <Text color='gray.600' fontFamily={fonts.body}> Móvel ou Fixo</Text>
