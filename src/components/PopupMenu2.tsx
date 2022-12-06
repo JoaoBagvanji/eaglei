@@ -6,11 +6,7 @@ import {  useTheme, Icon, Image, Box, Menu, Pressable,  } from 'native-base';
 import { Camera, Gear, Power } from "phosphor-react-native";
 import {  useNavigation } from '@react-navigation/native';
 import profile from '../assets/helio.png'
-import { Dropdown } from 'react-native-element-dropdown';
-import Login from "../screens/Login";
-import Users from "../screens/Users";
-import { Inventario } from "../screens/Inventario";
-import  Config  from "../screens/Config";
+
 
 export default function PopupMenu () {
     type Nav ={
