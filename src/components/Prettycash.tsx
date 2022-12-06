@@ -34,7 +34,6 @@ const styles= StyleSheet.create({
         width: 300,
         fontSize: 12,
         textAlign: 'center',
-        height: 50
     }, 
     buttonIcon:{
         fontSize: 16,
