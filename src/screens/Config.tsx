@@ -16,11 +16,6 @@ import { Button } from '../components/Button';
 import { ButtonHandle } from '../components/ButtonHandle';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import Gerador from './pages_config/Gerador';
-
-
-
 import Idioma from '../components/Idioma';
 import usuario from '../assets/helio.png'
 import UserRegisto from './pages_tarefas/pages_projectos/pages/UserRegisto';
@@ -97,7 +92,7 @@ export  function Config() {
             </HStack>
       </VStack>
         <VStack mt='10%' mb='12%'>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                         <Image source={usuario} borderRadius={60} resizeMode='contain' height={32} width={32} alt='Missao e Visao'/>

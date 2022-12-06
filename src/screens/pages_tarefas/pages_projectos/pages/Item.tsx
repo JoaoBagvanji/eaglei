@@ -46,7 +46,7 @@ export default function Item() {
             </HStack>
       </VStack>
         <VStack mt='10%' mb='12%'>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.uinputView}>
                         <CodigoProduto value={value} setValue={setValue}/>
