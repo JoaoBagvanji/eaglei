@@ -20,20 +20,20 @@ export default function Spares({navigation}) {
     var data = [
         {
             'item': "",
-            'isSerializado': true,
+            'isSerializado': false,
             'qtdExistente':'',
             'spare_owner':'',
             'nrSerie':[]
         },
         {
-            'item': "Abraçadeira",
+            'item': "AC",
             'isSerializado': true,
             'qtdExistente':'4',
             'spare_owner':'COMSERV',
             'nrSerie':['123435454','1334555','13455','1233223']
         },
         {
-            'item': "AC",
+            'item': "Abraçadeira",
             'isSerializado': false,
             'qtdExistente':'2',
             'spare_owner':'COMSERV',
@@ -47,7 +47,12 @@ export default function Spares({navigation}) {
             'qtd_existente':'',
             'spare_owner':'',
             'qtd_usada':'',
-            'spare_pic': null
+            'spare_pic': null,
+            'old_pic': null,
+            'serie_number':'',
+            'spare_change':'',
+            'razao':'',
+            'serie_number2':'',
             }
 
         const [ item, setItem ] = useState("");
@@ -57,12 +62,19 @@ export default function Spares({navigation}) {
         const [troka, setTroka] = useState("");
         const [used, setUsed] = useState('');
         const [images, setImages] = useState(null);
+        const [oldImage, setOldImage] = useState(null);
+        const [serie2, setSerie2] = useState("");
+        const [reason, setReason] = useState("");
+
 
         isFiled.spare_item=item;
         isFiled.qtd_existente=existente;
         isFiled.spare_owner=owner;
         isFiled.qtd_usada=used;
         isFiled.spare_pic=images;
+        isFiled.serie_number=serie;
+        isFiled.spare_change=troka;
+        isFiled.old_pic=oldImage;
   
           const pickFromCam = async () => {
 
@@ -99,8 +111,44 @@ export default function Spares({navigation}) {
                 }
                              
           };
-  
-          const onGravar = () => {
+
+         const pickFromCam2 = async () => {
+
+                    // No permissions request is necessary for launching the image library
+                let result = await ImagePicker.launchCameraAsync({
+                    mediaTypes: ImagePicker.MediaTypeOptions.All,
+                    allowsEditing: true,
+                    aspect: [4, 3],
+                    quality: 1,
+                });
+            
+                console.log(result);
+            
+                if (!result.canceled) {
+                    setOldImage(result.assets[0].uri);
+                }
+                            
+        };
+
+
+        const pickFromGal2 = async () => {
+            // No permissions request is necessary for launching the image library
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+
+            console.log(result);
+
+            if (!result.canceled) {
+                setOldImage(result.assets[0].uri);
+            }
+                        
+        };
+        
+          const onGravarN = () => {
 
             if(
                 isFiled.qtd_existente !='' &&
@@ -116,12 +164,36 @@ export default function Spares({navigation}) {
         {
             alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
         }
+
         }
 
+        const onGravarS = () => {
 
-        const [selectedIndex, setSelectedIndex] = useState (0);
+            if(
+                isFiled.qtd_existente !='' &&
+                isFiled.serie_number != '' &&
+                isFiled.spare_item != '' &&
+                isFiled.spare_pic != null &&
+                isFiled.spare_owner != '' &&
+                isFiled.spare_change != ''&&
+                isFiled.old_pic != null &&
+                isFiled.serie_number2 != '' &&
+                isFiled.razao != ''
+              ){
+                alert("Formulário submetido com sucesso");
+                navigation.goBack();
+            }
+        else
+        {
+            alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
+        }
+        
+        }
+
+        var [selectedIndex, setSelectedIndex] = useState (0);
         const [mostraS, setMostraS] = useState(false);
         const [mostraN, setMostraN] = useState(false);
+        var [mostraTroca, setMostraTroca] = useState(false);
 
 
         const mudaform = (selectedItem) => {
@@ -130,16 +202,26 @@ export default function Spares({navigation}) {
 
             
 
-            if(data[selectedIndex].isSerializado)
+            if(!data[selectedIndex].isSerializado)
             {
               setMostraS(true);
               setMostraN(false);
             }
-            else if(!data[selectedIndex].isSerializado)
+            else if(data[selectedIndex].isSerializado)
             {
               setMostraS(false);
               setMostraN(true);
             }
+
+        }
+
+        const handleTroca = (selectedOption) => {
+            setTroka(selectedOption);
+
+            if (selectedOption == 'Sim')
+                setMostraTroca(true);
+            else
+                setMostraTroca(false);
 
         }
     
@@ -212,39 +294,27 @@ export default function Spares({navigation}) {
                                             mode="outlined"
                                             label="Spare Owner"
                                             theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                            value={owner}
+                                            value={data[selectedIndex].spare_owner}
                                             onChangeText={(text) => setOwner(text)}
                                             autoComplete='off'
                                 />
                             </View>
 
-                            <View style={styles.uinputView}>
-                                    < TextInput style={styles.txtInput} 
-                                        selectionColor='#12375C' 
-                                        outlineColor='gray'
-                                        activeOutlineColor='#12375C' 
-                                        underlineColor='#12375C' 
-                                        mode="outlined"
-                                        label="Quantidade usada"
-                                        theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                        value={used}
-                                        onChangeText={(text) => setUsed(text)}
-                                        autoComplete='off'
-                                        />
-                            </View>
-
+                         
                             <View alignItems='center' justifyContent='center' display='flex'>
                             <Text color='gray.600' fontFamily={fonts.body}>Número de Série</Text>
                         </View>
 
-                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={4}>
+                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} my={4}>
                             <Box maxW='300'>
                                     <Select selectedValue={serie} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                 bg: "primary.500",
                                 endIcon: <CheckIcon  size='5' />
                             }} onValueChange={itemValue => setSerie(itemValue)}>
-                                <Select.Item label={data[1].item}  value={data[1].item} />
-                                <Select.Item label={data[2].item} value={data[2].item} />
+                                <Select.Item label={data[1].nrSerie[0]}  value={data[1].nrSerie[0]} />
+                                <Select.Item label={data[1].nrSerie[1]} value={data[1].nrSerie[1]} />
+                                <Select.Item label={data[1].nrSerie[2]} value={data[1].nrSerie[2]} />
+                                <Select.Item label={data[1].nrSerie[3]} value={data[1].nrSerie[3]} />
                                 </Select>
                             </Box>
                         </View>
@@ -271,24 +341,166 @@ export default function Spares({navigation}) {
                                 {images && <Image source={{ uri: images }} style={{ width: 200, height: 200 }} />}   
                             </VStack>
 
-                            <View alignItems='center' justifyContent='center' display='flex'>
-                            <Text color='gray.600' fontFamily={fonts.body}>Troca de Spare</Text>
-                        </View>
+                            <View alignItems='center' justifyContent='center' display='flex' marginTop={'2%'}>
+                                <Text color='gray.600' fontFamily={fonts.body}>Troca de Spare</Text>
+                            </View>
 
                         <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={4}>
                             <Box maxW='300'>
                                     <Select selectedValue={troka} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                 bg: "primary.500",
                                 endIcon: <CheckIcon  size='5' />
-                            }} onValueChange={itemValue => setTroka(itemValue)}>
+                            }} onValueChange={handleTroca}>
                                 <Select.Item label='Sim' value='Sim'/>
                                 <Select.Item label='Nao' value='Nao' />
                                 </Select>
                             </Box>
                         </View>
 
+                        {mostraTroca &&
+                            <VStack>
+
+                        <View style={styles.uinputView}>
+                        <TextInput style={styles.txtInput} 
+                            selectionColor='#12375C' 
+                            outlineColor='gray'
+                            activeOutlineColor='#12375C' 
+                            underlineColor='#12375C' 
+                            mode="outlined"
+                            label="Número de série"
+                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                            value={serie2}
+                            onChangeText={(text) => setSerie2(text)}
+                            autoComplete='off'
+                            />
+                        </View>
+
+                        <View style={styles.uinputView}>
+                        <TextInput style={styles.txtInput} 
+                            selectionColor='#12375C' 
+                            outlineColor='gray'
+                            activeOutlineColor='#12375C' 
+                            underlineColor='#12375C' 
+                            mode="outlined"
+                            label="Razão"
+                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                            value={reason}
+                            onChangeText={(text) => setReason(text)}
+                            autoComplete='off'
+                            />
+                        </View>
+
+                        <View alignItems='center' justifyContent='center' display='flex'>
+                            <Text color='gray.600' fontFamily={fonts.body}>Foto do Spare Antigo</Text>
+                        </View>
+
+                            <HStack mb={'3%'} alignContent={'center'} justifyContent={'center'}>
+                                
+                                <TouchableOpacity style={styles.formButton} onPress={pickFromGal2}>
+                                    <Imagem size={22} color={'#A1C861'} />
+                                    <Text style={styles.text}> Galeria</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity style={styles.formButton} onPress={pickFromCam2}>
+                                    <Camera size={22} color={'#A1C861'} />
+                                    <Text style={styles.text}> Camera</Text>
+                                </TouchableOpacity>
+
+                            </HStack>
+
+                            <VStack display={'flex'} alignItems={'center'}>
+                                {oldImage && <Image source={{ uri: oldImage }} style={{ width: 200, height: 200 }} />}   
+                            </VStack>
+
+                            </VStack>
+                        }
+                        
+
+                        <View style={styles.uinputView}>
+                            <Button onPress={onGravarS} leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} />}>
+                                    Guardar
+                            </Button>
+                        </View>
+                    
+                        </VStack>
+                        }
+
+                        {mostraN && 
+
+                        <VStack>
+
                             <View style={styles.uinputView}>
-                                <Button onPress={onGravar} leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} />}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Quantidade existente"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={data[selectedIndex].qtdExistente}
+                                onChangeText={(text) => setExistente(text)}
+                                autoComplete='off'
+                                />
+                            </View>
+
+                            <View style={styles.uinputView}>
+                                        < TextInput style={styles.txtInput} 
+                                            selectionColor='#12375C' 
+                                            outlineColor='gray'
+                                            activeOutlineColor='#12375C' 
+                                            underlineColor='#12375C' 
+                                            mode="outlined"
+                                            label="Spare Owner"
+                                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                            value={data[selectedIndex].spare_owner}
+                                            onChangeText={(text) => setOwner(text)}
+                                            autoComplete='off'
+                                            />
+                            </View>
+
+                            <View style={styles.uinputView}>
+                                    < TextInput style={styles.txtInput} 
+                                        selectionColor='#12375C' 
+                                        outlineColor='gray'
+                                        activeOutlineColor='#12375C' 
+                                        underlineColor='#12375C' 
+                                        mode="outlined"
+                                        label="Quantidade usada"
+                                        theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                        value={used}
+                                        onChangeText={(text) => setUsed(text)}
+                                        autoComplete='off'
+                                        />
+                            </View>
+
+                            <View alignItems='center' justifyContent='center' display='flex' my={'5%'}>
+                                <Text color='gray.600' fontFamily={fonts.body}>Foto do Spare</Text>
+                            </View>
+                            
+
+                            <HStack mb={'3%'} alignContent={'center'} justifyContent={'center'}>
+                                
+                                <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
+                                    <Imagem size={22} color={'#A1C861'} />
+                                    <Text style={styles.text}> Galeria</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity style={styles.formButton} onPress={pickFromCam}>
+                                    <Camera size={22} color={'#A1C861'} />
+                                    <Text style={styles.text}> Camera</Text>
+                                </TouchableOpacity>
+
+                            </HStack>
+
+                            <VStack display={'flex'} alignItems={'center'}>
+                                {images && <Image source={{ uri: images }} style={{ width: 200, height: 200 }} />}   
+                            </VStack>
+
+                            
+
+                            <View style={styles.uinputView}>
+                                <Button onPress={onGravarN} leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} />}>
                                         Guardar
                                 </Button>
                             </View>
@@ -296,8 +508,6 @@ export default function Spares({navigation}) {
                         </VStack>
 
                         }
-
-                       
 
 
                 </ScrollView>
@@ -308,94 +518,6 @@ export default function Spares({navigation}) {
     </VStack> 
   );
 
-  /*
-
- {mostraN && 
-
-                            <VStack>
-
-                                  <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Quantidade existente"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={data[selectedIndex].qtdExistente}
-                                    onChangeText={(text) => setExistente(text)}
-                                    autoComplete='off'
-                                    />
-                                  </View>
-
-                                  <View style={styles.uinputView}>
-                                            < TextInput style={styles.txtInput} 
-                                                selectionColor='#12375C' 
-                                                outlineColor='gray'
-                                                activeOutlineColor='#12375C' 
-                                                underlineColor='#12375C' 
-                                                mode="outlined"
-                                                label="Spare Owner"
-                                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                                value={owner}
-                                                onChangeText={(text) => setOwner(text)}
-                                                autoComplete='off'
-                                                />
-                                  </View>
-
-                                 <View style={styles.uinputView}>
-                                        < TextInput style={styles.txtInput} 
-                                            selectionColor='#12375C' 
-                                            outlineColor='gray'
-                                            activeOutlineColor='#12375C' 
-                                            underlineColor='#12375C' 
-                                            mode="outlined"
-                                            label="Quantidade usada"
-                                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                            value={used}
-                                            onChangeText={(text) => setUsed(text)}
-                                            autoComplete='off'
-                                            />
-                                 </View>
-
-                                <View alignItems='center' justifyContent='center' display='flex' my={'5%'}>
-                                    <Text color='gray.600' fontFamily={fonts.body}>Foto do Spare</Text>
-                                </View>
-                                
-                        
-                                <HStack mb={'3%'} alignContent={'center'} justifyContent={'center'}>
-                                    
-                                    <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
-                                        <Imagem size={22} color={'#A1C861'} />
-                                        <Text style={styles.text}> Galeria</Text>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity style={styles.formButton} onPress={pickFromCam}>
-                                        <Camera size={22} color={'#A1C861'} />
-                                        <Text style={styles.text}> Camera</Text>
-                                    </TouchableOpacity>
-
-                                </HStack>
-
-                                <VStack display={'flex'} alignItems={'center'}>
-                                    {images && <Image source={{ uri: images }} style={{ width: 200, height: 200 }} />}   
-                                </VStack>
-
-                                  
-                     
-                                <View style={styles.uinputView}>
-                                    <Button onPress={onGravar} leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} />}>
-                                            Guardar
-                                    </Button>
-                                </View>
-
-                            </VStack>
-
-                        }
-
-                      
-  */
 }
 
 const styles =StyleSheet.create({ 
