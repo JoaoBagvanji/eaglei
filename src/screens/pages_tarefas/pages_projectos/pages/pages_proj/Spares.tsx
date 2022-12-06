@@ -3,7 +3,7 @@ import { VStack, HStack, View, Text, Icon, useTheme , ScrollView, Box, CheckIcon
 import { Camera, FloppyDisk, Package, Image as Imagem } from 'phosphor-react-native';
 
 
-import { Image, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, ActivityIndicator, FlatList, useWindowDimensions} from 'react-native';
+import { Image, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity} from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-paper';
@@ -16,6 +16,31 @@ import * as ImagePicker from "expo-image-picker";
 export default function Spares({navigation}) {
     const { fonts } = useTheme();
     const { colors } = useTheme();
+    
+    var data = [
+        {
+            'item': "",
+            'isSerializado': true,
+            'qtdExistente':'',
+            'spare_owner':'',
+            'nrSerie':[]
+        },
+        {
+            'item': "Abraçadeira",
+            'isSerializado': true,
+            'qtdExistente':'4',
+            'spare_owner':'COMSERV',
+            'nrSerie':['123435454','1334555','13455','1233223']
+        },
+        {
+            'item': "AC",
+            'isSerializado': false,
+            'qtdExistente':'2',
+            'spare_owner':'COMSERV',
+            'nrSerie':[]
+        }
+    ];
+
 
         var isFiled = {
             'spare_item':'',
@@ -28,6 +53,8 @@ export default function Spares({navigation}) {
         const [ item, setItem ] = useState("");
         const [existente, setExistente] = useState('');
         const [ owner, setOwner ] = useState("");
+        const [serie, setSerie] = useState("");
+        const [troka, setTroka] = useState("");
         const [used, setUsed] = useState('');
         const [images, setImages] = useState(null);
 
@@ -90,10 +117,37 @@ export default function Spares({navigation}) {
             alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
         }
         }
+
+
+        const [selectedIndex, setSelectedIndex] = useState (0);
+        const [mostraS, setMostraS] = useState(false);
+        const [mostraN, setMostraN] = useState(false);
+
+
+        const mudaform = (selectedItem) => {
+            setItem(selectedItem);
+            setSelectedIndex(data.findIndex(element=>element.item==selectedItem)); 
+
+            
+
+            if(data[selectedIndex].isSerializado)
+            {
+              setMostraS(true);
+              setMostraN(false);
+            }
+            else if(!data[selectedIndex].isSerializado)
+            {
+              setMostraS(false);
+              setMostraN(true);
+            }
+
+        }
     
   return (
     <VStack flex={1} pb={4} mb={16} bg="white">
+
         <SafeAreaView style={styles.container}>
+
         <VStack px={6} alignItems='center' justifyContent='center'>
             <HStack w="full" justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
@@ -108,7 +162,8 @@ export default function Spares({navigation}) {
                     <Icon as ={<Package color={colors.white}/>} />
                 </View>
             </HStack>
-      </VStack>
+        </VStack>
+
         <VStack mt='10%' mb='12%'>
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
                 <ScrollView showsVerticalScrollIndicator={false}>
@@ -122,68 +177,87 @@ export default function Spares({navigation}) {
                                     <Select selectedValue={item} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
                                 bg: "primary.500",
                                 endIcon: <CheckIcon  size='5' />
-                            }} onValueChange={itemValue => setItem(itemValue)}>
-                                <Select.Item label="Abraçadeira" color='primary.700' value="Abraçadeira" />
-                                <Select.Item label="AC" value="AC" />
+                            }} onValueChange={mudaform}>
+                                <Select.Item label={data[1].item}  value={data[1].item} />
+                                <Select.Item label={data[2].item} value={data[2].item} />
+                                </Select>
+                            </Box>
+                        </View>
+                        
+                        {mostraS && 
+
+                        <VStack>
+
+                            <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Quantidade existente"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={data[selectedIndex].qtdExistente}
+                                onChangeText={(text) => setExistente(text)}
+                                autoComplete='off'
+                                />
+                            </View>
+
+                            <View style={styles.uinputView}>
+                                < TextInput style={styles.txtInput} 
+                                            selectionColor='#12375C' 
+                                            outlineColor='gray'
+                                            activeOutlineColor='#12375C' 
+                                            underlineColor='#12375C' 
+                                            mode="outlined"
+                                            label="Spare Owner"
+                                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                            value={owner}
+                                            onChangeText={(text) => setOwner(text)}
+                                            autoComplete='off'
+                                />
+                            </View>
+
+                            <View style={styles.uinputView}>
+                                    < TextInput style={styles.txtInput} 
+                                        selectionColor='#12375C' 
+                                        outlineColor='gray'
+                                        activeOutlineColor='#12375C' 
+                                        underlineColor='#12375C' 
+                                        mode="outlined"
+                                        label="Quantidade usada"
+                                        theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                        value={used}
+                                        onChangeText={(text) => setUsed(text)}
+                                        autoComplete='off'
+                                        />
+                            </View>
+
+                            <View alignItems='center' justifyContent='center' display='flex'>
+                            <Text color='gray.600' fontFamily={fonts.body}>Número de Série</Text>
+                        </View>
+
+                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={4}>
+                            <Box maxW='300'>
+                                    <Select selectedValue={serie} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                bg: "primary.500",
+                                endIcon: <CheckIcon  size='5' />
+                            }} onValueChange={itemValue => setSerie(itemValue)}>
+                                <Select.Item label={data[1].item}  value={data[1].item} />
+                                <Select.Item label={data[2].item} value={data[2].item} />
                                 </Select>
                             </Box>
                         </View>
 
-                        <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Quantidade existente"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={existente}
-                                    onChangeText={(text) => setExistente(text)}
-                                    autoComplete='off'
-                                    />
-                        </View>
-
-                        <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Spare Owner"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={owner}
-                                    onChangeText={(text) => setOwner(text)}
-                                    autoComplete='off'
-                                    />
-                        </View>
-
-                        <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Quantidade usada"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={used}
-                                    onChangeText={(text) => setUsed(text)}
-                                    autoComplete='off'
-                                    />
-                        </View>
-
-                        <View alignItems='center' justifyContent='center' display='flex' my={'5%'}>
+                        <View alignItems='center' justifyContent='center' display='flex'>
                             <Text color='gray.600' fontFamily={fonts.body}>Foto do Spare</Text>
                         </View>
-                        
-                        
+
                             <HStack mb={'3%'} alignContent={'center'} justifyContent={'center'}>
-                                 
+                                
                                 <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
-                                       <Imagem size={22} color={'#A1C861'} />
-                                       <Text style={styles.text}> Galeria</Text>
+                                    <Imagem size={22} color={'#A1C861'} />
+                                    <Text style={styles.text}> Galeria</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={styles.formButton} onPress={pickFromCam}>
@@ -194,23 +268,134 @@ export default function Spares({navigation}) {
                             </HStack>
 
                             <VStack display={'flex'} alignItems={'center'}>
-                                  {images && <Image source={{ uri: images }} style={{ width: 200, height: 200 }} />}   
+                                {images && <Image source={{ uri: images }} style={{ width: 200, height: 200 }} />}   
                             </VStack>
 
-                                         
-                     
-                        <View style={styles.uinputView}>
-                              <Button onPress={onGravar} leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} />}>
-                                      Guardar
-                              </Button>
+                            <View alignItems='center' justifyContent='center' display='flex'>
+                            <Text color='gray.600' fontFamily={fonts.body}>Troca de Spare</Text>
                         </View>
+
+                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={4}>
+                            <Box maxW='300'>
+                                    <Select selectedValue={troka} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                bg: "primary.500",
+                                endIcon: <CheckIcon  size='5' />
+                            }} onValueChange={itemValue => setTroka(itemValue)}>
+                                <Select.Item label='Sim' value='Sim'/>
+                                <Select.Item label='Nao' value='Nao' />
+                                </Select>
+                            </Box>
+                        </View>
+
+                            <View style={styles.uinputView}>
+                                <Button onPress={onGravar} leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} />}>
+                                        Guardar
+                                </Button>
+                            </View>
+
+                        </VStack>
+
+                        }
+
+                       
+
 
                 </ScrollView>
             </KeyboardAvoidingView>
         </VStack>
+
         </SafeAreaView>
     </VStack> 
   );
+
+  /*
+
+ {mostraN && 
+
+                            <VStack>
+
+                                  <View style={styles.uinputView}>
+                                < TextInput style={styles.txtInput} 
+                                    selectionColor='#12375C' 
+                                    outlineColor='gray'
+                                    activeOutlineColor='#12375C' 
+                                    underlineColor='#12375C' 
+                                    mode="outlined"
+                                    label="Quantidade existente"
+                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                    value={data[selectedIndex].qtdExistente}
+                                    onChangeText={(text) => setExistente(text)}
+                                    autoComplete='off'
+                                    />
+                                  </View>
+
+                                  <View style={styles.uinputView}>
+                                            < TextInput style={styles.txtInput} 
+                                                selectionColor='#12375C' 
+                                                outlineColor='gray'
+                                                activeOutlineColor='#12375C' 
+                                                underlineColor='#12375C' 
+                                                mode="outlined"
+                                                label="Spare Owner"
+                                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                                value={owner}
+                                                onChangeText={(text) => setOwner(text)}
+                                                autoComplete='off'
+                                                />
+                                  </View>
+
+                                 <View style={styles.uinputView}>
+                                        < TextInput style={styles.txtInput} 
+                                            selectionColor='#12375C' 
+                                            outlineColor='gray'
+                                            activeOutlineColor='#12375C' 
+                                            underlineColor='#12375C' 
+                                            mode="outlined"
+                                            label="Quantidade usada"
+                                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                            value={used}
+                                            onChangeText={(text) => setUsed(text)}
+                                            autoComplete='off'
+                                            />
+                                 </View>
+
+                                <View alignItems='center' justifyContent='center' display='flex' my={'5%'}>
+                                    <Text color='gray.600' fontFamily={fonts.body}>Foto do Spare</Text>
+                                </View>
+                                
+                        
+                                <HStack mb={'3%'} alignContent={'center'} justifyContent={'center'}>
+                                    
+                                    <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
+                                        <Imagem size={22} color={'#A1C861'} />
+                                        <Text style={styles.text}> Galeria</Text>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity style={styles.formButton} onPress={pickFromCam}>
+                                        <Camera size={22} color={'#A1C861'} />
+                                        <Text style={styles.text}> Camera</Text>
+                                    </TouchableOpacity>
+
+                                </HStack>
+
+                                <VStack display={'flex'} alignItems={'center'}>
+                                    {images && <Image source={{ uri: images }} style={{ width: 200, height: 200 }} />}   
+                                </VStack>
+
+                                  
+                     
+                                <View style={styles.uinputView}>
+                                    <Button onPress={onGravar} leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} />}>
+                                            Guardar
+                                    </Button>
+                                </View>
+
+                            </VStack>
+
+                        }
+
+                      
+  */
 }
 
 const styles =StyleSheet.create({ 
