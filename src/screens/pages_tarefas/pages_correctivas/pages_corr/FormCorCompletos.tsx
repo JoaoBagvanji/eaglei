@@ -38,34 +38,19 @@ import { TextInput } from 'react-native-paper';
 
             const [razao, setRazao] = useState('');
             
-            const [ disposicao, setDisposicao ] = useState("");
             const [ abastecimento, setAbastecimento ] = useState("");
-            const [ repair, setRepair ] = useState("");
+
             const [ value, setValue ] = useState("");
-            const [ reabastecimento, setReabastecimento ] = useState("");
-            const [ funcionamento, setFuncionamento ] = useState("");
-            const [ actuais, setActuais ] = useState("");
-            const [ reabasteceLitros, setReabasteceLitros ] = useState("");
+
             const [ preco, setPreco ] = useState("");
-            const [ substituido, setSubstituido ] = useState("");
-            const [ details, setDetails ] = useState("");
-            const [ matricula, setMatricula ] = useState("");
-            const [ modelo, setModelo ] = useState("");
-            const [ kilometragem, setKilometragem ] = useState("");
-            const [ marca, setMarca ] = useState("");
-            const [ ano, setAno ] = useState("");
-            const [ cellphone, setCellphone ] = useState("");
-            const [ email, setEmail ] = useState("");
-            const [ prettycash, setPrettycash ] = useState("");
-            const [ name, setName ] = useState("");
-            const [ password, setPassword ] = useState("");
+       
 
     
           return (
             <VStack flex={1} bg="white">
             <SafeAreaView style={styles.container}>
             
-            <VStack mt='10%' mb='30%'>
+            <VStack mt='5%' mb='30%'>
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null} >
                     <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -167,66 +152,6 @@ import { TextInput } from 'react-native-paper';
                                     autoComplete='off'
                                     />
                             </View>
-
-                            <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Razão </Text>
-                        </View>
-                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                            <Box maxW='300'>
-                                    <Select selectedValue={value} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
-                                bg: "primary.500",
-                                endIcon: <CheckIcon  size='5' />
-                            }} onValueChange={itemValue => setValue(itemValue)}>
-                                <Select.Item label="AC Mains Failure" value="AC Mains Failure" />
-                                <Select.Item label="Rectifer Module" value="Rectifer Module" />
-                                <Select.Item label="Rectifer System" value="Rectifer System" />
-                                <Select.Item label="Generator Low Fuel" value="Generator Low Fuel" />
-                                <Select.Item label="Generator Abnormal" value="Generator Abnormal" />
-                                    </Select>
-                            </Box>
-                        </View>
-
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Acção correctiva"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-                       
-                            
-                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Ocorreram problemas de Saúde e Segurança ? </Text>
-                        </View>
-                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                            <Box maxW='300'>
-                                    <Select selectedValue={details} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
-                                bg: "primary.500",
-                                endIcon: <CheckIcon  size='5' />
-                            }} onValueChange={itemValue => setDetails(itemValue)}>
-                                <Select.Item label="Yes" value="Yes" />
-                                <Select.Item label="No" value="No" />
-                                    </Select>
-                            </Box>
-                        </View>
-
-
-
-
-
-
-
-
-
-
-
 
 
                         <View alignItems='center' justifyContent='center' display='flex' mt={4}>
@@ -377,7 +302,7 @@ import { TextInput } from 'react-native-paper';
             </VStack>
 
             </SafeAreaView>
-        </VStack> 
+            </VStack> 
               );
 
               
@@ -395,14 +320,101 @@ import { TextInput } from 'react-native-paper';
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
+            const [razao, setRazao] = useState('');
+            
+            const [ abastecimento, setAbastecimento ] = useState("");
+
+            const [ value, setValue ] = useState("");
+
+            const [ preco, setPreco ] = useState("");
            
                 return (
-                  <ScrollView>
-
+                  <VStack flex={1} bg="white">
+                  <SafeAreaView style={styles.container}>
                   
+                  <VStack mt='5%' mb='30%'>
+                      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null} >
+                          <ScrollView showsVerticalScrollIndicator={false}>
+      
+                              <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                  <Text color='Primary.500' fontFamily={fonts.body} fontSize='md'> CLIENTE </Text>
+                              </View>
 
-              </ScrollView>
+                              <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                  <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Cliente </Text>
+                                  </View>
+                                  <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
+                                      <Box maxW='300'>
+                                              <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                          bg: "primary.500",
+                                          endIcon: <CheckIcon  size='5' />
+                                      }} onValueChange={itemValue => setAbastecimento(itemValue)}>
+                                          <Select.Item label="Radio" value="Radio" />
+                                          <Select.Item label="Transmission" value="Transmission" />
+                                          <Select.Item label="Power" value="Power" />
+                                          <Select.Item label="Civil" value="Civil" />
+                                          <Select.Item label="COre-data center" value="COre-data center" />
+                                          </Select>
+                                      </Box>
+                                  </View>
+      
+                            
+                                   <View style={styles.uinputView}>
+                                      < TextInput style={styles.txtInput} 
+                                          selectionColor='#12375C' 
+                                          outlineColor='gray'
+                                          activeOutlineColor='#12375C' 
+                                          underlineColor='#12375C' 
+                                          mode="outlined"
+                                          label="Filial"
+                                          theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                          value={razao}
+                                          onChangeText={(text) => setRazao(text)}
+                                          autoComplete='off'
+                                          />
+                                  </View>
+      
+                                  <View style={styles.uinputView}>
+                                      < TextInput style={styles.txtInput} 
+                                          selectionColor='#12375C' 
+                                          outlineColor='gray'
+                                          activeOutlineColor='#12375C' 
+                                          underlineColor='#12375C' 
+                                          mode="outlined"
+                                          label="Telefone do Cliente"
+                                          theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                          value={razao}
+                                          onChangeText={(text) => setRazao(text)}
+                                          autoComplete='off'
+                                          />
+                                  </View>
+      
+                               
+                                  <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                  <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Site </Text>
+                              </View>
+                              <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
+                                  <Box maxW='300'>
+                                          <Select selectedValue={preco} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                      bg: "primary.500",
+                                      endIcon: <CheckIcon  size='5' />
+                                  }} onValueChange={itemValue => setPreco(itemValue)}>
+                                      <Select.Item label="Telco" value="Telco" />
+                                      <Select.Item label="Facilities" value="Facilities" />
+                                      <Select.Item label="Power" value="Power" />
+                                      <Select.Item label="Data Center" value="Data Center" />
+                                      </Select>
+                                  </Box>
+                              </View>
+                                        
+                          </ScrollView>
+                      </KeyboardAvoidingView>
+                  </VStack>
+      
+                  </SafeAreaView>
+                  </VStack> 
             );
+
           }
 
 
