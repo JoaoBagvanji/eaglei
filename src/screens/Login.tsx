@@ -67,16 +67,18 @@ export default function Login({history}){
         
          
         try {
-        await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
-            if(d.data.token){
-                await AsyncStorage.setItem("token", d.data.token);
-                navigate("Home") as never;
-            }else {
-                navigate('Login')   
-            }
-            console.log(d.data)
 
-        });
+            navigate("Home") as never;
+        // await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
+        //     if(true){
+        //         // await AsyncStorage.setItem("token", d.data.token);
+        //         navigate("Home") as never;
+        //     }else {
+        //         navigate('Login')   
+        //     }
+        //     console.log(d.data)
+
+        // });
         } catch (e) {
         console.log(e);
         }
@@ -112,7 +114,7 @@ export default function Login({history}){
                 w="full"
                 onPress={() => {
                     loginUser(email, password);
-                    chamar_api();
+                    // chamar_api();
                 }}
             />
         </VStack>

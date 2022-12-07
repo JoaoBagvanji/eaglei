@@ -4,7 +4,26 @@ import { Info, CheckCircle  ,LightbulbFilament ,Lightning ,Package,Camera, Hands
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../../styles/colors';
 
-export default function Completas() {
+import FormInfoCorCompletos from "../../../routes/corCompletos.routes";
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
+const Stack = createStackNavigator();
+ 
+
+export default function MyStack(){
+  return (
+
+    <Stack.Navigator   screenOptions={{headerShown: false}} 
+            initialRouteName='Completas'>
+        <Stack.Screen name="FormInfoCorCompletos" component={FormInfoCorCompletos} />
+        <Stack.Screen name="Completas" component={Completas} />
+    </Stack.Navigator>
+
+);
+}
+
+ function Completas() {
   
   
     const data = [
@@ -75,6 +94,12 @@ export default function Completas() {
     const [ showPosition, setShowPosition ] = useState()
 
 
+    type Nav ={
+      navigate : (value: string) => void;
+  }
+    
+  const { navigate } = useNavigation<Nav>();
+  
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       val_sec[position] = true;
@@ -85,6 +110,10 @@ export default function Completas() {
       setShouldShow(val_sec);
     }
     
+    const handleInfo = () => {
+      navigate('FormInfoCorCompletos') as never;
+    }
+
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
@@ -121,7 +150,7 @@ export default function Completas() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
