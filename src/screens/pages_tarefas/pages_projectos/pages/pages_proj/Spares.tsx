@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme , ScrollView, Box, CheckIcon, Select, Button  } from 'native-base';
 import { Camera, FloppyDisk, Package, Image as Imagem } from 'phosphor-react-native';
 
@@ -195,22 +195,30 @@ export default function Spares({navigation}) {
         const [mostraN, setMostraN] = useState(false);
         var [mostraTroca, setMostraTroca] = useState(false);
 
+        useEffect(() => {
+             console.log("mostraS "+mostraS);
+             console.log("mostraN "+mostraN);
+             console.log("mostraT "+mostraTroca);
+             console.log("-----------------------");
+          });
 
         const mudaform = (selectedItem) => {
             setItem(selectedItem);
             setSelectedIndex(data.findIndex(element=>element.item==selectedItem)); 
 
-            
+       //     if(  data[selectedIndex].isSerializado)
 
-            if(!data[selectedIndex].isSerializado)
+            if(selectedItem == 'AC')
             {
               setMostraS(true);
               setMostraN(false);
+              console.log("Passou no if (Serializado)");
             }
-            else if(data[selectedIndex].isSerializado)
+            else 
             {
               setMostraS(false);
               setMostraN(true);
+              console.log("Passou no if (Nao serializado)");
             }
 
         }
@@ -219,7 +227,8 @@ export default function Spares({navigation}) {
             setTroka(selectedOption);
 
             if (selectedOption == 'Sim')
-                setMostraTroca(true);
+                {setMostraTroca(true);
+                console.log("Passou no if (Troca)");}
             else
                 setMostraTroca(false);
 
