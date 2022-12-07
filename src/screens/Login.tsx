@@ -1,4 +1,4 @@
-import { VStack, Icon, useTheme, View, HStack,Text } from 'native-base';
+import { VStack, Icon, useTheme, View, HStack,Text, Alert } from 'native-base';
 import { SignIn, Key, User } from 'phosphor-react-native'
 import { useEffect, useState, useContext } from 'react';
 import {  TextInput } from 'react-native-paper';
@@ -42,33 +42,47 @@ export default function Login({history}){
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(true);
 
+    const validate=()=>{
+        if(email == ""){
+            alert ('Preencha o e-mail')
+            return false
+        } else if(password == ""){
+            alert ('Preencha a senha')
+            return false
+        }
+        return true
+    }
+
+    const chamar_api=()=>{
+        if(validate()){
+           alert('Sucesso!') 
+        }
+    }
+
     
 
-    // useEffect(() => {
-    //     if (AsyncStorage.getItem("authToken")) {
-    //       history.push("/");
-    //     }
-    //   }, [history]);
     
     const loginUser = async (email, senha) => {
+        const axiosinstant=axios.create({baseURL:"http://192.168.0.133:3000/"});
         
          
-          try {
-            const data = await api.post("/LogIn", {
-              email: email,
-              senha: senha,
-            }).then((data) =>data);
-            console.log(data.data)
-      
-      
-            await AsyncStorage.setItem("token", data.data.token);
-          } catch (e) {
-            console.log(e);
-          }
+        try {
+        await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
+            if(d.data.token){
+                await AsyncStorage.setItem("token", d.data.token);
+                navigate("Home") as never;
+            }else {
+                navigate('Login')   
+            }
+            console.log(d.data)
+
+        });
+        } catch (e) {
+        console.log(e);
+        }
         
       };
-
-           
+             
 
     return(
         <VStack flex={1} alignItems="center" bg="white" px={8} pt={8} justifyContent='center'>
@@ -90,6 +104,7 @@ export default function Login({history}){
                     setShowPassword={setShowPassword}
                 />
             </View>
+            
 
             <Button 
                 leftIcon={<Icon as={<SignIn color={colors.green[700]}/>} ml={4}/>}
@@ -97,7 +112,7 @@ export default function Login({history}){
                 w="full"
                 onPress={() => {
                     loginUser(email, password);
-                    navigate("Home") as never;
+                    chamar_api();
                 }}
             />
         </VStack>
