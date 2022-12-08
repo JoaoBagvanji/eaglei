@@ -291,11 +291,7 @@ import { createStackNavigator } from '@react-navigation/stack';
                                       />
                                       <ThumbsDown color={colors.primary[700]} size={'20'}/>
                                     </HStack>
-                                
-                              
-                                
-
-                              
+                                 
                           </HStack>
                           
                           { isCarrocaria && <View style={{
