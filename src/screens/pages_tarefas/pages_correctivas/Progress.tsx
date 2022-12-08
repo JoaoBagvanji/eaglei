@@ -63,7 +63,8 @@ function handleTelaSubmit(){
         {
             id: 1,
             nome: '4552, Mahotas',
-            info: 'Mario Joaquim, estado: a caminho',
+            situacao: 'a caminho',
+            info: 'Mario Joaquim,a caminho...',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning  color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -72,11 +73,13 @@ function handleTelaSubmit(){
             icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine  color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
+            icon8:  require('../../../assets/avatars/cars.png'),
         },
         {
             id: 2,
             nome: '4352, Boquisso',
-            info: 'Samuel Joaquim, estado: no local',
+            situacao: 'no local',
+            info: 'Samuel Joaquim,no local',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -85,11 +88,13 @@ function handleTelaSubmit(){
             icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine   color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
+            icon8:  require('../../../assets/avatars/cars.png'),
         },
         {
             id: 3,
             nome: '4652, Museu',
-            info: 'David Joaquim, estado: a caminho',
+            situacao: 'a caminho',
+            info: 'David Joaquim,a caminho...',
             image: require('../../../assets/avatars/tower2.png'),
             icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -98,11 +103,13 @@ function handleTelaSubmit(){
             icon5: require('../../../assets/avatars/HAND.png'),
             icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
+            icon8:  require('../../../assets/avatars/cars.png'),
         },
         {
           id: 4,
           nome: '5992, Campoane',
-          info: 'Helio Joaquim, estado: no local',
+          situacao: 'no local',
+          info: 'Helio Joaquim,no local',
           image: require('../../../assets/avatars/tower2.png'),
           icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
@@ -111,7 +118,23 @@ function handleTelaSubmit(){
           icon5: require('../../../assets/avatars/HAND.png'),
           icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
           icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
-      },
+          icon8:  require('../../../assets/avatars/cars.png'),
+        },
+        {
+          id: 5,
+          nome: '6737, Mulotana',
+          situacao: 'aprovado',
+          info: 'Jayson Martins,aprovado',
+          image: require('../../../assets/avatars/tower2.png'),
+          icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
+          icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
+          icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
+          icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
+          icon5: require('../../../assets/avatars/HAND.png'),
+          icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
+          icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
+          icon8:  require('../../../assets/avatars/cars.png'),
+        },
         
     ];
 
@@ -145,7 +168,8 @@ function handleTelaSubmit(){
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              {shouldShow[item.id] ? (item.info.indexOf('local')!= -1 ? (<View display='flex' flexDirection='row' justifyContent='space-between'>
+              {shouldShow[item.id] ? (item.situacao.indexOf('local')!= -1 ?(
+              <View display='flex' flexDirection='row' justifyContent='space-between'>
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaGerador}>
@@ -181,8 +205,8 @@ function handleTelaSubmit(){
                 </View>
 
                 
-              </View>) :(
-                <>
+              </View>
+              ) :(item.situacao.indexOf('caminho')!=-1 ? (<>
                 <View display='flex' flexDirection='row' justifyContent='space-around'>
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                       <Icon>{item.icon6}</Icon>
@@ -194,10 +218,16 @@ function handleTelaSubmit(){
                     </TouchableOpacity>
                   </View>
                 </View>
-                </>
-
+                </>) : (item.situacao.indexOf('aprovado')!=-1 ? (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+              <TouchableOpacity>
+              <Image source={item.icon8} style={styles.avatar}/>
+              </TouchableOpacity>
+              
+            </View>): null)
                 
-                )) : null}
+                
+              )
+              ) : null}
               
             </View>
             </Box>
@@ -233,7 +263,7 @@ function handleTelaSubmit(){
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Projectos 
+                Correctivas 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
                   em Progresso
@@ -247,7 +277,7 @@ function handleTelaSubmit(){
                     data = {data}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de projectos</Text>}
+                    ListEmptyComponent =  {<Text>Esta é uma lista de Correctivas em Progresso</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />

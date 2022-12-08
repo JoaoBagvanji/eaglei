@@ -227,7 +227,7 @@ function handleTelaSubmit(){
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
                 <View>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Projectos 
+                Preventivas 
                 </Text>
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
                   em Progresso
