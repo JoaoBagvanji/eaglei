@@ -43,7 +43,7 @@ export function Header() {
                     fontSize='sm'
                     fontWeight='semibold'
                 >
-                    Helio Mahesse.
+                    John Doe.
                 </Text>
            </View>
             
