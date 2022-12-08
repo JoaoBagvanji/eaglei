@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {  StyleSheet, KeyboardAvoidingView, Platform, SafeAreaView, FlatList, TouchableOpacity, Image} from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Archive, CaretDown, CaretUp, Eye, LightbulbFilament, Lightning, MagnifyingGlass, Note, Pencil, User, Wrench} from 'phosphor-react-native';
+import { Archive, CaretDown, CaretUp, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, Pencil, User, Wrench} from 'phosphor-react-native';
 import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon, Select, Radio, Stack, TextArea, IconButton } from 'native-base';
 
 import {useState } from 'react';
@@ -1243,19 +1243,19 @@ import { useNavigation } from '@react-navigation/native';
                 const data = [
 
                     {
-                        gerador: '',
+                        id: 1,
+                        gerador: 'Toyama',
                         horas_anteriores: '0',
                         horas_atuais: '1100',
                         horas_d_reabastecimento: '0' ,
-                        razao_d_reabastecimento: 'Diesel Stolen',
                     },
                     {
-                      gerador: '1',
+                      id: 2,
+                      gerador: 'Vonder',
                       horas_anteriores: '5',
                       horas_atuais: '3200',
                       horas_d_reabastecimento: '1' ,
-                      razao_d_reabastecimento: 'Diesel Lost',
-                  }
+                      }
                   
                 ];
 
@@ -1280,13 +1280,17 @@ import { useNavigation } from '@react-navigation/native';
     const [shouldShow, setShouldShow] = useState(val_init);
 
     const oneUser = ( {item} ) =>(
-        <View style={styles.item}>
+        <View borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
 
             <Box flexDirection={'row'}>
            
-            <Text fontFamily={fonts.body} color={colors.primary[600]} marginLeft={4}>{item.horas_anteriores}</Text>
-
-        
+            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} marginLeft={'5%'} >{item.gerador}</Text>
+            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} marginLeft={'20%'}>{item.horas_anteriores}</Text>
+            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} marginLeft={'23%'}>{item.horas_atuais}</Text>
+            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} marginLeft={'14%'}>{item.horas_d_reabastecimento}</Text>
+            <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')} style={{ paddingBottom: 10, marginLeft: '16%'}}>
+              <Icon as ={<Info color={colors.blueGray[400]}/>} />
+              </TouchableOpacity>
 
             </Box>
            
@@ -1302,18 +1306,28 @@ import { useNavigation } from '@react-navigation/native';
     const { colors } = useTheme();
 
   return (
-    <VStack flex={1} bg="white">
+           <SafeAreaView style={styles.container}>
 
-         <SafeAreaView style={styles.container}>
-
-              <VStack flex={1} px={6} mt='6%'>
+              <VStack flex={1} bg="white">
 
                   <View  mb={'60%'}> 
 
-                  <View alignItems='center' justifyItems={'center'} justifyContent='center' display='flex' mt={4}>
-                        <Text color='#12375C' fontFamily={fonts.body} fontSize='md' alignSelf={'center'}>
+                  <View width={'100%'}>
+
+                        <Text color='#12375C' mt={'8%'} mb={'4%'} fontFamily={fonts.body} fontSize='md' alignSelf={'center'}>
                            DETALHES DO GERADOR
                         </Text>
+
+                        <HStack width={'100%'}>
+                          <Text width={'100%'} color='#12375C' fontSize={'12'} fontFamily={fonts.heading} mb={'2%'}>&nbsp;&nbsp;Gerador&nbsp;&nbsp;&nbsp;H. Anteriores&nbsp;&nbsp;&nbsp;H. Actuais&nbsp;&nbsp;&nbsp;H. Reabast.</Text>
+
+                          {/* <Text color='#12375C' fontFamily={fonts.heading} ml={'2%'}>Horas Anteriores do Gerador</Text>
+                          <Text color='#12375C' fontFamily={fonts.heading} ml={'2%'}>Horas actuais</Text>
+                          <Text color='#12375C' fontFamily={fonts.heading} ml={'2%'}>Horas de Reabastecimento Anteriores</Text>
+                          <Text color='#12375C' fontFamily={fonts.heading}> Razão do Reabastecimento</Text> */}
+
+                        </HStack>
+
                   </View>
 
                       <FlatList 
@@ -1324,23 +1338,12 @@ import { useNavigation } from '@react-navigation/native';
                           keyExtractor = { data => data.id }
                           showsVerticalScrollIndicator={false}
                       />
-                      <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='90%' mt={'123%'} >
-                          <ButtonHandle
-                              title='+'
-                              w={14}
-                              onPress={() => {
-                                  navigate("UsersRegist") as never;
-                              }}
-
-                          />
-                            </View>
-
+                    
                     </View>
 
               </VStack>
 
           </SafeAreaView>
-    </VStack>
         );
       }
 
