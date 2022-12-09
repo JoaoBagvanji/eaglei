@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens, ScrollView } from 'native-base';
-import { Info ,Check  ,X  ,Flag,Camera,CaretDown, CaretUp, MapPinLine, MagnifyingGlass } from 'phosphor-react-native';
-import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Info ,Lightning  ,X  ,LightbulbFilament,Camera,CaretDown, CaretUp, MapPinLine, MagnifyingGlass, Package } from 'phosphor-react-native';
+import { FlatList, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Questions from '../form/PreventivasQuestions';
 import { useNavigation } from '@react-navigation/native';
@@ -11,6 +11,9 @@ import Spares from './../pages_preventivas/pages_prev/Spares';
 import Submit from './../pages_preventivas/pages_prev/Submit';
 import Fotos from './../pages_preventivas/pages_prev/Fotos';
 import  userImg  from '../../../assets/avatars/maintenance.png';
+import { ButtonHandle } from '../../../components/ButtonHandle';
+import colors from '../../../styles/colors';
+import FormTelco from '../../pages_tarefas/pages_correctivas/formsNovos/formTelco'
 
 
 const Stack = createStackNavigator();
@@ -26,6 +29,7 @@ export default function MyStack() {
          <Stack.Screen name="Fotos" component={Fotos} />
          <Stack.Screen name="Credelec" component={Credelec} />
          <Stack.Screen name="Spares" component={Spares} />
+         <Stack.Screen name="FormTelco" component={FormTelco} />
          <Stack.Screen name="Submit" component={Submit} /> 
      </Stack.Navigator>
   
@@ -41,65 +45,87 @@ export default function MyStack() {
             nome: 'TT Number: 4151996',
             info: 'Local: 1167',
             prioridade: 'Media',
-            cliente:'Vm,Sa',
+            cliente:'cliente: Vm,Sa',
             tecnico:'Antonio Macuacua',
+            regiao: 'Região: maputo',
+            estado:'estado: Work Done',
             image: require('../../../assets/avatars/maintenance2.png'),
-            icon: <Icon as ={<X    color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<Check  color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Flag    color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
-            icon5: require('../../../assets/avatars/HAND.png'),
-            icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
-            icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
+            icon: <Icon as ={<Lightning  color='#fff' size={16} />} />,
+            icon2: <Icon as ={<Lightning  color='#fff' size={16} />} />,
+            icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
+            spare: [],
+            gerador: [0,2],
+            credelec: [],
         },
         {
             id: 2,
             nome: 'TT Number: 4183578',
             info: 'Local: 1099',
             prioridade: 'Media',
-            cliente:'Vm,Sa',
+            cliente:'cliente: Vm,Sa',
             tecnico:'António Macuacua',
+            regiao: 'Região: maputo',
+            estado:'estado: Work Done',
             image: require('../../../assets/avatars/maintenance2.png'),
-            icon: <Icon as ={<X    color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<Check  color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Flag  color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: require('../../../assets/avatars/HAND.png'),
-            icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
-            icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
+            icon: <Icon as ={<Lightning    color='#fff' size={16} />} />,
+            icon2: <Icon as ={<LightbulbFilament  color='#fff' size={16} />} />,
+            icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
+            spare: [],
+            gerador: [0,2,3,4],
+            credelec: [2],
         },
         {
             id: 3,
             nome: 'TT Number: 4183578',
             info: 'Local: 1322',
             prioridade: 'Media',
-            cliente:'Vm,Sa',
+            cliente:'cliente: Vm,Sa',
             tecnico:'António Macuacua',
+            regiao: 'Região: maputo',
+            estado:'estado: Work Done',
             image: require('../../../assets/avatars/maintenance2.png'),
-            icon: <Icon as ={<X    color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<Check  color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Flag  color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: require('../../../assets/avatars/HAND.png'),
-            icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
-            icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
+            icon: <Icon as ={<Lightning    color='#fff' size={16} />} />,
+            icon2: <Icon as ={<LightbulbFilament  color='#fff' size={16} />} />,
+            icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
+            spare: [],
+            gerador: [0],
+            credelec: [2],
         },
         {
           id: 4,
           nome: 'TT Number: 4181421',
           info: 'Local: 1072',
           prioridade: 'baixa',
-          cliente:'Vm,Sa',
+          cliente:'cliente: Vm,Sa',
           tecnico:'António Macuacua',
+          regiao: 'Região: maputo',
+          estado:'estado: Work Done',
           image: require('../../../assets/avatars/maintenance2.png'),
-          icon: <Icon as ={<X    color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<Check  color='#A1C861' size={16} />} />,
-          icon3: <Icon as ={<Flag  color='#A1C861' size={16} />} />,
-          icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-          icon5: require('../../../assets/avatars/HAND.png'),
-          icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
-          icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
+          icon: <Icon as ={<Lightning    color='#fff' size={16} />} />,
+          icon2: <Icon as ={<LightbulbFilament  color='#fff' size={16} />} />,
+          icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
+          spare: [],
+          gerador: [4],
+          credelec: [2],
+
       },
+      {
+        id: 5,
+        nome: 'TT Number: 4181421',
+        info: 'Local: 1072',
+        prioridade: 'baixa',
+        cliente:'cliente: Vm,Sa',
+        tecnico:'António Macuacua',
+        regiao: 'Região: maputo',
+        estado:'estado: Work Done',
+        image: require('../../../assets/avatars/maintenance2.png'),
+        icon: <Icon as ={<Lightning    color='#fff' size={16} />} />,
+        icon2: <Icon as ={<LightbulbFilament  color='#fff' size={16} />} />,
+        icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
+        spare: [],
+        gerador: [0,4],
+        credelec: [2],
+    },
         
     ];
     const val_init = Array.from({ length: data.length}, (v,p) => false)
@@ -144,8 +170,8 @@ export default function MyStack() {
       navigate('Spares') as never;
     }
     
-    function handleTelaSubmit(){
-      navigate('Submit') as never;
+    function handleFormTelco(){
+      navigate('FormTelco') as never;
     }
 
 
@@ -162,24 +188,26 @@ export default function MyStack() {
                 <View flexDirection={'column'} margin='0.5' >
                 <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.tecnico}</Text>
                 <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-                
+                <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.regiao}</Text>
                 <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.prioridade}</Text>
-                <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.cliente}</Text>
+                <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.cliente}</Text>
+                <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.estado}</Text>
                 
                 {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between'>
-                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                    <View marginLeft={4} marginTop={2} style={item.gerador.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                     <TouchableOpacity onPress={handleTelaGerador}>
                         <Icon>{item.icon}</Icon>
                     </TouchableOpacity>
+
                     </View>
 
-                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                    <View marginLeft={4} marginTop={2} style={item.credelec.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                     <TouchableOpacity onPress={handleTelaCredelec}>
                         <Icon>{item.icon2}</Icon>
                     </TouchableOpacity>
                     </View>
 
-                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                    <View marginLeft={4} marginTop={2} style={item.spare.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                     <TouchableOpacity onPress={handleTelaSpares}>
                         <Icon>{item.icon3}</Icon>
                     </TouchableOpacity>
@@ -194,7 +222,7 @@ export default function MyStack() {
                 </Box>
                 <View display='flex' flexDirection='column' alignContent='space-between'>
                 <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
-                <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                <Icon as ={<Info color={colors.green[600]}/>} />
                 </TouchableOpacity>
                 <View >
                     {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
@@ -237,7 +265,7 @@ export default function MyStack() {
                 </View>
             </HStack>
             
-            <View>
+            <View style={styles.manutencao}>
             
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
@@ -246,9 +274,23 @@ export default function MyStack() {
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
                     keyExtractor = { data => data.id }
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ paddingBottom: '10%'}}
+                    
                 />
+                
              
             </View>
+            <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='110%' mt={'161%'} >
+                    <ButtonHandle
+                        title='+'
+                        w={14}
+                        onPress={() => {
+                            navigate("FormTelco") as never;
+                        }}
+
+                    />
+                </View>
             
       </VStack>
     </VStack>
@@ -289,5 +331,17 @@ const styles=StyleSheet.create({
       width:40,
       height:20,
       alignItems:'center'
+    },
+    manutencao:{
+      flex:1,
+      justifyContent: 'center',
+     paddingBottom: '14%',
+     marginTop: '7%'
+    },
+    filled:{
+      backgroundColor: colors.green_dark,
+    },
+    unfilled:{
+      backgroundColor: colors.red
     }
 })
