@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {  StyleSheet, KeyboardAvoidingView, Platform, SafeAreaView, FlatList, TouchableOpacity, Image} from 'react-native';
+import {  StyleSheet, KeyboardAvoidingView, Platform, SafeAreaView, FlatList, TouchableOpacity} from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Archive, CaretDown, CaretUp, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, Pencil, User, Wrench} from 'phosphor-react-native';
-import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon, Select, Radio, Stack, TextArea, IconButton } from 'native-base';
+import { Archive, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, User, Wrench, Image} from 'phosphor-react-native';
+import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon, Select, Radio, Stack, TextArea} from 'native-base';
 
 import {useState } from 'react';
 
@@ -432,7 +432,7 @@ import { useNavigation } from '@react-navigation/native';
 
                                         <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                                             <Text color='#12375C' fontFamily={fonts.body} fontSize='md'>
-                                            AVALIAÇÃO DE RISCO
+                                            AVALIAÇÃO DE RISCO 
                                             </Text>
                                         </View>
                                         
@@ -987,36 +987,18 @@ import { useNavigation } from '@react-navigation/native';
                                           <Text style={styles.currentText}> Observações </Text>
                                           <TextArea borderColor={'black'} width={'80%'} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
 
-                                    </ScrollView>
-                                </KeyboardAvoidingView>
-                            </VStack>
-
-                        </SafeAreaView>
-              </VStack>
-            );
-          }
 
 
+                                          <View
+                                            borderBottomColor={'#12375C'}
+                                            borderBottomWidth={4}
+                                            width="100%"
+                                            alignSelf={'center'}
+                                            my={'10%'}/>
 
 
 
-
-
-          function Screen4() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
-
-            const [razao, setRazao] = useState('');
-
-            return (
-              <VStack flex={1} bg="white">
-                        <SafeAreaView style={styles.container}>
-
-                            <VStack mt='5%' mb='30%'>
-                                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
-                                    <ScrollView showsVerticalScrollIndicator={false}>
-
-                                        <View alignItems='center' justifyItems={'center'} justifyContent='center' display='flex' mt={4}>
+                                        <View alignItems='center' justifyItems={'center'} justifyContent='center' display='flex'>
                                             <Text color='#12375C' fontFamily={fonts.body} fontSize='md' alignSelf={'center'}>
                                             AVALIAÇÃO DO IMPACTO AMBIENTAL DE ÚLTIMO MINUTO
                                             </Text>
@@ -1238,161 +1220,373 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-    function Screen5() {
 
-                const data = [
+      function Screen4() {
 
-                    {
-                        id: 1,
-                        gerador: 'Toyama',
-                        horas_anteriores: '0',
-                        horas_atuais: '1100',
-                        horas_d_reabastecimento: '0' ,
-                    },
-                    {
-                      id: 2,
-                      gerador: 'Vonder',
-                      horas_anteriores: '5',
-                      horas_atuais: '3200',
-                      horas_d_reabastecimento: '1' ,
-                      }
-                  
-                ];
+      const data = [
 
-    
-    type Nav ={
-      navigate : (value: string) => void;
-  }
-    const { navigate } = useNavigation<Nav>();
-    
-    async function handleDropDownItems(position){
-        let val_sec = await Array.from({ length: data.length}, (v,p) => false)
-        val_sec[position] = true;
-        setShouldShow(val_sec);
-      }
+          {
+              id: 1,
+              gerador: 'Toyama',
+              horas_anteriores: '0',
+              horas_atuais: '1100',
+              horas_d_reabastecimento: '0' ,
+          },
+          {
+            id: 2,
+            gerador: 'Vonder',
+            horas_anteriores: '5',
+            horas_atuais: '3200',
+            horas_d_reabastecimento: '1' ,
+            }
+        
+      ];
+
+      type Nav ={
+        navigate : (value: string) => void;
+    }
+      const { navigate } = useNavigation<Nav>();
   
-      async function handleHideItems(position){
-        let val_sec = await Array.from({ length: data.length}, (v,p) => false)
-        setShouldShow(val_sec);
-      }
+      const oneUser = ( {item} ) =>(
+          <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
 
-    const val_init = Array.from({ length: data.length}, (v,p) => false);
-    const [shouldShow, setShouldShow] = useState(val_init);
+              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.gerador}</Text>
+              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.horas_anteriores}</Text>
+              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.horas_atuais}</Text>
+              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.horas_d_reabastecimento}</Text>
 
-    const oneUser = ( {item} ) =>(
-        <View borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
-
-            <Box flexDirection={'row'}>
-           
-            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} marginLeft={'5%'} >{item.gerador}</Text>
-            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} marginLeft={'20%'}>{item.horas_anteriores}</Text>
-            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} marginLeft={'23%'}>{item.horas_atuais}</Text>
-            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} marginLeft={'14%'}>{item.horas_d_reabastecimento}</Text>
-            <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')} style={{ paddingBottom: 10, marginLeft: '16%'}}>
-              <Icon as ={<Info color={colors.blueGray[400]}/>} />
+              <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')}>
+                <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
 
-            </Box>
-           
-       
-        </View>   
-    )
+          </HStack>   
+      )
 
-    function itemSeparator(){
-        return <View style={styles.separator}/>
-    }
-
-    const { fonts } = useTheme();
-    const { colors } = useTheme();
-
-  return (
-           <SafeAreaView style={styles.container}>
-
-              <VStack flex={1} bg="white">
-
-                  <View  mb={'60%'}> 
-
-                  <View width={'100%'}>
-
-                        <Text color='#12375C' mt={'8%'} mb={'4%'} fontFamily={fonts.body} fontSize='md' alignSelf={'center'}>
-                           DETALHES DO GERADOR
-                        </Text>
-
-                        <HStack width={'100%'}>
-                          <Text width={'100%'} color='#12375C' fontSize={'12'} fontFamily={fonts.heading} mb={'2%'}>&nbsp;&nbsp;Gerador&nbsp;&nbsp;&nbsp;H. Anteriores&nbsp;&nbsp;&nbsp;H. Actuais&nbsp;&nbsp;&nbsp;H. Reabast.</Text>
-
-                          {/* <Text color='#12375C' fontFamily={fonts.heading} ml={'2%'}>Horas Anteriores do Gerador</Text>
-                          <Text color='#12375C' fontFamily={fonts.heading} ml={'2%'}>Horas actuais</Text>
-                          <Text color='#12375C' fontFamily={fonts.heading} ml={'2%'}>Horas de Reabastecimento Anteriores</Text>
-                          <Text color='#12375C' fontFamily={fonts.heading}> Razão do Reabastecimento</Text> */}
-
-                        </HStack>
-
-                  </View>
-
-                      <FlatList 
-                          data = {data}
-                          renderItem = { oneUser }
-                          ItemSeparatorComponent = { itemSeparator }
-                          ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de gerador</Text>}
-                          keyExtractor = { data => data.id }
-                          showsVerticalScrollIndicator={false}
-                      />
-                    
-                    </View>
-
-              </VStack>
-
-          </SafeAreaView>
-        );
+      function itemSeparator(){
+          return <View style={styles.separator}/>
       }
 
+      const { fonts } = useTheme();
+      const { colors } = useTheme();
+
+        return (
+          <SafeAreaView style={styles.container}>
+
+                  <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                          <Text
+                              color='#12375C'
+                              mt={'8%'}
+                              mb={'4%'}
+                              fontFamily={fonts.body}
+                              fontSize='md'
+                              alignSelf={'center'}>
+                              DETALHES DO GERADOR
+                          </Text>
+
+                          <HStack justifyContent={'space-evenly'}>
+                            
+                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Gerador </Text>
+                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Anteriores </Text>
+                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Actuais </Text>
+                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Reabast. </Text>
+                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+
+                          </HStack>
+
+                      <FlatList 
+                            data = {data}
+                            renderItem = { oneUser }
+                            ItemSeparatorComponent = { itemSeparator }
+                            ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de gerador</Text>}
+                            keyExtractor = { data => data.id }
+                            showsVerticalScrollIndicator={false}
+                        />
+
+                  </VStack>
+
+          </SafeAreaView>
+          );
+
+
+        }
+
+
+
+
+
+
+          function Screen5() {
+
+            const data = [
+
+                {
+                    id: 1,
+                    actual_kwh: '5',
+                    kwh_posterior: '6',
+                    valor_adicionado: '1',
+                },
+                {
+                    id: 2,
+                    actual_kwh: '3',
+                    kwh_posterior: '5',
+                    valor_adicionado: '2',
+                }
+              
+            ];
+
+                type Nav ={
+                  navigate : (value: string) => void;
+              }
+                const { navigate } = useNavigation<Nav>();
+            
+                const oneUser = ( {item} ) =>(
+                    <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+
+                        <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.actual_kwh}</Text>
+                        <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.kwh_posterior}</Text>
+                        <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.valor_adicionado}</Text>
+
+                        <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')}>
+                          <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                        </TouchableOpacity>
+
+                    </HStack>   
+                )
+
+                function itemSeparator(){
+                    return <View style={styles.separator}/>
+                }
+
+                const { fonts } = useTheme();
+                const { colors } = useTheme();
+
+                  return (
+                    <SafeAreaView style={styles.container}>
+
+                            <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                                    <Text
+                                        color='#12375C'
+                                        mt={'8%'}
+                                        mb={'4%'}
+                                        fontFamily={fonts.body}
+                                        fontSize='md'
+                                        alignSelf={'center'}>
+                                        DETALHES DE ENERGIA
+                                    </Text>
+
+                                    <HStack justifyContent={'space-evenly'}>
+                                      
+                                            <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Actual Kw/h </Text>
+                                            <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Kw/h Posterior </Text>
+                                            <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Valor Adicionado </Text>
+                                            <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+
+                                    </HStack>
+
+                                <FlatList 
+                                      data = {data}
+                                      renderItem = { oneUser }
+                                      ItemSeparatorComponent = { itemSeparator }
+                                      ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de ENERGIA</Text>}
+                                      keyExtractor = { data => data.id }
+                                      showsVerticalScrollIndicator={false}
+                                  />
+
+                            </VStack>
+
+                    </SafeAreaView>
+                    );
+
+
+
+          }
 
 
 
 
 
           function Screen6() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
 
-        
+           const data = [
 
-            return (
-              <ScrollView>
-              <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}>MOTOR</Text>
+                {
+                    id: 1,
+                    tipo_de_equip: 'Condensor',
+                    modelo: 'a',
+                    nr_de_serie: '1223',
+                },
+                {
+                    id: 2,
+                    tipo_de_equip: 'Condensor',
+                    modelo: 'c',
+                    nr_de_serie: '24555',
+                }
+              
+            ];
 
-          </ScrollView>
-            );
+                type Nav ={
+                  navigate : (value: string) => void;
+              }
+                const { navigate } = useNavigation<Nav>();
+            
+                const oneUser = ( {item} ) =>(
+                    <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+
+                        <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.tipo_de_equip}</Text>
+                        <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.modelo}</Text>
+                        <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.nr_de_serie}</Text>
+
+                        <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')}>
+                          <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                        </TouchableOpacity>
+
+                    </HStack>   
+                )
+
+                function itemSeparator(){
+                    return <View style={styles.separator}/>
+                }
+
+                const { fonts } = useTheme();
+                const { colors } = useTheme();
+
+                  return (
+                    <SafeAreaView style={styles.container}>
+
+                            <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                                    <Text
+                                        color='#12375C'
+                                        mt={'8%'}
+                                        mb={'4%'}
+                                        fontFamily={fonts.body}
+                                        fontSize='md'
+                                        alignSelf={'center'}>
+                                        DETALHES DE EQUIPAMENTOS
+                                    </Text>
+
+                                    <HStack justifyContent={'space-evenly'}>
+                                      
+                                            <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Tipo de Equipamento </Text>
+                                            <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Modelo </Text>
+                                            <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Número de Série </Text>
+                                            <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+
+                                    </HStack>
+
+                                <FlatList 
+                                      data = {data}
+                                      renderItem = { oneUser }
+                                      ItemSeparatorComponent = { itemSeparator }
+                                      ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                      keyExtractor = { data => data.id }
+                                      showsVerticalScrollIndicator={false}
+                                  />
+
+                            </VStack>
+
+                    </SafeAreaView>
+                    );
+
+
+
           }
+
+
+       
+        
+       
 
 
 
 
 
           function Screen7() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
+           
+            const data = [
 
-              return (
-              <ScrollView >
-                            <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
-                            >CAMERA</Text>
-                            
-                          
+              {
+                  id: 1,
+                  item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
+                  qtd_usada: '1',
+              },
+              {
+                  id: 2,
+                  item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
+                  qtd_usada: '4',
+              }
+            
+          ];
 
-                        </ScrollView>
-            );
+              type Nav ={
+                navigate : (value: string) => void;
+            }
+              const { navigate } = useNavigation<Nav>();
+          
+              const oneUser = ( {item} ) =>(
+                  <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+
+                      <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.item}</Text>
+                      <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.qtd_usada}</Text>
+                      
+                      <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')}>
+                        <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                      </TouchableOpacity>
+
+                  </HStack>   
+              )
+
+              function itemSeparator(){
+                  return <View style={styles.separator}/>
+              }
+
+              const { fonts } = useTheme();
+              const { colors } = useTheme();
+
+                return (
+                  <SafeAreaView style={styles.container}>
+
+                          <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                                  <Text
+                                      color='#12375C'
+                                      mt={'8%'}
+                                      mb={'4%'}
+                                      fontFamily={fonts.body}
+                                      fontSize='md'
+                                      alignSelf={'center'}>
+                                      SOBRESSALENTE USADO
+                                  </Text>
+
+                                  <HStack justifyContent={'space-evenly'}>
+                                    
+                                          <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Item </Text>
+                                          <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Quantidade usada </Text>
+                                          
+                                  </HStack>
+
+                              <FlatList 
+                                    data = {data}
+                                    renderItem = { oneUser }
+                                    ItemSeparatorComponent = { itemSeparator }
+                                    ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                    keyExtractor = { data => data.id }
+                                    showsVerticalScrollIndicator={false}
+                                />
+
+                          </VStack>
+
+                  </SafeAreaView>
+                  );
+
+
           }
 
 
-       
-        
-       
 
-
-
-
+          
 
           function Screen8() {
             const {colors} = useTheme();
@@ -1403,7 +1597,7 @@ import { useNavigation } from '@react-navigation/native';
 
                 <ScrollView>
                 <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
-                >SEGURANÇA</Text>
+                >FOTOS</Text>
 
             
 
@@ -1413,23 +1607,85 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-          
+               function Screen9() {
 
-          function Screen9() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
+                const data = [
 
+                  {
+                      id: 1,
+                      nome: 'Jaime Chitereca',
+                      data_accao: '28/11/2022 10:52\nTT number criado',
+                  },
+                  {
+                      id: 2,
+                      nome: 'Jose Tovela',
+                      data_accao: '08/10/2022 14:27\nAccept the jobcard',
+                  },
+                  {
+                    id: 3,
+                    nome: 'João Bagvanji',
+                    data_accao: '18/11/2022 11:32\nInformação de viagem',
+                }
+                
+              ];
+    
+                  type Nav ={
+                    navigate : (value: string) => void;
+                }
+                  const { navigate } = useNavigation<Nav>();
               
-            return (
+                  const oneUser = ( {item} ) =>(
+                      <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+    
+                          <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.nome}</Text>
+                          <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.data_accao}</Text>
+                 
+                      </HStack>   
+                  )
+    
+                  function itemSeparator(){
+                      return <View style={styles.separator}/>
+                  }
+    
+                  const { fonts } = useTheme();
+                  const { colors } = useTheme();
+    
+                    return (
+                      <SafeAreaView style={styles.container}>
+    
+                              <VStack bg="white" mb={'60%'} width={'100%'}>
+    
+                                      <Text
+                                          color='#12375C'
+                                          mt={'8%'}
+                                          mb={'4%'}
+                                          fontFamily={fonts.body}
+                                          fontSize='md'
+                                          alignSelf={'center'}>
+                                          AUDITORIA
+                                      </Text>
+    
+                                      <HStack justifyContent={'space-evenly'}>
+                                        
+                                              <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Responsável</Text>
+                                              <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Data - Acção</Text>
+                                      </HStack>
+    
+                                  <FlatList 
+                                        data = {data}
+                                        renderItem = { oneUser }
+                                        ItemSeparatorComponent = { itemSeparator }
+                                        ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                        keyExtractor = { data => data.id }
+                                        showsVerticalScrollIndicator={false}
+                                    />
+    
+                              </VStack>
+    
+                      </SafeAreaView>
+                      );
+    
 
-                <ScrollView>
-                <Text marginTop={'5%'} color="primary.800" fontSize="md" fontFamily={fonts.heading} alignSelf={'center'}
-                >SEGURANÇA</Text>
-
-            
-
-                 </ScrollView> 
-            );
           }
 
               
@@ -1487,12 +1743,13 @@ import { useNavigation } from '@react-navigation/native';
                       )),
                   }}
                 />
+            
                 <Tab.Screen
                   name="four"
                   component={Screen4}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                        <Icon as ={<MagnifyingGlass color={color} size={size}/>} />
+                          <Icon as ={<Lightning color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1501,7 +1758,7 @@ import { useNavigation } from '@react-navigation/native';
                   component={Screen5}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Lightning color={color} size={size}/>} />
+                        <Icon as ={<LightbulbFilament color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1510,7 +1767,7 @@ import { useNavigation } from '@react-navigation/native';
                   component={Screen6}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                        <Icon as ={<LightbulbFilament color={color} size={size}/>} />
+                        <Icon as ={<Wrench color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1519,16 +1776,16 @@ import { useNavigation } from '@react-navigation/native';
                   component={Screen7}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                        <Icon as ={<Wrench color={color} size={size}/>} />
+                          <Icon as ={<Archive color={color} size={size}/>} />
                       )),
                   }}
                 />
-                <Tab.Screen
+                    <Tab.Screen
                   name="eight"
                   component={Screen8}
                   options={{
                       tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Archive color={color} size={size}/>} />
+                        <Icon as ={<Image color={color} size={size}/>} />
                       )),
                   }}
                 />
@@ -1605,7 +1862,7 @@ import { useNavigation } from '@react-navigation/native';
         item:{
             flex:1,
             flexDirection: 'row',
-            justifyContent:'space-between',
+            justifyContent:'space-evenly',
             alignItems:'center',
             paddingVertical:13
         },
