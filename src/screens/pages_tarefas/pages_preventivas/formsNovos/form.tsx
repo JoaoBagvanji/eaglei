@@ -14,7 +14,7 @@ import colors from '../../../../styles/colors';
 
 
 
-export default function FormTelco({navigation}) {
+export default function Form({navigation}) {
 
     const [openCausa, setOpenCausa] = useState(false);
     const [valueCausa, setValueCausa] = useState([]);

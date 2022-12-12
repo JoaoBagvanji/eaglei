@@ -14,7 +14,7 @@ import colors from '../../../../styles/colors';
 
 
 
-export default function FormTelco({navigation}) {
+export default function FormNovosProjectos({navigation}) {
 
     const [openCausa, setOpenCausa] = useState(false);
     const [valueCausa, setValueCausa] = useState([]);
@@ -26,7 +26,61 @@ export default function FormTelco({navigation}) {
     ]);
 
  
+    const [telco, setTelco] = useState({
+        departamento:'',
+        numero_do_projecto:'',
+        cliente: [],
+        site: [],
+        call: [],
+        tecnico: [],
+        razao: '',
+        data_planejada: ''
+    })
 
+    const [centroDados, setCentroDados] = useState({
+        departamento:'',
+        numero_do_projecto:'',
+        cliente: [],
+        site: [],
+        call: [],
+        tecnico: [],
+        razao: '',
+        data_planejada: ''
+    })
+
+    const [energia, setEnergia] = useState({
+        departamento:'',
+        numero_do_projecto:'',
+        cliente: [],
+        regiao: [],
+        filial: [],
+        provincia: [],
+        local: '',
+        pessoa_de_contacto: [],
+        equipa_tecnica: [],
+        matricula:[],
+        motivo:'',
+        data_prevista: '',
+        assistentes: [],
+        tecnicos_permitidos: []
+    })
+
+    const [climatizacao, setClimatizacao] = useState({
+        departamento:'',
+        numero_do_projecto:'',
+        cliente: [],
+        regiao: [],
+        filial: [],
+        provincia: [],
+        local: '',
+        pessoa_de_contacto: [],
+        equipa_tecnica: [],
+        matricula:[],
+        motivo:'',
+        data_prevista: '',
+        assistentes: [],
+        tecnicos_permitidos: []
+    })
     const [openMat, setOpenMat] = useState(false);
     const [valueMat, setValueMat] = useState([]);
     const [itemsMat, setItemsMat] = useState([
