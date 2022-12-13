@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {  StyleSheet, KeyboardAvoidingView, Platform, SafeAreaView, FlatList, TouchableOpacity, useWindowDimensions, Image as RNimage, ActivityIndicator} from 'react-native';
+import {  StyleSheet, KeyboardAvoidingView, Platform, SafeAreaView, FlatList, TouchableOpacity, useWindowDimensions, Image as RNimage, ActivityIndicator, Dimensions} from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Archive, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, User, Wrench, Image} from 'phosphor-react-native';
 import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon, Select, Radio, Stack, TextArea} from 'native-base';
@@ -7,16 +7,16 @@ import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon,
 import {useState } from 'react';
 
 import * as ImagePicker from "expo-image-picker";
+import Pictures from './Pictures';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput } from 'react-native-paper';
 import colors from '../../../../styles/colors';
 import fonts from '../../../../styles//fonts';
-import { id } from 'date-fns/locale';
-import { ButtonHandle } from '../../../../components/ButtonHandle';
-import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
+import ShowImage from './ShowImage';
 
+import { useNavigation } from '@react-navigation/native';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 
           const StackRoutes = createStackNavigator();
@@ -35,6 +35,38 @@ import { useNavigation } from '@react-navigation/native';
             const [ value, setValue ] = useState("");
 
             const [ preco, setPreco ] = useState("");
+
+            const [openRazao, setOpenRazao] = useState(false);
+            const [valueRazao, setValueRazao] = useState([]);
+            const [itemsRazao, setItemsRazao] = useState([
+                {label: 'AC Mains Failure', value: 'AC Mains Failure'},
+                {label: 'Rectifier System', value: 'Rectifier System'},
+                {label: 'Rectifier Module', value: 'Rectifier Module'},
+                {label: 'Generator Low Fuel', value: 'Generator Low Fuel'},
+                {label: 'Generator Abnormal', value: 'Generator Abnormal'},
+                {label: 'Generator Running', value: 'Generator Running'},
+                {label: 'High Temperature', value: 'High Temperature'},
+                {label: 'Battery Low', value: 'Battery Low'},
+                {label: 'Door Switch Intruder', value: 'Door Switch Intruder'},
+                {label: 'Motion Detector', value: 'Motion Detector'},
+                {label: 'FAN Stalled', value: 'FAN Stalled'},
+                {label: 'Smoke Detector', value: 'Smoke Detector'},
+                {label: 'Site Down', value: 'Site Down'},
+                {label: 'RRU replacement', value: 'RRU replacement'},
+                {label: 'RRU fiber', value: 'RRU fiber'},
+                {label: 'Fly leads', value: 'Fly leads'},
+                {label: 'UBBP board', value: 'UBBP board'},
+                {label: 'WBBP board', value: 'WBBP board'},
+                {label: 'BBU board', value: 'BBU board'},
+                {label: 'RTN905 RTN950', value: 'RTN905 RTN950'},
+                {label: 'RTN controller board', value: 'RTN controller board'},
+                {label: 'RTN Fan unit', value: 'RTN Fan unit'},
+                {label: 'OSN fan unit', value: 'OSN fan unit'},
+                {label: 'ODU replacement', value: 'ODU replacement'},
+                {label: 'Patch Cords', value: 'Patch Cords'},
+                {label: 'Outdoor cabinet cooling system', value: 'Outdoor cabinet cooling system'},
+              ]);
+
        
 
     
@@ -93,7 +125,7 @@ import { useNavigation } from '@react-navigation/native';
                                     <Select.Item label="Transmission" value="Transmission" />
                                     <Select.Item label="Power" value="Power" />
                                     <Select.Item label="Civil" value="Civil" />
-                                    <Select.Item label="COre-data center" value="COre-data center" />
+                                    <Select.Item label="Core-data center" value="Core-data center" />
                                     </Select>
                                 </Box>
                             </View>
@@ -101,6 +133,7 @@ import { useNavigation } from '@react-navigation/native';
                             <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                             <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Departamento </Text>
                         </View>
+
                         <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
                             <Box maxW='300'>
                                     <Select selectedValue={preco} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
@@ -145,6 +178,69 @@ import { useNavigation } from '@react-navigation/native';
                                     />
                             </View>
 
+                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Razão </Text>
+                        </View>
+                        
+                        <View style={{
+                                marginBottom: '2%',
+                                backgroundColor: 'transparent',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: '8%'
+                                }}>
+                                <DropDownPicker
+                                 listMode="MODAL"
+                                       textStyle={{
+                                        fontSize: 14
+                                    }}
+                                    placeholder="Escolha a opção"
+                                    open={openRazao}
+                                    value={valueRazao}
+                                    items={itemsRazao}
+                                    setOpen={setOpenRazao}
+                                    setValue={setValueRazao}
+                                    setItems={setItemsRazao}
+                                    multiple={true}
+                                   // theme="DEFAULT"
+                                    mode="BADGE"
+                                    badgeDotColors={["#A1C861"]}
+                                    />
+                        </View>
+
+                        <View style={styles.uinputView}>
+                                < TextInput style={styles.txtInput} 
+                                    selectionColor='#12375C' 
+                                    outlineColor='gray'
+                                    activeOutlineColor='#12375C' 
+                                    underlineColor='#12375C' 
+                                    mode="outlined"
+                                    label="Acção correctiva"
+                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                    value={razao}
+                                    onChangeText={(text) => setRazao(text)}
+                                    autoComplete='off'
+                                    />
+                            </View>
+
+                        
+                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Ocorreram problemas de Saúde e Segurança? </Text>
+                        </View>
+
+                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
+                            <Box maxW='300'>
+                                    <Select selectedValue={preco} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
+                                bg: "primary.500",
+                                endIcon: <CheckIcon  size='5' />
+                            }} onValueChange={itemValue => setPreco(itemValue)}>
+                                <Select.Item label="Sim" value="Sim" />
+                                <Select.Item label="Não" value="Não" />
+                              </Select>
+                            </Box>
+                        </View>
+
+                      
 
                         <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                             <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> TÉCNICO </Text>
@@ -1465,7 +1561,7 @@ import { useNavigation } from '@react-navigation/native';
                                         fontFamily={fonts.body}
                                         fontSize='md'
                                         alignSelf={'center'}>
-                                        DETALHES DE EQUIPAMENTOS
+                                        REPARAÇÃO DE EQUIPAMENTOS
                                     </Text>
 
                                     <HStack justifyContent={'space-evenly'}>
@@ -1494,12 +1590,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
           }
-
-
-       
-        
-       
-
+          
 
 
 
@@ -1587,175 +1678,172 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-          
 
-          function Screen8() {
 
-    const { fonts } = useTheme();
-    const { colors } = useTheme();
+          function Screen8({navigation}) {
 
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const { width } = useWindowDimensions();
-
-             const pictures = [
-        {
-            id: 1,
-            image: require('../../../../assets/tecnicos/download.png'),
-       
-        },
-        {
-            id: 2,
-                image: require('../../../../assets/tecnicos/download2.png'),
-        },
-        {
-            id: 3,
-            image: require('../../../../assets/tecnicos/download3.png'),
-        },
-        {
-            id: 4,
-            image: require('../../../../assets/tecnicos/download4.png'),
-        },
-        {
-            id: 5,
-            image: require('../../../../assets/tecnicos/download6.png'),
-        },
-        {
-            id: 6,
+            const { fonts } = useTheme();
+            const { colors } = useTheme();
         
-            image: require('../../../../assets/tecnicos/image.png'),
-        },
-        {
-            id: 7,
-            image: require('../../../../assets/tecnicos/image2.png'),
-          
-        },
-        {
-            id: 8,
-            image: require('../../../../assets/tecnicos/images7.png'),
-        }
-            ];
-
-
-            const pickFromGal = async () => {
-              // No permissions request is necessary for launching the image library
-              setIsLoading(true);
-  
-              let  resultados = await ImagePicker.launchImageLibraryAsync({
-                      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                      // allowsEditing: true,
-                      allowsMultipleSelection: true,
-                      selectionLimit: 10,
-                      aspect: [4, 3],
-                      quality: 1,
-                  });
-  
-                  setIsLoading(false);
-                  console.log(resultados);
-              
-                  resultados.assets.forEach(element => {
-                      
-                      if (!resultados.canceled) {
-                          setImages(resultados.assets);
-                          }
-                  });
+          const [images, setImages] = useState([]);
+          const [isLoading, setIsLoading] = useState(false);
+          const { width } = useWindowDimensions();
+        
+                     const pictures = [
+                {
+                    id: 1,
+                    image: require('../../../../assets/tecnicos/jobcardphoto1.png'),
+               
+                },
+                {
+                    id: 2,
+                        image: require('../../../../assets/tecnicos/jobcardphoto2.png'),
+                },
+                {
+                    id: 3,
+                    image: require('../../../../assets/tecnicos/jobcardphoto3.png'),
+                },
+                {
+                    id: 4,
+                    image: require('../../../../assets/tecnicos/jobcardphoto4.png'),
+                },
+                {
+                    id: 5,
+                    image: require('../../../../assets/tecnicos/jobcardphoto5.png'),
+                },
+                {
+                    id: 6,
+                
+                    image: require('../../../../assets/tecnicos/jobcardphotoinfo6.png'),
+                },
+                {
+                    id: 7,
+                    image: require('../../../../assets/tecnicos/jobcardphoto7.png'),
                   
-          };
-  
-
+                },
+                {
+                    id: 8,
+                    image: require('../../../../assets/tecnicos/jobcardphoto8.png'),
+                }
+                    ];
+        
+        
+                    const pickFromGal = async () => {
+                      // No permissions request is necessary for launching the image library
+                      setIsLoading(true);
+          
+                      let  resultados = await ImagePicker.launchImageLibraryAsync({
+                              mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                              // allowsEditing: true,
+                              allowsMultipleSelection: true,
+                              selectionLimit: 10,
+                              aspect: [4, 3],
+                              quality: 1,
+                          });
+          
+                          setIsLoading(false);
+                          console.log(resultados);
+                      
+                          resultados.assets.forEach(element => {
+                              
+                              if (!resultados.canceled) {
+                                  setImages(resultados.assets);
+                                  }
+                          });
+                          
+                  };
+          
+        
+                    
+                                        
+            return (
+            <VStack flex={1} pb={4} mb={16} bg="white">
+        
+                <SafeAreaView style={styles.container}>
+        
+                <ScrollView mb='12%'>
             
-                                
-    return (
-    <VStack flex={1} pb={4} mb={16} bg="white">
+                <FlatList
+                    scrollEnabled={false}
+                    data={pictures}
+                    renderItem={({ item }) => (
 
-        <SafeAreaView style={styles.container}>
+                      <View borderWidth={3} borderColor={'white'}>
 
-        <ScrollView mb='12%'>
-    
-                    <FlatList
-                        scrollEnabled={false}
-                        data={pictures}
-                        renderItem={({ item }) => (
-
-                          <View borderWidth={3} borderColor={'white'}>
-
+                          <TouchableOpacity onPress={() =>   navigation.navigate('ShowImage', {url: item.image}) }>
                               <RNimage
                               source={item.image}
                               style={{ width: width / 2, height: 250 }}
                               />
+                          </TouchableOpacity>
 
-                          </View>
- 
-                        )}
-                        numColumns={2}
-                        keyExtractor={(item) => item.image}
-                        contentContainerStyle={{ marginVertical: 10, paddingBottom: 10}}
-                        ListHeaderComponent={
+                      </View>
 
-                          <Text
-                          color='#12375C'
-                          mt={'8%'}
-                          mb={'4%'}
-                          fontFamily={fonts.body}
-                          fontSize='md'
-                          alignSelf={'center'}>
-                          FOTOS
-                          </Text>
+                    )}
+                    numColumns={2}
+                    keyExtractor={(item) => item.image}
+                    contentContainerStyle={{ marginVertical: 10, paddingBottom: 10}}
+                    ListHeaderComponent={
+                    <Text
+                      color='#12375C'
+                      mt={'8%'}
+                      mb={'4%'}
+                      fontFamily={fonts.body}
+                      fontSize='md'
+                      alignSelf={'center'}>
+                      FOTOS
+                      </Text>
 
-                        }
-                        />
-                  
-                  <View alignItems='center' justifyContent='center' display='flex' >
-                        <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
-                    </View>
+                    }
+                />
 
-                  <FlatList
-                        scrollEnabled={false}
-                        data={images}
-                        renderItem={({ item }) => (
-                            <RNimage
-                            source={{ uri: item.uri }}
-                            style={{ width: width / 2, height: 250 }}
-                            />
-                        )}
-                        numColumns={2}
-                        keyExtractor={(item) => item.uri}
-                        contentContainerStyle={{ marginVertical: 10, paddingBottom: 100 }}
-                        ListHeaderComponent={
-                            isLoading ? (
-                            <View>
-                                <Text
-                                style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
-                                A carregar...
-                                </Text>
-                                <ActivityIndicator size={"large"} />
+                          <View alignItems='center' justifyContent='center' display='flex' >
+                                <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
                             </View>
-                            ) : (
-                          
-                            <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
-                                 
-                                <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
-                                       <Image size={22} color={'#A1C861'} />
-                                       <Text style={styles.text}> Galeria</Text>
-                                </TouchableOpacity>
-
-                            </HStack>
-                            )
-                        }
-                        />
-                    
-            </ScrollView>
-
-        </SafeAreaView>
-    </VStack> 
-  );
-};
-
-
+        
+                          <FlatList
+                                scrollEnabled={false}
+                                data={images}
+                                renderItem={({ item }) => (
+                                    <RNimage
+                                    source={{ uri: item.uri }}
+                                    style={{ width: width / 2, height: 250 }}
+                                    />
+                                )}
+                                numColumns={2}
+                                keyExtractor={(item) => item.uri}
+                                contentContainerStyle={{ marginVertical: 10, paddingBottom: 100 }}
+                                ListHeaderComponent={
+                                    isLoading ? (
+                                    <View>
+                                        <Text
+                                        style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
+                                        A carregar...
+                                        </Text>
+                                        <ActivityIndicator size={"large"} />
+                                    </View>
+                                    ) : (
+                                  
+                                    <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
+                                         
+                                        <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
+                                               <Image size={22} color={'#A1C861'} />
+                                               <Text style={styles.text}> Galeria</Text>
+                                        </TouchableOpacity>
+        
+                                    </HStack>
+                                    )
+                                }
+                                />
+                            
+                    </ScrollView>
+        
+                </SafeAreaView>
+            </VStack> 
+          );
+        };
 
           
-
-
                function Screen9() {
 
                 const data = [
@@ -1836,6 +1924,29 @@ import { useNavigation } from '@react-navigation/native';
     
 
           }
+
+          
+          function Screen10(){
+        
+
+            return(
+                      <StackRoutes.Navigator
+                      screenOptions={{
+                          headerShown:false,
+                          cardStyle:{
+                              backgroundColor: colors.white
+                          }
+                      }}
+                      initialRouteName='Screen8'
+                        >
+                            <StackRoutes.Screen name='Screen8' component={Screen8}/>
+                            <StackRoutes.Screen name='ShowImage' component={ShowImage}/>
+                    
+                        </StackRoutes.Navigator>
+                );
+
+          }
+
 
               
           
@@ -1931,7 +2042,7 @@ import { useNavigation } from '@react-navigation/native';
                 />
                     <Tab.Screen
                   name="eight"
-                  component={Screen8}
+                  component={Screen10}
                   options={{
                       tabBarIcon:(({color, size})=>(
                         <Icon as ={<Image color={color} size={size}/>} />
