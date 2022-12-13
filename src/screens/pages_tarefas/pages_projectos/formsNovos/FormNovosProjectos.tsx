@@ -37,6 +37,10 @@ export default function FormNovosProjectos({navigation}) {
         data_planejada: ''
     })
 
+    function handletelco(){
+        console.log(telco)
+        
+    }
     const [centroDados, setCentroDados] = useState({
         departamento:'',
         numero_do_projecto:'',
@@ -555,7 +559,7 @@ return (
                         />
                     </View>
                     
-                 <TouchableOpacity onPress={onGravaTelco}>
+                 <TouchableOpacity onPress={handletelco}>
                         <Button  title='Criar' alignSelf={'center'} my={'10%'} width={'30%'}></Button>
                  </TouchableOpacity>
                         
