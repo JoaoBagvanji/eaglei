@@ -5,6 +5,8 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Action from '../pages_projectos/pages/ActionProjecto';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import { ButtonHandle } from '../../../components/ButtonHandle';
+import FormNovosProjectos from './formsNovos/FormNovosProjectos';
 
 const Stack = createStackNavigator();
  
@@ -15,6 +17,7 @@ export default function MyStack(){
             initialRouteName='Novas'>
         <Stack.Screen name="Novos" component={Novos} />
         <Stack.Screen name="Action" component={Action} />
+        <Stack.Screen name="FormNovosProjectos" component={FormNovosProjectos}/>
     </Stack.Navigator>
 
 );
@@ -170,6 +173,17 @@ export default function MyStack(){
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
+                />
+            </View>
+
+            <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='110%' mt={'161%'} >
+                <ButtonHandle
+                    title='+'
+                    w={14}
+                    onPress={() => {
+                        navigate("FormNovosProjectos") as never;
+                    }}
+
                 />
             </View>
       </VStack>
