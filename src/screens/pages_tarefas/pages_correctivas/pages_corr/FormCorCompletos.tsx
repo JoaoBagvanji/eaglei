@@ -5,7 +5,6 @@ import { Archive, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note
 import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon, Select, Radio, Stack, TextArea} from 'native-base';
 
 import {useState } from 'react';
-
 import * as ImagePicker from "expo-image-picker";
 import Pictures from './Pictures';
 
@@ -13,7 +12,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput } from 'react-native-paper';
 import colors from '../../../../styles/colors';
 import fonts from '../../../../styles//fonts';
-import ShowImage from './ShowImage';
+
+import ShowPicByUrl from './ShowPicByUrl';
+import ShowPicByUri from './ShowPicByUri';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -1688,6 +1689,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
           const [images, setImages] = useState([]);
           const [isLoading, setIsLoading] = useState(false);
           const { width } = useWindowDimensions();
+
+          let deviceHeight = Dimensions.get('window').height;
+          let deviceWidth = Dimensions.get('window').width;
+
         
                      const pictures = [
                 {
@@ -1770,7 +1775,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
                       <View borderWidth={3} borderColor={'white'}>
 
-                          <TouchableOpacity onPress={() =>   navigation.navigate('ShowImage', {url: item.image}) }>
+                          <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUrl', {url: item.image}) }>
                               <RNimage
                               source={item.image}
                               style={{ width: width / 2, height: 250 }}
@@ -1782,7 +1787,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                     )}
                     numColumns={2}
                     keyExtractor={(item) => item.image}
-                    contentContainerStyle={{ marginVertical: 10, paddingBottom: 10}}
+                    contentContainerStyle={{ marginVertical: 10}}
                     ListHeaderComponent={
                     <Text
                       color='#12375C'
@@ -1797,44 +1802,58 @@ import DropDownPicker from 'react-native-dropdown-picker';
                     }
                 />
 
+
+
+
+
+
                           <View alignItems='center' justifyContent='center' display='flex' >
                                 <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
                             </View>
         
-                          <FlatList
-                                scrollEnabled={false}
-                                data={images}
-                                renderItem={({ item }) => (
-                                    <RNimage
-                                    source={{ uri: item.uri }}
-                                    style={{ width: width / 2, height: 250 }}
-                                    />
-                                )}
-                                numColumns={2}
-                                keyExtractor={(item) => item.uri}
-                                contentContainerStyle={{ marginVertical: 10, paddingBottom: 100 }}
-                                ListHeaderComponent={
-                                    isLoading ? (
-                                    <View>
-                                        <Text
-                                        style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
-                                        A carregar...
-                                        </Text>
-                                        <ActivityIndicator size={"large"} />
-                                    </View>
-                                    ) : (
-                                  
-                                    <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
-                                         
-                                        <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
-                                               <Image size={22} color={'#A1C861'} />
-                                               <Text style={styles.text}> Galeria</Text>
-                                        </TouchableOpacity>
-        
-                                    </HStack>
-                                    )
-                                }
-                                />
+                            <FlatList
+                    scrollEnabled={false}
+                    data={images}
+                    renderItem={({ item }) => (
+
+                      <View borderWidth={3} borderColor={'white'}>
+
+                          <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUri', {uri: item.uri}) }>
+                              <RNimage
+                              source={{uri: item.uri}}
+                              style={{ width: width / 2, height: 250 }}
+                              />
+                          </TouchableOpacity>
+
+                      </View>
+
+                    )}
+                    numColumns={2}
+                    keyExtractor={(item) => item.uri}
+                    contentContainerStyle={{ marginVertical: 10}}
+                    ListHeaderComponent={
+                      isLoading ? (
+                      <View>
+                          <Text
+                          style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
+                          A carregar...
+                          </Text>
+                          <ActivityIndicator size={"large"} />
+                      </View>
+                      ) : (
+                    
+                      <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
+                          
+                          <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
+                                <Image size={22} color={'#A1C861'} />
+                                <Text style={styles.text}> Galeria</Text>
+                          </TouchableOpacity>
+
+                      </HStack>
+          )
+      }
+                />
+
                             
                     </ScrollView>
         
@@ -1844,6 +1863,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
         };
 
           
+
+
+
+
                function Screen9() {
 
                 const data = [
@@ -1940,8 +1963,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       initialRouteName='Screen8'
                         >
                             <StackRoutes.Screen name='Screen8' component={Screen8}/>
-                            <StackRoutes.Screen name='ShowImage' component={ShowImage}/>
-                    
+                            <StackRoutes.Screen name='ShowPicByUrl' component={ShowPicByUrl}/>
+                            <StackRoutes.Screen name='ShowPicByUri' component={ShowPicByUri}/>
                         </StackRoutes.Navigator>
                 );
 
@@ -1950,6 +1973,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
               
           
+
+
           const Tab = createMaterialTopTabNavigator();
 
           export default function FormCorCompletos() {
@@ -2080,7 +2105,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
               justifyContent: 'center',
               backgroundColor: colors.blue_light,
               height: 60,
-              width:'46%',
+              width:'50%',
               border: '5%',   
             }, 
             uinputView:{
