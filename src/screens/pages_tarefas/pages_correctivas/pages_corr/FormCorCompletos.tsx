@@ -16,6 +16,10 @@ import fonts from '../../../../styles//fonts';
 import ShowPicByUrl from './ShowPicByUrl';
 import ShowPicByUri from './ShowPicByUri';
 
+import InfoGerador from './corr_info/InfoGerador';
+import InfoEnergia from './corr_info/InfoEnergia';
+import InfoEquip from './corr_info/infoEquip';
+
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -1352,8 +1356,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
               <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.horas_anteriores}</Text>
               <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.horas_atuais}</Text>
               <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.horas_d_reabastecimento}</Text>
-
-              <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')}>
+            
+              <TouchableOpacity onPress={() => navigate('InfoGerador')}>
                 <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
 
@@ -1445,7 +1449,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                         <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.kwh_posterior}</Text>
                         <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.valor_adicionado}</Text>
 
-                        <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')}>
+                        <TouchableOpacity onPress={() => navigate('InfoEnergia')}>
                           <Icon as ={<Info color={colors.blueGray[400]}/>} />
                         </TouchableOpacity>
 
@@ -1536,7 +1540,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                         <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.modelo}</Text>
                         <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.nr_de_serie}</Text>
 
-                        <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')}>
+                        <TouchableOpacity onPress={() => navigate('InfoEquip')}>
                           <Icon as ={<Info color={colors.blueGray[400]}/>} />
                         </TouchableOpacity>
 
@@ -1960,20 +1964,80 @@ import DropDownPicker from 'react-native-dropdown-picker';
                               backgroundColor: colors.white
                           }
                       }}
-                      initialRouteName='Screen8'
-                        >
-                            <StackRoutes.Screen name='Screen8' component={Screen8}/>
+                      initialRouteName='Screen8'>
+                          <StackRoutes.Screen name='Screen8' component={Screen8}/>
+                            <StackRoutes.Screen name='Screen4' component={Screen4}/>
                             <StackRoutes.Screen name='ShowPicByUrl' component={ShowPicByUrl}/>
                             <StackRoutes.Screen name='ShowPicByUri' component={ShowPicByUri}/>
+                            <StackRoutes.Screen name='InfoGerador' component={InfoGerador}/>
                         </StackRoutes.Navigator>
                 );
 
           }
 
 
-              
+          function Screen11(){
+        
+
+            return(
+                      <StackRoutes.Navigator
+                      screenOptions={{
+                          headerShown:false,
+                          cardStyle:{
+                              backgroundColor: colors.white
+                          }
+                      }}
+                      initialRouteName='Screen4'>
+                            <StackRoutes.Screen name='Screen4' component={Screen4}/>
+                            <StackRoutes.Screen name='InfoGerador' component={InfoGerador}/>
+                        </StackRoutes.Navigator>
+                );
+
+          }    
+
+
+
+
+          function Screen12(){
+        
+
+            return(
+                      <StackRoutes.Navigator
+                      screenOptions={{
+                          headerShown:false,
+                          cardStyle:{
+                              backgroundColor: colors.white
+                          }
+                      }}
+                      initialRouteName='Screen5'>
+                            <StackRoutes.Screen name='Screen5' component={Screen5}/>
+                            <StackRoutes.Screen name='InfoEnergia' component={InfoEnergia}/>
+                        </StackRoutes.Navigator>
+                );
+
+          }    
+          
           
 
+          function Screen13(){
+        
+
+            return(
+                      <StackRoutes.Navigator
+                      screenOptions={{
+                          headerShown:false,
+                          cardStyle:{
+                              backgroundColor: colors.white
+                          }
+                      }}
+                      initialRouteName='Screen6'>
+                            <StackRoutes.Screen name='Screen6' component={Screen6}/>
+                            <StackRoutes.Screen name='InfoEquip' component={InfoEquip}/>
+                        </StackRoutes.Navigator>
+                );
+
+          }    
+          
 
           const Tab = createMaterialTopTabNavigator();
 
@@ -2031,7 +2095,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
             
                 <Tab.Screen
                   name="four"
-                  component={Screen4}
+                  component={Screen11}
                   options={{
                       tabBarIcon:(({color, size})=>(
                           <Icon as ={<Lightning color={color} size={size}/>} />
@@ -2040,7 +2104,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                 />
                 <Tab.Screen
                   name="five"
-                  component={Screen5}
+                  component={Screen12}
                   options={{
                       tabBarIcon:(({color, size})=>(
                         <Icon as ={<LightbulbFilament color={color} size={size}/>} />
@@ -2049,7 +2113,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                 />
                 <Tab.Screen
                   name="six"
-                  component={Screen6}
+                  component={Screen13}
                   options={{
                       tabBarIcon:(({color, size})=>(
                         <Icon as ={<Wrench color={color} size={size}/>} />

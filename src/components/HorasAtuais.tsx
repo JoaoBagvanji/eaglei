@@ -13,7 +13,7 @@ const HorasAtuais = ({ value, setValue}) => {
         <TextInput
           style={styles.txtInput} 
           selectionColor='#12375C' 
-          outlineColor='#cce3f9'
+          outlineColor='gray'
           activeOutlineColor='#12375C' 
           underlineColor='#12375C' 
           left={<TextInput.Icon icon={Clock}
