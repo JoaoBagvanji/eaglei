@@ -66,13 +66,11 @@ export default function Login({history}){
     const loginUser = async (email, senha) => {
         const axiosinstant=axios.create({baseURL:"http://192.168.0.133:3000/"});
         
-         
-        try {
-
-            navigate("Home") as never;
-        // await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
+        navigate("Home") as never;
+        // try {
+        //     await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
         //     if(true){
-        //         // await AsyncStorage.setItem("token", d.data.token);
+        //         await AsyncStorage.setItem("token", d.data.token);
         //         navigate("Home") as never;
         //     }else {
         //         navigate('Login')   
@@ -80,9 +78,9 @@ export default function Login({history}){
         //     console.log(d.data)
 
         // });
-        } catch (e) {
-        console.log(e);
-        }
+        // } catch (e) {
+        // console.log(e);
+        // }
         
       };
              
