@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { CaretDown, CaretUp, Eye, Info, Pencil, Users as Usuarios } from 'phosphor-react-native';
+import { CaretDown, CaretUp, Eye, Info, Pencil, UserPlus, Users as Usuarios } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import axios from "axios";
 
@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import UsersRegist from './pages_tarefas/pages_projectos/pages/UsersRegist';
 import UsersEdit from './pages_tarefas/pages_projectos/pages/UsersEdit';
 import UsersDetails from './pages_tarefas/pages_projectos/pages/UsersDetails';
+import colors from '../styles/colors';
 
 
 const Stack = createStackNavigator();
@@ -134,33 +135,39 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
-            <Box flexDirection={'row'}>
             <View style={styles.avatarContainer }>
-                <Image source={data[2].image} style={styles.avatar}/>
+              <Image source={item.image} style={styles.avatar}/>
             </View>
-            <Text fontFamily={fonts.body} color={colors.primary[600]} marginLeft={4}>{item.nome}</Text>
-
-            {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between' alignSelf={'flex-end'}>
-                <TouchableOpacity onPress={() => { navigate("UsersDetails") as never}} >
-                    <View marginLeft={8} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                    <Icon>{item.icon}</Icon>
+            <Box flexDirection={'column'}>
+            
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginRight='40%'>{item.nome}</Text>
+            <View flexDirection={'column'} margin='0.5' >
+              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
+              {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
+                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                        <TouchableOpacity onPress={() => { navigate("UsersDetails") as never}} >
+                            <Icon>{item.icon}</Icon>
+                        </TouchableOpacity>
                     </View>
-                </TouchableOpacity>
-                
+                    
+                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                        <TouchableOpacity onPress={() => { navigate("UsersEdit") as never}}>
+                            <Icon>{item.icon2}</Icon>
+                        </TouchableOpacity>
+                    </View>
 
-                <TouchableOpacity onPress={() => { navigate("UsersEdit") as never}}>
-                        <View marginLeft={10} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                        <Icon>{item.icon2}</Icon>
-                        </View>
-                </TouchableOpacity>
-             
 
                 
               </View>) : null}
-
+              
+            </View>
             </Box>
-           
-            {!shouldShow[item.id] ? 
+            <View display='flex' flexDirection='column' alignContent='space-between'>
+              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <Icon as ={<Info color={colors.blueGray[400]}/>} />
+              </TouchableOpacity>
+              <View >
+                {!shouldShow[item.id] ? 
                 (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.primary[700]} size={10}/>}
                   onPress={() => handleDropDownItems(item.id)}
@@ -169,6 +176,9 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                   icon={<CaretUp   color={colors.primary[700]} size={10}/>}
                   onPress={() => handleHideItems(item.id)}
                   />)} 
+              </View>
+            </View>
+            
         </View>   
     )
 
@@ -194,12 +204,21 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     entre os Usuários
                 </Text>
                 </View>
-                <Icon as ={<Usuarios color={colors.blueGray[400]}/>} />
+                <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
+                    <TouchableOpacity onPress={() => {
+                            navigate("UsersRegist") as never;
+                        }}
+                        activeOpacity={0.7}>
+                        <Icon as ={<UserPlus color={colors.white}/>} />
+                    </TouchableOpacity>
+                </View>
             </HStack>
 
-            <View  mb={'60%'}> 
-            <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={14} color={colors.blueGray[500]}>Usuários</Text>
+            <View  mb={'70%'}> 
+            <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={14} color={colors.blueGray[500]} m='8%'></Text>
+            
                 <FlatList 
+                    ListHeaderComponentStyle = {styles.listHeader}
                     data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
@@ -207,16 +226,6 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
-                <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='90%' mt={'123%'} >
-                    <ButtonHandle
-                        title='+'
-                        w={14}
-                        onPress={() => {
-                            navigate("UsersRegist") as never;
-                        }}
-
-                    />
-                </View>
                 
             </View>
             
@@ -228,28 +237,41 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
 
 
 const styles=StyleSheet.create({
-    separator:{
-        height: 1,
-        width: '100%',
-        backgroundColor: '#f2f2f2'
-    },
-    item:{
-        flex:1,
-        flexDirection: 'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        paddingVertical:13
-    },
-    avatarContainer:{
-        backgroundColor: '#f5f5f5',
-        borderRadius: 100,
-        height: 50,
-        width: 50,
+    formButton:{
+        alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: colors.blue,
+        borderRadius: 25,
+        height: 50,
+        width:50
     },
-    avatar:{
-        height: 35,
-        width: 35,
-    }
+        listHeader:{
+            height: 55,
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        separator:{
+            height: 1,
+            width: '100%',
+            backgroundColor: '#f2f2f2'
+        },
+        item:{
+            flex:1,
+            flexDirection: 'row',
+            justifyContent:'space-between',
+            alignItems:'center',
+            paddingVertical:13
+        },
+        avatarContainer:{
+            backgroundColor: '#f5f5f5',
+            borderRadius: 100,
+            height: 50,
+            width: 50,
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        avatar:{
+            height: 35,
+            width: 35,
+        }
 })
