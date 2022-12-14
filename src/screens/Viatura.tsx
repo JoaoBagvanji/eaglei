@@ -18,7 +18,6 @@ import Transfers from './pages_viaturas/Transfers';
 import Vehicles from './pages_viaturas/Vehicles';
 import Viaturas from './Viaturas';
 
-import { ButtonHandle } from '../components/ButtonHandle';
 import ViaturasRegist from './pages_tarefas/pages_projectos/pages/ViaturasRegist';
 
 const Stack = createStackNavigator();

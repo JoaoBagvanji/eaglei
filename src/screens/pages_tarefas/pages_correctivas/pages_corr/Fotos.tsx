@@ -4,7 +4,7 @@ import { Camera, Image as Imagem, UserPlus} from 'phosphor-react-native';
 import {  ActivityIndicator, FlatList, StyleSheet, TouchableOpacity, useWindowDimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
-import { Button, Image} from 'react-native';
+import { Image} from 'react-native';
 
 import colors from '../../../../styles/colors';
 import fonts from "../../../../styles/fonts";
@@ -135,11 +135,6 @@ return (
                                 <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
                                        <Imagem size={22} color={'#A1C861'} />
                                        <Text style={styles.text}> Galeria</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity style={styles.formButton} onPress={pickFromCam}>
-                                    <Camera size={22} color={'#A1C861'} />
-                                    <Text style={styles.text}> Camera</Text>
                                 </TouchableOpacity>
 
                             </HStack>

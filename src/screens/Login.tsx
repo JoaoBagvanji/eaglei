@@ -44,13 +44,13 @@ export default function Login({history}){
     
 
     const validate=()=>{
-        if(email == ""){
-            alert ('Preencha o e-mail')
-            return false
-        } else if(password == ""){
-            alert ('Preencha a senha')
-            return false
-        }
+        // if(email == ""){
+        //     alert ('Preencha o e-mail')
+        //     return false
+        // } else if(password == ""){
+        //     alert ('Preencha a senha')
+        //     return false
+        // }
         return true
     }
 
