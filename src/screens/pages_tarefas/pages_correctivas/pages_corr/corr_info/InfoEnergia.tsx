@@ -10,7 +10,7 @@ import Reabastecimento from '../../../../../components/Reabastecimento';
 import { TextInput } from 'react-native-paper';
 
 
-export default function corr_info() {
+export default function InfoEnergia() {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
