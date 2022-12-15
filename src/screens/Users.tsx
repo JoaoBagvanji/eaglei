@@ -11,6 +11,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import UsersRegist from './pages_tarefas/pages_projectos/pages/UsersRegist';
 import UsersEdit from './pages_tarefas/pages_projectos/pages/UsersEdit';
 import UsersDetails from './pages_tarefas/pages_projectos/pages/UsersDetails';
+import api from "../services/api";
+import {Load} from "../components/Load";
 
 
 const Stack = createStackNavigator();
@@ -35,7 +37,7 @@ export function Users() {
       const { navigate } = useNavigation<Nav>()
 
 
-const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
+const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
 
 
 
@@ -100,15 +102,16 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     ];
 
     const [dados, setDados]=useState([]);
-    
+    const[isloading, setIsLoading]=useState(true);
     useEffect(()=>{
     (async()=>{
         
-    // await axiosinstant.get("utilizador/").then(d=>{
-    //     setDados(data)
-    //     console.log(data)
+     api.get("utilizador").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data)
 
-    // });
+    });
     // const alvo  =  dadoss.data; 
     
         setDados(data)
@@ -143,14 +146,14 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
             {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between' alignSelf={'flex-end'}>
                 <TouchableOpacity onPress={() => { navigate("UsersDetails") as never}} >
                     <View marginLeft={8} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                    <Icon>{item.icon}</Icon>
+                    <Icon>{data[0].icon}</Icon>
                     </View>
                 </TouchableOpacity>
                 
 
                 <TouchableOpacity onPress={() => { navigate("UsersEdit") as never}}>
                         <View marginLeft={10} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                        <Icon>{item.icon2}</Icon>
+                        <Icon>{data[0].icon2}</Icon>
                         </View>
                 </TouchableOpacity>
              
@@ -178,7 +181,14 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
+    if(isloading)
+    return(
+        <Load/>
 
+    )
+    
+    else
+{
   return (
     <VStack flex={1} bg="white">
 
@@ -224,6 +234,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
       
     </VStack>
   );
+}
 }
 
 
