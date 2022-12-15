@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon  } from 'native-base';
-import { Lightning, FloppyDisk  } from 'phosphor-react-native'
+import { Lightning, FloppyDisk  } from 'phosphor-react-native';
 
-
-
-import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
-
-
+import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native';
 
 import Horas from '../../components/Horas';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -53,6 +49,8 @@ export default function Gerador() {
         <VStack mt='10%' mb='12%'>
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
                 <ScrollView showsVerticalScrollIndicator={false}>
+
+
                         <View alignItems='center' justifyContent='center' display='flex'>
                             <Text color='gray.600' fontFamily={fonts.body}> Móvel ou Fixo</Text>
                         </View>
@@ -150,6 +148,8 @@ export default function Gerador() {
                                 </Select>
                             </Box>
                         </View>
+
+
                         <View style={styles.uinputView}>
                             <Button
                             title='Guardar'

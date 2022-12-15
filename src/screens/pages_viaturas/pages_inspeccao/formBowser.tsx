@@ -180,13 +180,6 @@ const StackRoutes = createStackNavigator();
         }
 
             
-
-
-
-
-
-          
-
           function Screen2() {
            
             const {colors} = useTheme();
