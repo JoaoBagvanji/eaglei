@@ -4,7 +4,25 @@ import { Info, CheckCircle  ,LightbulbFilament ,Lightning ,Package,Camera, Hands
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../../styles/colors';
 
-export default function Completos() {
+import FormInfoPojCompletos from "../../../routes/projCompletos.routes";
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
+const Stack = createStackNavigator();
+
+export default function MyStack(){
+  return (
+
+    <Stack.Navigator   screenOptions={{headerShown: false}} 
+            initialRouteName='Completos'>
+        <Stack.Screen name="FormInfoPojCompletos" component={FormInfoPojCompletos} />
+        <Stack.Screen name="Completos" component={Completos} />
+    </Stack.Navigator>
+
+);
+}
+
+ function Completos() {
   
   
     const data = [
@@ -80,10 +98,22 @@ export default function Completos() {
       val_sec[position] = true;
       setShouldShow(val_sec);
     }
+    
     async function handleHideItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
     }
+
+    type Nav ={
+      navigate : (value: string) => void;
+  }
+    
+  const { navigate } = useNavigation<Nav>();
+
+    const handleInfo = () => {
+      navigate('FormInfoPojCompletos') as never;
+    }
+    
     
 
     const oneUser = ( {item} ) =>(
@@ -121,7 +151,7 @@ export default function Completos() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >

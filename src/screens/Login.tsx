@@ -26,7 +26,7 @@ const config = {
   };
 export default function Login({history}){
 
-    const {handleLoginn}=useContext(AuthContext);
+    const handleLoginn=useContext(AuthContext);
     type Nav = {
         navigate: (value:string) => void;
     }
@@ -71,6 +71,7 @@ export default function Login({history}){
         // const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
         
 
+
          
         try {
 
@@ -84,6 +85,11 @@ export default function Login({history}){
 
             // navigate("Home") as never;
         // await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
+
+        navigate("Home") as never;
+        // try {
+        //     await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
+
 
         navigate("Home") as never;
         // try {

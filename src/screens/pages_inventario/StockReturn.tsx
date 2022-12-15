@@ -5,9 +5,8 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { ButtonHandle } from '../../components/ButtonHandle';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import StockReturnP from '../pages_tarefas/pages_projectos/pages/StockReturnP';
 
-
+import StockReturnP from '../pages_tarefas/pages_projectos/pages_pro/StockReturnP';
 
 const Stack = createStackNavigator();
 export default function MyStack() {
