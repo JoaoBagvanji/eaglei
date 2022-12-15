@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
@@ -12,6 +12,8 @@ import Spares from './pages_corr/Spares';
 import Submit from './pages_corr/Submit';
 import Fotos from './pages_corr/Fotos';
 import Confirm from './Confirm';
+import api from "../../../services/api";
+import {Load} from "../../../components/Load";
 
 
 
@@ -167,7 +169,26 @@ const message = () => {
         
     ];
 
-    const val_init = Array.from({ length: data.length}, (v,p) => false)
+    const [dados, setDados]=useState([]);
+    const[isloading, setIsLoading]=useState(true);
+    useEffect(()=>{
+    (async()=>{
+        
+     api.get("/manutencao/correctiva_emprogresso").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data)
+
+    });
+    // const alvo  =  dadoss.data; 
+    
+        // setDados(data)
+    })()
+    
+
+    },[])
+
+    const val_init = Array.from({ length: dados.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     
     function handleCamera(){
@@ -175,13 +196,13 @@ const message = () => {
     }
 
     async function handleDropDownItems(position){
-      let val_sec = await Array.from({ length: data.length}, (v,p) => false)
+      let val_sec = await Array.from({ length: dados.length}, (v,p) => false)
       val_sec[position] = true;
       setShouldShow(val_sec);
     }
 
     async function handleHideItems(position){
-      let val_sec = await Array.from({ length: data.length}, (v,p) => false)
+      let val_sec = await Array.from({ length: dados.length}, (v,p) => false)
       setShouldShow(val_sec);
     }
 
@@ -189,7 +210,7 @@ const message = () => {
         <View style={styles.item}>
 
             <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
+              <Image source={data[0].image} style={styles.avatar}/>
             </View>
             
             <Box flexDirection={'column'}>
@@ -202,33 +223,33 @@ const message = () => {
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaGerador}>
-                    <Icon>{item.icon}</Icon>
+                    <Icon>{data[0].icon}</Icon>
                   </TouchableOpacity>
                   
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaCredelec}>
-                    <Icon>{item.icon2}</Icon>
+                    <Icon>{data[0].icon2}</Icon>
                   </TouchableOpacity>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaSpares}>
-                    <Icon>{item.icon3}</Icon>
+                    <Icon>{data[0].icon3}</Icon>
                   </TouchableOpacity>
                   
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                 <TouchableOpacity onPress={handleCamera}>
-                  <Icon>{item.icon4}</Icon>
+                  <Icon>{data[0].icon4}</Icon>
                   </TouchableOpacity>
                 </View>
 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelaSubmit}>
-                  <Image source={item.icon5} style={styles.avatar}/>
+                  <Image source={data[0].icon5} style={styles.avatar}/>
                   </TouchableOpacity>
                   
                 </View>
@@ -238,18 +259,18 @@ const message = () => {
               ) :(item.situacao.indexOf('caminho')!=-1 ? (<>
                 <View display='flex' flexDirection='row' justifyContent='space-around'>
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                      <Icon>{item.icon6}</Icon>
+                      <Icon>{data[0].icon6}</Icon>
                   </View>
 
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                     <TouchableOpacity onPress={handleTelas}>
-                      <Icon>{item.icon7}</Icon>
+                      <Icon>{data[0].icon7}</Icon>
                     </TouchableOpacity>
                   </View>
                 </View>
                 </>) : (item.situacao.indexOf('aprovado')!=-1 ? (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
               <TouchableOpacity onPress={message}>
-              <Image source={item.icon8} style={styles.avatar}/>
+              <Image source={data[0].icon8} style={styles.avatar}/>
               </TouchableOpacity>
               
             </View>): null)
@@ -285,6 +306,14 @@ const message = () => {
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
+    if(isloading)
+    return(
+        <Load/>
+
+    )
+    
+    else
+
   return (
     <VStack flex={1} pb={6} bg="white">
         
@@ -303,7 +332,7 @@ const message = () => {
             <View>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Correctivas em Progresso</Text>}

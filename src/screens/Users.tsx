@@ -8,10 +8,11 @@ import { Header } from '../components/Header';
 import { ButtonHandle } from '../components/ButtonHandle';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import UsersRegist from './pages_tarefas/pages_projectos/pages/UsersRegist';
-import UsersEdit from './pages_tarefas/pages_projectos/pages/UsersEdit';
-import UsersDetails from './pages_tarefas/pages_projectos/pages/UsersDetails';
-import colors from '../styles/colors';
+import UsersRegist from './pages_tarefas/pages_projectos/pages_pro/UsersRegist';
+import UsersEdit from './pages_tarefas/pages_projectos/pages_pro/UsersEdit';
+import UsersDetails from './pages_tarefas/pages_projectos/pages_pro/UsersDetails';
+import api from "../services/api";
+import {Load} from "../components/Load";
 
 
 const Stack = createStackNavigator();
@@ -36,7 +37,7 @@ export function Users() {
       const { navigate } = useNavigation<Nav>()
 
 
-const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
+const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
 
 
 
@@ -101,15 +102,16 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     ];
 
     const [dados, setDados]=useState([]);
-    
+    const[isloading, setIsLoading]=useState(true);
     useEffect(()=>{
     (async()=>{
         
-    // await axiosinstant.get("utilizador/").then(d=>{
-    //     setDados(data)
-    //     console.log(data)
+     api.get("utilizador").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data)
 
-    // });
+    });
     // const alvo  =  dadoss.data; 
     
         setDados(data)
@@ -136,36 +138,27 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
+                <Image source={data[2].image} style={styles.avatar}/>
             </View>
             <Box flexDirection={'column'}>
-            
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginRight='40%'>{item.nome}</Text>
+            <Text fontFamily={fonts.body} color={colors.primary[600]}  marginRight='20%'>{item.nome}</Text>
             <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
+                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                         <TouchableOpacity onPress={() => { navigate("UsersDetails") as never}} >
-                            <Icon>{item.icon}</Icon>
+                             <Icon>{data[0].icon}</Icon>
                         </TouchableOpacity>
                     </View>
                     
                     <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                         <TouchableOpacity onPress={() => { navigate("UsersEdit") as never}}>
-                            <Icon>{item.icon2}</Icon>
+                            <Icon>{data[0].icon2}</Icon>
                         </TouchableOpacity>
                     </View>
-
-
-                
-              </View>) : null}
-              
+                </View>) : null}
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
-              <Icon as ={<Info color={colors.blueGray[400]}/>} />
-              </TouchableOpacity>
               <View >
                 {!shouldShow[item.id] ? 
                 (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
@@ -178,7 +171,6 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                   />)} 
               </View>
             </View>
-            
         </View>   
     )
 
@@ -188,7 +180,14 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
+    if(isloading)
+    return(
+        <Load/>
 
+    )
+    
+    else
+{
   return (
     <VStack flex={1} bg="white">
 
@@ -214,11 +213,9 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                 </View>
             </HStack>
 
-            <View  mb={'70%'}> 
-            <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={14} color={colors.blueGray[500]} m='8%'></Text>
-            
+            <View  mb={'60%'}> 
+            <Text alignSelf={'center'} fontFamily={fonts.heading} fontSize={14} color={colors.blueGray[500]}>Usuários</Text>
                 <FlatList 
-                    ListHeaderComponentStyle = {styles.listHeader}
                     data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
@@ -226,7 +223,6 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
-                
             </View>
             
       </VStack>
@@ -234,44 +230,32 @@ const axiosinstant=axios.create({baseURL:"http://192.168.43.210:2700/"});
     </VStack>
   );
 }
+}
 
 
 const styles=StyleSheet.create({
-    formButton:{
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.blue,
-        borderRadius: 25,
-        height: 50,
-        width:50
+    separator:{
+        height: 1,
+        width: '100%',
+        backgroundColor: '#f2f2f2'
     },
-        listHeader:{
-            height: 55,
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        separator:{
-            height: 1,
-            width: '100%',
-            backgroundColor: '#f2f2f2'
-        },
-        item:{
-            flex:1,
-            flexDirection: 'row',
-            justifyContent:'space-between',
-            alignItems:'center',
-            paddingVertical:13
-        },
-        avatarContainer:{
-            backgroundColor: '#f5f5f5',
-            borderRadius: 100,
-            height: 50,
-            width: 50,
-            justifyContent: 'center',
-            alignItems: 'center'
-        },
-        avatar:{
-            height: 35,
-            width: 35,
-        }
+    item:{
+        flex:1,
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingVertical:13
+    },
+    avatarContainer:{
+        backgroundColor: '#f5f5f5',
+        borderRadius: 100,
+        height: 50,
+        width: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    avatar:{
+        height: 35,
+        width: 35,
+    }
 })

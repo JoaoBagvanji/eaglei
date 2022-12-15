@@ -7,15 +7,15 @@ const Stack = createNativeStackNavigator();
 
 export default function Rotas(){
     return(
-        <NavigationContainer>
+        
 
-            <Stack.Navigator initialRouteName="Login" screenOptions={{
+            <Stack.Navigator screenOptions={{
                 headerShown:false,
             }}>
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name='Home' component={AuthRoutes}/>
             </Stack.Navigator>
 
-        </NavigationContainer>
+       
     )
 }

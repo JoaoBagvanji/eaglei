@@ -9,16 +9,17 @@ import * as ImagePicker from "expo-image-picker";
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput } from 'react-native-paper';
-import colors from '../../../../styles/colors';
-import fonts from '../../../../styles//fonts';
 
-import ShowPicByUrl from './ShowPicByUrl';
-import ShowPicByUri from './ShowPicByUri';
+import colors from '../../../../../styles/colors';
+import fonts from '../../../../../styles//fonts';
 
-import InfoGerador from './corr_info/InfoGerador';
-import InfoEnergia from './corr_info/InfoEnergia';
-import InfoEquip from './corr_info/infoEquip';
-import InfoSpare from './corr_info/InfoSpare';
+import ShowPicByUrl from '../../../pages_correctivas/pages_corr/ShowPicByUrl';
+import ShowPicByUri from '../../../pages_correctivas/pages_corr/ShowPicByUrl';
+
+import InfoGerador from './proj_info/InfoGerador';
+import InfoEnergia from './proj_info/InfoEnergia';
+import InfoEquip from './proj_info/infoEquip';
+import InfoSpare from './proj_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -1701,38 +1702,38 @@ import DropDownPicker from 'react-native-dropdown-picker';
                      const pictures = [
                 {
                     id: 1,
-                    image: require('../../../../assets/tecnicos/jobcardphoto1.png'),
+                    image: require('../../../../../assets/tecnicos/jobcardphoto1.png'),
                
                 },
                 {
                     id: 2,
-                        image: require('../../../../assets/tecnicos/jobcardphoto2.png'),
+                        image: require('../../../../../assets/tecnicos/jobcardphoto2.png'),
                 },
                 {
                     id: 3,
-                    image: require('../../../../assets/tecnicos/jobcardphoto3.png'),
+                    image: require('../../../../../assets/tecnicos/jobcardphoto3.png'),
                 },
                 {
                     id: 4,
-                    image: require('../../../../assets/tecnicos/jobcardphoto4.png'),
+                    image: require('../../../../../assets/tecnicos/jobcardphoto4.png'),
                 },
                 {
                     id: 5,
-                    image: require('../../../../assets/tecnicos/jobcardphoto5.png'),
+                    image: require('../../../../../assets/tecnicos/jobcardphoto5.png'),
                 },
                 {
                     id: 6,
                 
-                    image: require('../../../../assets/tecnicos/jobcardphotoinfo6.png'),
+                    image: require('../../../../../assets/tecnicos/jobcardphotoinfo6.png'),
                 },
                 {
                     id: 7,
-                    image: require('../../../../assets/tecnicos/jobcardphoto7.png'),
+                    image: require('../../../../../assets/tecnicos/jobcardphoto7.png'),
                   
                 },
                 {
                     id: 8,
-                    image: require('../../../../assets/tecnicos/jobcardphoto8.png'),
+                    image: require('../../../../../assets/tecnicos/jobcardphoto8.png'),
                 }
                     ];
         
@@ -2061,7 +2062,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           const Tab = createMaterialTopTabNavigator();
 
-          export default function FormCorCompletos() {
+          export default function FormProjCompletos() {
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -2070,7 +2071,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
              <View>
              <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-             Detalhes da Manutenção Correctiva
+             Detalhes do Projecto
              </Text>
              </View>
              </HStack>

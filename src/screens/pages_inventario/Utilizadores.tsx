@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
-import { Info, Users ,CaretDown, CaretUp, Eye ,PencilLine } from 'phosphor-react-native';
+import { Info, Users ,CaretDown, CaretUp } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { ButtonHandle } from '../../components/ButtonHandle';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import {  useNavigation } from '@react-navigation/native';
 import Gerador from './pages_utiliz/Gerador';
-import Item from '../pages_tarefas/pages_projectos/pages/Item';
-import UsersRegist from '../pages_tarefas/pages_projectos/pages/UsersRegist';
 
+import UsersRegist from '../pages_tarefas/pages_projectos/pages_pro/UsersRegist';
 
 
 const Stack = createStackNavigator();
