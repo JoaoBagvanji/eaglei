@@ -26,65 +26,7 @@ export default function FormNovosProjectos({navigation}) {
     ]);
 
  
-    const [telco, setTelco] = useState({
-        departamento:'',
-        numero_do_projecto:'',
-        cliente: [],
-        site: [],
-        call: [],
-        tecnico: [],
-        razao: '',
-        data_planejada: ''
-    })
-
-    function handletelco(){
-        console.log(telco)
-        
-    }
-    const [centroDados, setCentroDados] = useState({
-        departamento:'',
-        numero_do_projecto:'',
-        cliente: [],
-        site: [],
-        call: [],
-        tecnico: [],
-        razao: '',
-        data_planejada: ''
-    })
-
-    const [energia, setEnergia] = useState({
-        departamento:'',
-        numero_do_projecto:'',
-        cliente: [],
-        regiao: [],
-        filial: [],
-        provincia: [],
-        local: '',
-        pessoa_de_contacto: [],
-        equipa_tecnica: [],
-        matricula:[],
-        motivo:'',
-        data_prevista: '',
-        assistentes: [],
-        tecnicos_permitidos: []
-    })
-
-    const [climatizacao, setClimatizacao] = useState({
-        departamento:'',
-        numero_do_projecto:'',
-        cliente: [],
-        regiao: [],
-        filial: [],
-        provincia: [],
-        local: '',
-        pessoa_de_contacto: [],
-        equipa_tecnica: [],
-        matricula:[],
-        motivo:'',
-        data_prevista: '',
-        assistentes: [],
-        tecnicos_permitidos: []
-    })
+   
     const [openMat, setOpenMat] = useState(false);
     const [valueMat, setValueMat] = useState([]);
     const [itemsMat, setItemsMat] = useState([
@@ -559,7 +501,7 @@ return (
                         />
                     </View>
                     
-                 <TouchableOpacity onPress={handletelco}>
+                 <TouchableOpacity onPress={onGravaTelco}>
                         <Button  title='Criar' alignSelf={'center'} my={'10%'} width={'30%'}></Button>
                  </TouchableOpacity>
                         

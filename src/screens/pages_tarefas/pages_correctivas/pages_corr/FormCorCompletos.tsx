@@ -19,6 +19,7 @@ import ShowPicByUri from './ShowPicByUri';
 import InfoGerador from './corr_info/InfoGerador';
 import InfoEnergia from './corr_info/InfoEnergia';
 import InfoEquip from './corr_info/infoEquip';
+import InfoSpare from './corr_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -1628,7 +1629,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.item}</Text>
                       <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.qtd_usada}</Text>
                       
-                      <TouchableOpacity onPress={() => alert('A tela de detalhes ainda nao foi feita')}>
+                      <TouchableOpacity onPress={() => navigate('InfoSpare')}>
                         <Icon as ={<Info color={colors.blueGray[400]}/>} />
                       </TouchableOpacity>
 
@@ -2037,6 +2038,26 @@ import DropDownPicker from 'react-native-dropdown-picker';
                 );
 
           }    
+
+          function Screen14(){
+        
+
+            return(
+                      <StackRoutes.Navigator
+                      screenOptions={{
+                          headerShown:false,
+                          cardStyle:{
+                              backgroundColor: colors.white
+                          }
+                      }}
+                      initialRouteName='Screen7'>
+                            <StackRoutes.Screen name='Screen7' component={Screen7}/>
+                            <StackRoutes.Screen name='InfoSpare' component={InfoSpare}/>
+                            <StackRoutes.Screen name='ShowPicByUrl' component={ShowPicByUrl}/>
+                        </StackRoutes.Navigator>
+                );
+
+          }  
           
 
           const Tab = createMaterialTopTabNavigator();
@@ -2122,7 +2143,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                 />
                 <Tab.Screen
                   name="seven"
-                  component={Screen7}
+                  component={Screen14}
                   options={{
                       tabBarIcon:(({color, size})=>(
                           <Icon as ={<Archive color={color} size={size}/>} />
