@@ -399,7 +399,7 @@ export default function Spares({navigation}) {
                             />
                         </View>
 
-                        <View alignItems='center' justifyContent='center' display='flex'>
+                        <View mt={'2%'} alignItems='center' justifyContent='center' display='flex'>
                             <Text color='gray.600' fontFamily={fonts.body}>Foto do Spare Antigo</Text>
                         </View>
 
@@ -424,6 +424,11 @@ export default function Spares({navigation}) {
                             </VStack>
                         }
                         
+
+
+
+
+
 
                         <View style={styles.uinputView}>
                             <Button onPress={onGravarS} leftIcon={<Icon as={<FloppyDisk color={colors.green[700]}/>} />}>
