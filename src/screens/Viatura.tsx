@@ -72,7 +72,7 @@ export  function Viatura() {
         toggleColorMode
     } = useColorMode();
     const text = useColorModeValue("Light", "Dark");
-    const bg = useColorModeValue("white", "coolGray.700");
+    const bg = useColorModeValue("white", "coolGray.800");
 
   return (
 <VStack flex={1} pb='6%' bg={bg} safeArea>
