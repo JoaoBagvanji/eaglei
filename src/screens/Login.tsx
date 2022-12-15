@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
 
+
 import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
 
@@ -16,6 +17,7 @@ import Logo from '../assets/eagle I 1.svg' ;
 import { Button } from '../components/Button';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
+import {AuthContext} from "../context/auth";
 
 const config = {
     header: {
@@ -23,6 +25,8 @@ const config = {
     },
   };
 export default function Login({history}){
+
+    const handleLoginn=useContext(AuthContext);
     type Nav = {
         navigate: (value:string) => void;
     }
@@ -64,7 +68,7 @@ export default function Login({history}){
 
     
     const loginUser = async (email, senha) => {
-        const axiosinstant=axios.create({baseURL:"http://192.168.0.133:3000/"});
+        // const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
         
         navigate("Home") as never;
         // try {

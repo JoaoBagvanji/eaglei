@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { VStack, HStack, useTheme, Image, Text, View } from 'native-base';
 
 import  userImg  from '../assets/helio.png';
 import Logo from '../assets/eagle I 1.svg' ;
 import PopupMenu from './PopupMenu2';
+import {AuthContext} from "../context/auth";
 
 
 export function Header() {
+
+    const {nome}=useContext(AuthContext);
 
     const { colors } = useTheme();
     const { fonts } = useTheme();
@@ -43,7 +46,7 @@ export function Header() {
                     fontSize='sm'
                     fontWeight='semibold'
                 >
-                    John Doe.
+                    {nome}
                 </Text>
            </View>
             

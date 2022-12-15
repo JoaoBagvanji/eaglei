@@ -8,7 +8,7 @@ import { Header } from '../components/Header';
 import { ButtonHandle } from '../components/ButtonHandle';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import UsersRegist from './pages_tarefas/pages_projectos/pages_pro/UsersRegist'
+import UsersRegist from './pages_tarefas/pages_projectos/pages_pro/UsersRegist';
 import UsersEdit from './pages_tarefas/pages_projectos/pages_pro/UsersEdit';
 import UsersDetails from './pages_tarefas/pages_projectos/pages_pro/UsersDetails';
 import colors from '../styles/colors';
