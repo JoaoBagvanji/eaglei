@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { CaretDown, CaretUp, Eye, Info, Pencil, Users as Usuarios } from 'phosphor-react-native';
+import { CaretDown, CaretUp, Eye, Info, Pencil, UserPlus, Users as Usuarios } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import axios from "axios";
 
@@ -137,33 +137,30 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
-            <Box flexDirection={'row'}>
             <View style={styles.avatarContainer }>
                 <Image source={data[2].image} style={styles.avatar}/>
             </View>
-            <Text fontFamily={fonts.body} color={colors.primary[600]} marginLeft={4}>{item.nome}</Text>
-
-            {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between' alignSelf={'flex-end'}>
-                <TouchableOpacity onPress={() => { navigate("UsersDetails") as never}} >
-                    <View marginLeft={8} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                    <Icon>{data[0].icon}</Icon>
+            <Box flexDirection={'column'}>
+            <Text fontFamily={fonts.body} color={colors.primary[600]}  marginRight='20%'>{item.nome}</Text>
+            <View flexDirection={'column'} margin='0.5' >
+                {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
+                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                        <TouchableOpacity onPress={() => { navigate("UsersDetails") as never}} >
+                             <Icon>{data[0].icon}</Icon>
+                        </TouchableOpacity>
                     </View>
-                </TouchableOpacity>
-                
-
-                <TouchableOpacity onPress={() => { navigate("UsersEdit") as never}}>
-                        <View marginLeft={10} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                        <Icon>{data[0].icon2}</Icon>
-                        </View>
-                </TouchableOpacity>
-             
-
-                
-              </View>) : null}
-
+                    
+                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                        <TouchableOpacity onPress={() => { navigate("UsersEdit") as never}}>
+                            <Icon>{data[0].icon2}</Icon>
+                        </TouchableOpacity>
+                    </View>
+                </View>) : null}
+            </View>
             </Box>
-           
-            {!shouldShow[item.id] ? 
+            <View display='flex' flexDirection='column' alignContent='space-between'>
+              <View >
+                {!shouldShow[item.id] ? 
                 (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.primary[700]} size={10}/>}
                   onPress={() => handleDropDownItems(item.id)}
@@ -172,6 +169,8 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
                   icon={<CaretUp   color={colors.primary[700]} size={10}/>}
                   onPress={() => handleHideItems(item.id)}
                   />)} 
+              </View>
+            </View>
         </View>   
     )
 
@@ -204,7 +203,14 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
                     entre os Usuários
                 </Text>
                 </View>
-                <Icon as ={<Usuarios color={colors.blueGray[400]}/>} />
+                <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
+                    <TouchableOpacity onPress={() => {
+                            navigate("UsersRegist") as never;
+                        }}
+                        activeOpacity={0.7}>
+                        <Icon as ={<UserPlus color={colors.white}/>} />
+                    </TouchableOpacity>
+                </View>
             </HStack>
 
             <View  mb={'60%'}> 
@@ -217,17 +223,6 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
-                <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' marginLeft='90%' mt={'123%'} >
-                    <ButtonHandle
-                        title='+'
-                        w={14}
-                        onPress={() => {
-                            navigate("UsersRegist") as never;
-                        }}
-
-                    />
-                </View>
-                
             </View>
             
       </VStack>
