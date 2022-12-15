@@ -9,7 +9,7 @@ import {AuthContext} from "../context/auth";
 
 export function Header() {
 
-    const {nome}=useContext(AuthContext);
+    const {utilizadorr}=useContext(AuthContext);
 
     const { colors } = useTheme();
     const { fonts } = useTheme();
@@ -46,7 +46,7 @@ export function Header() {
                     fontSize='sm'
                     fontWeight='semibold'
                 >
-                    {nome}
+                    {utilizadorr.nome}
                 </Text>
            </View>
             

@@ -38,7 +38,8 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function AuthContt(){
     const [authencticated, setAuthenticated]=useState(false);
-    const [utilizadorr, setUtilizador]=useState('');
+    const [utilizadorr, setUtilizador]=useState({});
+    const [nome, setNome]=useState("");
     const navigation=useNavigation();
     
     useEffect(() => {
@@ -87,6 +88,7 @@ async function  handleLoginn(userrr){
         
             setAuthenticated(true);
             console.log(utilizadorr);
+            setUtilizador(user)
             
            
             navigation.navigate("Home")
@@ -116,7 +118,7 @@ async function  handleLoginn(userrr){
   
       AsyncStorage.removeItem('token');
       
-      setUtilizador('');
+      setUtilizador({});
       api.defaults.headers.Authorization = undefined;
     
       navigation.navigate("Login")

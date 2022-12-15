@@ -15,15 +15,15 @@ export const AuthContext=createContext({});
 
 function AuthProvider({children}){
 
-	const {authencticated, handleLoginn, loading, handleLogout, utilizadorr}= authContt();
+	const {authencticated, handleLoginn, loading, handleLogout, utilizadorr, nome}= authContt();
 	const navigation=useNavigation();
 
-	const [nome, setNome]=useState("");
+	
 
 	
 
 	return(
-		<AuthContext.Provider value={{nome:"Marta manul ", authencticated, handleLoginn, loading, handleLogout, utilizadorr}}>
+		<AuthContext.Provider value={{authencticated, handleLoginn, loading, handleLogout, utilizadorr, nome}}>
 			{children}
 		</AuthContext.Provider>
 

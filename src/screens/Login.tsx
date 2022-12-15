@@ -70,7 +70,7 @@ export default function Login({history}){
     const loginUser = async (email, senha) => {
         // const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
         
-<<<<<<< HEAD
+
          
         try {
 
@@ -84,11 +84,11 @@ export default function Login({history}){
 
             // navigate("Home") as never;
         // await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
-=======
+
         navigate("Home") as never;
         // try {
         //     await axiosinstant.post("LogIn",{email:email,senha:senha}).then(async d=>{
->>>>>>> a21c6f7b39234cfbeef8bfdce8d8c877dd6f5fe8
+
         //     if(true){
         //         await AsyncStorage.setItem("token", d.data.token);
         //         navigate("Home") as never;
@@ -98,9 +98,9 @@ export default function Login({history}){
         //     console.log(d.data)
 
         // });
-        // } catch (e) {
-        // console.log(e);
-        // }
+        } catch (e) {
+        console.log(e);
+        }
         
       };
              
