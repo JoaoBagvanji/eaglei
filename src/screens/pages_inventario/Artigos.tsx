@@ -181,7 +181,6 @@ const oneUser = ( {item} ) =>(
                     onPress={() => {
                         navigate("Item") as never;
                     }}
-
                 />
             </View>
       </VStack>
