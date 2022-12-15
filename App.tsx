@@ -8,7 +8,6 @@ import Rotas from "./src/routes/index";
 
 import { THEME } from './src/styles/theme';
 import { Loading } from './src/components/Loading';
-import Routes from './src/routes';
 import React, { useEffect } from 'react';
 import AuthProvider from "./src/context/auth";
 
