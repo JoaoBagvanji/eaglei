@@ -1,6 +1,6 @@
 import React , {useState,useEffect}from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
-import { Car, ArrowsLeftRight, FileSearch} from 'phosphor-react-native';
+import { VStack, HStack, View, Text, Icon, useTheme, useColorMode, useColorModeValue, Center, IconButton} from 'native-base';
+import { Car, ArrowsLeftRight, FileSearch, Sun} from 'phosphor-react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrailer } from '@fortawesome/free-solid-svg-icons';
 
@@ -67,11 +67,15 @@ export  function Viatura() {
     function handleTelas(item){
         navigate(item.component_name) as never;
     }
-
-   
+    
+    const {
+        toggleColorMode
+    } = useColorMode();
+    const text = useColorModeValue("Light", "Dark");
+    const bg = useColorModeValue("white", "coolGray.700");
 
   return (
-<VStack flex={1} pb='6%' bg="white" >
+<VStack flex={1} pb='6%' bg={bg} safeArea>
 
     
 
@@ -79,15 +83,23 @@ export  function Viatura() {
     <VStack flex={1} px={6} mt='10%'>
         <HStack w="full" mt={8}  justifyContent="space-between" alignItems='center' flexDirection="row">
             <View>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+            <Text color="primary.800" fontSize="md" display="flex" fontFamily={fonts.heading}>
                 Navegue 
             </Text>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+            <Text color="primary.800" fontSize="md" display="flex" fontFamily={fonts.body}>
                 entre as viaturas
             </Text>
             </View>
+            <View  w="full" mt={8}  justifyContent="space-between" alignItems='center' flexDirection="column">
             <Icon as ={<Car color={colors.blueGray[400]}/>} />
+            <IconButton 
+                  icon={<Sun  color={colors.primary[700]} size={20}/>}
+                  onPress={toggleColorMode}
+                />
+            </View>
+            
         </HStack>
+       
    
     </VStack>
 
