@@ -6,7 +6,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AtribuicaoViatura } from './AtribuicaoViatura';
 import { ButtonHandle } from '../../components/ButtonHandle';
-import ViaturasRegist from '../pages_tarefas/pages_projectos/pages/ViaturasRegist';
+import ViaturasRegist from '../pages_tarefas/pages_projectos/pages_pro/ViaturasRegist';
 
 
 

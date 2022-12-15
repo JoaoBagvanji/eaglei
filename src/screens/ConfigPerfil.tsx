@@ -7,18 +7,11 @@ import * as ImagePicker from 'expo-image-picker';
 import {  StyleSheet, KeyboardAvoidingView,Platform, Button as Buttons} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Nome from '../components/Nome'
-import CellPhone from '../components/CellPhone';
-import EmailUser from '../components/EmailUser';
-import Username from '../components/Username';
-import PasswordUser from '../components/PasswordUser';
 import { Button } from '../components/Button';
-import { ButtonHandle } from '../components/ButtonHandle';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Idioma from '../components/Idioma';
-import usuario from '../assets/helio.png'
-import UserRegisto from './pages_tarefas/pages_projectos/pages/UserRegisto';
+
+import UserRegisto from './pages_tarefas/pages_projectos/pages_pro/UserRegisto';
 
 const Stack = createStackNavigator();
 

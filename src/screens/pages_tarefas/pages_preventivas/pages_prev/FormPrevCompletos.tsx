@@ -12,13 +12,13 @@ import { TextInput } from 'react-native-paper';
 import colors from '../../../../styles/colors';
 import fonts from '../../../../styles//fonts';
 
-import ShowPicByUrl from './ShowPicByUrl';
-import ShowPicByUri from './ShowPicByUri';
+import ShowPicByUrl from '../../pages_correctivas/pages_corr/ShowPicByUrl';
+import ShowPicByUri from '../../pages_correctivas/pages_corr/ShowPicByUri';
 
-import InfoGerador from './corr_info/InfoGerador';
-import InfoEnergia from './corr_info/InfoEnergia';
-import InfoEquip from './corr_info/infoEquip';
-import InfoSpare from './corr_info/InfoSpare';
+import InfoGerador from './prev_info/InfoGerador';
+import InfoEnergia from './prev_info/InfoEnergia';
+import InfoEquip from './prev_info/infoEquip';
+import InfoSpare from './prev_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -1321,8 +1321,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
 
-
-
       function Screen4() {
 
       const data = [
@@ -1953,6 +1951,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
           }
 
           
+
+          
           function Screen10(){
         
 
@@ -1974,6 +1974,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
                 );
 
           }
+
+
 
 
           function Screen11(){
@@ -2038,6 +2040,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           }    
 
+
+
           function Screen14(){
         
 
@@ -2061,7 +2065,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           const Tab = createMaterialTopTabNavigator();
 
-          export default function FormCorCompletos() {
+          export default function FormPrevCompletos() {
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -2070,7 +2074,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
              <View>
              <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-             Detalhes da Manutenção Correctiva
+             Detalhes da Manutenção Preventiva
              </Text>
              </View>
              </HStack>

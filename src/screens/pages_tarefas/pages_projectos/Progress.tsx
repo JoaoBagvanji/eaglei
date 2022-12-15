@@ -6,11 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { useState} from 'react';
 import Questions from '../form/ProjectQuestions';
-import Gerador from './pages/pages_proj/Gerador';
-import Credelec from './pages/pages_proj/Credelec';
-import Spares from './pages/pages_proj/Spares';
-import Submit from './pages/pages_proj/Submit';
-import Fotos from './pages/pages_proj/Fotos';
+import Gerador from './pages_pro/pages_proj/Gerador';
+import Credelec from './pages_pro/pages_proj/Credelec';
+import Spares from './pages_pro/pages_proj/Spares';
+import Submit from './pages_pro/pages_proj/Submit';
+import Fotos from './pages_pro/pages_proj/Fotos';
 
 const Stack = createStackNavigator();
 

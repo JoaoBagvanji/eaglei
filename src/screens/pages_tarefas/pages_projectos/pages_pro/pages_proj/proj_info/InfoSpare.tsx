@@ -2,13 +2,10 @@ import { Box, CheckIcon,  ScrollView, Select, useTheme, View, VStack, Text, HSta
 import {  StyleSheet, KeyboardAvoidingView, Platform, Dimensions, FlatList, TouchableOpacity, Image} from 'react-native';
 import React, { useState } from 'react';
 import { Camera, Image as Imagem } from 'phosphor-react-native';
-import fonts from '../../../../../styles/fonts';
-import colors from '../../../../../styles/colors';
+import fonts from '../../../../../../styles/fonts';
+import colors from '../../../../../../styles/colors';
 import { TextInput } from 'react-native-paper';
 import * as ImagePicker from "expo-image-picker";
-
-import ShowPicByUrl from '../ShowPicByUrl';
-import { useNavigation } from '@react-navigation/native';
 
 export default function InfoSpare({navigation}) {
 
@@ -32,7 +29,7 @@ export default function InfoSpare({navigation}) {
     const pictures = [
 {
     id: 1,
-    image: require('../../../../../assets/tecnicos/jobcardphoto1.png'),
+    image: require('../../../../../../assets/tecnicos/jobcardphoto1.png'),
 
 },
     ];

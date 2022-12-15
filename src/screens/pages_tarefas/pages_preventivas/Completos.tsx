@@ -3,8 +3,26 @@ import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'nat
 import { Info, CheckCircle  ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp   } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../../styles/colors';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Completas() {
+import FormInfoPrevCompletos from "../../../routes/prevCompletos.routes";
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+export default function MyStack(){
+  return (
+
+    <Stack.Navigator   screenOptions={{headerShown: false}} 
+            initialRouteName='Completas'>
+        <Stack.Screen name="FormInfoPrevCompletos" component={FormInfoPrevCompletos} />
+        <Stack.Screen name="Completas" component={Completas} />
+    </Stack.Navigator>
+
+);
+}
+
+ function Completas() {
   
   
     const data = [
@@ -70,6 +88,7 @@ export default function Completas() {
       },
         
     ];
+
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
@@ -83,6 +102,16 @@ export default function Completas() {
     async function handleHideItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
+    }
+
+    type Nav ={
+      navigate : (value: string) => void;
+  }
+    
+  const { navigate } = useNavigation<Nav>();
+
+    const handleInfo = () => {
+      navigate('FormInfoPrevCompletos') as never;
     }
     
 
@@ -120,10 +149,12 @@ export default function Completas() {
               
             </View>
             </Box>
+
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
+
               <View >
                 {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.primary[700]} size={10}/>}
@@ -133,6 +164,7 @@ export default function Completas() {
                   onPress={() => handleHideItems(item.id)}
                   />)} 
               </View>
+
             </View>
             
         </View>   
