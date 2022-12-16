@@ -18,11 +18,11 @@ export default function App(){
 	const [fontsLoaded] = useFonts({ Montserrat_400Regular, Montserrat_600SemiBold })
 	return (
 			<NavigationContainer>
-				<AuthProvider>
+				{ fontsLoaded ? <AuthProvider>
 					<NativeBaseProvider theme={THEME}>
 						<Rotas/>
 					</NativeBaseProvider>
-				</AuthProvider>
+				</AuthProvider> : <Loading />}
 			</NavigationContainer>
 		)
 }
