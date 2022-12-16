@@ -4,14 +4,12 @@ import { useEffect, useState, useContext } from 'react';
 import {  TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
-
-
-
 import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
-
 import { Context } from '../context/AuthContext';
+
 import api from "../services/api";
+
 import axios from 'axios';
 import Logo from '../assets/eagle I 1.svg' ;
 import { Button } from '../components/Button';
@@ -24,9 +22,13 @@ const config = {
       "Content-Type": "application/json",
     },
   };
+
+
+
 export default function Login({history}){
 
     const {handleLoginn}=useContext(AuthContext);
+
     type Nav = {
         navigate: (value:string) => void;
     }
@@ -37,7 +39,6 @@ export default function Login({history}){
     }
     const { colors } = useTheme();
     const { fonts } = useTheme();
-    const [isLoading, setIsLoading] = useState(false);
 
     
 
@@ -98,7 +99,7 @@ export default function Login({history}){
         
       };
              
-
+     
     return(
         <VStack flex={1} alignItems="center" bg="white" px={8} pt={8} justifyContent='center'>
             < Logo/>
@@ -133,7 +134,8 @@ export default function Login({history}){
         </VStack>
 
     )
-}
+    }
+
 
 const styles= StyleSheet.create({
     uinputView:{

@@ -103,6 +103,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
 
     const [dados, setDados]=useState([]);
     const[isloading, setIsLoading]=useState(true);
+    
     useEffect(()=>{
     (async()=>{
         

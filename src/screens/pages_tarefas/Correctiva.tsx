@@ -1,4 +1,4 @@
-import React , {useState}from 'react';
+import React , {useEffect, useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { HourglassMedium, CheckCircle, FilePlus, Warning, Wrench, Handshake} from 'phosphor-react-native';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
@@ -16,13 +16,8 @@ import Correctivas from './Correctivas';
 
 const Stack = createStackNavigator();
 
-
-const correctivas = [
-    {label: 'Novas', component_name: 'Novos', qtd: 22000, icon: <FilePlus color='#A1C861' size={25} />},
-    {label: 'Em progresso', component_name: 'Progress', qtd: 10, icon: <Icon as ={<HourglassMedium color='#A1C861' size={25} />} />}, 
-    {label: 'Completas', component_name: 'Completos', qtd: 20, icon: <Handshake color='#A1C861' size={25} />},
-    {label: 'Atenção', component_name: 'Attention', qtd:340, icon: <Warning color='#A1C861' size={25}/> },
-]
+import api from '../../services/api';
+import { Load } from '../../components/Load';
 
 
 export default function MyStack() {
@@ -38,9 +33,44 @@ export default function MyStack() {
         </Stack.Navigator>
      
     );
-      }
+}
+
 
 export function Correctiva() {
+
+    const[isloading, setIsLoading]=useState(true);
+
+    const [dados, setDados] = useState(
+        {
+            "nova": 0,
+            "progresso": 0,
+            "completa": 0,
+            "atencao": 0
+        }
+        );
+
+
+        useEffect(()=>{
+        (async()=>{
+        
+        api.get("tarefa/correctiva").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data);
+
+        });
+        })()
+
+
+        },[])
+
+        const correctivas = [
+        {label: 'Novas', component_name: 'Novos', qtd: dados.nova, icon: <FilePlus color='#A1C861' size={25} />},
+        {label: 'Em progresso', component_name: 'Progress', qtd: dados.progresso, icon: <Icon as ={<HourglassMedium color='#A1C861' size={25} />} />}, 
+        {label: 'Completas', component_name: 'Completos', qtd: dados.completa, icon: <Handshake color='#A1C861' size={25} />},
+        {label: 'Atenção', component_name: 'Attention', qtd: dados.atencao, icon: <Warning color='#A1C861' size={25}/> },
+        ]
+
     type Nav ={
         navigate : (value: string) => void;
     }
@@ -55,58 +85,67 @@ export function Correctiva() {
         navigate(item.component_name) as never
     }
 
-  return (
-<VStack flex={1} pb={6} bg="white">
 
+    if(isloading)
+            return(
+                <Load/>
+            )
     
+    else
+            {
+            return (
+            <VStack flex={1} pb={6} bg="white">
 
-    <VStack flex={1} px={6}>
-        <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-            <View>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-            Tarefas 
-            </Text>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-            Correctivas
-            </Text>
-            </View>
-            <Icon as ={<Wrench  color={colors.green[700]}/>} />
+                
 
-        </HStack>
-   
-    </VStack>
+                <VStack flex={1} px={6}>
+                    <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                        <View>
+                        <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                        Tarefas 
+                        </Text>
+                        <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                        Correctivas
+                        </Text>
+                        </View>
+                        <Icon as ={<Wrench  color={colors.green[700]}/>} />
 
-        <VStack flex={4} mx={2} py={20}>
-                <SafeAreaView>
-                        <FlatList
-                            numColumns={2} 
-                            data={correctivas} 
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Correctivas Correctiva={item}/></RectButton>)}
-                            showsVerticalScrollIndicator ={false}
-                            onEndReachedThreshold={0.1}
-                            ListFooterComponent ={
-                                loadingMore 
-                                ? <ActivityIndicator color={colors.green[700]} />
-                                : <></>
+                    </HStack>
             
-                            }
-                        />
-                </SafeAreaView>
-        </VStack>
+                </VStack>
 
-</VStack>  );
-}
+                    <VStack flex={4} mx={2} py={20}>
+                            <SafeAreaView>
+                                    <FlatList
+                                        numColumns={2} 
+                                        data={correctivas} 
+                                        keyExtractor={(item, index) => index.toString()}
+                                        renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Correctivas Correctiva={item}/></RectButton>)}
+                                        showsVerticalScrollIndicator ={false}
+                                        onEndReachedThreshold={0.1}
+                                        ListFooterComponent ={
+                                            loadingMore 
+                                            ? <ActivityIndicator color={colors.green[700]} />
+                                            : <></>
+                        
+                                        }
+                                    />
+                            </SafeAreaView>
+                    </VStack>
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        maxWidth: '45%',
-        backgroundColor: colors.shape,
-        borderRadius: 20,
-        paddingVertical: '5%',
-        alignItems: 'center',
-        margin: '3%'
-    },
+            </VStack>  );
+                }
+    }
 
-})
+    const styles = StyleSheet.create({
+        container:{
+            flex:1,
+            maxWidth: '45%',
+            backgroundColor: colors.shape,
+            borderRadius: 20,
+            paddingVertical: '5%',
+            alignItems: 'center',
+            margin: '3%'
+        },
+
+    })

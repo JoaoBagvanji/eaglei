@@ -5,7 +5,7 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../../styles/colors';
 import { useNavigation } from '@react-navigation/native';
 
-import FormInfoPrevCompletos from "../../../routes/prevCompletos.routes";
+import FormInfoPrevCompletos from "../../../routes/r_preventivas/prevCompletos.routes";
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
