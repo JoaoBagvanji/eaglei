@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 export default function MyStack(){
   return (
 
-    <Stack.Navigator   screenOptions={{headerShown: false}} 
+    <Stack.Navigator screenOptions={{headerShown: false}} 
             initialRouteName='Novas'>
         <Stack.Screen name="Novas" component={Novas} />
         <Stack.Screen name="FormTelco" component={FormTelco} />
@@ -28,7 +28,10 @@ export default function MyStack(){
  function Novas() {
   
  
-  
+  const handleInfo = () => {
+    navigate('FormCorNovas') as never;
+  }
+
     const data = [
         {
             id: 1,
@@ -109,20 +112,17 @@ export default function MyStack(){
                         <Icon>{item.icon}</Icon>
                   </TouchableOpacity> 
                 </View>
-
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon2}</Icon>
                 </View>
 
-
-                
               </View>) : null}
               
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >

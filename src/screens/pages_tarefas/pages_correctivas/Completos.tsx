@@ -114,7 +114,6 @@ export default function MyStack(){
       navigate('FormInfoCorCompletos') as never;
     }
 
-
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <View style={styles.avatarContainer }>
