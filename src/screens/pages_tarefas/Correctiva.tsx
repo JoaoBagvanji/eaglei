@@ -1,4 +1,4 @@
-import React , {useState}from 'react';
+import React , {useEffect, useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { HourglassMedium, CheckCircle, FilePlus, Warning, Wrench, Handshake} from 'phosphor-react-native';
 import { StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
@@ -13,16 +13,13 @@ import Novos from './pages_correctivas/Novos';
 import Progress from './pages_correctivas/Progress';
 
 import Correctivas from './Correctivas';
+import { Load } from '../../components/Load';
+import api from '../../services/api';
 
 const Stack = createStackNavigator();
 
 
-const correctivas = [
-    {label: 'Novas', component_name: 'Novos', qtd: 22000, icon: <FilePlus color='#A1C861' size={25} />},
-    {label: 'Em progresso', component_name: 'Progress', qtd: 10, icon: <Icon as ={<HourglassMedium color='#A1C861' size={25} />} />}, 
-    {label: 'Completas', component_name: 'Completos', qtd: 20, icon: <Handshake color='#A1C861' size={25} />},
-    {label: 'Atenção', component_name: 'Attention', qtd:340, icon: <Warning color='#A1C861' size={25}/> },
-]
+
 
 
 export default function MyStack() {
@@ -44,17 +41,55 @@ export function Correctiva() {
     type Nav ={
         navigate : (value: string) => void;
     }
-      
+    
     const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [loadingMore, setLoadingMore] = useState(false);
+    const [isLoading, setIsLoading] = useState(true)
+    
+    const [dados, setDados] = useState({
+        nova: '',
+        progresso: '',
+        completa: '',
+        atencao: ''
+    })
+    const correctivas = [
+        {label: 'Novas', component_name: 'Novos', qtd: dados.nova, icon: <FilePlus color='#A1C861' size={25} />},
+        {label: 'Em progresso', component_name: 'Progress', qtd: dados.progresso, icon: <Icon as ={<HourglassMedium color='#A1C861' size={25} />} />}, 
+        {label: 'Completas', component_name: 'Completos', qtd: dados.completa, icon: <Handshake color='#A1C861' size={25} />},
+        {label: 'Atenção', component_name: 'Attention', qtd:dados.atencao, icon: <Warning color='#A1C861' size={25}/> },
+    ]
+    useEffect(()=>{
+        (async()=>{
+            
+         api.get("tarefa/correctiva").then(d=>{
+            setDados(d.data);
+            setIsLoading(false);
+            console.log(d.data)
+    
+        });
+        // const alvo  =  dadoss.data; 
+        
+            // setDados(data)
+        })()
+        
+    
+    },[])
+    
 
     function handleTelas(item){
      
         navigate(item.component_name) as never
     }
+    if(isLoading)
+    return(
+        <Load/>
 
+    )
+    
+    else
+{
   return (
 <VStack flex={1} pb={6} bg="white">
 
@@ -96,6 +131,7 @@ export function Correctiva() {
         </VStack>
 
 </VStack>  );
+}
 }
 
 const styles = StyleSheet.create({
