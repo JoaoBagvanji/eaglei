@@ -72,7 +72,7 @@ export  function Viatura() {
         toggleColorMode
     } = useColorMode();
     const text = useColorModeValue("Light", "Dark");
-    const bg = useColorModeValue("white", "coolGray.700");
+    const bg = useColorModeValue("white", "coolGray.800");
 
   return (
 <VStack flex={1} pb='6%' bg={bg} safeArea>
@@ -80,7 +80,7 @@ export  function Viatura() {
     
 
 
-    <VStack flex={1} px={6} mt='10%'>
+    <VStack flex={1} px={6}>
         <HStack w="full" mt={8}  justifyContent="space-between" alignItems='center' flexDirection="row">
             <View>
             <Text color="primary.800" fontSize="md" display="flex" fontFamily={fonts.heading}>
@@ -90,13 +90,7 @@ export  function Viatura() {
                 entre as viaturas
             </Text>
             </View>
-            <View  w="full" mt={8}  justifyContent="space-between" alignItems='center' flexDirection="column">
             <Icon as ={<Car color={colors.blueGray[400]}/>} />
-            <IconButton 
-                  icon={<Sun  color={colors.primary[700]} size={20}/>}
-                  onPress={toggleColorMode}
-                />
-            </View>
             
         </HStack>
        

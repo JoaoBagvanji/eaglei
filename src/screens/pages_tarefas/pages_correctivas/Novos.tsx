@@ -7,6 +7,7 @@ import colors from '../../../styles/colors';
 import FormTelco  from '../pages_correctivas/formsNovos/formTelco';
 import { createStackNavigator } from '@react-navigation/stack';
 import Action from '../pages_projectos/pages_pro/ActionCorrectiva';
+import FormCorNovas from './pages_corr/FormCorNovas';
 
 const Stack = createStackNavigator();
  
@@ -18,6 +19,7 @@ export default function MyStack(){
         <Stack.Screen name="Novas" component={Novas} />
         <Stack.Screen name="FormTelco" component={FormTelco} />
         <Stack.Screen name="Action" component={Action} />
+        <Stack.Screen name="FormCorNovas" component={FormCorNovas} />
     </Stack.Navigator>
 
 );

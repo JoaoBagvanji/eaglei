@@ -9,7 +9,7 @@ import {  StackActions } from '@react-navigation/native';
 import  {useNavigation}  from '@react-navigation/native';
 
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import FormTransferencia from '../../routes/trans.routes';
+import FormTransferencia from '../../routes/r_viaturas/trans.routes';
 
 const Stack = createStackNavigator();
 
