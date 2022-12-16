@@ -23,7 +23,7 @@ export function Header() {
             justifyContent="space-between"
             alignItems="center"
             bg="white"
-            pt={8}
+            pt='20%'
             pb={5}
             px={6}
             flexDirection="row"
