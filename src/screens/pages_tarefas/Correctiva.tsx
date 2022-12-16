@@ -38,7 +38,7 @@ export default function MyStack() {
         </Stack.Navigator>
      
     );
-      }
+    }
 
 export function Correctiva() {
     type Nav ={
