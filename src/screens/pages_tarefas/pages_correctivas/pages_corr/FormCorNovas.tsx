@@ -24,7 +24,8 @@ import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
         var canDisplay = {
-            'avaliacoes': [],
+            'avaliacao_risco': [],
+            'avaliacao_ambiental': [],
             'gerador': [],
             'credelec': [],
             'equipamentos': [],
@@ -2094,7 +2095,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                   }}
                 />
 
-                { canDisplay.avaliacoes.length > 0    && 
+                { (canDisplay.avaliacao_risco.length > 0 || canDisplay.avaliacao_ambiental.length > 0)    && 
                 <Tab.Screen
                   name="three"
                   component={Screen3}
