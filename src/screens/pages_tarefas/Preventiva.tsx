@@ -1,4 +1,4 @@
-import React , {useState}from 'react';
+import React , {useEffect, useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { HourglassMedium, CheckCircle, FilePlus, Calendar , ClockCounterClockwise, Handshake } from 'phosphor-react-native';
 
@@ -16,17 +16,13 @@ import Completos from './pages_preventivas/Completos';
 import Atrasados from './pages_preventivas/Atrasados';
 
 import Preventivas from './Preventivas';
+import api from '../../services/api';
+import { Load } from '../../components/Load';
 
 const Stack = createStackNavigator();
 
 
-const preventivas = [
-    {label: 'Plano de hoje', component_name: 'PlanoHoje', qtd: 22000, icon: <FilePlus color='#A1C861' size={25} />},
-    {label: 'Plano mensal', component_name: 'PlanoMensal', qtd: 10, icon: <Icon as ={<Calendar  color='#A1C861' size={25} />} />}, 
-    {label: 'Em Progresso', component_name: 'EmProgresso', qtd:340, icon: <HourglassMedium color='#A1C861' size={25}/> },
-    {label: 'Completos', component_name: 'Completos', qtd: 20, icon: <Handshake color='#A1C861' size={25} />},
-    {label: 'Atrasados', component_name: 'Atrasados', qtd:340, icon: <ClockCounterClockwise color='#A1C861' size={25}/> },
-]
+
 
 
 export default function MyStack() {
@@ -54,12 +50,53 @@ export function Preventiva() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [loadingMore, setLoadingMore] = useState(false);
+    const [isLoading, setIsLoading] = useState(true)
+
+    const [dados, setDados] = useState({
+        hoje: '',
+        nova: '',
+        progresso: '',
+        completa: '',
+        atencao: ''
+    })
+
+    const preventivas = [
+    {label: 'Plano de hoje', component_name: 'PlanoHoje', qtd: dados.hoje, icon: <FilePlus color='#A1C861' size={25} />},
+    {label: 'Plano mensal', component_name: 'PlanoMensal', qtd: dados.nova, icon: <Icon as ={<Calendar  color='#A1C861' size={25} />} />}, 
+    {label: 'Em Progresso', component_name: 'EmProgresso', qtd:dados.progresso, icon: <HourglassMedium color='#A1C861' size={25}/> },
+    {label: 'Completos', component_name: 'Completos', qtd: dados.completa, icon: <Handshake color='#A1C861' size={25} />},
+    {label: 'Atrasados', component_name: 'Atrasados', qtd:dados.atencao, icon: <ClockCounterClockwise color='#A1C861' size={25}/> },
+    ]
+
+    useEffect(()=>{
+        (async()=>{
+            
+         api.get("tarefa/preventiva").then(d=>{
+            setDados(d.data);
+            setIsLoading(false);
+            console.log(d.data)
+    
+        });
+        // const alvo  =  dadoss.data; 
+        
+            // setDados(data)
+        })()
+        
+    
+    },[])
 
     function handleTelas(item){
      
         navigate(item.component_name) as never
     }
+    if(isLoading)
+    return(
+        <Load/>
 
+    )
+    
+    else
+{
   return (
 <VStack flex={1} pb={6} bg="white">
 
@@ -99,6 +136,7 @@ export function Preventiva() {
         </VStack>
 
 </VStack>  );
+}
 }
 
 const styles = StyleSheet.create({
