@@ -13,11 +13,10 @@ import Novos from './pages_correctivas/Novos';
 import Progress from './pages_correctivas/Progress';
 
 import Correctivas from './Correctivas';
+import { Load } from '../../components/Load';
+import api from '../../services/api';
 
 const Stack = createStackNavigator();
-
-import api from '../../services/api';
-import { Load } from '../../components/Load';
 
 
 export default function MyStack() {
@@ -60,43 +59,46 @@ export function Correctiva() {
 
         });
         })()
-
-
         },[])
 
-        const correctivas = [
-        {label: 'Novas', component_name: 'Novos', qtd: dados.nova, icon: <FilePlus color='#A1C861' size={25} />},
-        {label: 'Em progresso', component_name: 'Progress', qtd: dados.progresso, icon: <Icon as ={<HourglassMedium color='#A1C861' size={25} />} />}, 
-        {label: 'Completas', component_name: 'Completos', qtd: dados.completa, icon: <Handshake color='#A1C861' size={25} />},
-        {label: 'Atenção', component_name: 'Attention', qtd: dados.atencao, icon: <Warning color='#A1C861' size={25}/> },
-        ]
+ 
 
     type Nav ={
         navigate : (value: string) => void;
     }
-      
+    
     const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [loadingMore, setLoadingMore] = useState(false);
+
+    const correctivas = [
+        {label: 'Novas', component_name: 'Novos', qtd: dados.nova, icon: <FilePlus color='#A1C861' size={25} />},
+        {label: 'Em progresso', component_name: 'Progress', qtd: dados.progresso, icon: <Icon as ={<HourglassMedium color='#A1C861' size={25} />} />}, 
+        {label: 'Completas', component_name: 'Completos', qtd: dados.completa, icon: <Handshake color='#A1C861' size={25} />},
+        {label: 'Atenção', component_name: 'Attention', qtd:dados.atencao, icon: <Warning color='#A1C861' size={25}/> },
+    ]
+
+
+    
+    
 
     function handleTelas(item){
      
         navigate(item.component_name) as never
     }
 
-
     if(isloading)
-            return(
-                <Load/>
-            )
+    return(
+        <Load/>
+    )
     
     else
-            {
-            return (
-            <VStack flex={1} pb={6} bg="white">
 
-                
+{  return (
+<VStack flex={1} pb={6} bg="white">
+
+    
 
                 <VStack flex={1} px={6}>
                     <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
@@ -133,9 +135,10 @@ export function Correctiva() {
                             </SafeAreaView>
                     </VStack>
 
-            </VStack>  );
-                }
-    }
+</VStack>  );}
+
+}
+
 
     const styles = StyleSheet.create({
         container:{
