@@ -3,8 +3,36 @@ import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'nat
 import { Info ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, Warning } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function Attention() {
+import  CorAttention  from "../../../routes/r_correctivas/corAtencao.routes";
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
+const Stack = createStackNavigator();
+
+export default function MyStack() {
+  return (
+
+     <Stack.Navigator  screenOptions={{headerShown: false}} 
+             initialRouteName='Attention'>
+          <Stack.Screen name="Attention" component={Attention} />
+         <Stack.Screen name="CorAttention" component={CorAttention} />
+     </Stack.Navigator>
   
+ ); 
+}
+
+export function Attention() {
+  
+  type Nav ={
+    navigate : (value: string) => void;
+  }
+  
+  const { navigate } = useNavigation<Nav>();
+  
+  const handleInfo = () => {
+    navigate('CorAttention') as never;
+  }
+ 
   
     const data = [
         {
@@ -95,7 +123,7 @@ export default function Attention() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >

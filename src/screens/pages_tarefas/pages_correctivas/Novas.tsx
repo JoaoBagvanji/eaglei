@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton} from 'native-base';
 import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, Plus } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { StackActions, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import colors from '../../../styles/colors';
-import FormTelco  from '../pages_correctivas/formsNovos/formTelco';
+import FormTelco  from './formsNovos/formTelco';
 import { createStackNavigator } from '@react-navigation/stack';
 import Action from '../pages_projectos/pages_pro/ActionCorrectiva';
 import FormCorNovas from './pages_corr/FormCorNovas';
+import api from '../../../services/api';
+import { Load } from '../../../components/Load';
 
 const Stack = createStackNavigator();
  
@@ -27,10 +29,25 @@ export default function MyStack(){
 
  function Novas() {
   
- 
-  const handleInfo = () => {
-    navigate('FormCorNovas') as never;
-  }
+    
+  const[isloading, setIsLoading]=useState(true);
+
+  const [dados, setDados] = useState( [] );
+
+
+      useEffect(()=>{
+      (async()=>{
+      
+      api.get("tarefa/correctiva/new").then(d=>{
+      setDados(d.data.nova);
+      setIsLoading(false);
+      console.log(d.data.nova);
+
+      });
+
+      })()
+      },[])
+
 
     const data = [
         {
@@ -96,49 +113,109 @@ export default function MyStack(){
       setShouldShow(val_sec);
     }
 
-    const oneUser = ( {item} ) =>(
-        <View style={styles.item}>
-            <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
-            </View>
-            <Box flexDirection={'column'}>
-            
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
-            <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                <TouchableOpacity onPress={handleAction}>
-                        <Icon>{item.icon}</Icon>
-                  </TouchableOpacity> 
-                </View>
-                
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
-                </View>
+    const handleInfo = () => {
+      navigate('FormCorNovas') as never;
+    }
+  
 
-              </View>) : null}
-              
-            </View>
-            </Box>
-            <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
-              <Icon as ={<Info color={colors.blueGray[400]}/>} />
-              </TouchableOpacity>
-              <View >
-                {!shouldShow[item.id] ? 
-                (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
-                  icon={<CaretDown  color={colors.primary[700]} size={10}/>}
-                  onPress={() => handleDropDownItems(item.id)}
-                  />) :
-                   (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
-                  icon={<CaretUp   color={colors.primary[700]} size={10}/>}
-                  onPress={() => handleHideItems(item.id)}
-                  />)} 
-              </View>
-            </View>
+    const oneUser = ({item}) => (<View style={styles.item}>
+
+    <View style={styles.avatarContainer}>
+        <Image source={require('../../../assets/avatars/tower2.png')} style={styles.avatar}/>
+    </View>
+
+    <Box flexDirection={'column'}>
+
+        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.jobcard_regiao}</Text>
+
+        <View flexDirection={'column'} margin='0.5'>
+            <Text
+                fontFamily={fonts.body}
+                fontSize={12}
+                color={colors.blueGray[400]}
+                marginLeft={5}>{item.jobcard_tecniconome},&nbsp;estado:&nbsp;{item.jobcard_estadoactual}
+            </Text>
             
-        </View>   
+            {shouldShow[item.id]
+                    ? (
+                        <View display='flex' flexDirection='row' justifyContent='space-around'>
+
+                            <View
+                                marginLeft={4}
+                                marginTop={2}
+                                backgroundColor='primary.700'
+                                borderRadius={40}
+                                size={8}
+                                alignItems='center'
+                                justifyContent='center'
+                                display='flex'>
+
+                                <TouchableOpacity onPress={handleAction}>
+                                    <Icon>{item.icon}</Icon>
+                                </TouchableOpacity>
+
+                            </View>
+
+                            <View
+                                marginLeft={4}
+                                marginTop={2}
+                                backgroundColor='primary.700'
+                                borderRadius={40}
+                                size={8}
+                                alignItems='center'
+                                justifyContent='center'
+                                display='flex'>
+                                <Icon>{item.icon2}</Icon>
+                            </View>
+
+                        </View>
+                    )
+                    : null
+            }
+
+        </View>
+    </Box>
+    <View display='flex' flexDirection='column' alignContent='space-between'>
+        <TouchableOpacity
+            onPress={handleInfo}
+            style={{
+                paddingBottom: 10,
+                marginLeft: 2
+            }}>
+            <Icon as = {<Info color={colors.blueGray[400]}/>}/>
+        </TouchableOpacity>
+        <View >
+            {
+                !shouldShow[item.id]
+                    ? (
+                        <IconButton
+                            backgroundColor={colors.green[700]}
+                            borderRadius={20}
+                            icon={<CaretDown color = {
+                                colors.primary[700]
+                            }
+                            size = {
+                                10
+                            } />}
+                            onPress={() => handleDropDownItems(item.id)}/>
+                    )
+                    : (
+                        <IconButton
+                            backgroundColor={colors.red[300]}
+                            borderRadius={20}
+                            icon={<CaretUp color = {
+                                colors.primary[700]
+                            }
+                            size = {
+                                10
+                            } />}
+                            onPress={() => handleHideItems(item.id)}/>
+                    )
+            }
+        </View>
+    </View>
+
+</View>
     )
 
     function itemSeparator(){
@@ -159,6 +236,14 @@ export default function MyStack(){
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
+    if(isloading)
+    return(
+        <Load/>
+
+    )
+    
+    else
+{
   return (
     <VStack flex={1} pb={6} bg="white">
         
@@ -177,11 +262,12 @@ export default function MyStack(){
             <View>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
                     keyExtractor = { data => data.id }
+                  //  keyExtractor = { dados.map( item =>  {item.id})}
                     showsVerticalScrollIndicator={false}
                 />
 
@@ -196,6 +282,7 @@ export default function MyStack(){
       </VStack>
     </VStack>
   );
+}
 }
 
 

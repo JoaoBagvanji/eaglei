@@ -12,13 +12,13 @@ import { TextInput } from 'react-native-paper';
 import colors from '../../../../styles/colors';
 import fonts from '../../../../styles/fonts';
 
-import ShowPicByUrl from './ShowPicByUrl';
-import ShowPicByUri from './ShowPicByUri';
+import ShowPicByUrl from '../../pages_correctivas/pages_corr/ShowPicByUrl';
+import ShowPicByUri from '../../pages_correctivas/pages_corr/ShowPicByUri';
 
-import InfoGerador from './corr_info/InfoGerador';
-import InfoEnergia from './corr_info/InfoEnergia';
-import InfoEquip from './corr_info/infoEquip';
-import InfoSpare from './corr_info/InfoSpare';
+import InfoGerador from './pages_proj/proj_info/InfoGerador';
+import InfoEnergia from './pages_proj/proj_info/InfoEnergia';
+import InfoEquip from './pages_proj/proj_info/infoEquip';
+import InfoSpare from './pages_proj/proj_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -2051,7 +2051,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           const Tab = createMaterialTopTabNavigator();
 
-          export default function FormCorNovas() {
+          export default function FormProjNovos() {
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -2060,7 +2060,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
              <View>
              <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-             Detalhes da Manutenção Correctiva Nova
+             Detalhes do Projecto Novo
              </Text>
              </View>
              </HStack>
