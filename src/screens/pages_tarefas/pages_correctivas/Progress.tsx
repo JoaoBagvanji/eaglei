@@ -174,10 +174,10 @@ const message = () => {
     useEffect(()=>{
     (async()=>{
         
-     api.get("/manutencao/correctiva_emprogresso").then(d=>{
-        setDados(d.data);
+     api.get("tarefa/correctiva/inprogress").then(d=>{
+        setDados(d.data.nova);
         setIsLoading(false);
-        console.log(d.data)
+        console.log(d.data.nova)
 
     });
     // const alvo  =  dadoss.data; 
@@ -215,10 +215,10 @@ const message = () => {
             
             <Box flexDirection={'column'}>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site}</Text>
             <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              {shouldShow[item.id] ? (item.situacao.indexOf('local')!= -1 ?(
+              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
+              {shouldShow[item.id] ? (item.jobcard_estadoactual.indexOf('site')!= -1 ?(
               <View display='flex' flexDirection='row' justifyContent='space-between'>
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
@@ -256,7 +256,7 @@ const message = () => {
 
                 
               </View>
-              ) :(item.situacao.indexOf('caminho')!=-1 ? (<>
+              ) :(item.jobcard_estadoactual.indexOf('road')!=-1 ? (<>
                 <View display='flex' flexDirection='row' justifyContent='space-around'>
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                       <Icon>{data[0].icon6}</Icon>
@@ -268,7 +268,7 @@ const message = () => {
                     </TouchableOpacity>
                   </View>
                 </View>
-                </>) : (item.situacao.indexOf('aprovado')!=-1 ? (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                </>) : (item.jobcard_estadoactual.indexOf('approved')!=-1 ? (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
               <TouchableOpacity onPress={message}>
               <Image source={data[0].icon8} style={styles.avatar}/>
               </TouchableOpacity>
