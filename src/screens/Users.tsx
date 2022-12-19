@@ -181,6 +181,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
+    
     if(isloading)
     return(
         <Load/>

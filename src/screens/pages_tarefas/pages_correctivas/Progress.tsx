@@ -13,7 +13,7 @@ import Submit from './pages_corr/Submit';
 import Fotos from './pages_corr/Fotos';
 import Confirm from './Confirm';
 import api from "../../../services/api";
-import {Load} from "../../../components/Load";
+import CorProgresso from '../../../routes/r_correctivas/corProgresso.routes'
 
 
 
@@ -33,6 +33,7 @@ export default function MyStack() {
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Confirm" component={Confirm} />
          <Stack.Screen name="Fotos" component={Fotos} />
+         <Stack.Screen name="CorProgresso" component={CorProgresso} />
      </Stack.Navigator>
   
  ); 
@@ -174,10 +175,10 @@ const message = () => {
     useEffect(()=>{
     (async()=>{
         
-     api.get("tarefa/correctiva/inprogress").then(d=>{
-        setDados(d.data.nova);
+     api.get("/manutencao/correctiva_emprogresso").then(d=>{
+        setDados(d.data);
         setIsLoading(false);
-        console.log(d.data.nova)
+        console.log(d.data)
 
     });
     // const alvo  =  dadoss.data; 
@@ -205,6 +206,11 @@ const message = () => {
       let val_sec = await Array.from({ length: dados.length}, (v,p) => false)
       setShouldShow(val_sec);
     }
+
+    const handleInfo = () => {
+      navigate('CorProgresso') as never;
+    }
+  
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
@@ -282,7 +288,7 @@ const message = () => {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
@@ -306,13 +312,7 @@ const message = () => {
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
-    if(isloading)
-    return(
-        <Load/>
-
-    )
-    
-    else
+ 
 
   return (
     <VStack flex={1} pb={6} bg="white">
@@ -332,7 +332,7 @@ const message = () => {
             <View>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {dados}
+                    data = {data}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Correctivas em Progresso</Text>}
@@ -343,7 +343,7 @@ const message = () => {
       </VStack>
     </VStack>
   );
-}
+  }
 
 
 const styles=StyleSheet.create({
