@@ -267,7 +267,6 @@ export default function MyStack(){
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
                     keyExtractor = { data => data.id }
-                  //  keyExtractor = { dados.map( item =>  {item.id})}
                     showsVerticalScrollIndicator={false}
                 />
 
