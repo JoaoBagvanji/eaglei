@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image } from 'native-base';
 import { Info, CircleWavyCheck ,CaretDown, CaretUp, Plus, PencilLine } from 'phosphor-react-native';
-import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import  userImg  from '../../assets/avatars/artigos.png';
@@ -9,6 +9,9 @@ import  userImg  from '../../assets/avatars/artigos.png';
 import Gerador from './pages_artig/Gerador';
 import { ButtonHandle } from '../../components/ButtonHandle';
 import Item from '../pages_tarefas/pages_projectos/pages_pro/Item';
+import api from '../../services/api';
+import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
 
 const Stack = createStackNavigator();
 
@@ -39,31 +42,48 @@ function handleTelas(){
   navigate('Item') as never;
 }
 
+const [dados, setDados]=useState([]);
 
-  
+    const[isloading, setIsLoading]=useState(true);
+    useEffect(()=>{
+    (async()=>{
+        
+     api.get("/stock_item").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data)
+
+    });
+    // const alvo  =  dadoss.data; 
+    
+        setDados(data)
+    })()
+    
+
+    },[])
 
 const data = [
     {
-        id: 1,
-        nome: 'Mario Mahesse',
-        info: 'Armazém de Maputo, aprovado',
-        image: require('../../assets/avatars/artigo.png'),
-        icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-        icon2: require('../../assets/avatars/box.png'),
+      id: 1,
+      nome: 'Codigo: 1120',
+      info: 'Optical Cable Parts,DLC',
+      image: require('../../assets/avatars/artigo.png'),
+      icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/box.png'),
     },
     {
-        id: 2,
-        nome: 'Mateus Macuacua',
-        info: 'Armazém da Matola, aprovado',
-        image: require('../../assets/avatars/artigo.png'),
-        icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
-        icon2: require('../../assets/avatars/box.png'),
+      id: 2,
+      nome: 'Codigo: 1130',
+      info: 'ATN 910I-A.ANFM1HSD.ATN',
+      image: require('../../assets/avatars/artigo.png'),
+      icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/box.png'),
         
     },
     {
         id: 3,
-        nome: 'Davison Matsinhe',
-        info: 'Armazém de Maputo, expedido',
+        nome: 'Codigo: 1140',
+      info: 'ATN 905-ANPM1AIC-ATN 905',
         image: require('../../assets/avatars/artigo.png'),
         icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
         icon2: require('../../assets/avatars/box.png'),
@@ -71,8 +91,8 @@ const data = [
     },
     {
       id: 4,
-      nome: 'Mateus Joaquim',
-      info: 'Armazém de Vilankulos, expedido',
+      nome: 'Codigo: 1150',
+      info: 'Assembling Components.PTN',
       image: require('../../assets/avatars/artigo.png'),
       icon: <Icon as ={<PencilLine  color='#A1C861' size={16} />} />,
       icon2: require('../../assets/avatars/box.png'),
@@ -93,26 +113,25 @@ async function handleHideItems(position){
   setShouldShow(val_sec);
 }
 
+
+
+
 const oneUser = ( {item} ) =>(
     <View style={styles.item}>
         <View style={styles.avatarContainer }>
-          <Image source={item.image} style={styles.avatar}/>
+          <Image source={data[0].image} style={styles.avatar}/>
         </View>
         <Box flexDirection={'column'}>
         
-        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
-        <View flexDirection={'column'} margin='0.5' >
+        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.part_number}</Text>
+        <View flexDirection={'column'} margin='0.5'>
           <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
           {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
             <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
               <TouchableOpacity onPress={handleTelas}>
-                <Icon>{item.icon}</Icon>
+                <Icon>{data[0].icon}</Icon>
               </TouchableOpacity>
               
-            </View>
-
-            <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-              <Image source={item.icon2} style={styles.image}/>
             </View>
 
             
@@ -144,9 +163,12 @@ const oneUser = ( {item} ) =>(
 
   const { fonts } = useTheme();
   const { colors } = useTheme();
+  
 
+
+  
   return (
-    <VStack flex={1} pb={6} bg="white">
+    <VStack flex={1} pb='40%' bg="white">
         
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
@@ -159,14 +181,17 @@ const oneUser = ( {item} ) =>(
                 </Text>
                 </View>
                 <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
-                <Image
-                  source={userImg} width='35' height='35' borderRadius='40' alt='Imagem de artigos'/>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => {
+                        navigate("Item") as never;
+                    }}>
+                  <Image source={userImg} width='35' height='35' borderRadius='40' alt='Imagem de artigos'/>
+                </TouchableOpacity>
                 </View>
             </HStack>
             <View>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
@@ -174,7 +199,7 @@ const oneUser = ( {item} ) =>(
                     showsVerticalScrollIndicator={false}
                 />
             </View>
-            <View  alignItems='flex-end' justifyContent='center' display='flex' mt={10}>
+            {/* <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' mt='138%' ml='70%'>
                 <ButtonHandle
                     title='+'
                     w={14}
@@ -182,7 +207,7 @@ const oneUser = ( {item} ) =>(
                         navigate("Item") as never;
                     }}
                 />
-            </View>
+            </View> */}
       </VStack>
     </VStack>
   );
@@ -223,5 +248,6 @@ const styles=StyleSheet.create({
       width:40,
       height:20,
       alignItems:'center'
-    }
+    },
+    
 })
