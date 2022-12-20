@@ -126,23 +126,17 @@ export default function MyStack(){
         <Image source={require('../../../assets/avatars/tower2.png')} style={styles.avatar}/>
     </View>
 
-    <View>
-        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.jobcard_regiao}</Text>
-
-        <Text
-            fontFamily={fonts.body}
-            fontSize={12}
-            color={colors.blueGray[400]}
-            marginLeft={5}>{item.jobcard_tecniconome}
-        </Text>
-    </View>
-
     <Box flexDirection={'column'}>
 
-    
+        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.jobcard_regiao}</Text>
 
         <View flexDirection={'column'} margin='0.5'>
-         
+            <Text
+                fontFamily={fonts.body}
+                fontSize={12}
+                color={colors.blueGray[400]}
+                marginLeft={5}>{item.jobcard_tecniconome}
+            </Text>
             
             {shouldShow[item.id]
                     ? (
