@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton} from 'native-base';
 import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, Plus } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
@@ -10,6 +10,7 @@ import Action from '../pages_projectos/pages_pro/ActionCorrectiva';
 import FormCorNovas from './pages_corr/FormCorNovas';
 import api from '../../../services/api';
 import { Load } from '../../../components/Load';
+import { AuthContext } from '../../../context/auth';
 
 const Stack = createStackNavigator();
  
@@ -100,7 +101,7 @@ export default function MyStack(){
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
-
+    const {utilizadorr}=useContext(AuthContext);
 
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
@@ -118,23 +119,30 @@ export default function MyStack(){
     }
   
 
-    const oneUser = ({item}) => (<View style={styles.item}>
+    const oneUser = ({item}) => (
+    <View style={styles.item}>
 
     <View style={styles.avatarContainer}>
         <Image source={require('../../../assets/avatars/tower2.png')} style={styles.avatar}/>
     </View>
 
-    <Box flexDirection={'column'}>
-
+    <View>
         <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.jobcard_regiao}</Text>
 
+        <Text
+            fontFamily={fonts.body}
+            fontSize={12}
+            color={colors.blueGray[400]}
+            marginLeft={5}>{item.jobcard_tecniconome}
+        </Text>
+    </View>
+
+    <Box flexDirection={'column'}>
+
+    
+
         <View flexDirection={'column'} margin='0.5'>
-            <Text
-                fontFamily={fonts.body}
-                fontSize={12}
-                color={colors.blueGray[400]}
-                marginLeft={5}>{item.jobcard_tecniconome}
-            </Text>
+         
             
             {shouldShow[item.id]
                     ? (
@@ -175,6 +183,8 @@ export default function MyStack(){
 
         </View>
     </Box>
+
+
     <View display='flex' flexDirection='column' alignContent='space-between'>
         <TouchableOpacity
             onPress={handleInfo}
@@ -217,6 +227,7 @@ export default function MyStack(){
 
 </View>
     )
+
 
     function itemSeparator(){
         return <View style={styles.separator}/>

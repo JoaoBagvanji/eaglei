@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
@@ -14,6 +14,8 @@ import Fotos from './pages_corr/Fotos';
 import Confirm from './Confirm';
 import api from "../../../services/api";
 import {Load} from "../../../components/Load";
+
+
 
 
 
@@ -212,12 +214,17 @@ const message = () => {
             <View style={styles.avatarContainer }>
               <Image source={data[0].image} style={styles.avatar}/>
             </View>
+
+            <View >
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
+            <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
+            </View>
             
             <Box flexDirection={'column'}>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
+          
             <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
+            
               {shouldShow[item.id] ? (item.jobcard_estadoactual.indexOf('site')!= -1 ?(
               <View display='flex' flexDirection='row' justifyContent='space-between'>
                 
