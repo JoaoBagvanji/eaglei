@@ -100,8 +100,12 @@ export default function MyStack(){
     
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
-    const [ showPosition, setShowPosition ] = useState()
+    const [ showPosition, setShowPosition ] = useState();
+
     const {utilizadorr}=useContext(AuthContext);
+    console.log("Nome do Utilizador_______"+utilizadorr.nome);
+    console.log("Funcao do Utilizador_______"+utilizadorr.funcao);
+    console.log("ao do Utilizador_______"+utilizadorr.regiao);
 
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
@@ -120,6 +124,11 @@ export default function MyStack(){
   
 
     const oneUser = ({item}) => (
+      
+       
+       
+    
+
     <View style={styles.item}>
 
     <View style={styles.avatarContainer}>
@@ -128,7 +137,7 @@ export default function MyStack(){
 
     <Box flexDirection={'column'}>
 
-        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.jobcard_regiao}</Text>
+        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
 
         <View flexDirection={'column'} margin='0.5'>
             <Text
@@ -142,6 +151,9 @@ export default function MyStack(){
                     ? (
                         <View display='flex' flexDirection='row' justifyContent='space-around'>
 
+                            {  (utilizadorr.nome == item.jobcard_linemanager || utilizadorr.nivel_acesso == "admin" || utilizadorr.funcao == "Director Tecnico" || 
+                                 (utilizadorr.funcao =="Regional Manager" && utilizadorr.regiao == item.jobcard_regiao)) &&
+                                 
                             <View
                                 marginLeft={4}
                                 marginTop={2}
@@ -152,12 +164,17 @@ export default function MyStack(){
                                 justifyContent='center'
                                 display='flex'>
 
-                                <TouchableOpacity onPress={handleAction}>
-                                    <Icon>{item.icon}</Icon>
-                                </TouchableOpacity>
+                     
+                                 
+                                      <TouchableOpacity onPress={handleAction}>
+                                            <Icon>{data[0].icon}</Icon>
+                                      </TouchableOpacity>
+                                 </View>
+                                 }
+                              
 
-                            </View>
-
+                           
+                              {  (utilizadorr.nome == item.jobcard_tecniconome ) &&
                             <View
                                 marginLeft={4}
                                 marginTop={2}
@@ -167,8 +184,9 @@ export default function MyStack(){
                                 alignItems='center'
                                 justifyContent='center'
                                 display='flex'>
-                                <Icon>{item.icon2}</Icon>
+                                <Icon>{data[0].icon2}</Icon>
                             </View>
+                        }
 
                         </View>
                     )
