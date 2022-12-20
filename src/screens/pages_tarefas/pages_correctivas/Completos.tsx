@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, CheckCircle  ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp   } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
@@ -7,6 +7,9 @@ import colors from '../../../styles/colors';
 import FormInfoCorCompletos from "../../../routes/r_correctivas/corCompletos.routes";
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+
+import api from "../../../services/api";
+import {Load} from "../../../components/Load";
 
 const Stack = createStackNavigator();
  
@@ -114,31 +117,57 @@ export default function MyStack(){
       navigate('FormInfoCorCompletos') as never;
     }
 
+    const [dados, setDados]=useState([]);
+    const[isloading, setIsLoading]=useState(true);
+    
+    useEffect(()=>{
+    (async()=>{
+        
+     api.get("tarefa/correctiva/complete").then(d=>{
+        setDados(d.data.complete);
+        setIsLoading(false);
+        console.log(d.data.complete)
+
+    });
+    // const alvo  =  dadoss.data; 
+    
+        // setDados(data)
+    })()
+    
+
+    },[])
+
+
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
+              <Image source={data[0].image} style={styles.avatar}/>
             </View>
             <Box flexDirection={'column'}>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
             <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
+            <Text
+                fontFamily={fonts.body}
+                fontSize={12}
+                color={colors.blueGray[400]}
+                marginLeft={5}>{item.jobcard_tecniconome}
+            </Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-between'>
-                <View marginLeft={4} marginTop={2} style={item.gerador.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon}</Icon>
+                <View marginLeft={4} marginTop={2} style={data[0].gerador.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <Icon>{data[0].icon}</Icon>
                 </View>
 
-                <View marginLeft={4} marginTop={2} style={item.credelec.length>0 ? styles.filled: styles.unfilled}  borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
+                <View marginLeft={4} marginTop={2} style={data[0].credelec.length>0 ? styles.filled: styles.unfilled}  borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <Icon>{data[0].icon2}</Icon>
                 </View>
 
-                <View marginLeft={4} marginTop={2} style={item.spare.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon3}</Icon>
+                <View marginLeft={4} marginTop={2} style={data[0].spare.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <Icon>{data[0].icon3}</Icon>
                 </View>
 
-                <View marginLeft={4} marginTop={2} style={item.photos.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon4}</Icon>
+                <View marginLeft={4} marginTop={2} style={data[0].photos.length>0 ? styles.filled: styles.unfilled} borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                  <Icon>{data[0].icon4}</Icon>
                 </View>
 
                 
@@ -173,36 +202,46 @@ export default function MyStack(){
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
-  return (
-    <VStack flex={1} pb={6} bg="white">
-        
-        <VStack flex={1} px={6}>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-                <View>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Correctivas 
-                </Text>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                Completas
-                </Text>
-                </View>
-                <Icon as ={<Handshake   color={colors.green[700]}/>} />
-            </HStack>
-            <View>
-                <FlatList            
-                    ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
-                    renderItem = { oneUser }
-                    ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
-                    keyExtractor = { data => data.id }
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
-      </VStack>
-    </VStack>
-  );
-}
+
+    if(isloading)
+    return(
+        <Load/>
+
+          )
+          
+          else
+      {
+        return (
+          <VStack flex={1} pb={6} bg="white">
+              
+              <VStack flex={1} px={6}>
+                  <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                      <View>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                      Correctivas 
+                      </Text>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                      Completas
+                      </Text>
+                      </View>
+                      <Icon as ={<Handshake   color={colors.green[700]}/>} />
+                  </HStack>
+                  <View>
+                      <FlatList            
+                          ListHeaderComponentStyle = {styles.listHeader}
+                          data = {dados}
+                          renderItem = { oneUser }
+                          ItemSeparatorComponent = { itemSeparator }
+                          ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                          keyExtractor = { data => data.id }
+                          showsVerticalScrollIndicator={false}
+                      />
+                  </View>
+            </VStack>
+          </VStack>
+        );
+      }
+      }
 
 
 const styles=StyleSheet.create({

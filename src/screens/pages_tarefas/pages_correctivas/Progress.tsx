@@ -175,9 +175,9 @@ const message = () => {
     (async()=>{
         
      api.get("tarefa/correctiva/inprogress").then(d=>{
-        setDados(d.data.nova);
+        setDados(d.data.progresso);
         setIsLoading(false);
-        console.log(d.data.nova)
+        console.log(d.data.progresso);
 
     });
     // const alvo  =  dadoss.data; 

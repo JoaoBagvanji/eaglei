@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, Warning } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
@@ -6,6 +6,9 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import  CorAttention  from "../../../routes/r_correctivas/corAtencao.routes";
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+
+import api from "../../../services/api";
+import {Load} from "../../../components/Load";
 
 const Stack = createStackNavigator();
 
@@ -33,7 +36,26 @@ export function Attention() {
     navigate('CorAttention') as never;
   }
  
-  
+  const [dados, setDados]=useState([]);
+    const[isloading, setIsLoading]=useState(true);
+    
+    useEffect(()=>{
+    (async()=>{
+        
+     api.get("tarefa/correctiva/complete").then(d=>{
+        setDados(d.data.complete);
+        setIsLoading(false);
+        console.log(d.data.complete)
+
+    });
+    // const alvo  =  dadoss.data; 
+    
+        // setDados(data)
+    })()
+    
+
+    },[])
+
     const data = [
         {
             id: 1,
@@ -103,9 +125,14 @@ export function Attention() {
             </View>
             <Box flexDirection={'column'}>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
             <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
+            <Text
+                fontFamily={fonts.body}
+                fontSize={12}
+                color={colors.blueGray[400]}
+                marginLeft={5}>{item.jobcard_tecniconome},&nbsp;estado:&nbsp;{item.ttnumber_status}
+            </Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <Icon>{item.icon}</Icon>
