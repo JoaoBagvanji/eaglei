@@ -13,7 +13,7 @@ import Submit from './pages_corr/Submit';
 import Fotos from './pages_corr/Fotos';
 import Confirm from './Confirm';
 import api from "../../../services/api";
-import CorProgresso from '../../../routes/r_correctivas/corProgresso.routes'
+import {Load} from "../../../components/Load";
 
 
 
@@ -33,7 +33,6 @@ export default function MyStack() {
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Confirm" component={Confirm} />
          <Stack.Screen name="Fotos" component={Fotos} />
-         <Stack.Screen name="CorProgresso" component={CorProgresso} />
      </Stack.Navigator>
   
  ); 
@@ -175,10 +174,10 @@ const message = () => {
     useEffect(()=>{
     (async()=>{
         
-     api.get("/manutencao/correctiva_emprogresso").then(d=>{
-        setDados(d.data);
+     api.get("tarefa/correctiva/inprogress").then(d=>{
+        setDados(d.data.nova);
         setIsLoading(false);
-        console.log(d.data)
+        console.log(d.data.nova)
 
     });
     // const alvo  =  dadoss.data; 
@@ -207,11 +206,6 @@ const message = () => {
       setShouldShow(val_sec);
     }
 
-    const handleInfo = () => {
-      navigate('CorProgresso') as never;
-    }
-  
-
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
 
@@ -221,7 +215,7 @@ const message = () => {
             
             <Box flexDirection={'column'}>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site}: {item.sitename}</Text>
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site}</Text>
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
               {shouldShow[item.id] ? (item.jobcard_estadoactual.indexOf('site')!= -1 ?(
@@ -288,7 +282,7 @@ const message = () => {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
@@ -312,7 +306,13 @@ const message = () => {
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
- 
+    if(isloading)
+    return(
+        <Load/>
+
+    )
+    
+    else
 
   return (
     <VStack flex={1} pb={6} bg="white">
@@ -332,7 +332,7 @@ const message = () => {
             <View>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Correctivas em Progresso</Text>}
@@ -343,7 +343,7 @@ const message = () => {
       </VStack>
     </VStack>
   );
-  }
+}
 
 
 const styles=StyleSheet.create({
