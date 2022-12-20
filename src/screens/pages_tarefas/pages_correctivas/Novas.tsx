@@ -133,7 +133,7 @@ export default function MyStack(){
                 fontFamily={fonts.body}
                 fontSize={12}
                 color={colors.blueGray[400]}
-                marginLeft={5}>{item.jobcard_tecniconome},&nbsp;estado:&nbsp;{item.jobcard_estadoactual}
+                marginLeft={5}>{item.jobcard_tecniconome}
             </Text>
             
             {shouldShow[item.id]
