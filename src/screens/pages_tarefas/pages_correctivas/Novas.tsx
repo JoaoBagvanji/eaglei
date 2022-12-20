@@ -268,7 +268,7 @@ export default function MyStack(){
     else
 {
   return (
-    <VStack flex={1} pb={6} bg="white">
+   <VStack flex={1} pb={'66%'} bg="white">
         
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
@@ -288,17 +288,17 @@ export default function MyStack(){
                     data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                    ListEmptyComponent =  {<Text>Esta é uma lista de tarefas correctivas novas</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
 
 
-              <VStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
+              <HStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
                     <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
                         <Plus size={22} color={colors.green[700]} />
                     </TouchableOpacity>
-              </VStack>
+              </HStack>
 
             </View>
       </VStack>
