@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { ButtonHandle } from '../../../components/ButtonHandle';
 import FormNovosProjectos from './formsNovos/FormNovosProjectos';
+import FormProjNovos from './pages_pro/FormProjNovos';
 
 const Stack = createStackNavigator();
  
@@ -18,6 +19,7 @@ export default function MyStack(){
         <Stack.Screen name="Novos" component={Novos} />
         <Stack.Screen name="Action" component={Action} />
         <Stack.Screen name="FormNovosProjectos" component={FormNovosProjectos}/>
+        <Stack.Screen name="FormProjNovos" component={FormProjNovos} />
     </Stack.Navigator>
 
 );
@@ -98,6 +100,11 @@ export default function MyStack(){
       setShouldShow(val_sec);
     }
 
+     
+  const handleInfo = () => {
+    navigate('FormProjNovos') as never;
+  }
+
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <View style={styles.avatarContainer }>
@@ -125,7 +132,7 @@ export default function MyStack(){
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >

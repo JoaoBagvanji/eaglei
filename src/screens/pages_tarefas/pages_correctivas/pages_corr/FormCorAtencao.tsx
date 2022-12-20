@@ -2051,7 +2051,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           const Tab = createMaterialTopTabNavigator();
 
-          export default function FormCorNovas() {
+          export default function FormCorAtencao() {
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -2060,7 +2060,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
              <View>
              <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-             Detalhes da Manutenção Correctiva Nova
+             Detalhes da Manutenção Correctiva em Atenção
              </Text>
              </View>
              </HStack>

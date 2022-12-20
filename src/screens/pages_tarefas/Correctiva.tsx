@@ -9,7 +9,7 @@ import colors from '../../styles/colors';
 
 import Attention from './pages_correctivas/Attention';
 import Completos from './pages_correctivas/Completos';
-import Novos from './pages_correctivas/Novos';
+import Novos from './pages_correctivas/Novas';
 import Progress from './pages_correctivas/Progress';
 
 import Correctivas from './Correctivas';
