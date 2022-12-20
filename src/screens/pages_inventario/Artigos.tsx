@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image } from 'native-base';
-import { Info, CircleWavyCheck ,CaretDown, CaretUp, Plus, PencilLine } from 'phosphor-react-native';
+import { Info, CircleWavyCheck ,CaretDown, CaretUp, Plus, PencilLine, MagnifyingGlass } from 'phosphor-react-native';
 import { FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -179,6 +179,7 @@ const oneUser = ( {item} ) =>(
                 <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
                   Artigos
                 </Text>
+                
                 </View>
                 <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
                 <TouchableOpacity activeOpacity={0.8} onPress={() => {
@@ -189,6 +190,9 @@ const oneUser = ( {item} ) =>(
                 </View>
             </HStack>
             <View>
+            <View p={4} flexDirection='row' width='90%' backgroundColor='gray.100' borderRadius={10} alignItems='center' ml='5%' mb='5%'>
+                  <Icon as ={<MagnifyingGlass   color='black' size={20} />} ml='2%'/>
+                </View>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
                     data = {dados}

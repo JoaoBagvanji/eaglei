@@ -37,7 +37,7 @@ export function Users() {
       const { navigate } = useNavigation<Nav>()
 
 
-const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
+const axiosinstant=axios.create({baseURL:"http://192.168.0.194:4000/"});
 
 
 
@@ -107,7 +107,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
     useEffect(()=>{
     (async()=>{
         
-     api.get("utilizador").then(d=>{
+     api.get("/utilizador").then(d=>{
         setDados(d.data);
         setIsLoading(false);
         console.log(d.data)
