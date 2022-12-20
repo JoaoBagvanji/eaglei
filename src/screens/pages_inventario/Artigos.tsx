@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image } from 'native-base';
 import { Info, CircleWavyCheck ,CaretDown, CaretUp, Plus, PencilLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
@@ -9,6 +9,7 @@ import  userImg  from '../../assets/avatars/artigos.png';
 import Gerador from './pages_artig/Gerador';
 import { ButtonHandle } from '../../components/ButtonHandle';
 import Item from '../pages_tarefas/pages_projectos/pages_pro/Item';
+import api from '../../services/api';
 
 const Stack = createStackNavigator();
 
@@ -39,7 +40,24 @@ function handleTelas(){
   navigate('Item') as never;
 }
 
+const [dados, setDados]=useState([]);
+    const[isloading, setIsLoading]=useState(true);
+    useEffect(()=>{
+    (async()=>{
+        
+     api.get("/stock_item").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data)
 
+    });
+    // const alvo  =  dadoss.data; 
+    
+        setDados(data)
+    })()
+    
+
+    },[])
   
 
 const data = [
@@ -96,23 +114,19 @@ async function handleHideItems(position){
 const oneUser = ( {item} ) =>(
     <View style={styles.item}>
         <View style={styles.avatarContainer }>
-          <Image source={item.image} style={styles.avatar}/>
+          <Image source={data[0].image} style={styles.avatar}/>
         </View>
         <Box flexDirection={'column'}>
         
-        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
+        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.part_number}</Text>
         <View flexDirection={'column'} margin='0.5'>
           <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
           {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
             <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
               <TouchableOpacity onPress={handleTelas}>
-                <Icon>{item.icon}</Icon>
+                <Icon>{data[0].icon}</Icon>
               </TouchableOpacity>
               
-            </View>
-
-            <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-              <Image source={item.icon2} style={styles.image}/>
             </View>
 
             
@@ -166,7 +180,7 @@ const oneUser = ( {item} ) =>(
             <View>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
