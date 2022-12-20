@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image } from 'native-base';
 import { Info, CircleWavyCheck ,CaretDown, CaretUp, Plus, PencilLine } from 'phosphor-react-native';
-import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import  userImg  from '../../assets/avatars/artigos.png';
@@ -10,6 +10,8 @@ import Gerador from './pages_artig/Gerador';
 import { ButtonHandle } from '../../components/ButtonHandle';
 import Item from '../pages_tarefas/pages_projectos/pages_pro/Item';
 import api from '../../services/api';
+import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +43,7 @@ function handleTelas(){
 }
 
 const [dados, setDados]=useState([]);
+
     const[isloading, setIsLoading]=useState(true);
     useEffect(()=>{
     (async()=>{
@@ -58,7 +61,6 @@ const [dados, setDados]=useState([]);
     
 
     },[])
-  
 
 const data = [
     {
@@ -111,6 +113,9 @@ async function handleHideItems(position){
   setShouldShow(val_sec);
 }
 
+
+
+
 const oneUser = ( {item} ) =>(
     <View style={styles.item}>
         <View style={styles.avatarContainer }>
@@ -158,9 +163,12 @@ const oneUser = ( {item} ) =>(
 
   const { fonts } = useTheme();
   const { colors } = useTheme();
+  
 
+
+  
   return (
-    <VStack flex={1} pb={6} bg="white">
+    <VStack flex={1} pb='40%' bg="white">
         
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
@@ -173,8 +181,11 @@ const oneUser = ( {item} ) =>(
                 </Text>
                 </View>
                 <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
-                <Image
-                  source={userImg} width='35' height='35' borderRadius='40' alt='Imagem de artigos'/>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => {
+                        navigate("Item") as never;
+                    }}>
+                  <Image source={userImg} width='35' height='35' borderRadius='40' alt='Imagem de artigos'/>
+                </TouchableOpacity>
                 </View>
             </HStack>
             <View>
@@ -188,7 +199,7 @@ const oneUser = ( {item} ) =>(
                     showsVerticalScrollIndicator={false}
                 />
             </View>
-            <View  alignItems='flex-end' justifyContent='center' display='flex' mt={10}>
+            {/* <View  alignItems='flex-end' justifyContent='center' display='flex' position='absolute' mt='138%' ml='70%'>
                 <ButtonHandle
                     title='+'
                     w={14}
@@ -196,7 +207,7 @@ const oneUser = ( {item} ) =>(
                         navigate("Item") as never;
                     }}
                 />
-            </View>
+            </View> */}
       </VStack>
     </VStack>
   );
@@ -237,5 +248,6 @@ const styles=StyleSheet.create({
       width:40,
       height:20,
       alignItems:'center'
-    }
+    },
+    
 })
