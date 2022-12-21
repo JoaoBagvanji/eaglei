@@ -11,6 +11,8 @@ import  {useNavigation}  from '@react-navigation/native';
 
 import { FlatList, StyleSheet, Image, TouchableOpacity  } from 'react-native';
 import FormInspeccao from '../../routes/r_viaturas/insp.routes';
+import api from '../../services/api';
+import { Load } from '../../components/Load';
 
 const Stack = createStackNavigator();
 
@@ -76,13 +78,29 @@ export function Inspeccao({navigation}) {
       },
             
     ];
+    const[isloading, setIsLoading]=useState(true);
+    const [dados, setDados]=useState([]);
+    useEffect(()=>{
+    (async()=>{
+        
+     api.get("/inspdiaria").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data)
+
+    });
+    // const alvo  =  dadoss.data; 
+    
+        setDados(data)
+    })()
+    },[])
 
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
+              <Image source={data[3].image} style={styles.avatar}/>
             </View>
             <Box flexDirection={'column'}>
             
@@ -99,9 +117,9 @@ export function Inspeccao({navigation}) {
               <View >
               {item.situacao.indexOf('green')!= -1 ?(<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.green[700]} size={10}/>}
-                  />) : (item.situacao.indexOf('red')!= -1 ? (<IconButton backgroundColor='red.800' borderRadius={20}
-                  icon={<CaretDown  color='red.800' size={10}/>}
-                  />) : (<IconButton backgroundColor='orange.300' borderRadius={20}
+                  />) : (item.situacao.indexOf('red')!= -1 ? (<IconButton backgroundColor='red.600' borderRadius={20}
+                  icon={<CaretDown  color='red.600' size={10}/>}
+                  />) : (<IconButton backgroundColor='orange.400' borderRadius={20}
                   icon={<CaretDown  color='orange.300' size={10}/>}
                   />)) }
                   
@@ -119,7 +137,14 @@ export function Inspeccao({navigation}) {
     const { fonts } = useTheme();
     const { colors } = useTheme();
     
+    if(isloading)
+    return(
+        <Load/>
+
+    )
     
+    else
+{
   return (
     <VStack flex={1} pb={6} bg="white">
         
@@ -138,7 +163,7 @@ export function Inspeccao({navigation}) {
             <View>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
@@ -157,7 +182,7 @@ export function Inspeccao({navigation}) {
     </VStack>
   );
 }
-
+}
 const styles = StyleSheet.create({
     formButton:{
         alignItems: 'center',
