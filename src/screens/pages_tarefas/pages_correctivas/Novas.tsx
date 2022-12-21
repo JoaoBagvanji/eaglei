@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton} from 'native-base';
 import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, Plus } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { StackActions, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import colors from '../../../styles/colors';
-import FormTelco  from '../pages_correctivas/formsNovos/formTelco';
+import FormTelco  from './formsNovos/formTelco';
 import { createStackNavigator } from '@react-navigation/stack';
 import Action from '../pages_projectos/pages_pro/ActionCorrectiva';
+import FormCorNovas from './pages_corr/FormCorNovas';
+import api from '../../../services/api';
+import { Load } from '../../../components/Load';
+import { AuthContext } from '../../../context/auth';
 
 const Stack = createStackNavigator();
  
 export default function MyStack(){
   return (
 
-    <Stack.Navigator   screenOptions={{headerShown: false}} 
+    <Stack.Navigator screenOptions={{headerShown: false}} 
             initialRouteName='Novas'>
         <Stack.Screen name="Novas" component={Novas} />
         <Stack.Screen name="FormTelco" component={FormTelco} />
         <Stack.Screen name="Action" component={Action} />
+        <Stack.Screen name="FormCorNovas" component={FormCorNovas} />
     </Stack.Navigator>
 
 );
@@ -25,8 +30,29 @@ export default function MyStack(){
 
  function Novas() {
   
- 
-  
+    
+  const[isloading, setIsLoading]=useState(true);
+
+  const [dados, setDados] = useState( [] );
+  const [aceita, setAceita] = useState([]);
+
+
+      useEffect(()=>{
+      (async()=>{
+      
+      api.get("tarefa/correctiva/new").then(d=>{
+      setDados(d.data.nova);
+      setAceita(d.data.acept);
+      setIsLoading(false);
+      console.log(d.data.nova);
+      console.log(d.data.acept);
+
+      });
+
+      })()
+      },[])
+
+
     const data = [
         {
             id: 1,
@@ -77,8 +103,12 @@ export default function MyStack(){
     
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
-    const [ showPosition, setShowPosition ] = useState()
+    const [ showPosition, setShowPosition ] = useState();
 
+    const {utilizadorr}=useContext(AuthContext);
+    console.log("Nome do Utilizador_______"+utilizadorr.nome);
+    console.log("Funcao do Utilizador_______"+utilizadorr.funcao);
+    console.log("ao do Utilizador_______"+utilizadorr.regiao);
 
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
@@ -91,53 +121,128 @@ export default function MyStack(){
       setShouldShow(val_sec);
     }
 
-    const oneUser = ( {item} ) =>(
-        <View style={styles.item}>
-            <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
-            </View>
-            <Box flexDirection={'column'}>
+    const handleInfo = () => {
+      navigate('FormCorNovas') as never;
+    }
+  
+
+    const oneUser = ({item}) => (
+      
+       
+       
+    
+
+    <View style={styles.item}>
+
+    <View style={styles.avatarContainer}>
+        <Image source={require('../../../assets/avatars/tower2.png')} style={styles.avatar}/>
+    </View>
+
+    <Box flexDirection={'column'}>
+
+        <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
+
+        <View flexDirection={'column'} margin='0.5'>
+            <Text
+                fontFamily={fonts.body}
+                fontSize={12}
+                color={colors.blueGray[400]}
+                marginLeft={5}>{item.jobcard_tecniconome}
+            </Text>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
-            <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                <TouchableOpacity onPress={handleAction}>
-                        <Icon>{item.icon}</Icon>
-                  </TouchableOpacity> 
-                </View>
+            {shouldShow[item.id]
+                    ? (
+                        <View display='flex' flexDirection='row' justifyContent='space-around'>
 
-                
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
-                </View>
+                            {  (utilizadorr.nome == item.jobcard_linemanager || utilizadorr.nivel_acesso == "admin" || utilizadorr.funcao == "Director Tecnico" || 
+                                 (utilizadorr.funcao =="Regional Manager" && utilizadorr.regiao == item.jobcard_regiao)) &&
+                                 
+                            <View
+                                marginLeft={4}
+                                marginTop={2}
+                                backgroundColor='primary.700'
+                                borderRadius={40}
+                                size={8}
+                                alignItems='center'
+                                justifyContent='center'
+                                display='flex'>
+
+                     
+                                 
+                                      <TouchableOpacity onPress={handleAction}>
+                                            <Icon>{data[0].icon}</Icon>
+                                      </TouchableOpacity>
+                                 </View>
+                                 }
+                              
+
+                           
+                              {  (utilizadorr.nome == item.jobcard_tecniconome ) &&
+                            <View
+                                marginLeft={4}
+                                marginTop={2}
+                                backgroundColor='primary.700'
+                                borderRadius={40}
+                                size={8}
+                                alignItems='center'
+                                justifyContent='center'
+                                display='flex'>
+                                <Icon>{data[0].icon2}</Icon>
+                            </View>
+                        }
+
+                        </View>
+                    )
+                    : null
+            }
+
+        </View>
+    </Box>
 
 
-                
-              </View>) : null}
-              
-            </View>
-            </Box>
-            <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
-              <Icon as ={<Info color={colors.blueGray[400]}/>} />
-              </TouchableOpacity>
-              <View >
-                {!shouldShow[item.id] ? 
-                (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
-                  icon={<CaretDown  color={colors.primary[700]} size={10}/>}
-                  onPress={() => handleDropDownItems(item.id)}
-                  />) :
-                   (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
-                  icon={<CaretUp   color={colors.primary[700]} size={10}/>}
-                  onPress={() => handleHideItems(item.id)}
-                  />)} 
-              </View>
-            </View>
-            
-        </View>   
+    <View display='flex' flexDirection='column' alignContent='space-between'>
+        <TouchableOpacity
+            onPress={handleInfo}
+            style={{
+                paddingBottom: 10,
+                marginLeft: 2
+            }}>
+            <Icon as = {<Info color={colors.blueGray[400]}/>}/>
+        </TouchableOpacity>
+        <View >
+            {
+                !shouldShow[item.id]
+                    ? (
+                        <IconButton
+                            backgroundColor={colors.green[700]}
+                            borderRadius={20}
+                            icon={<CaretDown color = {
+                                colors.primary[700]
+                            }
+                            size = {
+                                10
+                            } />}
+                            onPress={() => handleDropDownItems(item.id)}/>
+                    )
+                    : (
+                        <IconButton
+                            backgroundColor={colors.red[300]}
+                            borderRadius={20}
+                            icon={<CaretUp color = {
+                                colors.primary[700]
+                            }
+                            size = {
+                                10
+                            } />}
+                            onPress={() => handleHideItems(item.id)}/>
+                    )
+            }
+        </View>
+    </View>
+
+</View>
     )
+
 
     function itemSeparator(){
         return <View style={styles.separator}/>
@@ -157,8 +262,16 @@ export default function MyStack(){
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
+    if(isloading)
+    return(
+        <Load/>
+
+    )
+    
+    else
+{
   return (
-    <VStack flex={1} pb={6} bg="white">
+   <VStack flex={1} pb={6} bg="white">
         
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
@@ -172,28 +285,27 @@ export default function MyStack(){
                 </View>
                 <Icon as ={<FilePlus   color={colors.green[700]}/>} />
             </HStack>
-            <View>
+            <View mb={'10%'}>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                    ListEmptyComponent =  {<Text>Esta é uma lista de tarefas correctivas novas</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
 
-
-              <VStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
+            </View>
+            </VStack>
+                <VStack mb={'20%'} mr={'15%'} alignSelf={'flex-end'}>
                     <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
                         <Plus size={22} color={colors.green[700]} />
                     </TouchableOpacity>
-              </VStack>
-
-            </View>
-      </VStack>
+                </VStack>
     </VStack>
   );
+}
 }
 
 

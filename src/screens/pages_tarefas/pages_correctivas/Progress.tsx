@@ -14,6 +14,7 @@ import Fotos from './pages_corr/Fotos';
 import Confirm from './Confirm';
 import api from "../../../services/api";
 import {Load} from "../../../components/Load";
+import FormCorProgresso from './pages_corr/FormCorProgresso';
 
 
 
@@ -33,6 +34,7 @@ export default function MyStack() {
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Confirm" component={Confirm} />
          <Stack.Screen name="Fotos" component={Fotos} />
+         <Stack.Screen name="FormCorProgresso" component={FormCorProgresso} />
      </Stack.Navigator>
   
  ); 
@@ -45,6 +47,10 @@ export function Progress() {
 }
   
 const { navigate } = useNavigation<Nav>()
+
+const handleInfo = () => {
+  navigate('FormCorProgresso') as never;
+}
 
 function handleTelas(){
   navigate('Questions') as never;
@@ -174,10 +180,10 @@ const message = () => {
     useEffect(()=>{
     (async()=>{
         
-     api.get("tarefa/correctiva/inprogress").then(d=>{
-        setDados(d.data.nova);
+     api.get("/correctiva/inprogress").then(d=>{
+        setDados(d.data.progresso);
         setIsLoading(false);
-        console.log(d.data.nova)
+        console.log(d.data.progresso);
 
     });
     // const alvo  =  dadoss.data; 
@@ -215,10 +221,10 @@ const message = () => {
             
             <Box flexDirection={'column'}>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site}</Text>
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
-              {shouldShow[item.id] ? (item.jobcard_estadoactual.indexOf('site')!= -1 ?(
+              {shouldShow[item.id] ? (item.jobcard_estadoactual.indexOf('Site')!= -1 ?(
               <View display='flex' flexDirection='row' justifyContent='space-between'>
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
@@ -256,7 +262,7 @@ const message = () => {
 
                 
               </View>
-              ) :(item.jobcard_estadoactual.indexOf('road')!=-1 ? (<>
+              ) :(item.jobcard_estadoactual.indexOf('route')!=-1 ? (<>
                 <View display='flex' flexDirection='row' justifyContent='space-around'>
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                       <Icon>{data[0].icon6}</Icon>
@@ -268,7 +274,7 @@ const message = () => {
                     </TouchableOpacity>
                   </View>
                 </View>
-                </>) : (item.jobcard_estadoactual.indexOf('approved')!=-1 ? (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                </>) : (item.jobcard_estadoactual.indexOf('Approved')!=-1 ? (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
               <TouchableOpacity onPress={message}>
               <Image source={data[0].icon8} style={styles.avatar}/>
               </TouchableOpacity>
@@ -282,7 +288,7 @@ const message = () => {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
@@ -315,33 +321,33 @@ const message = () => {
     else
 
   return (
-    <VStack flex={1} pb={6} bg="white">
-        
-        <VStack flex={1} px={6}>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-                <View>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Correctivas 
-                </Text>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                  em Progresso
-                </Text>
-                </View>
-                <Icon as ={<HourglassMedium  color={colors.green[700]}/>} />
-            </HStack>
-            <View>
-                <FlatList            
-                    ListHeaderComponentStyle = {styles.listHeader}
-                    data = {dados}
-                    renderItem = { oneUser }
-                    ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Correctivas em Progresso</Text>}
-                    keyExtractor = { data => data.id }
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
-      </VStack>
-    </VStack>
+    <VStack flex={1} pb={'48%'} bg="white">
+              
+              <VStack flex={1} px={6}>
+                  <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                      <View>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                      Correctivas 
+                      </Text>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                      em Progresso
+                      </Text>
+                      </View>
+                      <Icon as ={<Handshake   color={colors.green[700]}/>} />
+                  </HStack>
+                  <View>
+                      <FlatList            
+                          ListHeaderComponentStyle = {styles.listHeader}
+                          data = {dados}
+                          renderItem = { oneUser }
+                          ItemSeparatorComponent = { itemSeparator }
+                          ListEmptyComponent =  {<Text>Esta é uma lista de Tarefas correctivas em progresso</Text>}
+                          keyExtractor = { data => data.id }
+                          showsVerticalScrollIndicator={false}
+                      />
+                  </View>
+            </VStack>
+          </VStack>
   );
 }
 

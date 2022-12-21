@@ -21,10 +21,6 @@ import { Load } from '../../components/Load';
 
 const Stack = createStackNavigator();
 
-
-
-
-
 export default function MyStack() {
      return (
     
@@ -39,105 +35,112 @@ export default function MyStack() {
         </Stack.Navigator>
     
     );
-      }
+}
+
 
 export function Preventiva() {
+
+    const[isloading, setIsLoading]=useState(true);
+
+    const [dados, setDados] = useState(
+        {
+            "hoje": 0,
+            "nova": 0,
+            "progresso": 0,
+            "completa": 0,
+            "atencao": 0
+        }
+        );
+
+
+        useEffect(()=>{
+        (async()=>{
+        
+        api.get("tarefa/preventiva").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data);
+
+        });
+        })()
+        },[])
+
+
+      const preventivas = [
+        {label: 'Plano de hoje', component_name: 'PlanoHoje', qtd: dados.hoje, icon: <FilePlus color='#A1C861' size={25} />},
+        {label: 'Plano mensal', component_name: 'PlanoMensal', qtd: dados.nova, icon: <Icon as ={<Calendar  color='#A1C861' size={25} />} />}, 
+        {label: 'Em Progresso', component_name: 'EmProgresso', qtd:dados.progresso, icon: <HourglassMedium color='#A1C861' size={25}/> },
+        {label: 'Completos', component_name: 'Completos', qtd: dados.completa, icon: <Handshake color='#A1C861' size={25} />},
+        {label: 'Atrasados', component_name: 'Atrasados', qtd: dados.atencao, icon: <ClockCounterClockwise color='#A1C861' size={25}/> },
+    ]
+
+
     type Nav ={
         navigate : (value: string) => void;
     }
       
+
     const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [loadingMore, setLoadingMore] = useState(false);
-    const [isLoading, setIsLoading] = useState(true)
 
-    const [dados, setDados] = useState({
-        hoje: '',
-        nova: '',
-        progresso: '',
-        completa: '',
-        atencao: ''
-    })
 
-    const preventivas = [
-    {label: 'Plano de hoje', component_name: 'PlanoHoje', qtd: dados.hoje, icon: <FilePlus color='#A1C861' size={25} />},
-    {label: 'Plano mensal', component_name: 'PlanoMensal', qtd: dados.nova, icon: <Icon as ={<Calendar  color='#A1C861' size={25} />} />}, 
-    {label: 'Em Progresso', component_name: 'EmProgresso', qtd:dados.progresso, icon: <HourglassMedium color='#A1C861' size={25}/> },
-    {label: 'Completos', component_name: 'Completos', qtd: dados.completa, icon: <Handshake color='#A1C861' size={25} />},
-    {label: 'Atrasados', component_name: 'Atrasados', qtd:dados.atencao, icon: <ClockCounterClockwise color='#A1C861' size={25}/> },
-    ]
-
-    useEffect(()=>{
-        (async()=>{
-            
-         api.get("tarefa/preventiva").then(d=>{
-            setDados(d.data);
-            setIsLoading(false);
-            console.log(d.data)
-    
-        });
-        // const alvo  =  dadoss.data; 
-        
-            // setDados(data)
-        })()
-        
-    
-    },[])
 
     function handleTelas(item){
      
         navigate(item.component_name) as never
     }
-    if(isLoading)
+    if(isloading)
     return(
-        <Load/>
-
-    )
-    
+        <Load/>);
     else
-{
-  return (
-<VStack flex={1} pb={6} bg="white">
+        {
 
-  
-    <VStack flex={1} px={6}>
-        <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-            <View>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-            Tarefas 
-            </Text>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-            Preventivas
-            </Text>
-            </View>
-            <Icon as ={<Calendar color={colors.green[700]}/>} />
-        </HStack>
-   
-    </VStack>
+        return (
+        <VStack flex={1} pb={6} bg="white">
 
-        <VStack flex={4} mx={2} py={20}>
-                <SafeAreaView>
-                        <FlatList
-                            numColumns={2} 
-                            data={preventivas} 
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Preventivas Preventiva={item}/></RectButton>)}
-                            showsVerticalScrollIndicator ={false}
-                            onEndReachedThreshold={0.1}
-                            ListFooterComponent ={
-                                loadingMore 
-                                ? <ActivityIndicator color={colors.green[700]} />
-                                : <></>
-            
-                            }
-                        />
-                </SafeAreaView>
-        </VStack>
+        
+            <VStack flex={1} px={6}>
+                <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                    <View>
+                    <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                    Tarefas 
+                    </Text>
+                    <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                    Preventivas
+                    </Text>
+                    </View>
+                    <Icon as ={<Calendar color={colors.green[700]}/>} />
+                </HStack>
+        
+            </VStack>
 
-</VStack>  );
+                <VStack flex={4} mx={2} py={20}>
+                        <SafeAreaView>
+                                <FlatList
+                                    numColumns={2} 
+                                    data={preventivas} 
+                                    keyExtractor={(item, index) => index.toString()}
+                                    renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Preventivas Preventiva={item}/></RectButton>)}
+                                    showsVerticalScrollIndicator ={false}
+                                    onEndReachedThreshold={0.1}
+                                    ListFooterComponent ={
+                                        loadingMore 
+                                        ? <ActivityIndicator color={colors.green[700]} />
+                                        : <></>
+                    
+                                    }
+                                />
+                        </SafeAreaView>
+                </VStack>
+
+        </VStack>  );
+
+    }
 }
-}
+
+
 
 const styles = StyleSheet.create({
     container:{

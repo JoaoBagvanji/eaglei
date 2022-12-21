@@ -1,4 +1,4 @@
-import React , {useState}from 'react';
+import React , {useEffect, useState}from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme} from 'native-base';
 import { ProjectorScreen, Handshake  , FolderPlus, ArrowsCounterClockwise, HourglassMedium } from 'phosphor-react-native';
 
@@ -9,6 +9,8 @@ import  {useNavigation}  from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import colors from '../../styles/colors';
 
+import { Load } from '../../components/Load';
+import api from '../../services/api';
 
 import Completos from './pages_projectos/Completos';
 import Progress from './pages_projectos/Progress';
@@ -31,17 +33,40 @@ export default function MyStack() {
     );
   }
 
-  const projectos = [
 
-    {label: 'Novos', component_name: 'Novos', qtd: 2200, icon: <Icon as ={<FolderPlus   color='#A1C861' size={30} />} />}, 
-    {label: 'Completos', component_name: 'Completos', qtd: 10, icon: <Icon as ={<Handshake   color='#A1C861' size={30} />} />}, 
-    {label: 'Progress', component_name: 'Progress', qtd: 20, icon: <Icon as ={<HourglassMedium   color='#A1C861' size={30} />} />},
-    
-]
 
 export  function Projectos() {
     
+    const[isloading, setIsLoading]=useState(true);
 
+    const [dados, setDados] = useState(
+        {
+            "nova": 0,
+            "progresso": 0,
+            "completa": 0,
+        }
+        );
+
+
+        useEffect(()=>{
+        (async()=>{
+        
+        api.get("tarefa/projecto").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data);
+
+        });
+        })()
+        },[])
+
+        const projectos = [
+
+            {label: 'Novos', component_name: 'Novos', qtd: dados.nova, icon: <Icon as ={<FolderPlus   color='#A1C861' size={30} />} />}, 
+            {label: 'Completos', component_name: 'Completos', qtd: dados.completa, icon: <Icon as ={<Handshake   color='#A1C861' size={30} />} />}, 
+            {label: 'Progress', component_name: 'Progress', qtd: dados.progresso, icon: <Icon as ={<HourglassMedium   color='#A1C861' size={30} />} />},
+            
+        ]
  
     type Nav ={
         navigate : (value: string) => void;
@@ -56,52 +81,62 @@ export  function Projectos() {
         navigate(item.component_name) as never;
     }
     
-  return (
 
-
-
-    <VStack flex={1} pb={6} bg="white">
-
+    if(isloading)
+    return(
+        <Load/>
+    )
     
+    else
 
-    <VStack flex={1} px={6}>
-        <HStack w="full" mt={8}  justifyContent="space-between" alignItems='center' flexDirection="row">
-            <View>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Navegue 
-            </Text>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                entre os projectos
-            </Text>
-            </View>
-            <Icon as ={<ProjectorScreen color={colors.green[700]}/>} />
-        </HStack>
-   
-    </VStack>
+        { 
+        return (
 
-    <VStack flex={4} mx={2}>
-            <SafeAreaView>
-                    <FlatList
-                        numColumns={2} 
-                        data={projectos} 
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Projecto projecto={item} /></RectButton>)}
-                        showsVerticalScrollIndicator ={false}
-                        onEndReachedThreshold={0.1}
-                        ListFooterComponent ={
-                            loadingMore 
-                            ? <ActivityIndicator color={colors.green[700]} />
-                            : <></>
+
+
+            <VStack flex={1} pb={6} bg="white">
+
+            
+
+            <VStack flex={1} px={6}>
+                <HStack w="full" mt={8}  justifyContent="space-between" alignItems='center' flexDirection="row">
+                    <View>
+                    <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                        Navegue 
+                    </Text>
+                    <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                        entre os projectos
+                    </Text>
+                    </View>
+                    <Icon as ={<ProjectorScreen color={colors.green[700]}/>} />
+                </HStack>
         
-                        }
-                    />
-            </SafeAreaView>
-    </VStack>
+            </VStack>
 
-    </VStack>  
-    
-    );
-}
+            <VStack flex={4} mx={2}>
+                    <SafeAreaView>
+                            <FlatList
+                                numColumns={2} 
+                                data={projectos} 
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={ ( {item} ) => (<RectButton style={styles.container} onPress={()=>{handleTelas(item)}}><Projecto projecto={item} /></RectButton>)}
+                                showsVerticalScrollIndicator ={false}
+                                onEndReachedThreshold={0.1}
+                                ListFooterComponent ={
+                                    loadingMore 
+                                    ? <ActivityIndicator color={colors.green[700]} />
+                                    : <></>
+                
+                                }
+                            />
+                    </SafeAreaView>
+            </VStack>
+
+            </VStack>  
+            
+            );
+        }
+        }
 
 const styles = StyleSheet.create({
     container:{

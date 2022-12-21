@@ -37,7 +37,7 @@ export function Users() {
       const { navigate } = useNavigation<Nav>()
 
 
-const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
+const axiosinstant=axios.create({baseURL:"http://192.168.0.194:4000/"});
 
 
 
@@ -103,10 +103,11 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
 
     const [dados, setDados]=useState([]);
     const[isloading, setIsLoading]=useState(true);
+    
     useEffect(()=>{
     (async()=>{
         
-     api.get("utilizador").then(d=>{
+     api.get("/utilizador").then(d=>{
         setDados(d.data);
         setIsLoading(false);
         console.log(d.data)
@@ -180,6 +181,7 @@ const axiosinstant=axios.create({baseURL:"http://192.168.0.176:4000/"});
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
+    
     if(isloading)
     return(
         <Load/>

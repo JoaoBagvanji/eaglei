@@ -3,7 +3,25 @@ import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'nat
 import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, ClockCounterClockwise } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function Atrasados() {
+import FormInfoPrevAtrasadas from "../../../routes/r_preventivas/prevAtrasada.routes";
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
+const Stack = createStackNavigator();
+
+export default function MyStack(){
+  return (
+
+    <Stack.Navigator   screenOptions={{headerShown: false}} 
+            initialRouteName='Atrasados'>
+        <Stack.Screen name="FormInfoPrevAtrasadas" component={FormInfoPrevAtrasadas} />
+        <Stack.Screen name="Atrasados" component={Atrasados} />
+    </Stack.Navigator>
+
+);
+}
+
+ function Atrasados() {
   
   
     const data = [
@@ -57,6 +75,16 @@ export default function Atrasados() {
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
 
+    type Nav ={
+      navigate : (value: string) => void;
+  }
+    
+  const { navigate } = useNavigation<Nav>();
+  
+    const handleInfo = () => {
+      navigate('FormInfoPrevAtrasadas') as never;
+    }
+    
 
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
@@ -95,7 +123,7 @@ export default function Atrasados() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
