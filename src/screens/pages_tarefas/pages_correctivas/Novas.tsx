@@ -34,6 +34,7 @@ export default function MyStack(){
   const[isloading, setIsLoading]=useState(true);
 
   const [dados, setDados] = useState( [] );
+  const [aceita, setAceita] = useState([]);
 
 
       useEffect(()=>{
@@ -41,8 +42,10 @@ export default function MyStack(){
       
       api.get("tarefa/correctiva/new").then(d=>{
       setDados(d.data.nova);
+      setAceita(d.data.acept);
       setIsLoading(false);
       console.log(d.data.nova);
+      console.log(d.data.acept);
 
       });
 
