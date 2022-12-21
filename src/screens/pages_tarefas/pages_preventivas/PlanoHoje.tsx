@@ -4,6 +4,8 @@ import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Action from '../pages_projectos/pages_pro/ActionPreventiva';
+import prevHoje from '../../../routes/r_preventivas/prevHoje.routes';
+import { useNavigation } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
  
@@ -14,12 +16,23 @@ export default function MyStack(){
             initialRouteName='Novas'>
         <Stack.Screen name="Novas" component={PlanoHoje} />
         <Stack.Screen name="Action" component={Action} />
+        <Stack.Screen name="prevHoje" component={prevHoje} />
     </Stack.Navigator>
 
 );
 }
 
  function PlanoHoje({navigation}) {
+
+  type Nav ={
+    navigate : (value: string) => void;
+  }
+
+  const { navigate } = useNavigation<Nav>()
+
+  function handleInfo(){
+    navigate('prevHoje') as never;
+  }
   
   const handleAction = () => {
     navigation.navigate('Action') as never;
