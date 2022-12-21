@@ -1,8 +1,8 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
+import { Info, LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Questions from '../form/CorrectivasQuestions';
@@ -15,6 +15,8 @@ import Confirm from './Confirm';
 import api from "../../../services/api";
 import {Load} from "../../../components/Load";
 import FormCorProgresso from './pages_corr/FormCorProgresso';
+
+import { AuthContext } from '../../../context/auth';
 
 
 
@@ -175,8 +177,13 @@ const message = () => {
         
     ];
 
+    const {utilizadorr}=useContext(AuthContext);
+    console.log("Nome do user_______"+utilizadorr.nome);
+
+
     const [dados, setDados]=useState([]);
     const[isloading, setIsLoading]=useState(true);
+
     useEffect(()=>{
     (async()=>{
         
@@ -190,11 +197,10 @@ const message = () => {
     
         // setDados(data)
     })()
-    
-
     },[])
 
     const val_init = Array.from({ length: dados.length}, (v,p) => false)
+
     const [shouldShow, setShouldShow] = useState(val_init);
     
     function handleCamera(){
@@ -224,6 +230,7 @@ const message = () => {
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
+
               {shouldShow[item.id] ? (item.jobcard_estadoactual.indexOf('site')!= -1 ?(
               <View display='flex' flexDirection='row' justifyContent='space-between'>
                 
@@ -285,13 +292,16 @@ const message = () => {
               )
               ) : null}
               
+
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
               <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
-              <View >
+
+              {  (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On site')   &&
+              <View>
                 {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.primary[700]} size={10}/>}
                   onPress={() => handleDropDownItems(item.id)}
@@ -300,6 +310,8 @@ const message = () => {
                   onPress={() => handleHideItems(item.id)}
                   />)} 
               </View>
+            }
+
             </View>
             
         </View>   
