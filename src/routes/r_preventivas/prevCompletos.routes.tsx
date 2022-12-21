@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import TopTabs from '../screens/pages_viaturas/pages_inspeccao/FormInspeccao';
+
+import TopTabs from '../../screens/pages_tarefas/pages_preventivas/pages_prev/FormPrevCompletos';
 
     export default function App() {
           

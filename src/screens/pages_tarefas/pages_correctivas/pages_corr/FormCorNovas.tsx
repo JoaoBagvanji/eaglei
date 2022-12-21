@@ -10,7 +10,7 @@ import * as ImagePicker from "expo-image-picker";
 import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput } from 'react-native-paper';
 import colors from '../../../../styles/colors';
-import fonts from '../../../../styles//fonts';
+import fonts from '../../../../styles/fonts';
 
 import ShowPicByUrl from './ShowPicByUrl';
 import ShowPicByUri from './ShowPicByUri';
@@ -23,6 +23,15 @@ import InfoSpare from './corr_info/InfoSpare';
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
+        var canDisplay = {
+            'avaliacao_risco': [],
+            'avaliacao_ambiental': [],
+            'gerador': [],
+            'credelec': [],
+            'equipamentos': [],
+            'sobressalente': [],
+            'fotos': []
+        }
 
           const StackRoutes = createStackNavigator();
 
@@ -1320,12 +1329,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
 
+           function Screen4() {
 
 
-
-      function Screen4() {
-
-      const data = [
+           const data = [
 
           {
               id: 1,
@@ -1342,14 +1349,16 @@ import DropDownPicker from 'react-native-dropdown-picker';
             horas_d_reabastecimento: '1' ,
             }
         
-      ];
+            ];
 
-      type Nav ={
-        navigate : (value: string) => void;
-    }
-      const { navigate } = useNavigation<Nav>();
-  
-      const oneUser = ( {item} ) =>(
+
+        type Nav ={
+            navigate : (value: string) => void;
+        }
+
+        const { navigate } = useNavigation<Nav>();
+    
+         const oneUser = ( {item} ) =>(
           <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
 
               <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.gerador}</Text>
@@ -1409,14 +1418,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           </SafeAreaView>
           );
-
-
         }
-
-
-
-
-
 
           function Screen5() {
 
@@ -1504,9 +1506,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
           }
-
-
-
 
 
           function Screen6() {
@@ -1597,9 +1596,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
           }
           
 
-
-
-
           function Screen7() {
            
             const data = [
@@ -1680,9 +1676,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
           }
-
-
-
 
 
           function Screen8({navigation}) {
@@ -1868,10 +1861,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           
 
-
-
-
-               function Screen9() {
+           function Screen9() {
 
                 const data = [
 
@@ -2061,7 +2051,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           const Tab = createMaterialTopTabNavigator();
 
-          export default function FormCorCompletos() {
+          export default function FormCorNovas() {
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -2070,7 +2060,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
              <View>
              <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-             Detalhes da Manutenção Correctiva Completa
+             Detalhes da Manutenção Correctiva Nova
              </Text>
              </View>
              </HStack>
@@ -2094,6 +2084,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       )),
                   }}
                 />
+                
                 <Tab.Screen
                   name="two"
                   component={Screen2}
@@ -2103,6 +2094,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       )),
                   }}
                 />
+
+                { (canDisplay.avaliacao_risco.length > 0 || canDisplay.avaliacao_ambiental.length > 0)    && 
                 <Tab.Screen
                   name="three"
                   component={Screen3}
@@ -2112,7 +2105,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       )),
                   }}
                 />
+            }
             
+            { canDisplay.gerador.length > 0    && 
                 <Tab.Screen
                   name="four"
                   component={Screen11}
@@ -2122,6 +2117,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       )),
                   }}
                 />
+                 }     
+
+                { canDisplay.credelec.length > 0    && 
                 <Tab.Screen
                   name="five"
                   component={Screen12}
@@ -2131,6 +2129,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       )),
                   }}
                 />
+                  }  
+
+
+                { canDisplay.equipamentos.length > 0    && 
                 <Tab.Screen
                   name="six"
                   component={Screen13}
@@ -2140,6 +2142,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       )),
                   }}
                 />
+                 }  
+
+                { canDisplay.sobressalente.length > 0    && 
                 <Tab.Screen
                   name="seven"
                   component={Screen14}
@@ -2149,6 +2154,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       )),
                   }}
                 />
+                }  
+
+                { canDisplay.fotos.length > 0    && 
                     <Tab.Screen
                   name="eight"
                   component={Screen10}
@@ -2158,6 +2166,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
                       )),
                   }}
                 />
+                }
+
                    <Tab.Screen
                   name="nine"
                   component={Screen9}
