@@ -11,6 +11,8 @@ import Spares from './pages_prev/Spares';
 import Submit from './pages_prev/Submit';
 import Fotos from './pages_prev/Fotos';
 
+import prevProgresso from '../../../routes/r_preventivas/prevProgresso.routes';
+
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -25,6 +27,7 @@ export default function MyStack() {
          <Stack.Screen name="Credelec" component={Credelec} />
          <Stack.Screen name="Spares" component={Spares} />
          <Stack.Screen name="Submit" component={Submit} /> 
+         <Stack.Screen name="prevProgresso" component={prevProgresso} /> 
      </Stack.Navigator>
   
  ); 
@@ -92,12 +95,16 @@ export default function MyStack() {
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
 
+    function handleInfo(){
+      navigate('prevProgresso') as never;
+    }
 
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       val_sec[position] = true;
       setShouldShow(val_sec);
     }
+
     async function handleHideItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
@@ -198,7 +205,7 @@ export default function MyStack() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >

@@ -14,6 +14,7 @@ import Fotos from './pages_corr/Fotos';
 import Confirm from './Confirm';
 import api from "../../../services/api";
 import {Load} from "../../../components/Load";
+import FormCorProgresso from './pages_corr/FormCorProgresso';
 
 
 
@@ -33,6 +34,7 @@ export default function MyStack() {
          <Stack.Screen name="Questions" component={Questions} />
          <Stack.Screen name="Confirm" component={Confirm} />
          <Stack.Screen name="Fotos" component={Fotos} />
+         <Stack.Screen name="FormCorProgresso" component={FormCorProgresso} />
      </Stack.Navigator>
   
  ); 
@@ -45,6 +47,10 @@ export function Progress() {
 }
   
 const { navigate } = useNavigation<Nav>()
+
+const handleInfo = () => {
+  navigate('FormCorProgresso') as never;
+}
 
 function handleTelas(){
   navigate('Questions') as never;
@@ -282,7 +288,7 @@ const message = () => {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
@@ -316,32 +322,32 @@ const message = () => {
 
   return (
     <VStack flex={1} pb={'48%'} bg="white">
-        
-        <VStack flex={1} px={6}>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-                <View>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Correctivas 
-                </Text>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                  em Progresso
-                </Text>
-                </View>
-                <Icon as ={<HourglassMedium  color={colors.green[700]}/>} />
-            </HStack>
-            <View>
-                <FlatList            
-                    ListHeaderComponentStyle = {styles.listHeader}
-                    data = {dados}
-                    renderItem = { oneUser }
-                    ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Correctivas em Progresso</Text>}
-                    keyExtractor = { data => data.id }
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
-      </VStack>
-    </VStack>
+              
+              <VStack flex={1} px={6}>
+                  <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                      <View>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                      Correctivas 
+                      </Text>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                      em Progresso
+                      </Text>
+                      </View>
+                      <Icon as ={<Handshake   color={colors.green[700]}/>} />
+                  </HStack>
+                  <View>
+                      <FlatList            
+                          ListHeaderComponentStyle = {styles.listHeader}
+                          data = {dados}
+                          renderItem = { oneUser }
+                          ItemSeparatorComponent = { itemSeparator }
+                          ListEmptyComponent =  {<Text>Esta é uma lista de Tarefas correctivas em progresso</Text>}
+                          keyExtractor = { data => data.id }
+                          showsVerticalScrollIndicator={false}
+                      />
+                  </View>
+            </VStack>
+          </VStack>
   );
 }
 
