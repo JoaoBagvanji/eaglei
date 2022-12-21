@@ -160,7 +160,7 @@ export function Inspeccao({navigation}) {
                 </View>
                 <Icon as ={<MagnifyingGlass color={colors.green[700]}/>} />
             </HStack>
-            <View>
+            <View mb={'10%'}>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
                     data = {dados}

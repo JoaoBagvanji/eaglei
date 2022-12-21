@@ -187,7 +187,7 @@ function handleTelas(){
                 </View>
                 <Icon as ={<Jeep color={colors.green[700]}/>} />
             </HStack>
-            <View>
+            <View mb={'70%'}>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
                     data = {dados}
