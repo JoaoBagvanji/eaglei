@@ -83,7 +83,7 @@ export function Inspeccao({navigation}) {
     useEffect(()=>{
     (async()=>{
         
-     api.get("/inspdiaria").then(d=>{
+     api.get("/viatura/inspdiaria").then(d=>{
         setDados(d.data);
         setIsLoading(false);
         console.log(d.data)
