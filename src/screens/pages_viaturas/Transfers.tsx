@@ -150,7 +150,7 @@ const data = [
                   </TouchableOpacity>}
 
                   {(item.estado == 'Pendente') && <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
-                    <Icon as ={<HourglassMedium color={colors.yellow[600]}/>} size={20}/>
+                    <Icon as ={<HourglassMedium color={colors.yellow[500]}/>} size={20}/>
                   </TouchableOpacity>}
 
                   {(item.estado == 'Reprovado') && <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
