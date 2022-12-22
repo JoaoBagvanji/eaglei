@@ -1,6 +1,6 @@
 import React, { useState,useEffect, useContext } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
-import { Info, LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
+import { Info, LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium, Hand } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
@@ -17,9 +17,6 @@ import {Load} from "../../../components/Load";
 import FormCorProgresso from './pages_corr/FormCorProgresso';
 
 import { AuthContext } from '../../../context/auth';
-
-
-
 
 const Stack = createStackNavigator();
 
@@ -44,6 +41,7 @@ export default function MyStack() {
 
 
 export function Progress() {
+
   type Nav ={
     navigate : (value: string) => void;
 }
@@ -113,6 +111,7 @@ const message = () => {
             icon6: <Icon as ={<MapPinLine  color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
             icon8:  require('../../../assets/avatars/cars.png'),
+            icon9: <Icon as ={<Hand  color='#A1C861' size={16} />} />,
         },
         {
             id: 2,
@@ -128,6 +127,7 @@ const message = () => {
             icon6: <Icon as ={<MapPinLine   color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
             icon8:  require('../../../assets/avatars/cars.png'),
+            icon9: <Icon as ={<Hand  color='#A1C861' size={16} />} />,
         },
         {
             id: 3,
@@ -143,6 +143,7 @@ const message = () => {
             icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
             icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
             icon8:  require('../../../assets/avatars/cars.png'),
+            icon9: <Icon as ={<Hand  color='#A1C861' size={16} />} />,
         },
         {
           id: 4,
@@ -158,6 +159,7 @@ const message = () => {
           icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
           icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
           icon8:  require('../../../assets/avatars/cars.png'),
+          icon9: <Icon as ={<Hand  color='#A1C861' size={16} />} />,
         },
         {
           id: 5,
@@ -173,12 +175,12 @@ const message = () => {
           icon6: <Icon as ={<MapPinLine      color='#A1C861' size={16} />} />,
           icon7: <Icon as ={<MagnifyingGlass  color='#A1C861' size={16} />} />,
           icon8:  require('../../../assets/avatars/cars.png'),
+          icon9: <Icon as ={<Hand  color='#A1C861' size={16} />} />,
         },
         
     ];
 
     const {utilizadorr}=useContext(AuthContext);
-    console.log("Nome do user_______"+utilizadorr.nome);
 
 
     const [dados, setDados]=useState([]);
@@ -199,7 +201,7 @@ const message = () => {
     })()
     },[])
 
-    const val_init = Array.from({ length: dados.length}, (v,p) => false)
+    const val_init = Array.from({ length: data.length}, (v,p) => false)
 
     const [shouldShow, setShouldShow] = useState(val_init);
     
@@ -208,17 +210,18 @@ const message = () => {
     }
 
     async function handleDropDownItems(position){
-      let val_sec = await Array.from({ length: dados.length}, (v,p) => false)
+      let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       val_sec[position] = true;
       setShouldShow(val_sec);
     }
 
     async function handleHideItems(position){
-      let val_sec = await Array.from({ length: dados.length}, (v,p) => false)
+      let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
     }
 
     const oneUser = ( {item} ) =>(
+
         <View style={styles.item}>
 
             <View style={styles.avatarContainer }>
@@ -231,7 +234,8 @@ const message = () => {
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
 
-              {shouldShow[item.id] ? (item.jobcard_estadoactual.indexOf('site')!= -1 ?(
+              {shouldShow[item.id] ? (  (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On site') ?
+              (
               <View display='flex' flexDirection='row' justifyContent='space-between'>
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
@@ -267,9 +271,10 @@ const message = () => {
                   
                 </View>
 
-                
               </View>
-              ) :(item.jobcard_estadoactual.indexOf('road')!=-1 ? (<>
+              ) 
+              :((utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On route') ?
+              (<>
                 <View display='flex' flexDirection='row' justifyContent='space-around'>
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                       <Icon>{data[0].icon6}</Icon>
@@ -281,26 +286,42 @@ const message = () => {
                     </TouchableOpacity>
                   </View>
                 </View>
-                </>) : (item.jobcard_estadoactual.indexOf('approved')!=-1 ? (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                </>) :
+                 ((utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'Approved')  ?
+                 (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
               <TouchableOpacity onPress={message}>
               <Image source={data[0].icon8} style={styles.avatar}/>
               </TouchableOpacity>
               
-            </View>): null)
+              </View>):
+                ( ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || item.jobcard_estadoactual == 'On site' ) )  ?
+              (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+           <TouchableOpacity>
+           <Icon>{data[0].icon9}</Icon>
+           </TouchableOpacity>
+           
+           </View>): null)
                 
                 
-              )
-              ) : null}
+                )
+                ) ): null}
+             
               
+
 
             </View>
             </Box>
+
             <View display='flex' flexDirection='column' alignContent='space-between'>
               <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
 
-              {  (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On site')   &&
+              { ( 
+                (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On site')  || 
+                (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On route') || 
+              (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'Approved')  ||
+               ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || item.jobcard_estadoactual == 'On site' ) ) )  &&
               <View>
                 {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.primary[700]} size={10}/>}
@@ -315,6 +336,7 @@ const message = () => {
             </View>
             
         </View>   
+        
     )
 
     function itemSeparator(){
