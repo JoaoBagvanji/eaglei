@@ -42,10 +42,10 @@ export function Attention() {
     useEffect(()=>{
     (async()=>{
         
-     api.get("tarefa/correctiva/complete").then(d=>{
-        setDados(d.data.complete);
+     api.get("tarefa/correctiva/atrasado").then(d=>{
+        setDados(d.data.atrasado);
         setIsLoading(false);
-        console.log(d.data.complete)
+        console.log(d.data.atrasado)
 
     });
    
@@ -129,7 +129,7 @@ export function Attention() {
                 fontFamily={fonts.body}
                 fontSize={12}
                 color={colors.blueGray[400]}
-                marginLeft={5}>{item.jobcard_tecniconome},&nbsp;estado:&nbsp;{item.ttnumber_status}
+                marginLeft={5}>{item.jobcard_tecniconome},&nbsp;{item.ttnumber_status}
             </Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
