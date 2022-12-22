@@ -39,48 +39,52 @@ export function Transferencia({navigation}) {
     const { fonts } = useTheme();
     const { colors } = useTheme();
     
-    const data = [
-        {
-          id: 1,
-          nome: 'Ford , AFW 136 MP',
-          origem: 'Origem: Marcio Joaquim',
-          destino: 'Destino: Manuel Araujo',
-          datta: '12/09/2022 13: 04',
-          image: require('../../assets/avatars/transfercar2.png'),
-          icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
-        },
-        {
-          id: 2,
-          nome: 'Toyota , AFW 177 MP',
-          origem: 'Origem: Marcio Joaquim',
-          destino: 'Destino: Manuel Araujo',
-          datta: '12/09/2022 13: 04',
-          image: require('../../assets/avatars/transfercar2.png'),
-          icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />, 
-        },
-        {
-          id: 3,
-          nome: 'Mazda , AFW 177 MP',
-          origem: 'Origem: Marcio Joaquim',
-          destino: 'Destino: Manuel Araujo',
-          datta: '12/09/2022 13: 04',
-          image: require('../../assets/avatars/transfercar2.png'),
-          icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
-        },
-        {
-          id: 4,
-          nome: 'Mazda , AFW 177 MP',
-          origem: 'Origem: Marcio Joaquim',
-          destino: 'Destino: Manuel Araujo',
-          datta: '12/09/2022 13: 04',
-          image: require('../../assets/avatars/transfercar2.png'),
-          icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
-      },    
-      ];
+const data = [
+  {
+    id: 1,
+    nome: 'Ford , AFW 136 MP',
+    origem: 'Origem: Marcio Joaquim',
+    destino: 'Destino: Manuel Araujo',
+    datta: '12/09/2022 13: 04',
+    image: require('../../assets/avatars/transfercar2.png'),
+    icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
+    icon2: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
+    estado: 'Pendente'
+  },
+  {
+    id: 2,
+    nome: 'Toyota , AFW 177 MP',
+    origem: 'Origem: Marcio Amaral',
+    destino: 'Destino: Manuel Araujo',
+    datta: '12/09/2022 13: 04',
+    image: require('../../assets/avatars/transfercar2.png'),
+    icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
+    icon2: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />, 
+    estado: 'Aprovado'
+  },
+  {
+    id: 3,
+    nome: 'Mazda , AFW 177 MP',
+    origem: 'Origem: Marcio Marcolino',
+    destino: 'Destino: Manuel Araujo',
+    datta: '12/09/2022 13: 04',
+    image: require('../../assets/avatars/transfercar2.png'),
+    icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
+    icon2: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
+    estado: 'Reprovado'
+  },
+  {
+    id: 4,
+    nome: 'Mazda , AFW 177 MP',
+    origem: 'Origem: Marcio Joaquim',
+    destino: 'Destino: Manuel Araujo',
+    datta: '12/09/2022 13: 04',
+    image: require('../../assets/avatars/transfercar2.png'),
+    icon: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
+    icon2: <Icon as ={<ThumbsDown  color='#A1C861' size={16} />} />,
+    estado: 'Pendente'
+  },    
+];
         const val_init = Array.from({ length: data.length}, (v,p) => false)
         const [shouldShow, setShouldShow] = useState(val_init);
     
@@ -98,7 +102,7 @@ export function Transferencia({navigation}) {
         useEffect(()=>{
         (async()=>{
             
-         api.get("/viatura/listaviatura").then(d=>{
+         api.get("/viatura/transferencia").then(d=>{
             setDados(d.data);
             setIsLoading(false);
             console.log(d.data)
@@ -113,22 +117,22 @@ export function Transferencia({navigation}) {
         const oneUser = ( {item} ) =>(
             <View style={styles.item}>
                 <View style={styles.avatarContainer }>
-                  <Image source={item.image} style={styles.avatar}/>
+                  <Image source={data[0].image} style={styles.avatar}/>
                 </View>
                 <Box flexDirection={'column'}>
                 
-                <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
+                <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.marca}, {item.matricula}</Text>
                 <View flexDirection={'column'} margin='0.5' >
-                  <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.origem}</Text>
-                  <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.destino}</Text>
+                  <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>Origem: {item.origem}</Text>
+                  <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>Destino: {item.destino}</Text>
                   <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.datta}</Text>
                   {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                     <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                      <Icon>{item.icon}</Icon>
+                      <Icon>{data[0].icon}</Icon>
                     </View>
     
                     <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                    <Icon>{item.icon2}</Icon>
+                      <Icon>{data[0].icon2}</Icon>
                     </View>
     
                     
@@ -180,7 +184,7 @@ export function Transferencia({navigation}) {
             <View mb={'42%'}>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
