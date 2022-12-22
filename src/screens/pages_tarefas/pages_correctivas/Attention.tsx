@@ -60,6 +60,9 @@ export function Attention() {
             nome: '4552, Matola',
             info: 'Mario Joaquim, estado: novos',
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<HandPalm    color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<MapPinLine     color='#A1C861' size={16} />} />,
@@ -71,6 +74,9 @@ export function Attention() {
             nome: '4352, Pateke',
             info: 'Samuel Joaquim, estado: novos',
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -82,6 +88,9 @@ export function Attention() {
             nome: '4652, Museu',
             info: 'David Joaquim, estado: novos',
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -93,6 +102,9 @@ export function Attention() {
           nome: '5992, Chibuto',
           info: 'Helio Joaquim, estado: novos',
           image: require('../../../assets/avatars/tower2.png'),
+          dataCenter: require('../../../assets/avatars/datacenter.png'),
+          power: require('../../../assets/avatars/generator----.png'),
+          dce: require('../../../assets/avatars/AC.png'),
           icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
           icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -101,6 +113,8 @@ export function Attention() {
       },
         
     ];
+
+
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
@@ -117,10 +131,29 @@ export function Attention() {
     }
 
     const oneUser = ( {item} ) =>(
+
         <View style={styles.item}>
-            <View style={styles.avatarContainer }>
-              <Image source={data[0].image} style={styles.avatar}/>
-            </View>
+
+                {(item.departamento == "Telco") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].image} style={styles.avatar}/>
+                </View>}
+
+                {(item.departamento == "Data Center") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].dataCenter} style={styles.picsContainer}/>
+                </View>}
+
+                {(item.departamento == "Climatização e Electricidade" || item.departamento == "HVAC") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].dce} style={styles.picsContainer}/>
+                </View>}
+
+                {(item.departamento == "Energia" || item.departamento == "Power") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].image} style={styles.picsContainer}/>
+                </View>}
+
             <Box flexDirection={'column'}>
             
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
@@ -238,6 +271,10 @@ const styles=StyleSheet.create({
         width: 50,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    picsContainer:{
+      height: 50,
+      width: 50,
     },
     avatar:{
         height: 35,
