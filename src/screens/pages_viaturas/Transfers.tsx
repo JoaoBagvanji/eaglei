@@ -128,7 +128,7 @@ const data = [
                   <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>Destino: {item.destino}</Text>
                   <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.datta}</Text>
                   {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
-                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                       <Icon>{data[0].icon}</Icon>
                     </View>
     
@@ -157,7 +157,7 @@ const data = [
                     <Icon as ={<X color={colors.red[600]}/>} size={20}/>
                   </TouchableOpacity>}
                   <View >
-                    {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
+                    {!shouldShow[item.id] ? ((item.estado != 'Aprovado' && item.estado != 'Reprovado') &&<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                       icon={<CaretDown  color={colors.primary[700]} size={10}/>}
                       onPress={() => handleDropDownItems(item.id)}
                       />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
