@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
 import { Info, KeyReturn  ,CaretDown, CaretUp, Eye ,ThumbsUp, ThumbsDown, Pencil, Jeep } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
@@ -7,6 +7,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AtribuicaoViatura } from './AtribuicaoViatura';
 import { ButtonHandle } from '../../components/ButtonHandle';
 import ViaturasRegist from '../pages_tarefas/pages_projectos/pages_pro/ViaturasRegist';
+import api from '../../services/api';
+import { Load } from '../../components/Load';
 
 
 
@@ -35,48 +37,44 @@ function handleTelas(){
 }
   
   
-    const data = [
-        {
-            id: 1,
-            nome: 'Ford , AFW 136 MP',
-            info: 'Maputo, Motorisra: oficina',
-            image: require('../../assets/avatars/car.png'),
-            icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
-            icon3: require('../../assets/avatars/Park.png'),
-        },
-        {
-            id: 2,
-            nome: 'Toyota , AFW 177 MP',
-            info: 'Gaza, Motorisra: oficina',
-            image: require('../../assets/avatars/car.png'),
-            icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
-            icon3: require('../../assets/avatars/Park.png'),
-            
-        },
-        {
-            id: 3,
-            nome: 'Mazda , AFW 177 MP',
-            info: 'Vilankulos, Motorisra: oficina',
-            image: require('../../assets/avatars/car.png'),
-            icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
-            icon3: require('../../assets/avatars/Park.png'),
-            
-        },
-        {
-          id: 4,
-          nome: 'Mitsubishi , AFW 177 MP',
-          info: 'Sofala, Motorisra: oficina',
-          image: require('../../assets/avatars/car.png'),
-          icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
-          icon2: require('../../assets/avatars/HAND.png'),
-          icon3: require('../../assets/avatars/Park.png'),
-          
-      },
-        
-    ];
+  const data = [
+    {
+      id: 1,
+      nome: 'Ford , AFW 136 MP',
+      info: 'Maputo, Motorisra: oficina',
+      image: require('../../assets/avatars/car.png'),
+      icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/HAND.png'),
+      icon3: require('../../assets/avatars/Park.png'),
+    },
+    {
+      id: 2,
+      nome: 'Toyota , AFW 177 MP',
+      info: 'Gaza, Motorisra: oficina',
+      image: require('../../assets/avatars/car.png'),
+      icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/HAND.png'),
+      icon3: require('../../assets/avatars/Park.png'), 
+    },
+    {
+      id: 3,
+      nome: 'Mazda , AFW 177 MP',
+      info: 'Vilankulos, Motorisra: oficina',
+      image: require('../../assets/avatars/car.png'),
+      icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/HAND.png'),
+      icon3: require('../../assets/avatars/Park.png'),
+    },
+    {
+      id: 4,
+      nome: 'Mitsubishi , AFW 177 MP',
+      info: 'Sofala, Motorisra: oficina',
+      image: require('../../assets/avatars/car.png'),
+      icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/HAND.png'),
+      icon3: require('../../assets/avatars/Park.png'),
+  },    
+  ];
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
 
@@ -89,33 +87,49 @@ function handleTelas(){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       setShouldShow(val_sec);
     }
+    const[isloading, setIsLoading]=useState(true);
+    const [dados, setDados]=useState([]);
+    useEffect(()=>{
+    (async()=>{
+        
+     api.get("/viatura/listaviatura").then(d=>{
+        setDados(d.data);
+        setIsLoading(false);
+        console.log(d.data)
+
+    });
+    // const alvo  =  dadoss.data; 
+    
+        setDados(data)
+    })()
+    },[])
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
+              <Image source={data[0].image} style={styles.avatar}/>
             </View>
             <Box flexDirection={'column'}>
             
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
+            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.marca}, {item.matricula}</Text>
             <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
+              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.regiao}, {item.motorista}</Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon}</Icon>
+                  <Icon>{data[0].icon}</Icon>
                 </View>
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                {(item.motorista == 'Oficina' || item.motorista == 'Parque') && <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelas}>
-                    <Imagens source={item.icon2} style={styles.image}/>
+                    <Imagens source={data[0].icon2} style={styles.image}/>
                   </TouchableOpacity>
-                </View>
+                </View>}
 
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+                {(item.motorista != 'Oficina' && item.motorista != 'Parque') &&<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={handleTelas}>
-                    <Imagens source={item.icon3} style={styles.image}/>
+                    <Imagens source={data[0].icon3} style={styles.image}/>
                   </TouchableOpacity>
-                </View>
+                </View>}
 
                 
               </View>) : null}
@@ -146,7 +160,14 @@ function handleTelas(){
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
+    if(isloading)
+    return(
+        <Load/>
 
+    )
+    
+    else
+{
   return (
     <VStack flex={1} pb={6} bg="white">
         
@@ -162,10 +183,10 @@ function handleTelas(){
                 </View>
                 <Icon as ={<Jeep color={colors.green[700]}/>} />
             </HStack>
-            <View>
+            <View mb={'42%'}>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
+                    data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
                     ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
@@ -173,7 +194,7 @@ function handleTelas(){
                     showsVerticalScrollIndicator={false}
                 />
             </View>
-            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='10%'>
+            <View  alignItems='flex-end' justifyContent='center' position='absolute' display='flex' mt='138%' ml={'72%'}>
                     <ButtonHandle
                         title='+'
                         w={14}
@@ -187,7 +208,7 @@ function handleTelas(){
     </VStack>
   );
 }
-
+}
 
 const styles=StyleSheet.create({
     listHeader:{

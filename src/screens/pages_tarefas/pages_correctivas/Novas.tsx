@@ -271,7 +271,7 @@ export default function MyStack(){
     else
 {
   return (
-   <VStack flex={1} pb={'66%'} bg="white">
+   <VStack flex={1} pb={6} bg="white">
         
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
@@ -285,7 +285,7 @@ export default function MyStack(){
                 </View>
                 <Icon as ={<FilePlus   color={colors.green[700]}/>} />
             </HStack>
-            <View>
+            <View mb={'10%'}>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
                     data = {dados}
@@ -296,15 +296,13 @@ export default function MyStack(){
                     showsVerticalScrollIndicator={false}
                 />
 
-
-              <HStack mb={'20%'} mr={'5%'} alignSelf={'flex-end'}>
+            </View>
+            </VStack>
+                <VStack mb={'20%'} mr={'15%'} alignSelf={'flex-end'}>
                     <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
                         <Plus size={22} color={colors.green[700]} />
                     </TouchableOpacity>
-              </HStack>
-
-            </View>
-      </VStack>
+                </VStack>
     </VStack>
   );
 }

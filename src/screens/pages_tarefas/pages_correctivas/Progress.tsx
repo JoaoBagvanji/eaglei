@@ -1,8 +1,12 @@
-import React, { useState,useEffect, useContext } from 'react';
+import React, { useState,useEffect } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
+<<<<<<< HEAD
 import { Info, LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium, Hand } from 'phosphor-react-native';
+=======
+import { Info, ProjectorScreenChart ,LightbulbFilament ,Lightning ,Package,Camera, Handshake,CaretDown, CaretUp , MapPinLine , MagnifyingGlass, HourglassMedium } from 'phosphor-react-native';
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
 import { FlatList, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Questions from '../form/CorrectivasQuestions';
@@ -16,7 +20,12 @@ import api from "../../../services/api";
 import {Load} from "../../../components/Load";
 import FormCorProgresso from './pages_corr/FormCorProgresso';
 
+<<<<<<< HEAD
 import { AuthContext } from '../../../context/auth';
+=======
+
+
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
 
 const Stack = createStackNavigator();
 
@@ -180,16 +189,18 @@ const message = () => {
         
     ];
 
+<<<<<<< HEAD
     const {utilizadorr}=useContext(AuthContext);
 
 
+=======
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
     const [dados, setDados]=useState([]);
     const[isloading, setIsLoading]=useState(true);
-
     useEffect(()=>{
     (async()=>{
         
-     api.get("tarefa/correctiva/inprogress").then(d=>{
+     api.get("/correctiva/inprogress").then(d=>{
         setDados(d.data.progresso);
         setIsLoading(false);
         console.log(d.data.progresso);
@@ -199,10 +210,16 @@ const message = () => {
     
         // setDados(data)
     })()
+    
+
     },[])
 
+<<<<<<< HEAD
     const val_init = Array.from({ length: data.length}, (v,p) => false)
 
+=======
+    const val_init = Array.from({ length: dados.length}, (v,p) => false)
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
     const [shouldShow, setShouldShow] = useState(val_init);
     
     function handleCamera(){
@@ -233,9 +250,13 @@ const message = () => {
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
             <View flexDirection={'column'} margin='0.5' >
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
+<<<<<<< HEAD
 
               {shouldShow[item.id] ? (  (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On site') ?
               (
+=======
+              {shouldShow[item.id] ? (item.jobcard_estadoactual.indexOf('Site')!= -1 ?(
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
               <View display='flex' flexDirection='row' justifyContent='space-between'>
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
@@ -272,9 +293,13 @@ const message = () => {
                 </View>
 
               </View>
+<<<<<<< HEAD
               ) 
               :((utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On route') ?
               (<>
+=======
+              ) :(item.jobcard_estadoactual.indexOf('route')!=-1 ? (<>
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
                 <View display='flex' flexDirection='row' justifyContent='space-around'>
                   <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                       <Icon>{data[0].icon6}</Icon>
@@ -286,9 +311,13 @@ const message = () => {
                     </TouchableOpacity>
                   </View>
                 </View>
+<<<<<<< HEAD
                 </>) :
                  ((utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'Approved')  ?
                  (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+=======
+                </>) : (item.jobcard_estadoactual.indexOf('Approved')!=-1 ? (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
               <TouchableOpacity onPress={message}>
               <Image source={data[0].icon8} style={styles.avatar}/>
               </TouchableOpacity>
@@ -307,8 +336,11 @@ const message = () => {
                 ) ): null}
              
               
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
             </View>
             </Box>
 
@@ -316,6 +348,7 @@ const message = () => {
               <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
+<<<<<<< HEAD
 
               { ( 
                 (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On site')  || 
@@ -323,6 +356,9 @@ const message = () => {
               (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'Approved')  ||
                ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || item.jobcard_estadoactual == 'On site' ) ) )  &&
               <View>
+=======
+              <View >
+>>>>>>> 49f040280cd2a8c10bf9e3d184d6135e7f5b70dc
                 {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.primary[700]} size={10}/>}
                   onPress={() => handleDropDownItems(item.id)}
@@ -331,8 +367,6 @@ const message = () => {
                   onPress={() => handleHideItems(item.id)}
                   />)} 
               </View>
-            }
-
             </View>
             
         </View>   
