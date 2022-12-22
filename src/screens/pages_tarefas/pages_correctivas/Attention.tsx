@@ -134,6 +134,8 @@ export function Attention() {
 
         <View style={styles.item}>
 
+              
+
                 {(item.departamento == "Telco") &&
                 <View style={styles.avatarContainer }>
                   <Image source={data[0].image} style={styles.avatar}/>

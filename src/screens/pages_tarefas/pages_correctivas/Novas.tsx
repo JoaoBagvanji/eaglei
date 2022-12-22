@@ -328,11 +328,14 @@ export default function MyStack(){
 
             </View>
             </VStack>
-                <VStack mb={'20%'} mr={'15%'} alignSelf={'flex-end'}>
-                    <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
-                        <Plus size={22} color={colors.green[700]} />
-                    </TouchableOpacity>
-                </VStack>
+
+            {  (utilizadorr.funcao =="Call Center" || utilizadorr.funcao =="Back Office" || utilizadorr.nivel_acesso == "admin") &&    
+                        <VStack mb={'20%'} mr={'15%'} alignSelf={'flex-end'}>
+                            <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
+                                <Plus size={22} color={colors.green[700]} />
+                            </TouchableOpacity>
+                        </VStack>
+            }
     </VStack>
   );
 }
