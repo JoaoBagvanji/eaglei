@@ -97,7 +97,7 @@ export  function Viatura() {
    
     </VStack>
 
-    <VStack flex={4} mx='5%'>
+    <VStack flex={4} mx={2}>
             <SafeAreaView>
                     <FlatList
                         numColumns={2} 

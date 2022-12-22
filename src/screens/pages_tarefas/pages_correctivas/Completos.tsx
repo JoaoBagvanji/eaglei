@@ -39,6 +39,9 @@ export default function MyStack(){
             photos: [],
             spare: [],
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<Lightning   color='#fff' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#fff' size={16} />} />,
             icon3: <Icon as ={<Package    color='#fff' size={16} />} />,
@@ -54,6 +57,9 @@ export default function MyStack(){
             photos: [],
             spare: [0],
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<Lightning   color='#fff' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#fff' size={16} />} />,
             icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
@@ -69,6 +75,9 @@ export default function MyStack(){
             photos: [],
             spare: [0],
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<Lightning   color='#fff' size={16} />} />,
             icon2: <Icon as ={<LightbulbFilament color='#fff' size={16} />} />,
             icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
@@ -84,6 +93,9 @@ export default function MyStack(){
           photos: [2],
           spare: [],
           image: require('../../../assets/avatars/tower2.png'),
+          dataCenter: require('../../../assets/avatars/datacenter.png'),
+          power: require('../../../assets/avatars/generator----.png'),
+          dce: require('../../../assets/avatars/AC.png'),
           icon: <Icon as ={<Lightning   color='#fff' size={16} />} />,
           icon2: <Icon as ={<LightbulbFilament color='#fff' size={16} />} />,
           icon3: <Icon as ={<Package  color='#fff' size={16} />} />,
@@ -140,9 +152,27 @@ export default function MyStack(){
 
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
-            <View style={styles.avatarContainer }>
-              <Image source={data[0].image} style={styles.avatar}/>
-            </View>
+
+            {(item.departamento == "Telco") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].image} style={styles.avatar}/>
+                </View>}
+
+                {(item.departamento == "Data Center") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].dataCenter} style={styles.picsContainer}/>
+                </View>}
+
+                {(item.departamento == "Climatização e Electricidade" || item.departamento == "HVAC") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].dce} style={styles.picsContainer}/>
+                </View>}
+
+                {(item.departamento == "Energia" || item.departamento == "Power") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].image} style={styles.picsContainer}/>
+                </View>}
+
             <Box flexDirection={'column'}>
             
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
@@ -276,6 +306,10 @@ const styles=StyleSheet.create({
     },
     filled:{
       backgroundColor: colors.green_dark,
+    },
+    picsContainer:{
+      height: 50,
+      width: 50,
     },
     unfilled:{
       backgroundColor: colors.red

@@ -37,48 +37,44 @@ function handleTelas(){
 }
   
   
-    const data = [
-        {
-            id: 1,
-            nome: 'Ford , AFW 136 MP',
-            info: 'Maputo, Motorisra: oficina',
-            image: require('../../assets/avatars/car.png'),
-            icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
-            icon3: require('../../assets/avatars/Park.png'),
-        },
-        {
-            id: 2,
-            nome: 'Toyota , AFW 177 MP',
-            info: 'Gaza, Motorisra: oficina',
-            image: require('../../assets/avatars/car.png'),
-            icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
-            icon3: require('../../assets/avatars/Park.png'),
-            
-        },
-        {
-            id: 3,
-            nome: 'Mazda , AFW 177 MP',
-            info: 'Vilankulos, Motorisra: oficina',
-            image: require('../../assets/avatars/car.png'),
-            icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
-            icon2: require('../../assets/avatars/HAND.png'),
-            icon3: require('../../assets/avatars/Park.png'),
-            
-        },
-        {
-          id: 4,
-          nome: 'Mitsubishi , AFW 177 MP',
-          info: 'Sofala, Motorisra: oficina',
-          image: require('../../assets/avatars/car.png'),
-          icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
-          icon2: require('../../assets/avatars/HAND.png'),
-          icon3: require('../../assets/avatars/Park.png'),
-          
-      },
-        
-    ];
+  const data = [
+    {
+      id: 1,
+      nome: 'Ford , AFW 136 MP',
+      info: 'Maputo, Motorisra: oficina',
+      image: require('../../assets/avatars/car.png'),
+      icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/HAND.png'),
+      icon3: require('../../assets/avatars/Park.png'),
+    },
+    {
+      id: 2,
+      nome: 'Toyota , AFW 177 MP',
+      info: 'Gaza, Motorisra: oficina',
+      image: require('../../assets/avatars/car.png'),
+      icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/HAND.png'),
+      icon3: require('../../assets/avatars/Park.png'), 
+    },
+    {
+      id: 3,
+      nome: 'Mazda , AFW 177 MP',
+      info: 'Vilankulos, Motorisra: oficina',
+      image: require('../../assets/avatars/car.png'),
+      icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/HAND.png'),
+      icon3: require('../../assets/avatars/Park.png'),
+    },
+    {
+      id: 4,
+      nome: 'Mitsubishi , AFW 177 MP',
+      info: 'Sofala, Motorisra: oficina',
+      image: require('../../assets/avatars/car.png'),
+      icon: <Icon as ={<Pencil  color='#A1C861' size={16} />} />,
+      icon2: require('../../assets/avatars/HAND.png'),
+      icon3: require('../../assets/avatars/Park.png'),
+  },    
+  ];
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
 
@@ -187,7 +183,7 @@ function handleTelas(){
                 </View>
                 <Icon as ={<Jeep color={colors.green[700]}/>} />
             </HStack>
-            <View mb={'70%'}>
+            <View mb={'42%'}>
                 <FlatList            
                     ListHeaderComponentStyle = {styles.listHeader}
                     data = {dados}
@@ -198,7 +194,7 @@ function handleTelas(){
                     showsVerticalScrollIndicator={false}
                 />
             </View>
-            <View  alignItems='flex-end' justifyContent='center' display='flex' mt='10%'>
+            <View  alignItems='flex-end' justifyContent='center' position='absolute' display='flex' mt='138%' ml={'72%'}>
                     <ButtonHandle
                         title='+'
                         w={14}

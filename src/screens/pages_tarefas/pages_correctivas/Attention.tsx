@@ -42,15 +42,13 @@ export function Attention() {
     useEffect(()=>{
     (async()=>{
         
-     api.get("tarefa/correctiva/complete").then(d=>{
-        setDados(d.data.complete);
+     api.get("tarefa/correctiva/atrasado").then(d=>{
+        setDados(d.data.atrasado);
         setIsLoading(false);
-        console.log(d.data.complete)
+        console.log(d.data.atrasado)
 
     });
-    // const alvo  =  dadoss.data; 
-    
-        // setDados(data)
+   
     })()
     
 
@@ -62,6 +60,9 @@ export function Attention() {
             nome: '4552, Matola',
             info: 'Mario Joaquim, estado: novos',
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<HandPalm    color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<MapPinLine     color='#A1C861' size={16} />} />,
@@ -73,6 +74,9 @@ export function Attention() {
             nome: '4352, Pateke',
             info: 'Samuel Joaquim, estado: novos',
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -84,6 +88,9 @@ export function Attention() {
             nome: '4652, Museu',
             info: 'David Joaquim, estado: novos',
             image: require('../../../assets/avatars/tower2.png'),
+            dataCenter: require('../../../assets/avatars/datacenter.png'),
+            power: require('../../../assets/avatars/generator----.png'),
+            dce: require('../../../assets/avatars/AC.png'),
             icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
             icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
             icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -95,6 +102,9 @@ export function Attention() {
           nome: '5992, Chibuto',
           info: 'Helio Joaquim, estado: novos',
           image: require('../../../assets/avatars/tower2.png'),
+          dataCenter: require('../../../assets/avatars/datacenter.png'),
+          power: require('../../../assets/avatars/generator----.png'),
+          dce: require('../../../assets/avatars/AC.png'),
           icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
           icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
           icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -103,6 +113,8 @@ export function Attention() {
       },
         
     ];
+
+
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState()
@@ -119,10 +131,29 @@ export function Attention() {
     }
 
     const oneUser = ( {item} ) =>(
+
         <View style={styles.item}>
-            <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
-            </View>
+
+                {(item.departamento == "Telco") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].image} style={styles.avatar}/>
+                </View>}
+
+                {(item.departamento == "Data Center") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].dataCenter} style={styles.picsContainer}/>
+                </View>}
+
+                {(item.departamento == "Climatização e Electricidade" || item.departamento == "HVAC") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].dce} style={styles.picsContainer}/>
+                </View>}
+
+                {(item.departamento == "Energia" || item.departamento == "Power") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].image} style={styles.picsContainer}/>
+                </View>}
+
             <Box flexDirection={'column'}>
             
             <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
@@ -131,16 +162,16 @@ export function Attention() {
                 fontFamily={fonts.body}
                 fontSize={12}
                 color={colors.blueGray[400]}
-                marginLeft={5}>{item.jobcard_tecniconome},&nbsp;estado:&nbsp;{item.ttnumber_status}
+                marginLeft={5}>{item.jobcard_tecniconome},&nbsp;{item.ttnumber_status}
             </Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon}</Icon>
+                  <Icon>{data[0].icon}</Icon>
                 </View>
 
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
+                  <Icon>{data[0].icon2}</Icon>
                 </View>
 
 
@@ -174,36 +205,45 @@ export function Attention() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
-  return (
-    <VStack flex={1} pb={'48%'} bg="white">
+    if(isloading)
+        return(
+            <Load/>
+
+        )
         
-        <VStack flex={1} px={6}>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-                <View>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Correctivas 
-                </Text>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                  em Atenção
-                </Text>
-                </View>
-                <Icon as ={<Warning  color={colors.green[700]}/>} />
-            </HStack>
-            <View>
-                <FlatList            
-                    ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
-                    renderItem = { oneUser }
-                    ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
-                    keyExtractor = { data => data.id }
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
-      </VStack>
-    </VStack>
-  );
-}
+        else
+
+        return (
+          <VStack flex={1} pb={'48%'} bg="white">
+              
+              <VStack flex={1} px={6}>
+                  <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                      <View>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                      Correctivas 
+                      </Text>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                        em Atenção
+                      </Text>
+                      </View>
+                      <Icon as ={<Warning  color={colors.green[700]}/>} />
+                  </HStack>
+                  <View>
+                      <FlatList            
+                          ListHeaderComponentStyle = {styles.listHeader}
+                          data = {dados}
+                          renderItem = { oneUser }
+                          ItemSeparatorComponent = { itemSeparator }
+                          ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                          keyExtractor = { data => data.id }
+                          showsVerticalScrollIndicator={false}
+                      />
+                  </View>
+            </VStack>
+          </VStack>
+        );
+
+      }
 
 
 const styles=StyleSheet.create({
@@ -231,6 +271,10 @@ const styles=StyleSheet.create({
         width: 50,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    picsContainer:{
+      height: 50,
+      width: 50,
     },
     avatar:{
         height: 35,
