@@ -192,12 +192,7 @@
         api.get("tarefa/correctiva/inprogress").then(d=>{
             setDados(d.data.progresso);
             setIsLoading(false);
-            console.log(d.data.progresso);
-
         });
-        // const alvo  =  dadoss.data; 
-        
-            // setDados(data)
         })()
         },[])
 
@@ -234,7 +229,7 @@
                 <View flexDirection={'column'} margin='0.5' >
                   <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
 
-                  {shouldShow[item.id] ? (  (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On site') ?
+                  {shouldShow[item.id] ? (  (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'On site') ?
                   (
                   <View display='flex' flexDirection='row' justifyContent='space-between'>
                     
@@ -273,7 +268,7 @@
 
                   </View>
                   ) 
-                  :((utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On route') ?
+                  :((utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'On route') ?
                   (<>
                     <View display='flex' flexDirection='row' justifyContent='space-around'>
                       <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
@@ -287,7 +282,7 @@
                       </View>
                     </View>
                     </>) :
-                    ((utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'Approved')  ?
+                    ((utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'Approved')  ?
                     (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
                   <TouchableOpacity onPress={message}>
                   <Image source={data[0].icon8} style={styles.avatar}/>
@@ -317,11 +312,22 @@
                   <Icon as ={<Info color={colors.blueGray[400]}/>} />
                   </TouchableOpacity>
 
-                  { ( 
-                    (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On site')  || 
-                    (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'On route') || 
-                  (utilizadorr.nome == item.tecniconome && item.jobcard_estadoactual == 'Approved')  ||
-                  ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || item.jobcard_estadoactual == 'On site' ) ) )  &&
+               
+                  { 
+                  ( 
+                    console.log("Nome do user: "+utilizadorr.nome),
+                    console.log("Nome do technician: "+item.jobcard_tecniconome),
+                    console.log("Estado actual: "+item.jobcard_estadoactual),
+                    console.log("Funcao do user: "+utilizadorr.funcao),
+                    console.log("Nivel de acesso do user: "+utilizadorr.nivel_acesso),
+                    (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'On site')  || 
+                    (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'On route') || 
+                  (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'Approved')  ||
+                  ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || item.jobcard_estadoactual == 'On site' ) ) 
+              
+                  ) 
+            
+                  &&
                   <View>
                     {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                       icon={<CaretDown  color={colors.primary[700]} size={10}/>}

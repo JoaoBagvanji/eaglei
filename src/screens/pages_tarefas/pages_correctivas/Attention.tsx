@@ -119,7 +119,7 @@ export function Attention() {
     const oneUser = ( {item} ) =>(
         <View style={styles.item}>
             <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
+              <Image source={data[0].image} style={styles.avatar}/>
             </View>
             <Box flexDirection={'column'}>
             
@@ -133,12 +133,12 @@ export function Attention() {
             </Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon}</Icon>
+                  <Icon>{data[0].icon}</Icon>
                 </View>
 
                 
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
+                  <Icon>{data[0].icon2}</Icon>
                 </View>
 
 
