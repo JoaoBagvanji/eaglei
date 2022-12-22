@@ -48,9 +48,7 @@ export function Attention() {
         console.log(d.data.complete)
 
     });
-    // const alvo  =  dadoss.data; 
-    
-        // setDados(data)
+   
     })()
     
 
@@ -174,36 +172,45 @@ export function Attention() {
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
-  return (
-    <VStack flex={1} pb={'48%'} bg="white">
+    if(isloading)
+        return(
+            <Load/>
+
+        )
         
-        <VStack flex={1} px={6}>
-            <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
-                <View>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Correctivas 
-                </Text>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                  em Atenção
-                </Text>
-                </View>
-                <Icon as ={<Warning  color={colors.green[700]}/>} />
-            </HStack>
-            <View>
-                <FlatList            
-                    ListHeaderComponentStyle = {styles.listHeader}
-                    data = {data}
-                    renderItem = { oneUser }
-                    ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
-                    keyExtractor = { data => data.id }
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
-      </VStack>
-    </VStack>
-  );
-}
+        else
+
+        return (
+          <VStack flex={1} pb={'48%'} bg="white">
+              
+              <VStack flex={1} px={6}>
+                  <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
+                      <View>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                      Correctivas 
+                      </Text>
+                      <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
+                        em Atenção
+                      </Text>
+                      </View>
+                      <Icon as ={<Warning  color={colors.green[700]}/>} />
+                  </HStack>
+                  <View>
+                      <FlatList            
+                          ListHeaderComponentStyle = {styles.listHeader}
+                          data = {dados}
+                          renderItem = { oneUser }
+                          ItemSeparatorComponent = { itemSeparator }
+                          ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                          keyExtractor = { data => data.id }
+                          showsVerticalScrollIndicator={false}
+                      />
+                  </View>
+            </VStack>
+          </VStack>
+        );
+
+      }
 
 
 const styles=StyleSheet.create({
