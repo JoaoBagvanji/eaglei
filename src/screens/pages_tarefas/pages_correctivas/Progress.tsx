@@ -103,6 +103,9 @@
                 situacao: 'a caminho',
                 info: 'Mario Joaquim,a caminho...',
                 image: require('../../../assets/avatars/tower2.png'),
+                dataCenter: require('../../../assets/avatars/datacenter.png'),
+                power: require('../../../assets/avatars/generator----.png'),
+                dce: require('../../../assets/avatars/AC.png'),
                 icon: <Icon as ={<Lightning  color='#A1C861' size={16} />} />,
                 icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
                 icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -119,6 +122,9 @@
                 situacao: 'no local',
                 info: 'Samuel Joaquim,no local',
                 image: require('../../../assets/avatars/tower2.png'),
+                dataCenter: require('../../../assets/avatars/datacenter.png'),
+                power: require('../../../assets/avatars/generator----.png'),
+                dce: require('../../../assets/avatars/AC.png'),
                 icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
                 icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
                 icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -135,6 +141,9 @@
                 situacao: 'a caminho',
                 info: 'David Joaquim,a caminho...',
                 image: require('../../../assets/avatars/tower2.png'),
+                dataCenter: require('../../../assets/avatars/datacenter.png'),
+                power: require('../../../assets/avatars/generator----.png'),
+                dce: require('../../../assets/avatars/AC.png'),
                 icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
                 icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
                 icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -151,6 +160,9 @@
               situacao: 'no local',
               info: 'Helio Joaquim,no local',
               image: require('../../../assets/avatars/tower2.png'),
+              dataCenter: require('../../../assets/avatars/datacenter.png'),
+              power: require('../../../assets/avatars/generator----.png'),
+              dce: require('../../../assets/avatars/AC.png'),
               icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
               icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
               icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -167,6 +179,9 @@
               situacao: 'aprovado',
               info: 'Jayson Martins,aprovado',
               image: require('../../../assets/avatars/tower2.png'),
+              dataCenter: require('../../../assets/avatars/datacenter.png'),
+              power: require('../../../assets/avatars/generator----.png'),
+              dce: require('../../../assets/avatars/AC.png'),
               icon: <Icon as ={<Lightning   color='#A1C861' size={16} />} />,
               icon2: <Icon as ={<LightbulbFilament color='#A1C861' size={16} />} />,
               icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
@@ -219,9 +234,26 @@
 
             <View style={styles.item}>
 
+                {(item.departamento == "Telco") &&
                 <View style={styles.avatarContainer }>
                   <Image source={data[0].image} style={styles.avatar}/>
-                </View>
+                </View>}
+
+                {(item.departamento == "Data Center") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].dataCenter} style={styles.picsContainer}/>
+                </View>}
+
+                {(item.departamento == "Climatização e Electricidade" || item.departamento == "HVAC") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].dce} style={styles.picsContainer}/>
+                </View>}
+
+                {(item.departamento == "Energia" || item.departamento == "Power") &&
+                <View style={styles.avatarContainer }>
+                  <Image source={data[0].image} style={styles.picsContainer}/>
+                </View>}
+
                 
                 <Box flexDirection={'column'}>
                 
@@ -229,7 +261,7 @@
                 <View flexDirection={'column'} margin='0.5' >
                   <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.jobcard_tecniconome}, <Text  fontFamily={fonts.heading}>{item.jobcard_estadoactual}</Text></Text>
 
-                  {shouldShow[item.id] ? (  (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'On site') ?
+                  {shouldShow[item.id] ? (  (utilizadorr.nome == item.jobcard_tecniconome && (item.jobcard_estadoactual == 'On site' || item.jobcard_estadoactual == 'On Site')) ?
                   (
                   <View display='flex' flexDirection='row' justifyContent='space-between'>
                     
@@ -289,7 +321,7 @@
                   </TouchableOpacity>
                   
                   </View>):
-                    ( ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || item.jobcard_estadoactual == 'On site' ) )  ?
+                    ( ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || (item.jobcard_estadoactual == 'On site' || item.jobcard_estadoactual == 'On Site') ) )  ?
                   (<View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
               <TouchableOpacity>
               <Icon>{data[0].icon9}</Icon>
@@ -315,15 +347,11 @@
                
                   { 
                   ( 
-                    console.log("Nome do user: "+utilizadorr.nome),
-                    console.log("Nome do technician: "+item.jobcard_tecniconome),
-                    console.log("Estado actual: "+item.jobcard_estadoactual),
-                    console.log("Funcao do user: "+utilizadorr.funcao),
-                    console.log("Nivel de acesso do user: "+utilizadorr.nivel_acesso),
-                    (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'On site')  || 
+                    console.log("Departamento: "+item.departamento),
+                    (utilizadorr.nome == item.jobcard_tecniconome && (item.jobcard_estadoactual == 'On site' || item.jobcard_estadoactual == 'On Site'))  || 
                     (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'On route') || 
-                  (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'Approved')  ||
-                  ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || item.jobcard_estadoactual == 'On site' ) ) 
+                    (utilizadorr.nome == item.jobcard_tecniconome && item.jobcard_estadoactual == 'Approved')  ||
+                    ( (utilizadorr.funcao == "Supervisor" || utilizadorr.nivel_acesso == "admin") && (item.jobcard_estadoactual == 'On route' || (item.jobcard_estadoactual == 'On site' || item.jobcard_estadoactual == 'On Site') ) ) 
               
                   ) 
             
@@ -417,6 +445,10 @@
             width: 50,
             justifyContent: 'center',
             alignItems: 'center'
+          },
+          picsContainer:{
+            height: 50,
+            width: 50,
           },
           avatar:{
             height: 35,
