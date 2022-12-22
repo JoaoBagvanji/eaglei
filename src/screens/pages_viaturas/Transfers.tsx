@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image as Imagens } from 'native-base';
-import { CaretDown, CaretUp, CheckCircle, Info, MagnifyingGlass, Pencil, Plus, ThumbsDown, ThumbsUp } from 'phosphor-react-native'
+import { CaretDown, CaretUp, CheckCircle, HourglassMedium, Info, MagnifyingGlass, Pencil, Plus, ThumbsDown, ThumbsUp, X } from 'phosphor-react-native'
 import { Header } from '../../components/Header';
 import colors from '../../styles/colors';
 
@@ -11,6 +11,7 @@ import  {useNavigation}  from '@react-navigation/native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import FormTransferencia from '../../routes/r_viaturas/trans.routes';
 import api from '../../services/api';
+import { Load } from '../../components/Load';
 
 const Stack = createStackNavigator();
 
@@ -144,9 +145,17 @@ const data = [
                   <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
                     <Icon as ={<Info color={colors.blueGray[400]}/>} />
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+                  {(item.estado == 'Aprovado') && <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
                     <Icon as ={<CheckCircle color={colors.green[600]}/>} size={20}/>
-                  </TouchableOpacity>
+                  </TouchableOpacity>}
+
+                  {(item.estado == 'Pendente') && <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+                    <Icon as ={<HourglassMedium color={colors.yellow[600]}/>} size={20}/>
+                  </TouchableOpacity>}
+
+                  {(item.estado == 'Reprovado') && <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+                    <Icon as ={<X color={colors.red[600]}/>} size={20}/>
+                  </TouchableOpacity>}
                   <View >
                     {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                       icon={<CaretDown  color={colors.primary[700]} size={10}/>}
@@ -164,7 +173,14 @@ const data = [
         function itemSeparator(){
             return <View style={styles.separator}/>
         }
+        if(isloading)
+        return(
+            <Load/>
     
+        )
+        
+        else
+    {
     
   return (
     <VStack flex={1} pb={6} bg="white">
@@ -204,7 +220,7 @@ const data = [
     </VStack>
   );
 }
-
+}
 const styles = StyleSheet.create({
     formButton:{
         alignItems: 'center',
