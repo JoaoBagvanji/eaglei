@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton, Image } from 'native-base';
-import { Info, CircleWavyCheck, CaretDown, CaretUp, Plus, PencilLine, MagnifyingGlass } from 'phosphor-react-native';
+import { Info, CircleWavyCheck, CaretDown, CaretUp, Plus, PencilLine, MagnifyingGlass, SkipBack, SkipForward } from 'phosphor-react-native';
 import { FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -170,8 +170,40 @@ export function Artigos() {
 
   return (
     <VStack flex={1} bg="white">
+          <View flexDirection='row' borderRadius={10} alignItems='center' ml='5%'>
+            <IconButton backgroundColor={colors.green[700]} borderRadius={20}
+              icon={<SkipBack color={colors.white} size={14}/>}
+              />
+          
+            <View p={4} flexDirection='row' width='70%' backgroundColor='blueGray.100' borderRadius={10} alignItems='center' ml='5%'>
+              
+              <Feather
+                name='search'
+                size={20}
+                color='black'
+                style={{ marginLeft: 1, marginRight: 4 }}
+              />
+              <TextInput 
+                value={input} 
+                onChangeText={(text) => setInput(text)} 
+                style={styles.textinput} 
+                placeholder="Search" 
+                cursorColor='black'
+              />
+            </View>
+            <IconButton backgroundColor={colors.green[700]} borderRadius={20}
+              icon={<SkipForward  color={colors.white} size={14}/>} ml='5%'
+              />
+            <View width='90%' ml='10%'>
+              <SearchFilter data={dados} input={input} setInput={setInput}/>
+            </View>
+            
 
-      <VStack flex={1} px={6} mt='10%'>
+            
+
+          </View>
+
+      <VStack flex={1} px={6} mt='5%'>
         <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center' flexDirection="row">
           <View>
             <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
@@ -190,25 +222,8 @@ export function Artigos() {
             </TouchableOpacity>
           </View>
         </HStack>
-        <View bg="white" mb={'70%'}>
-          <View p={4} flexDirection='row' width='90%' backgroundColor='gray.100' borderRadius={10} alignItems='center' ml='5%' mb='5%'>
-            <Feather
-              name='search'
-              size={20}
-              color='black'
-              style={{ marginLeft: 1, marginRight: 4 }}
-            />
-            <TextInput 
-              value={input} 
-              onChangeText={(text) => setInput(text)} 
-              style={styles.textinput} 
-              placeholder="Search" 
-              cursorColor='black'
-            />
-          </View>
-          <View width='90%' ml='10%'>
-            <SearchFilter data={dados} input={input} setInput={setInput}/>
-          </View>
+        <View bg="white" mb={'50%'}>
+          
 
           <FlatList
             ListHeaderComponentStyle={styles.listHeader}
