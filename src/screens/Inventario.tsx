@@ -129,7 +129,7 @@ export  function Inventario() {
    
     </VStack>
 
-        <VStack flex={4} mx='2%'>
+        <VStack flex={4} mx='2%' mb={'10%'}>
                 <SafeAreaView>
                         <FlatList
                             numColumns={2} 

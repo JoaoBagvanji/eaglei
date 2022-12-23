@@ -6,9 +6,10 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AtribuicaoViatura } from './AtribuicaoViatura';
 import { ButtonHandle } from '../../components/ButtonHandle';
-import ViaturasRegist from '../pages_tarefas/pages_projectos/pages_pro/ViaturasRegist';
+import ViaturasRegist from '../pages_tarefas/pages_projectos/pages_pro/ViaturasInfo';
 import api from '../../services/api';
 import { Load } from '../../components/Load';
+import ViaturasInfo from '../pages_tarefas/pages_projectos/pages_pro/ViaturasInfo';
 
 
 
@@ -21,11 +22,12 @@ export default function MyStack() {
          <Stack.Screen name="AtribuicaoViatura" component={AtribuicaoViatura} />
          <Stack.Screen name="ViaturasRegist" component={ViaturasRegist} />
          <Stack.Screen name="Vehicles" component={Vehicles} />
+         <Stack.Screen name="ViaturasInfo" component={ViaturasInfo} />
      </Stack.Navigator>
 
  );
 }
-export function Vehicles() {
+export function Vehicles({navigation}) {
   type Nav ={
     navigate : (value: string) => void;
 }
@@ -35,7 +37,8 @@ const { navigate } = useNavigation<Nav>()
 function handleTelas(){
   navigate('AtribuicaoViatura') as never;
 }
-  
+
+ 
   
   const data = [
     {
@@ -89,6 +92,7 @@ function handleTelas(){
     }
     const[isloading, setIsLoading]=useState(true);
     const [dados, setDados]=useState([]);
+
     useEffect(()=>{
     (async()=>{
         
@@ -137,7 +141,7 @@ function handleTelas(){
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity onPress={() =>   navigation.navigate('ViaturasInfo', {id: item._id}) } style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >

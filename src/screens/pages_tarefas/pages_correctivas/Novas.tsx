@@ -34,6 +34,7 @@ export default function MyStack(){
   const[isloading, setIsLoading]=useState(true);
 
   const [dados, setDados] = useState( [] );
+
   const [aceita, setAceita] = useState([]);
 
 
@@ -118,10 +119,7 @@ export default function MyStack(){
     const [ showPosition, setShowPosition ] = useState();
 
     const {utilizadorr}=useContext(AuthContext);
-    console.log("Nome do Utilizador_______"+utilizadorr.nome);
-    console.log("Funcao do Utilizador_______"+utilizadorr.funcao);
-    console.log("ao do Utilizador_______"+utilizadorr.regiao);
-
+   
     async function handleDropDownItems(position){
       let val_sec = await Array.from({ length: data.length}, (v,p) => false)
       val_sec[position] = true;
@@ -137,6 +135,10 @@ export default function MyStack(){
       navigate('FormCorNovas') as never;
     }
   
+    const handleAceita = () => {
+            if (!aceita)
+            alert('Já possui uma manutenção em progresso!');
+    }
 
     const oneUser = ({item}) => (
       
@@ -213,7 +215,9 @@ export default function MyStack(){
                                 alignItems='center'
                                 justifyContent='center'
                                 display='flex'>
-                                <Icon>{data[0].icon2}</Icon>
+                                <TouchableOpacity onPress={handleAceita}>
+                                            <Icon>{data[0].icon2}</Icon>
+                                      </TouchableOpacity>
                             </View>
                         }
 
@@ -324,11 +328,14 @@ export default function MyStack(){
 
             </View>
             </VStack>
-                <VStack mb={'20%'} mr={'15%'} alignSelf={'flex-end'}>
-                    <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
-                        <Plus size={22} color={colors.green[700]} />
-                    </TouchableOpacity>
-                </VStack>
+
+            {  (utilizadorr.funcao =="Call Center" || utilizadorr.funcao =="Back Office" || utilizadorr.nivel_acesso == "admin") &&    
+                        <VStack mb={'20%'} mr={'15%'} alignSelf={'flex-end'}>
+                            <TouchableOpacity style={styles.formButton}  onPress={() => navigate('FormTelco')}>
+                                <Plus size={22} color={colors.green[700]} />
+                            </TouchableOpacity>
+                        </VStack>
+            }
     </VStack>
   );
 }
