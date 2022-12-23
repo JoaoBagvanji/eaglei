@@ -10,6 +10,7 @@ import ViaturasRegist from '../pages_tarefas/pages_projectos/pages_pro/ViaturasI
 import api from '../../services/api';
 import { Load } from '../../components/Load';
 import ViaturasInfo from '../pages_tarefas/pages_projectos/pages_pro/ViaturasInfo';
+import ViaturaEdit from '../pages_tarefas/pages_projectos/pages_pro/ViaturaEdit';
 
 
 
@@ -22,6 +23,7 @@ export default function MyStack() {
          <Stack.Screen name="AtribuicaoViatura" component={AtribuicaoViatura} />
          <Stack.Screen name="ViaturasRegist" component={ViaturasRegist} />
          <Stack.Screen name="Vehicles" component={Vehicles} />
+         <Stack.Screen name="ViaturaEdit" component={ViaturaEdit} />
          <Stack.Screen name="ViaturasInfo" component={ViaturasInfo} />
      </Stack.Navigator>
 
@@ -120,7 +122,10 @@ function handleTelas(){
               <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.regiao}, {item.motorista}</Text>
               {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                 <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{data[0].icon}</Icon>
+                  <TouchableOpacity activeOpacity={0.7} onPress={() =>   navigation.navigate('ViaturaEdit', {id: item._id}) } >
+                    <Icon>{data[0].icon}</Icon>
+                  </TouchableOpacity>
+                  
                 </View>
 
                 {(item.motorista == 'Oficina' || item.motorista == 'Parque') && <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
@@ -193,7 +198,7 @@ function handleTelas(){
                     data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                    ListEmptyComponent =  {<Text>Não possui permissões para esta lista</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />

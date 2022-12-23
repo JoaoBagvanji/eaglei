@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon,} from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon, Image} from 'native-base';
 import { Car, MapPin } from 'phosphor-react-native'
 
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
@@ -7,49 +7,49 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Matricula from '../../../../components/Matricula';
 import Modelo from '../../../../components/Modelo';
-import Kilometragem from '../../../../components/Kilometragem';
 import Marca from '../../../../components/Marca';
 import Ano from '../../../../components/Ano';
-import Parque from '../../../../components/Parque';
 import api from '../../../../services/api';
 import { setEnvironmentData } from 'worker_threads';
 import { TextInput } from 'react-native-paper';
+import userImg from '../../../../assets/avatars/atrelado.png';
+import { Load } from '../../../../components/Load';
 
-const ViaturasInfo = (props) => {
+const AtreladoInfo = (props) => {
     const { fonts } = useTheme();
     const { colors } = useTheme();
-    const [ disposicao, setDisposicao ] = useState("");
-    const [ details, setDetails ] = useState("");
     const [ matricula, setMatricula ] = useState("");
     const [ modelo, setModelo ] = useState("");
-    const [ kilometragem, setKilometragem ] = useState("");
     const [ marca, setMarca ] = useState("");
     const [ ano, setAno ] = useState("");
-
-    const [ reason, setReason ] = useState("");
-
-    const [viat, seViat]=useState({
-        responsavel:'',
+    const[isloading, setIsLoading]=useState(true);
+    const [atrelado, setAtrelado]=useState({
         modelo:'',
         matricula:'',
-        regiao:'',
-        marca:'',
-        ano_aquisicao:'',
-        kilometragem:''
+        dieselbowser:'',
+        data_registo1:'',
 
     })
 
     useEffect(()=>{
         (async()=>{
             
-         api.get(`/viatura/detalhes/${props.route.params.id}`).then(d=>{
-           
-            seViat(d.data);
+         api.get(`/viatura/detalhesatrelado/${props.route.params.id}`).then(d=>{
+            setIsLoading(false);
+            setAtrelado(d.data);
     
         });
       
         })()
         },[])
+        if(isloading)
+        return(
+            <Load/>
+      
+        )
+        
+        else
+      {
 
     return (
         <VStack flex={1} pb={4} mb={16} bg="white">
@@ -61,11 +61,11 @@ const ViaturasInfo = (props) => {
                         Detalhes 
                     </Text>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                        da Viatura
+                        da Atrelado
                     </Text>
                     </View>
-                    <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
-                        <Icon as ={<Car  color={colors.white}/>} />
+                    <View backgroundColor='white' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
+                        <Image source={userImg} width='40' height='30' borderRadius='40' alt='Imagem de artigos' />
                     </View>
                 </HStack>
         </VStack>
@@ -73,55 +73,26 @@ const ViaturasInfo = (props) => {
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Viatura</Text>
+                            <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Atrelado</Text>
                         </View>
                         <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
-                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Motorista </Text>
-                        </View>
-                        
+
+                        {/* <View style={styles.uinputView}>
+                            <Modelo value={atrelado.modelo} setValue={setModelo}/>
+                        </View> */}
+
                         <View style={styles.uinputView}>
-                            <Parque value={viat.responsavel} setValue={setDisposicao}/>
+                            <Marca value={atrelado.dieselbowser} setValue={setMarca}/>
                         </View>
 
                         <View style={styles.uinputView}>
-                            <Modelo value={viat.modelo} setValue={setModelo}/>
-                        </View>
-
-                        <View style={styles.uinputView}>
-                            <Matricula value={viat.matricula} setValue={setMatricula}/>
-                        </View>
-
-                        <View style={styles.uinputView}>
-                        <TextInput
-                            style={styles.txtInput} 
-                            selectionColor='#12375C' 
-                            outlineColor='#cce3f9'
-                            activeOutlineColor='#12375C' 
-                            underlineColor='#12375C'
-                            left={<TextInput.Icon icon={MapPin}
-                            color={colors.green[600]} />}
-                            mode="outlined"
-                            label="Região"
-                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                            value={viat.regiao}
-                            onChangeText={(text) => setReason(text)}
-                            autoComplete='off'
-                            />
-                        </View>
-
-                        <View style={styles.uinputView}>
-                            <Marca value={viat.marca} setValue={setMarca}/>
-                        </View>
-
-                        <View style={styles.uinputView}>
-                            <Ano value={viat.ano_aquisicao} setValue={setAno}/>
+                            <Matricula value={atrelado.matricula} setValue={setMatricula}/>
                         </View>
 
                         <View mb={'10%'} style={styles.uinputView}>
-                            <Kilometragem value={viat.kilometragem} setValue={setKilometragem}/>
+                            <Ano value={atrelado.data_registo1} setValue={setAno}/>
                         </View>
-                        
+
                     </ScrollView>
                 </KeyboardAvoidingView>
             </VStack>
@@ -129,8 +100,8 @@ const ViaturasInfo = (props) => {
         </VStack> 
     );
     }
-
-    export default ViaturasInfo;
+}
+    export default AtreladoInfo;
 
     const styles =StyleSheet.create({
         txtInput:{
