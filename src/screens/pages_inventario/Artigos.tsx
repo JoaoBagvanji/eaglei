@@ -170,7 +170,7 @@ export function Artigos() {
 
   return (
     <VStack flex={1} bg="white">
-          <View flexDirection='row' borderRadius={10} alignItems='center' ml='5%'>
+          <View flexDirection='row' borderRadius={10} alignItems='center' ml='3%'>
             <IconButton backgroundColor={colors.green[700]} borderRadius={20}
               icon={<SkipBack color={colors.white} size={14}/>}
               />
@@ -192,7 +192,7 @@ export function Artigos() {
               />
             </View>
             <IconButton backgroundColor={colors.green[700]} borderRadius={20}
-              icon={<SkipForward  color={colors.white} size={14}/>} ml='5%'
+              icon={<SkipForward  color={colors.white} size={14}/>} ml='4%'
               />
             <View width='90%' ml='10%'>
               <SearchFilter data={dados} input={input} setInput={setInput}/>
