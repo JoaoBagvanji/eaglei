@@ -68,10 +68,10 @@ const ViaturaEdit = (props) => {
                 <HStack w="full" justifyContent="space-between" alignItems='center' flexDirection="row">
                     <View>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                        Detalhes 
+                        Editar 
                     </Text>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                        da Viatura
+                        Viatura
                     </Text>
                     </View>
                     <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>

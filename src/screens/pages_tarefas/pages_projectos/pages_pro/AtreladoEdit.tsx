@@ -60,10 +60,10 @@ const AtreladoEdit = (props) => {
                 <HStack w="full" justifyContent="space-between" alignItems='center' flexDirection="row">
                     <View>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                        Detalhes 
+                        Editar 
                     </Text>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                        da Atrelado
+                        Atrelado
                     </Text>
                     </View>
                     <View backgroundColor='white' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
