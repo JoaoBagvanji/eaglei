@@ -18,8 +18,8 @@ import { TextInput } from 'react-native-paper';
 const ViaturasInfo = (props) => {
     const { fonts } = useTheme();
     const { colors } = useTheme();
+    
     const [ disposicao, setDisposicao ] = useState("");
-    const [ details, setDetails ] = useState("");
     const [ matricula, setMatricula ] = useState("");
     const [ modelo, setModelo ] = useState("");
     const [ kilometragem, setKilometragem ] = useState("");
