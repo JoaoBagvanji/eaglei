@@ -9,6 +9,7 @@ import { Load } from '../../components/Load';
 import AtreladoInfo from '../pages_tarefas/pages_projectos/pages_pro/AtreladoInfo';
 import { createStackNavigator } from '@react-navigation/stack';
 import userImg from '../../assets/avatars/atrelado.png';
+import AtreladoEdit from '../pages_tarefas/pages_projectos/pages_pro/AtreladoEdit';
 
 const Stack = createStackNavigator();
 export default function MyStack() {
@@ -17,6 +18,7 @@ export default function MyStack() {
      <Stack.Navigator  screenOptions={{headerShown: false}} 
              initialRouteName='Atrelado'>
          <Stack.Screen name="AtreladoInfo" component={AtreladoInfo} />
+         <Stack.Screen name="AtreladoEdit" component={AtreladoEdit} />
          <Stack.Screen name="Atrelado" component={Atrelado} />
      </Stack.Navigator>
 
@@ -108,7 +110,10 @@ export  function Atrelado({navigation}) {
             <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.matricula}</Text>
             {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
               <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
+              <TouchableOpacity activeOpacity={0.7} onPress={() =>   navigation.navigate('AtreladoEdit', {id: item._id}) }>
                 <Icon>{data[0].icon}</Icon>
+              </TouchableOpacity>
+                
               </View>
 
               
