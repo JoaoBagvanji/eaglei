@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon,} from 'native-base';
-import { Car, FloppyDisk, MapPin, XCircle } from 'phosphor-react-native'
+import { Article, Calendar, Car, Cards, FloppyDisk, Gauge, Jeep, MapPin, MapPinLine, XCircle } from 'phosphor-react-native'
 
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,12 +17,16 @@ import { TextInput } from 'react-native-paper';
 import { Button } from '../../../../components/Button';
 import { ButtonCancel } from '../../../../components/ButtonCancel';
 import { Load } from '../../../../components/Load';
+import { useNavigation } from '@react-navigation/native';
 
 const ViaturaEdit = (props) => {
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+    const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [ disposicao, setDisposicao ] = useState("");
-    const [ details, setDetails ] = useState("");
     const [ matricula, setMatricula ] = useState("");
     const [ modelo, setModelo ] = useState("");
     const [ kilometragem, setKilometragem ] = useState("");
@@ -91,15 +95,57 @@ const ViaturaEdit = (props) => {
                         </View>
                         
                         <View style={styles.uinputView}>
-                            <Parque value={viat.responsavel} setValue={setDisposicao}/>
+                            <TextInput
+                                style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='#cce3f9'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                left={<TextInput.Icon icon={MapPinLine}
+                                color={colors.green[600]} />}
+                                mode="outlined"
+                                label="Parque"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={viat.responsavel}
+                                onChangeText={(text) => seViat({...viat,...{responsavel:text}})}
+                                autoComplete='off'
+                            />
                         </View>
 
                         <View style={styles.uinputView}>
-                            <Modelo value={viat.modelo} setValue={setModelo}/>
+                            <TextInput
+                            style={styles.txtInput} 
+                            selectionColor='#12375C' 
+                            outlineColor='#cce3f9'
+                            activeOutlineColor='#12375C' 
+                            underlineColor='#12375C' 
+                            left={<TextInput.Icon icon={Article}
+                            color={colors.green[600]} />}
+                            mode="outlined"
+                            label="Modelo"
+                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                            value={viat.modelo}
+                            onChangeText={(text) => seViat({...viat,...{modelo:text}})}
+                            autoComplete='off'
+                            />
                         </View>
 
                         <View style={styles.uinputView}>
-                            <Matricula value={viat.matricula} setValue={setMatricula}/>
+                            <TextInput
+                            style={styles.txtInput} 
+                            selectionColor='#12375C' 
+                            outlineColor='#cce3f9'
+                            activeOutlineColor='#12375C' 
+                            underlineColor='#12375C' 
+                            left={<TextInput.Icon icon={Cards}
+                            color={colors.green[600]} />}
+                            mode="outlined"
+                            label="Matrícula"
+                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                            value={viat.matricula}
+                            onChangeText={(text) => seViat({...viat,...{matricula:text}})}
+                            autoComplete='off'
+                            />
                         </View>
 
                         <View style={styles.uinputView}>
@@ -115,21 +161,63 @@ const ViaturaEdit = (props) => {
                             label="Região"
                             theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
                             value={viat.regiao}
-                            onChangeText={(text) => setReason(text)}
+                            onChangeText={(text) => seViat({...viat,...{regiao:text}})}
                             autoComplete='off'
                             />
                         </View>
 
                         <View style={styles.uinputView}>
-                            <Marca value={viat.marca} setValue={setMarca}/>
+                            <TextInput
+                            style={styles.txtInput} 
+                            selectionColor='#12375C' 
+                            outlineColor='#cce3f9'
+                            activeOutlineColor='#12375C' 
+                            underlineColor='#12375C' 
+                            left={<TextInput.Icon icon={Jeep}
+                            color={colors.green[600]} />}
+                            mode="outlined"
+                            label="Marca"
+                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                            value={viat.marca}
+                            onChangeText={(text) => seViat({...viat,...{marca:text}})}
+                            autoComplete='off'
+                            />
                         </View>
 
                         <View style={styles.uinputView}>
-                            <Ano value={viat.ano_aquisicao} setValue={setAno}/>
+                            <TextInput
+                            style={styles.txtInput} 
+                            selectionColor='#12375C' 
+                            outlineColor='#cce3f9'
+                            activeOutlineColor='#12375C' 
+                            underlineColor='#12375C' 
+                            left={<TextInput.Icon icon={Calendar}
+                            color={colors.green[600]} />}
+                            mode="outlined"
+                            label="Ano de Aquisição"
+                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                            value={viat.ano_aquisicao}
+                            onChangeText={(text) => seViat({...viat,...{ano_aquisicao:text}})}
+                            autoComplete='off'
+                            />
                         </View>
 
                         <View mb={'5%'} style={styles.uinputView}>
-                            <Kilometragem value={viat.kilometragem} setValue={setKilometragem}/>
+                            <TextInput
+                            style={styles.txtInput} 
+                            selectionColor='#12375C' 
+                            outlineColor='#cce3f9'
+                            activeOutlineColor='#12375C' 
+                            underlineColor='#12375C' 
+                            left={<TextInput.Icon icon={Gauge}
+                            color={colors.green[600]} />}
+                            mode="outlined"
+                            label="Kilometragem"
+                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                            value={viat.kilometragem}
+                            onChangeText={(text) => seViat({...viat,...{kilometragem:text}})}
+                            autoComplete='off'
+                            />
                         </View>
 
                         <View marginLeft='30%' marginBottom='10%' marginTop='5%' alignItems='center' justifyContent='space-around' display='flex' flexDirection='row'>
@@ -138,6 +226,11 @@ const ViaturaEdit = (props) => {
                                 title='Atualizar'
                                 leftIcon={<Icon as={<FloppyDisk color={colors.green[700]} size={20}/>} ml={4}/>}
                                 p={2}
+                                onPress={() =>api.post('/viatura/editarviatura',viat).then(d=>{
+                                    if(d.data){
+                                        navigate('Viatura')
+                                    }
+                                })}
                                 /> 
                             </View>
                             <View style={styles.uinputViewbutton}>
@@ -166,7 +259,6 @@ const ViaturaEdit = (props) => {
             width: 300,
             fontSize: 12,
             textAlign: 'center',
-            height: 50,
         },
         uinputView:{
             marginTop: "5%",
