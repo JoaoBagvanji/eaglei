@@ -16,6 +16,7 @@ import { setEnvironmentData } from 'worker_threads';
 import { TextInput } from 'react-native-paper';
 import { Button } from '../../../../components/Button';
 import { ButtonCancel } from '../../../../components/ButtonCancel';
+import { Load } from '../../../../components/Load';
 
 const ViaturaEdit = (props) => {
     const { fonts } = useTheme();
@@ -29,7 +30,7 @@ const ViaturaEdit = (props) => {
     const [ ano, setAno ] = useState("");
 
     const [ reason, setReason ] = useState("");
-
+    const[isloading, setIsLoading]=useState(true);
     const [viat, seViat]=useState({
         responsavel:'',
         modelo:'',
@@ -45,14 +46,21 @@ const ViaturaEdit = (props) => {
         (async()=>{
             
          api.get(`/viatura/detalhes/${props.route.params.id}`).then(d=>{
-           
+            setIsLoading(false);
             seViat(d.data);
     
         });
       
         })()
         },[])
+        if(isloading)
+    return(
+        <Load/>
 
+    )
+    
+    else
+    {
     return (
         <VStack flex={1} pb={4} mb={16} bg="white">
             <SafeAreaView style={styles.container}>
@@ -148,7 +156,7 @@ const ViaturaEdit = (props) => {
         </VStack> 
     );
     }
-
+}
     export default ViaturaEdit;
 
     const styles =StyleSheet.create({
