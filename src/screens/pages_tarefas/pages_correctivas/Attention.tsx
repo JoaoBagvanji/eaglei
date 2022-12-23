@@ -235,7 +235,7 @@ export function Attention({navigation}) {
                           data = {dados}
                           renderItem = { oneUser }
                           ItemSeparatorComponent = { itemSeparator }
-                          ListEmptyComponent =  {<Text>Esta é uma lista de Usuários</Text>}
+                          ListEmptyComponent =  {<Text>Não possui permissões para esta lista</Text>}
                           keyExtractor = { data => data.id }
                           showsVerticalScrollIndicator={false}
                       />

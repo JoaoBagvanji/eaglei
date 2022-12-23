@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon,} from 'native-base';
-import { Car, MapPin } from 'phosphor-react-native'
+import { Car, FloppyDisk, MapPin, XCircle } from 'phosphor-react-native'
 
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,8 +14,11 @@ import Parque from '../../../../components/Parque';
 import api from '../../../../services/api';
 import { setEnvironmentData } from 'worker_threads';
 import { TextInput } from 'react-native-paper';
+import { Button } from '../../../../components/Button';
+import { ButtonCancel } from '../../../../components/ButtonCancel';
+import { Load } from '../../../../components/Load';
 
-const ViaturasInfo = (props) => {
+const ViaturaEdit = (props) => {
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [ disposicao, setDisposicao ] = useState("");
@@ -27,7 +30,7 @@ const ViaturasInfo = (props) => {
     const [ ano, setAno ] = useState("");
 
     const [ reason, setReason ] = useState("");
-
+    const[isloading, setIsLoading]=useState(true);
     const [viat, seViat]=useState({
         responsavel:'',
         modelo:'',
@@ -43,15 +46,21 @@ const ViaturasInfo = (props) => {
         (async()=>{
             
          api.get(`/viatura/detalhes/${props.route.params.id}`).then(d=>{
-           
+            setIsLoading(false);
             seViat(d.data);
     
         });
       
         })()
         },[])
-        
+        if(isloading)
+    return(
+        <Load/>
 
+    )
+    
+    else
+    {
     return (
         <VStack flex={1} pb={4} mb={16} bg="white">
             <SafeAreaView style={styles.container}>
@@ -59,10 +68,10 @@ const ViaturasInfo = (props) => {
                 <HStack w="full" justifyContent="space-between" alignItems='center' flexDirection="row">
                     <View>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                        Detalhes 
+                        Editar 
                     </Text>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                        da Viatura
+                        Viatura
                     </Text>
                     </View>
                     <View backgroundColor='green.700' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
@@ -119,8 +128,25 @@ const ViaturasInfo = (props) => {
                             <Ano value={viat.ano_aquisicao} setValue={setAno}/>
                         </View>
 
-                        <View mb={'10%'} style={styles.uinputView}>
+                        <View mb={'5%'} style={styles.uinputView}>
                             <Kilometragem value={viat.kilometragem} setValue={setKilometragem}/>
+                        </View>
+
+                        <View marginLeft='30%' marginBottom='10%' marginTop='5%' alignItems='center' justifyContent='space-around' display='flex' flexDirection='row'>
+                            <View style={styles.uinputViewbutton}>
+                                <Button
+                                title='Atualizar'
+                                leftIcon={<Icon as={<FloppyDisk color={colors.green[700]} size={20}/>} ml={4}/>}
+                                p={2}
+                                /> 
+                            </View>
+                            <View style={styles.uinputViewbutton}>
+                                <ButtonCancel
+                                title='Cancel'
+                                leftIcon={<Icon as={<XCircle color={colors.white} size={20}/>} ml={4}/>}
+                                />  
+                            </View>
+                        
                         </View>
                         
                     </ScrollView>
@@ -130,8 +156,8 @@ const ViaturasInfo = (props) => {
         </VStack> 
     );
     }
-
-    export default ViaturasInfo;
+}
+    export default ViaturaEdit;
 
     const styles =StyleSheet.create({
         txtInput:{

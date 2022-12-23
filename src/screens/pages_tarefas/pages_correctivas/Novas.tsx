@@ -318,7 +318,7 @@ export default function MyStack(){
                     data = {dados}
                     renderItem = { oneUser }
                     ItemSeparatorComponent = { itemSeparator }
-                    ListEmptyComponent =  {<Text>Esta é uma lista de tarefas correctivas novas</Text>}
+                    ListEmptyComponent =  {<Text>Sem Tarefas Correctivas</Text>}
                     keyExtractor = { data => data.id }
                     showsVerticalScrollIndicator={false}
                 />
