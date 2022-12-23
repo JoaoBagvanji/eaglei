@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon,} from 'native-base';
-import { Car } from 'phosphor-react-native'
+import { Car, MapPin } from 'phosphor-react-native'
 
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -99,6 +99,8 @@ const ViaturasInfo = (props) => {
                             outlineColor='#cce3f9'
                             activeOutlineColor='#12375C' 
                             underlineColor='#12375C'
+                            left={<TextInput.Icon icon={MapPin}
+                            color={colors.green[600]} />}
                             mode="outlined"
                             label="Região"
                             theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
