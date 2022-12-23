@@ -10,15 +10,20 @@ import Modelo from '../../../../components/Modelo';
 import Marca from '../../../../components/Marca';
 import Ano from '../../../../components/Ano';
 import api from '../../../../services/api';
-import { setEnvironmentData } from 'worker_threads';
+
 import { TextInput } from 'react-native-paper';
 import userImg from '../../../../assets/avatars/atrelado.png';
 import { Load } from '../../../../components/Load';
 import { Button } from '../../../../components/Button';
 import { ButtonCancel } from '../../../../components/ButtonCancel';
-import { FunctionSetInputValue } from 'native-base/lib/typescript/components/composites/Typeahead/useTypeahead/types';
+
+import { useNavigation } from '@react-navigation/native';
 
 const AtreladoEdit = (props) => {
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+    const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [ matricula, setMatricula ] = useState("");
@@ -130,7 +135,9 @@ const AtreladoEdit = (props) => {
                                 title='Atualizar'
                                 leftIcon={<Icon as={<FloppyDisk color={colors.green[700]} size={20}/>} ml={4}/>}
                                 p={2}
-                                onPress={() =>console.log(atrelado)}
+                                onPress={() =>api.post('/viatura/editaratrelado',atrelado).then(d=>{
+                                    navigate('Viatura')
+                                })}
                                 /> 
                             </View>
                             <View style={styles.uinputViewbutton}>
