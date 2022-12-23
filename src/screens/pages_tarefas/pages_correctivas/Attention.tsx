@@ -24,7 +24,7 @@ export default function MyStack() {
  ); 
 }
 
-export function Attention() {
+export function Attention({navigation}) {
   
   type Nav ={
     navigate : (value: string) => void;
@@ -32,10 +32,6 @@ export function Attention() {
   
   const { navigate } = useNavigation<Nav>();
   
-  const handleInfo = () => {
-    navigate('CorAttention') as never;
-  }
- 
   const [dados, setDados]=useState([]);
     const[isloading, setIsLoading]=useState(true);
     
@@ -183,7 +179,9 @@ export function Attention() {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity 
+              onPress={() =>   navigation.navigate('CorAttention', {id: item._id}) }
+               style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
@@ -199,6 +197,7 @@ export function Attention() {
             
         </View>   
     )
+
 
     function itemSeparator(){
         return <View style={styles.separator}/>

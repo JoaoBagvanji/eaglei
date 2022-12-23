@@ -50,6 +50,7 @@ const ViaturasInfo = (props) => {
       
         })()
         },[])
+        
 
     return (
         <VStack flex={1} pb={4} mb={16} bg="white">

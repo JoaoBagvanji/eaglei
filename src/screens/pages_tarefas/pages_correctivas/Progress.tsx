@@ -40,17 +40,13 @@
     }
 
 
-    export function Progress() {
+    export function Progress({navigation}) {
 
       type Nav ={
         navigate : (value: string) => void;
     }
       
     const { navigate } = useNavigation<Nav>()
-
-    const handleInfo = () => {
-      navigate('FormCorProgresso') as never;
-    }
 
     function handleTelas(){
       navigate('Questions') as never;
@@ -340,7 +336,9 @@
                 </Box>
 
                 <View display='flex' flexDirection='column' alignContent='space-between'>
-                  <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
+                  <TouchableOpacity 
+                  onPress={() =>   navigation.navigate('FormCorProgresso', {id: item._id}) }
+                   style={{ paddingBottom: 10, marginLeft: 2}}>
                   <Icon as ={<Info color={colors.blueGray[400]}/>} />
                   </TouchableOpacity>
 
