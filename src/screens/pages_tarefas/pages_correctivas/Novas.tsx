@@ -28,7 +28,7 @@ export default function MyStack(){
 );
 }
 
- function Novas() {
+ function Novas({navigation}) {
   
     
   const[isloading, setIsLoading]=useState(true);
@@ -131,9 +131,6 @@ export default function MyStack(){
       setShouldShow(val_sec);
     }
 
-    const handleInfo = () => {
-      navigate('FormCorNovas') as never;
-    }
   
     const handleAceita = () => {
             if (!aceita)
@@ -232,7 +229,7 @@ export default function MyStack(){
 
     <View display='flex' flexDirection='column' alignContent='space-between'>
         <TouchableOpacity
-            onPress={handleInfo}
+            onPress={() =>   navigation.navigate('FormCorNovas', {id: item._id}) }
             style={{
                 paddingBottom: 10,
                 marginLeft: 2

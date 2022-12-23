@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { Archive, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, User, Wrench, Image} from 'phosphor-react-native';
 import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon, Select, Radio, Stack, TextArea} from 'native-base';
 
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 import * as ImagePicker from "expo-image-picker";
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,6 +22,7 @@ import InfoSpare from './corr_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import api from '../../../../services/api';
 
         var canDisplay = {
             'avaliacao_risco': [],
@@ -38,7 +39,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
       
       function Screen1() {
 
-
+         
+    
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
@@ -430,7 +432,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
             const [ preco, setPreco ] = useState("");
 
-        
+           
            
                 return (
                   <VStack flex={1} bg="white">
@@ -1863,6 +1865,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
            function Screen9() {
 
+
                 const data = [
 
                   {
@@ -2051,16 +2054,36 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           const Tab = createMaterialTopTabNavigator();
 
-          export default function FormCorNovas() {
+
+          export default function FormCorNovas(props) {
             const {colors} = useTheme();
             const {fonts} = useTheme();
+
+            var dados = {jobcard_tecniconome:''};
+
+            useEffect(()=>{
+              (async()=>{
+                  
+               api.get(`/tarefa/detalhesJobcardCallout/${props.route.params.id}`).then(async d=>{
+                 
+                  dados=d.data;
+                  console.log("-------DADOS DA ROTA--------");
+                  console.log(dados)
+                 
+                  
+          
+              });
+            
+              })()
+              },[dados])
+            
 
             return (
               <>
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
              <View>
              <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-             Detalhes da Manutenção Correctiva Nova
+             Detalhes da Manutenção Correctiva {dados.jobcard_tecniconome}
              </Text>
              </View>
              </HStack>
