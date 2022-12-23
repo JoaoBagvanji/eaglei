@@ -6,13 +6,28 @@ import { Header } from '../../components/Header';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
 import { Load } from '../../components/Load';
+import AtreladoInfo from '../pages_tarefas/pages_projectos/pages_pro/AtreladoInfo';
+import { createStackNavigator } from '@react-navigation/stack';
+import userImg from '../../assets/avatars/atrelado.png';
 
-export default function Atrelado() {
+const Stack = createStackNavigator();
+export default function MyStack() {
+  return (
+
+     <Stack.Navigator  screenOptions={{headerShown: false}} 
+             initialRouteName='Atrelado'>
+         <Stack.Screen name="AtreladoInfo" component={AtreladoInfo} />
+         <Stack.Screen name="Atrelado" component={Atrelado} />
+     </Stack.Navigator>
+
+ );
+}
+export  function Atrelado({navigation}) {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
-    const navigation = useNavigation();
+    
     
     const data = [
       {
@@ -102,7 +117,7 @@ export default function Atrelado() {
           </View>
           </Box>
           <View display='flex' flexDirection='column' alignContent='space-between'>
-            <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+            <TouchableOpacity onPress={() =>   navigation.navigate('AtreladoInfo', {id: item._id}) } style={{ paddingBottom: 10, marginLeft: 2}}>
             <Icon as ={<Info color={colors.blueGray[400]}/>} />
             </TouchableOpacity>
             <View >
@@ -146,7 +161,9 @@ export default function Atrelado() {
                     entre os Atrelados
                 </Text>
                 </View>
-                <Icon as ={<Truck color={colors.green[700]}/>} />
+                <View backgroundColor='white' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
+                  <Imagens source={userImg} width='40' height='30' borderRadius='40' alt='Imagem de artigos' />
+                </View>
             </HStack>
             <View mb={'42%'}>
                 <FlatList            
