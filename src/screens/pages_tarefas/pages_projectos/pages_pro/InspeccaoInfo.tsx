@@ -14,16 +14,17 @@ const InspeccaoInfo = (props) => {
 
     const [insp, setInsp]=useState({
         matricula:'',
-        nome: '',
-        datareq:'',
+        motorista: '',
+        datta:'',
     })
 
     useEffect(()=>{
         (async()=>{
             
-         api.get(`/viatura/detalhes/${props.route.params.id}`).then(d=>{
+         api.get(`/viatura/inspenccaodetalhes/${props.route.params.id}`).then(d=>{
            
             setInsp(d.data);
+            console.log(d.data)
     
         });
       
@@ -88,10 +89,10 @@ const InspeccaoInfo = (props) => {
                            left={<TextInput.Icon icon={IdentificationCard}
                            color={colors.green[600]} />}
                            mode="outlined"
-                           label="Nome"
+                           label="Motorista"
                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                           value={insp.nome}
-                           onChangeText={(text) => setInsp({...insp,...{nome:text}})}
+                           value={insp.motorista}
+                           onChangeText={(text) => setInsp({...insp,...{motorista:text}})}
                            autoComplete='off'
                             />
                         </View>
@@ -108,8 +109,8 @@ const InspeccaoInfo = (props) => {
                             mode="outlined"
                             label="Ano de Aquisição"
                             theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                            value={insp.datareq}
-                            onChangeText={(text) => setInsp({...insp,...{datareq:text}})}
+                            value={insp.datta}
+                            onChangeText={(text) => setInsp({...insp,...{datta:text}})}
                             autoComplete='off'
                             />
                         </View>
@@ -131,7 +132,6 @@ const InspeccaoInfo = (props) => {
             width: 300,
             fontSize: 12,
             textAlign: 'center',
-            height: 50,
         },
         uinputView:{
             marginTop: "5%",
