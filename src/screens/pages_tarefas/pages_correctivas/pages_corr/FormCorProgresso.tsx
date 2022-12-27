@@ -22,6 +22,7 @@ import InfoSpare from './corr_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import api from '../../../../services/api';
 
         var canDisplay = {
             'avaliacao_risco': [],
@@ -34,6 +35,32 @@ import DropDownPicker from 'react-native-dropdown-picker';
         }
 
           const StackRoutes = createStackNavigator();
+
+          const Tab = createMaterialTopTabNavigator();
+
+          export default function FormCorProgresso(props) {
+
+
+            const {colors} = useTheme();
+            const {fonts} = useTheme();
+
+            const [dados, setDados] = useState ({});
+
+            React.useEffect(()=>{
+               (async()=>{
+                   
+                 api.get(`/tarefa/detalhesJobcardCallout/${props.route.params.id}`).then(d=>{
+                
+                   setDados(d.data);
+                   // console.log("-------DADOS DA ROTA--------");
+                   // console.log(dados);
+           
+               });
+             
+               })()
+               },[]);
+
+
 
       
       function Screen1() {
@@ -2049,11 +2076,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
           }  
           
 
-          const Tab = createMaterialTopTabNavigator();
-
-          export default function FormCorProgresso() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
+      
 
             return (
               <>

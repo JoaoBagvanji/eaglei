@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { Archive, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, User, Wrench, Image} from 'phosphor-react-native';
 import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon, Select, Radio, Stack, TextArea} from 'native-base';
 
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 import * as ImagePicker from "expo-image-picker";
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,11 +22,36 @@ import InfoSpare from './corr_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import api from '../../../../services/api';
 
 
           const StackRoutes = createStackNavigator();
 
-      
+          const Tab = createMaterialTopTabNavigator();
+
+          export default function FormCorCompletos(props) {
+
+            const {colors} = useTheme();
+            const {fonts} = useTheme();
+
+
+            const [dados, setDados] = useState ({});
+
+            useEffect(()=>{
+               (async()=>{
+                   
+                 api.get(`/tarefa/detalhesJobcardCallout/${props.route.params.id}`).then(d=>{
+                
+                   setDados(d.data);
+                   // console.log("-------DADOS DA ROTA--------");
+                   // console.log(dados);
+           
+               });
+             
+               })()
+               },[]);
+
+
       function Screen1() {
 
 
@@ -2059,11 +2084,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
           }  
           
 
-          const Tab = createMaterialTopTabNavigator();
-
-          export default function FormCorCompletos() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
+       
 
             return (
               <>
