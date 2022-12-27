@@ -13,9 +13,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Button } from '../../../../components/Button';
-import { createStackNavigator } from '@react-navigation/stack';
-import FormBowser from '../../../pages_viaturas/pages_inspeccao/formBowser';
-import { Inspeccao } from '../../../pages_viaturas/Inspeccao';
 
 const InspeccaoInfo = (props) => {
     const { fonts } = useTheme();
@@ -25,7 +22,38 @@ const InspeccaoInfo = (props) => {
         matricula: '',
         motorista: '',
         datta: '',
-        kilometragem: ''
+        kilometragem: '',
+        carrocaria:'',
+        bowser: '',
+        bolareboque: '',
+        pneus: '',
+        pressao: '',
+        porcas: '',
+        travoes:'' ,
+        vidros: '',
+        limpa_parabrisas:'' ,
+        luzes:'' ,
+        oleo:'' ,
+        motor:'' ,
+        camera: '',
+        maos_livre: '',
+        extintor: '',
+        pr_socorros: '',
+        cintoSeg: '',
+        razaoCarrocari: [],
+        razaobolareboque: [],
+        razaoPneus: [],
+        razaoPressao: [],
+        razaoPorcas: [],
+        razaoTravoes: [],
+        razaoVidros: [],
+        razaoLuzes: [],
+        razaoOleo: [],
+        razaoCamera: [],
+        razaoextintor: [],
+        razaosocorros: [],
+        razaocintoSeg: [],
+        validade_extintor: ''
     })
 
     useEffect(() => {
@@ -40,7 +68,6 @@ const InspeccaoInfo = (props) => {
 
         })()
     }, [])
-    const StackRoutes = createStackNavigator();
 
     //Vars globais a nivel do ficheiro
     var temBowser = false;
@@ -55,7 +82,7 @@ const InspeccaoInfo = (props) => {
         'porcas': '',
         'travoes': '',
         'vidros': '',
-        'limpa_parabrisa': '',
+        'limpa_parabrisas': '',
         'luzes': '',
         'oleo': '',
         'motor': '',
@@ -302,7 +329,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedCar === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.carrocaria === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCarrocariaS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -313,7 +340,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedCar === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.carrocaria === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCarrocariaN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -549,7 +576,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedPneu === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.pneus === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPneuS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -560,7 +587,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedPneu === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.pneus === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPneuN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -592,7 +619,7 @@ const InspeccaoInfo = (props) => {
                                         badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                                     />
                                 </View>}
-
+                                
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Pressão </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
@@ -600,7 +627,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedPre === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.pressao === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPreS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -611,7 +638,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedPre === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.pressao === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPreN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -624,23 +651,23 @@ const InspeccaoInfo = (props) => {
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     paddingHorizontal: 15
-                                }}>
+                                    }}>
                                     <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress1}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openPre}
-                                        value={valuePre}
-                                        items={itemsPre}
-                                        setOpen={setOpenPre}
-                                        setValue={setValuePre}
-                                        setItems={setItemsPre}
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress1}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openPre}
+                                    value={valuePre}
+                                    items={itemsPre}
+                                    setOpen={setOpenPre}
+                                    setValue={setValuePre}
+                                    setItems={setItemsPre}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                                     />
                                 </View>}
 
@@ -651,7 +678,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedPor === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.porcas === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPorcaS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -662,7 +689,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedPor === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.porcas === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPorcaN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -677,21 +704,21 @@ const InspeccaoInfo = (props) => {
                                     paddingHorizontal: 15
                                 }}>
                                     <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress2}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openPorca}
-                                        value={valuePorca}
-                                        items={itemsPorca}
-                                        setOpen={setOpenPorca}
-                                        setValue={setValuePorca}
-                                        setItems={setItemsPorca}
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress2}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openPorca}
+                                    value={valuePorca}
+                                    items={itemsPorca}
+                                    setOpen={setOpenPorca}
+                                    setValue={setValuePorca}
+                                    setItems={setItemsPorca}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                                     />
                                 </View>}
 
@@ -702,7 +729,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedTra === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.travoes === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onTravS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -713,7 +740,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedTra === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.travoes === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onTravN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -728,21 +755,21 @@ const InspeccaoInfo = (props) => {
                                     paddingHorizontal: 15
                                 }}>
                                     <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress3}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openTrav}
-                                        value={valueTrav}
-                                        items={itemsTrav}
-                                        setOpen={setOpenTrav}
-                                        setValue={setValueTrav}
-                                        setItems={setItemsTrav}
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress3}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openTrav}
+                                    value={valueTrav}
+                                    items={itemsTrav}
+                                    setOpen={setOpenTrav}
+                                    setValue={setValueTrav}
+                                    setItems={setItemsTrav}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                                     />
                                 </View>}
 
@@ -754,12 +781,12 @@ const InspeccaoInfo = (props) => {
         )
     }
 
-    function Screen4() {
+    function Screen4(){
         const [checkedVidro, setCheckedVidro] = useState('');
         const [checkedLimpa, setCheckedLimpa] = useState('');
 
         isFiled.vidros = checkedVidro;
-        isFiled.limpa_parabrisa = checkedLimpa;
+        isFiled.limpa_parabrisas = checkedLimpa;
 
 
         const [openVidro, setOpenVidro] = useState(false);
@@ -803,7 +830,7 @@ const InspeccaoInfo = (props) => {
                 console.log("Voce fechou o ComboBox");
             }
         }
-        return (
+        return(
             <VStack flex={1} pb={4} mb={16} bg="white">
                 <SafeAreaView style={styles.container}>
                     <VStack mt='10%' mb='12%'>
@@ -821,7 +848,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedVidro === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.vidros === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onVidrosS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -832,7 +859,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedVidro === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.vidros === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onVidrosN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -845,21 +872,21 @@ const InspeccaoInfo = (props) => {
                                     paddingHorizontal: 15
                                 }}>
                                     <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openVidro}
-                                        value={valueVidro}
-                                        items={itemsVidro}
-                                        setOpen={setOpenVidro}
-                                        setValue={setValueVidro}
-                                        setItems={setItemsVidro}
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openVidro}
+                                    value={valueVidro}
+                                    items={itemsVidro}
+                                    setOpen={setOpenVidro}
+                                    setValue={setValueVidro}
+                                    setItems={setItemsVidro}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                                     />
                                 </View>}
 
@@ -870,7 +897,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedLimpa === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.limpa_parabrisas === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedLimpa('ok')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -881,7 +908,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedLimpa === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.limpa_parabrisas === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedLimpa('notOk')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -892,7 +919,7 @@ const InspeccaoInfo = (props) => {
                         </KeyboardAvoidingView>
                     </VStack>
                 </SafeAreaView>
-            </VStack>
+            </VStack> 
         )
     }
 
@@ -943,7 +970,7 @@ const InspeccaoInfo = (props) => {
             }
         }
 
-        return (
+        return(
             <VStack flex={1} pb={4} mb={16} bg="white">
                 <SafeAreaView style={styles.container}>
                     <VStack mt='10%' mb='12%'>
@@ -961,9 +988,9 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedLuzes === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.luzes === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onLuzS}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
                                     </View>
 
@@ -972,9 +999,9 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedLuzes === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.luzes === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onLuzN}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
                                     </View>
                                 </View>
@@ -983,7 +1010,7 @@ const InspeccaoInfo = (props) => {
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     paddingHorizontal: 15
-                                }}>
+                                    }}>
                                     <DropDownPicker
                                         dropDownDirection="BOTTOM"
                                         listMode="SCROLLVIEW"
@@ -1011,7 +1038,7 @@ const InspeccaoInfo = (props) => {
         )
     }
 
-    function Screen6() {
+    function Screen6(){
 
         const [checkedOleo, setCheckedOleo] = useState('');
         const [checkedMotor, setCheckedMotor] = useState('');
@@ -1062,7 +1089,7 @@ const InspeccaoInfo = (props) => {
             }
         }
 
-        return (
+        return(
             <VStack flex={1} pb={4} mb={16} bg="white">
                 <SafeAreaView style={styles.container}>
                     <VStack mt='10%' mb='12%'>
@@ -1080,9 +1107,9 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedOleo === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.oleo === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onOleoS}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
                                     </View>
 
@@ -1091,36 +1118,36 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedOleo === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.oleo === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onOleoN}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
                                     </View>
                                 </View>
 
                                 {isOleo && <View style={{
-                                    marginBottom: mb,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    paddingHorizontal: 15
+                                marginBottom: mb,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
                                 }}>
-                                    <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openOleo}
-                                        value={valueOleo}
-                                        items={itemsOleo}
-                                        setOpen={setOpenOleo}
-                                        setValue={setValueOleo}
-                                        setItems={setItemsOleo}
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openOleo}
+                                    value={valueOleo}
+                                    items={itemsOleo}
+                                    setOpen={setOpenOleo}
+                                    setValue={setValueOleo}
+                                    setItems={setItemsOleo}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                                    />
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
                                 </View>}
 
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Motor </Text>
@@ -1132,7 +1159,7 @@ const InspeccaoInfo = (props) => {
                                             value="ok"
                                             status={checkedMotor === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMotor('ok')}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
                                     </View>
 
@@ -1143,11 +1170,11 @@ const InspeccaoInfo = (props) => {
                                             value="notOk"
                                             status={checkedMotor === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMotor('notOk')}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
                                     </View>
                                 </View>
-
+                                
                             </ScrollView>
                         </KeyboardAvoidingView>
                     </VStack>
@@ -1156,7 +1183,7 @@ const InspeccaoInfo = (props) => {
         )
     }
 
-    function Screen7() {
+    function Screen7(){
 
         const [checkedCamera, setCheckedCamera] = useState('');
         const [checkedMaos, setCheckedMaos] = useState('');
@@ -1206,7 +1233,7 @@ const InspeccaoInfo = (props) => {
             }
         }
 
-        return (
+        return(
             <VStack flex={1} pb={4} mb={16} bg="white">
                 <SafeAreaView style={styles.container}>
                     <VStack mt='10%' mb='12%'>
@@ -1226,7 +1253,7 @@ const InspeccaoInfo = (props) => {
                                             value="ok"
                                             status={checkedCamera === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCamS}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
                                     </View>
 
@@ -1237,34 +1264,34 @@ const InspeccaoInfo = (props) => {
                                             value="notOk"
                                             status={checkedCamera === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCamN}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
                                     </View>
                                 </View>
 
                                 {isCam && <View style={{
-                                    marginBottom: mb,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    paddingHorizontal: 15
+                                marginBottom: mb,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
                                 }}>
-                                    <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openCam}
-                                        value={valueCam}
-                                        items={itemsCam}
-                                        setOpen={setOpenCam}
-                                        setValue={setValueCam}
-                                        setItems={setItemsCam}
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openCam}
+                                    value={valueCam}
+                                    items={itemsCam}
+                                    setOpen={setOpenCam}
+                                    setValue={setValueCam}
+                                    setItems={setItemsCam}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                                    />
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
                                 </View>}
 
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='40%' mt={4}> Mãos-Livres </Text>
@@ -1272,10 +1299,10 @@ const InspeccaoInfo = (props) => {
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
                                         <ThumbsUp color={colors.primary[700]} size={25} />
                                         <RadioButton
-                                            color='green'
-                                            value="ok"
-                                            status={checkedMaos === 'ok' ? 'checked' : 'unchecked'}
-                                            onPress={() => setCheckedMaos('ok')}
+                                        color='green'
+                                        value="ok"
+                                        status={checkedMaos === 'ok' ? 'checked' : 'unchecked'}
+                                        onPress={() => setCheckedMaos('ok')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
                                     </View>
@@ -1287,11 +1314,11 @@ const InspeccaoInfo = (props) => {
                                             value="notOk"
                                             status={checkedMaos === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMaos('notOk')}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
                                     </View>
                                 </View>
-
+                                
                             </ScrollView>
                         </KeyboardAvoidingView>
                     </VStack>
@@ -1300,7 +1327,7 @@ const InspeccaoInfo = (props) => {
         )
     }
 
-    function Screen8() {
+    function Screen8(){
         const [checkedExtintor, setCheckedExtintor] = useState('');
         const [checkedPri, setCheckedPri] = useState('');
         const [checkedCinto, setCheckedCinto] = useState('');
@@ -1468,7 +1495,7 @@ const InspeccaoInfo = (props) => {
                 isFiled.cintoSeg != '' &&
                 isFiled.extintor != '' &&
                 isFiled.kilometragem != '' &&
-                isFiled.limpa_parabrisa != '' &&
+                isFiled.limpa_parabrisas != '' &&
                 isFiled.luzes != '' &&
                 isFiled.maos_livre != '' &&
                 isFiled.motor != '' &&
@@ -1502,7 +1529,7 @@ const InspeccaoInfo = (props) => {
 
         isInspg = isInspe;
 
-        return (
+        return(
             <VStack flex={1} pb={4} mb={16} bg="white">
                 <SafeAreaView style={styles.container}>
                     <VStack mt='10%' mb='12%'>
@@ -1522,7 +1549,7 @@ const InspeccaoInfo = (props) => {
                                             value="ok"
                                             status={checkedExtintor === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onExtS}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
                                     </View>
 
@@ -1533,61 +1560,61 @@ const InspeccaoInfo = (props) => {
                                             value="notOk"
                                             status={checkedExtintor === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onExtN}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
                                     </View>
                                 </View>
                                 {isExt && <View style={{
-                                    marginBottom: mb,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    paddingHorizontal: 15
+                                marginBottom: mb,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
                                 }}>
-                                    <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openExt}
-                                        value={valueExt}
-                                        items={itemsExt}
-                                        setOpen={setOpenExt}
-                                        setValue={setValueExt}
-                                        setItems={setItemsExt}
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openExt}
+                                    value={valueExt}
+                                    items={itemsExt}
+                                    setOpen={setOpenExt}
+                                    setValue={setValueExt}
+                                    setItems={setItemsExt}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                                    />
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
                                 </View>}
 
                                 {!isExt && <View mt='5%' ml={'30%'}>
-                                    <View display='flex' flexDirection='row'>
-                                        <Text mt='3%' color='primary.600' fontFamily={fonts.heading}>Validade: {text}</Text>
+                                <View display='flex' flexDirection='row'>
+                                    <Text mt='3%' color='primary.600' fontFamily={fonts.heading}>Validade: {text}</Text>
 
-                                        <View ml={'10%'} >
-                                            <TouchableOpacity onPress={() => showMode('date')} >
-                                                <View backgroundColor='green.700' borderRadius={40} size={9} alignItems='center' justifyContent='center' display='flex'>
-                                                    <Calendar size={22} color={'#fff'} />
-                                                </View>
-                                            </TouchableOpacity>
+                                    <View ml={'10%'} >
+                                        <TouchableOpacity onPress={() => showMode('date')} >
+                                        <View backgroundColor='green.700' borderRadius={40} size={9} alignItems='center' justifyContent='center' display='flex'>
+                                            <Calendar size={22} color={'#fff'} />
                                         </View>
+                                        </TouchableOpacity>
                                     </View>
+                                </View>
+                                
 
+                                {
+                                    show && (
+                                    <DateTimePicker
+                                        testID='dateTimePicker'
+                                        value={date}
+                                        mode='date'
+                                        display='default'
+                                        onChange={onChange}
+                                    />
 
-                                    {
-                                        show && (
-                                            <DateTimePicker
-                                                testID='dateTimePicker'
-                                                value={date}
-                                                mode='date'
-                                                display='default'
-                                                onChange={onChange}
-                                            />
-
-                                        )
-                                    }
+                                    )
+                                }
                                 </View>}
 
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='35%' mt={4}> Primeiros Socorros </Text>
@@ -1599,7 +1626,7 @@ const InspeccaoInfo = (props) => {
                                             value="ok"
                                             status={checkedPri === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPriS}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
                                     </View>
 
@@ -1610,33 +1637,33 @@ const InspeccaoInfo = (props) => {
                                             value="notOk"
                                             status={checkedPri === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPriN}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
                                     </View>
                                 </View>
                                 {isPri && <View style={{
-                                    marginBottom: mb1,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    paddingHorizontal: 15
+                                marginBottom: mb1,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
                                 }}>
-                                    <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress1}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openPri}
-                                        value={valuePri}
-                                        items={itemsPri}
-                                        setOpen={setOpenPri}
-                                        setValue={setValuePri}
-                                        setItems={setItemsPri}
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress1}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openPri}
+                                    value={valuePri}
+                                    items={itemsPri}
+                                    setOpen={setOpenPri}
+                                    setValue={setValuePri}
+                                    setItems={setItemsPri}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                                    />
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
                                 </View>}
 
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='35%' mt={4}> Cinto de Segurança </Text>
@@ -1648,7 +1675,7 @@ const InspeccaoInfo = (props) => {
                                             value="ok"
                                             status={checkedCinto === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCintoS}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
                                     </View>
 
@@ -1659,34 +1686,34 @@ const InspeccaoInfo = (props) => {
                                             value="notOk"
                                             status={checkedCinto === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCintoN}
-                                        />
+                                            />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
                                     </View>
                                 </View>
 
                                 {isCinto && <View style={{
-                                    marginBottom: mb2,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    paddingHorizontal: 15
+                                marginBottom: mb2,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
                                 }}>
-                                    <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress2}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openCinto}
-                                        value={valueCinto}
-                                        items={itemsCinto}
-                                        setOpen={setOpenCinto}
-                                        setValue={setValueCinto}
-                                        setItems={setItemsCinto}
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress2}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openCinto}
+                                    value={valueCinto}
+                                    items={itemsCinto}
+                                    setOpen={setOpenCinto}
+                                    setValue={setValueCinto}
+                                    setItems={setItemsCinto}
 
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-                                    />
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
                                 </View>}
                                 <VStack mt={'7%'} mx={'38%'} mb={'7%'}>
                                     <Button color={'#12375C'} title='Gravar' onPress={onGravar} />
@@ -1697,27 +1724,6 @@ const InspeccaoInfo = (props) => {
                 </SafeAreaView>
             </VStack>
         )
-    }
-
-    function Screen9() {
-        return (
-
-            <StackRoutes.Navigator
-                screenOptions={{
-                    headerShown: false,
-                    cardStyle: {
-                        backgroundColor: colors.white
-                    }
-                }}
-                initialRouteName='Screen8'
-            >
-                <StackRoutes.Screen name='Screen8' component={Screen8} />
-                <StackRoutes.Screen name='FormBowser' component={FormBowser} />
-                <StackRoutes.Screen name='Inspeccao' component={Inspeccao} />
-            </StackRoutes.Navigator>
-
-
-        );
     }
 
 
@@ -1731,7 +1737,7 @@ const InspeccaoInfo = (props) => {
                 <HStack textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row" bg='white'>
                     <View bg='white'>
                         <Text color="primary.800" fontSize="md" fontFamily={fonts.heading} bg='white'>
-                            Inspeção diária
+                            Detalhes Inspeção diária
                         </Text>
                     </View>
                 </HStack>
@@ -1813,7 +1819,7 @@ const InspeccaoInfo = (props) => {
                 />
                 <Tab.Screen
                     name="Profile"
-                    component={Screen9}
+                    component={Screen8}
                     options={{
                         tabBarIcon: (({ color }) => (
                             <Icon as={<FirstAidKit color={color} size={20} />} />
