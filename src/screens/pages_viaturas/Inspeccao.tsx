@@ -14,6 +14,7 @@ import FormInspeccao from '../../routes/r_viaturas/insp.routes';
 import api from '../../services/api';
 import { Load } from '../../components/Load';
 import userImg from '../../assets/avatars/inspectioncar3.png';
+import InspeccaoInfo from '../pages_tarefas/pages_projectos/pages_pro/InspeccaoInfo';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -22,6 +23,7 @@ export default function MyStack() {
        <Stack.Navigator  screenOptions={{headerShown: false}} 
                initialRouteName='Inspeccao'>
            <Stack.Screen name="Inspeccao" component={Inspeccao} />
+           <Stack.Screen name="InspeccaoInfo" component={InspeccaoInfo} />
            <Stack.Screen name="FormInspeccao" component={FormInspeccao} />
        </Stack.Navigator>
  

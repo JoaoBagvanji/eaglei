@@ -1,32 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon,} from 'native-base';
-import { Calendar, Car, Cards, IdentificationCard, MapPin } from 'phosphor-react-native'
+import { VStack, HStack, View, Text, Icon, useTheme, ScrollView,} from 'native-base';
+import { Calendar, Car, Cards, IdentificationCard } from 'phosphor-react-native'
 
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Matricula from '../../../../components/Matricula';
-import Modelo from '../../../../components/Modelo';
-import Kilometragem from '../../../../components/Kilometragem';
-import Marca from '../../../../components/Marca';
-import Ano from '../../../../components/Ano';
-import Parque from '../../../../components/Parque';
 import api from '../../../../services/api';
-import { setEnvironmentData } from 'worker_threads';
 import { TextInput } from 'react-native-paper';
 
 const InspeccaoInfo = (props) => {
     const { fonts } = useTheme();
     const { colors } = useTheme();
-    const [ disposicao, setDisposicao ] = useState("");
-    const [ details, setDetails ] = useState("");
-    const [ matricula, setMatricula ] = useState("");
-    const [ modelo, setModelo ] = useState("");
-    const [ kilometragem, setKilometragem ] = useState("");
-    const [ marca, setMarca ] = useState("");
-    const [ ano, setAno ] = useState("");
-
-    const [ reason, setReason ] = useState("");
 
     const [insp, setInsp]=useState({
         matricula:'',
