@@ -107,21 +107,21 @@ const AtreladoEdit = (props) => {
                         </View>
 
                         <View mb={'10%'} style={styles.uinputView}>
-                        <TextInput
-                            style={styles.txtInput} 
-                            selectionColor='#12375C' 
-                            outlineColor='#cce3f9'
-                            activeOutlineColor='#12375C' 
-                            underlineColor='#12375C' 
-                            left={<TextInput.Icon icon={Cards}
-                            color={colors.green[600]} />}
-                            mode="outlined"
-                            label="Matrícula"
-                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                            value={atrelado.matricula}
-                            onChangeText={(text) => setAtrelado({...atrelado,...{matricula:text}})}
-                            autoComplete='off'
-                        />
+                            <TextInput
+                                style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='#cce3f9'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                left={<TextInput.Icon icon={Cards}
+                                color={colors.green[600]} />}
+                                mode="outlined"
+                                label="Matrícula"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={atrelado.matricula}
+                                onChangeText={(text) => setAtrelado({...atrelado,...{matricula:text}})}
+                                autoComplete='off'
+                            />
                         </View>
 
                         <View marginLeft='30%' marginBottom='10%' marginTop='5%' alignItems='center' justifyContent='space-around' display='flex' flexDirection='row'>
