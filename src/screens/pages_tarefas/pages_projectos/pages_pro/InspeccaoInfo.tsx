@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, ScrollView, } from 'native-base';
-import { Calendar, Car, Cards, Gauge, IdentificationCard, Note, NumberCircleZero, ThumbsDown, ThumbsUp } from 'phosphor-react-native'
+import { Calendar, Car, Cards, FirstAidKit, Gauge, Headlights, IdentificationCard, Note, NumberCircleZero, ThumbsDown, ThumbsUp, VideoCamera } from 'phosphor-react-native'
 
-import { StyleSheet, KeyboardAvoidingView, Platform } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import api from '../../../../services/api';
@@ -10,6 +10,9 @@ import { RadioButton, TextInput } from 'react-native-paper';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { Button } from '../../../../components/Button';
 
 const InspeccaoInfo = (props) => {
     const { fonts } = useTheme();
@@ -19,7 +22,38 @@ const InspeccaoInfo = (props) => {
         matricula: '',
         motorista: '',
         datta: '',
-        kilometragem: ''
+        kilometragem: '',
+        carrocaria:'',
+        bowser: '',
+        bolareboque: '',
+        pneus: '',
+        pressao: '',
+        porcas: '',
+        travoes:'' ,
+        vidros: '',
+        limpa_parabrisas:'' ,
+        luzes:'' ,
+        oleo:'' ,
+        motor:'' ,
+        camera: '',
+        maos_livre: '',
+        extintor: '',
+        pr_socorros: '',
+        cintoSeg: '',
+        razaoCarrocari: [],
+        razaobolareboque: [],
+        razaoPneus: [],
+        razaoPressao: [],
+        razaoPorcas: [],
+        razaoTravoes: [],
+        razaoVidros: [],
+        razaoLuzes: [],
+        razaoOleo: [],
+        razaoCamera: [],
+        razaoextintor: [],
+        razaosocorros: [],
+        razaocintoSeg: [],
+        validade_extintor: ''
     })
 
     useEffect(() => {
@@ -48,7 +82,7 @@ const InspeccaoInfo = (props) => {
         'porcas': '',
         'travoes': '',
         'vidros': '',
-        'limpa_parabrisa': '',
+        'limpa_parabrisas': '',
         'luzes': '',
         'oleo': '',
         'motor': '',
@@ -295,7 +329,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedCar === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.carrocaria === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCarrocariaS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -306,7 +340,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedCar === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.carrocaria === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCarrocariaN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -542,7 +576,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedPneu === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.pneus === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPneuS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -553,7 +587,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedPneu === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.pneus === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPneuN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -593,7 +627,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedPre === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.pressao === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPreS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -604,7 +638,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedPre === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.pressao === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPreN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -644,7 +678,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedPor === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.porcas === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPorcaS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -655,7 +689,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedPor === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.porcas === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPorcaN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -695,7 +729,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedTra === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.travoes === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onTravS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -706,7 +740,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedTra === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.travoes === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onTravN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -752,7 +786,7 @@ const InspeccaoInfo = (props) => {
         const [checkedLimpa, setCheckedLimpa] = useState('');
 
         isFiled.vidros = checkedVidro;
-        isFiled.limpa_parabrisa = checkedLimpa;
+        isFiled.limpa_parabrisas = checkedLimpa;
 
 
         const [openVidro, setOpenVidro] = useState(false);
@@ -814,7 +848,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedVidro === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.vidros === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onVidrosS}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -825,7 +859,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedVidro === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.vidros === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onVidrosN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -863,7 +897,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedLimpa === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.limpa_parabrisas === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedLimpa('ok')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -874,7 +908,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedLimpa === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.limpa_parabrisas === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedLimpa('notOk')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -889,6 +923,809 @@ const InspeccaoInfo = (props) => {
         )
     }
 
+    function Screen5() {
+        const [checkedLuzes, setCheckedLuzes] = useState('');
+
+        isFiled.luzes = checkedLuzes;
+
+        const [openLuzes, setOpenLuzes] = useState(false);
+        const [valueLuzes, setValueLuzes] = useState([]);
+        const [itemsLuzes, setItemsLuzes] = useState([
+            { label: 'Frontal esquerdo', value: 'Frontal esquerdo' },
+            { label: 'Frontal direito', value: 'Frontal direito' },
+            { label: 'Indicador frontal esquerdo', value: 'Indicador frontal esquerdo' },
+        ]);
+
+        isFiled.razaoLuzes = valueLuzes;
+
+        const [isLuzes, setIsLuzes] = useState(false);
+
+        const onLuzS = () => {
+            console.log("Voce clicou em nao no Radio Button Luz Like");
+            setCheckedLuzes('ok');
+            setIsLuzes(false);
+        }
+
+        const onLuzN = () => {
+            console.log("Voce clicou em nao no Radio Button Luz Dislike");
+            setCheckedLuzes('notOk');
+            setIsLuzes(true);
+        }
+
+        const [combo, setCombo] = useState(0);
+
+        const [mb, setMb] = useState('8%');
+
+        const onComboboxPress = () => {
+            setCombo(combo + 1);
+
+            if (combo % 2 === 0) {
+                setMb('46%');
+                console.log("Voce abriu o ComboBox");
+            }
+
+            else {
+                setMb('8%');
+                console.log("Voce fechou o ComboBox");
+            }
+        }
+
+        return(
+            <VStack flex={1} pb={4} mb={16} bg="white">
+                <SafeAreaView style={styles.container}>
+                    <VStack mt='10%' mb='12%'>
+                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
+                            <ScrollView showsVerticalScrollIndicator={false}>
+                                <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                    <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Luzes </Text>
+                                </View>
+                                <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2} />
+
+                                <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Luzes </Text>
+                                <View display='flex' flexDirection='row' ml={'32%'}>
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='green'
+                                            value="ok"
+                                            status={insp.luzes === 'ok' ? 'checked' : 'unchecked'}
+                                            onPress={onLuzS}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                    </View>
+
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='red'
+                                            value="notOk"
+                                            status={insp.luzes === 'notOk' ? 'checked' : 'unchecked'}
+                                            onPress={onLuzN}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                    </View>
+                                </View>
+                                {isLuzes && <View style={{
+                                    marginBottom: mb,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingHorizontal: 15
+                                    }}>
+                                    <DropDownPicker
+                                        dropDownDirection="BOTTOM"
+                                        listMode="SCROLLVIEW"
+                                        onPress={onComboboxPress}
+                                        placeholder="Selecione a(s) Parte(s)"
+                                        open={openLuzes}
+                                        value={valueLuzes}
+                                        items={itemsLuzes}
+                                        setOpen={setOpenLuzes}
+                                        setValue={setValueLuzes}
+                                        setItems={setItemsLuzes}
+
+                                        theme="LIGHT"
+                                        multiple={true}
+                                        mode="BADGE"
+                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                    />
+                                </View>}
+
+                            </ScrollView>
+                        </KeyboardAvoidingView>
+                    </VStack>
+                </SafeAreaView>
+            </VStack>
+        )
+    }
+
+    function Screen6(){
+
+        const [checkedOleo, setCheckedOleo] = useState('');
+        const [checkedMotor, setCheckedMotor] = useState('');
+
+        isFiled.oleo = checkedOleo;
+        isFiled.motor = checkedMotor;
+
+        const [openOleo, setOpenOleo] = useState(false);
+        const [valueOleo, setValueOleo] = useState([]);
+        const [itemsOleo, setItemsOleo] = useState([
+            { label: 'Oleo de travao', value: 'Oleo de travao' },
+            { label: 'Oleo do motor', value: 'Oleo do motor' },
+            { label: 'Água do radiador', value: 'Água do radiador' },
+            { label: 'Água de limpa-brisa', value: 'Água de limpa-brisa' },
+        ]);
+
+        isFiled.razaoOleo = valueOleo;
+
+        const [isOleo, setIsOleo] = useState(false);
+
+        const onOleoS = () => {
+            console.log("Voce clicou em nao no Radio Button Oleo Like");
+            setCheckedOleo('ok');
+            setIsOleo(false);
+        }
+
+        const onOleoN = () => {
+            console.log("Voce clicou em nao no Radio Button Oleo Dislike");
+            setCheckedOleo('notOk');
+            setIsOleo(true);
+        }
+
+        const [combo, setCombo] = useState(0);
+
+        const [mb, setMb] = useState('8%');
+
+        const onComboboxPress = () => {
+            setCombo(combo + 1);
+
+            if (combo % 2 === 0) {
+                setMb('46%');
+                console.log("Voce abriu o ComboBox");
+            }
+
+            else {
+                setMb('8%');
+                console.log("Voce fechou o ComboBox");
+            }
+        }
+
+        return(
+            <VStack flex={1} pb={4} mb={16} bg="white">
+                <SafeAreaView style={styles.container}>
+                    <VStack mt='10%' mb='12%'>
+                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
+                            <ScrollView showsVerticalScrollIndicator={false}>
+                                <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                    <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Motor </Text>
+                                </View>
+                                <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2} />
+
+                                <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='40%' mt={4}> Óleo/Água </Text>
+                                <View display='flex' flexDirection='row' ml={'32%'}>
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='green'
+                                            value="ok"
+                                            status={insp.oleo === 'ok' ? 'checked' : 'unchecked'}
+                                            onPress={onOleoS}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                    </View>
+
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='red'
+                                            value="notOk"
+                                            status={insp.oleo === 'notOk' ? 'checked' : 'unchecked'}
+                                            onPress={onOleoN}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                    </View>
+                                </View>
+
+                                {isOleo && <View style={{
+                                marginBottom: mb,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
+                                }}>
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openOleo}
+                                    value={valueOleo}
+                                    items={itemsOleo}
+                                    setOpen={setOpenOleo}
+                                    setValue={setValueOleo}
+                                    setItems={setItemsOleo}
+
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
+                                </View>}
+
+                                <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Motor </Text>
+                                <View display='flex' flexDirection='row' ml={'32%'}>
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='green'
+                                            value="ok"
+                                            status={checkedMotor === 'ok' ? 'checked' : 'unchecked'}
+                                            onPress={() => setCheckedMotor('ok')}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                    </View>
+
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='red'
+                                            value="notOk"
+                                            status={checkedMotor === 'notOk' ? 'checked' : 'unchecked'}
+                                            onPress={() => setCheckedMotor('notOk')}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                    </View>
+                                </View>
+                                
+                            </ScrollView>
+                        </KeyboardAvoidingView>
+                    </VStack>
+                </SafeAreaView>
+            </VStack>
+        )
+    }
+
+    function Screen7(){
+
+        const [checkedCamera, setCheckedCamera] = useState('');
+        const [checkedMaos, setCheckedMaos] = useState('');
+
+        isFiled.camera = checkedCamera;
+        isFiled.maos_livre = checkedMaos;
+
+        const [openCam, setOpenCam] = useState(false);
+        const [valueCam, setValueCam] = useState([]);
+        const [itemsCam, setItemsCam] = useState([
+            { label: 'Frontal', value: 'Frontal' },
+            { label: 'Traseira', value: 'Traseira' },
+            { label: 'Mensagem de Erro', value: 'Mensagem de Erro' },
+        ]);
+
+        isFiled.razaoCamera = valueCam;
+
+        const [isCam, setIsCam] = useState(false);
+
+        const onCamS = () => {
+            console.log("Voce clicou em nao no Radio Button Camera Like");
+            setCheckedCamera('ok');
+            setIsCam(false);
+        }
+
+        const onCamN = () => {
+            console.log("Voce clicou em nao no Radio Button Camera Dislike");
+            setCheckedCamera('notOk');
+            setIsCam(true);
+        }
+
+        const [combo, setCombo] = useState(0);
+
+        const [mb, setMb] = useState('8%');
+
+        const onComboboxPress = () => {
+            setCombo(combo + 1);
+
+            if (combo % 2 === 0) {
+                setMb('36%');
+                console.log("Voce abriu o ComboBox");
+            }
+
+            else {
+                setMb('8%');
+                console.log("Voce fechou o ComboBox");
+            }
+        }
+
+        return(
+            <VStack flex={1} pb={4} mb={16} bg="white">
+                <SafeAreaView style={styles.container}>
+                    <VStack mt='10%' mb='12%'>
+                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
+                            <ScrollView showsVerticalScrollIndicator={false}>
+                                <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                    <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Câmera </Text>
+                                </View>
+                                <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2} />
+
+                                <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Câmera </Text>
+                                <View display='flex' flexDirection='row' ml={'32%'}>
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='green'
+                                            value="ok"
+                                            status={checkedCamera === 'ok' ? 'checked' : 'unchecked'}
+                                            onPress={onCamS}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                    </View>
+
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='red'
+                                            value="notOk"
+                                            status={checkedCamera === 'notOk' ? 'checked' : 'unchecked'}
+                                            onPress={onCamN}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                    </View>
+                                </View>
+
+                                {isCam && <View style={{
+                                marginBottom: mb,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
+                                }}>
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openCam}
+                                    value={valueCam}
+                                    items={itemsCam}
+                                    setOpen={setOpenCam}
+                                    setValue={setValueCam}
+                                    setItems={setItemsCam}
+
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
+                                </View>}
+
+                                <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='40%' mt={4}> Mãos-Livres </Text>
+                                <View display='flex' flexDirection='row' ml={'32%'}>
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                        color='green'
+                                        value="ok"
+                                        status={checkedMaos === 'ok' ? 'checked' : 'unchecked'}
+                                        onPress={() => setCheckedMaos('ok')}
+                                        />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                    </View>
+
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='red'
+                                            value="notOk"
+                                            status={checkedMaos === 'notOk' ? 'checked' : 'unchecked'}
+                                            onPress={() => setCheckedMaos('notOk')}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                    </View>
+                                </View>
+                                
+                            </ScrollView>
+                        </KeyboardAvoidingView>
+                    </VStack>
+                </SafeAreaView>
+            </VStack>
+        )
+    }
+
+    function Screen8(){
+        const [checkedExtintor, setCheckedExtintor] = useState('');
+        const [checkedPri, setCheckedPri] = useState('');
+        const [checkedCinto, setCheckedCinto] = useState('');
+
+        isFiled.extintor = checkedExtintor;
+        isFiled.pr_socorros = checkedPri;
+        isFiled.cintoSeg = checkedCinto;
+
+        const [openExt, setOpenExt] = useState(false);
+        const [valueExt, setValueExt] = useState([]);
+        const [itemsExt, setItemsExt] = useState([
+            { label: 'Expirou', value: 'Expirou' },
+            { label: 'Nao existe', value: 'Nao existe' },
+        ]);
+
+        const [openPri, setOpenPri] = useState(false);
+        const [valuePri, setValuePri] = useState([]);
+        const [itemsPri, setItemsPri] = useState([
+            { label: 'Expirou', value: 'Expirou' },
+            { label: 'Nao existe', value: 'Nao existe' },
+        ]);
+
+        const [openCinto, setOpenCinto] = useState(false);
+        const [valueCinto, setValueCinto] = useState([]);
+        const [itemsCinto, setItemsCinto] = useState([
+            { label: 'Estragado', value: 'Estragado' },
+            { label: 'Nao existe', value: 'Nao existe' },
+        ]);
+
+        isFiled.razaoextintor = valueExt;
+        isFiled.razaosocorros = valuePri;
+        isFiled.razaocintoSeg = valueCinto;
+
+        const [isExt, setIsExt] = useState(false);
+        const [isPri, setIsPri] = useState(false);
+        const [isCinto, setIsCinto] = useState(false);
+
+        const onExtS = () => {
+            console.log("Voce clicou em nao no Radio Button Extintor Like");
+            setCheckedExtintor('ok');
+            setIsExt(false);
+        }
+
+        const onExtN = () => {
+            console.log("Voce clicou em nao no Radio Button Extintor Dislike");
+            setCheckedExtintor('notOk');
+            setIsExt(true);
+        }
+
+        const onPriS = () => {
+            console.log("Voce clicou em nao no Radio Button Primeiros Like");
+            setCheckedPri('ok');
+            setIsPri(false);
+        }
+
+        const onPriN = () => {
+            console.log("Voce clicou em nao no Radio Button Primeiros Dislike");
+            setCheckedPri('notOk');
+            setIsPri(true);
+        }
+
+        const onCintoS = () => {
+            console.log("Voce clicou em nao no Radio Button Cinto Like");
+            setCheckedCinto('ok');
+            setIsCinto(false);
+        }
+
+        const onCintoN = () => {
+            console.log("Voce clicou em nao no Radio Button Cinto Dislike");
+            setCheckedCinto('notOk');
+            setIsCinto(true);
+        }
+
+
+        const [combo, setCombo] = useState(0);
+        const [combo1, setCombo1] = useState(0);
+        const [combo2, setCombo2] = useState(0);
+
+        const [mb, setMb] = useState('8%');
+        const [mb1, setMb1] = useState('8%');
+        const [mb2, setMb2] = useState('8%');
+
+        const onComboboxPress = () => {
+            setCombo(combo + 1);
+
+            if (combo % 2 === 0) {
+                setMb('25%');
+                console.log("Voce abriu o ComboBox");
+            }
+
+            else {
+                setMb('8%');
+                console.log("Voce fechou o ComboBox");
+            }
+        }
+
+        const onComboboxPress1 = () => {
+            setCombo1(combo1 + 1);
+
+            if (combo1 % 2 === 0) {
+                setMb1('25%');
+                console.log("Voce abriu o ComboBox");
+            }
+
+            else {
+                setMb1('8%');
+                console.log("Voce fechou o ComboBox");
+            }
+        }
+
+        const onComboboxPress2 = () => {
+            setCombo2(combo2 + 1);
+
+            if (combo2 % 2 === 0) {
+                setMb2('25%');
+                console.log("Voce abriu o ComboBox");
+            }
+
+            else {
+                setMb2('8%');
+                console.log("Voce fechou o ComboBox");
+            }
+        }
+
+        const [date, setDate] = useState(new Date());
+        const [mode, setMode] = useState('date');
+        const [show, setShow] = useState(false);
+        const [text, setText] = useState('Data');
+
+        isFiled.validade_extintor = text;
+
+        const onChange = (event, selectedDate) => {
+            setShow(false)
+
+            const currentDate = selectedDate || date;
+            setDate(selectedDate);
+
+            let tempDate = new Date(currentDate);
+            let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+            setText(fDate)
+        };
+
+        const showMode = (currentMode) => {
+            setShow(true);
+            setMode(currentMode);
+        }
+
+        const [isInspe, setIsIsnpe] = useState(true);
+
+
+        type Nav = {
+            navigate: (value: string) => void;
+        }
+
+        const { navigate } = useNavigation<Nav>();
+
+        const navigation = useNavigation();
+
+        const onGravar = () => {
+
+            if (
+                isFiled.bowser != '' &&
+                isFiled.camera != '' &&
+                isFiled.carrocaria != '' &&
+                isFiled.cintoSeg != '' &&
+                isFiled.extintor != '' &&
+                isFiled.kilometragem != '' &&
+                isFiled.limpa_parabrisas != '' &&
+                isFiled.luzes != '' &&
+                isFiled.maos_livre != '' &&
+                isFiled.motor != '' &&
+                isFiled.oleo != '' &&
+                isFiled.pneus != '' &&
+                isFiled.porcas != '' &&
+                isFiled.pr_socorros != '' &&
+                isFiled.pressao != '' &&
+                isFiled.travoes != '' &&
+                isFiled.vidros != ''
+            ) {
+                if (temBowser) {
+                    setIsIsnpe(false);
+                    alert("Preencha a seguir o formulário de inspeção do bowser");
+                    navigate('FormBowser') as never;
+                    setIsIsnpe(false);
+                }
+
+                else {
+                    setIsIsnpe(false);
+                    navigation.getParent().setOptions({ tabBarStyle: { display: 'none' } });
+                    navigate('Inspeccao') as never;
+                    setIsIsnpe(false);
+                }
+            }
+            else {
+                alert("Formulário incompleto! Submeta depois de preencher todos os campos.");
+            }
+
+        }
+
+        isInspg = isInspe;
+
+        return(
+            <VStack flex={1} pb={4} mb={16} bg="white">
+                <SafeAreaView style={styles.container}>
+                    <VStack mt='10%' mb='12%'>
+                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
+                            <ScrollView showsVerticalScrollIndicator={false}>
+                                <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                    <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Segurança </Text>
+                                </View>
+                                <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2} />
+
+                                <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Extintor </Text>
+                                <View display='flex' flexDirection='row' ml={'32%'}>
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='green'
+                                            value="ok"
+                                            status={checkedExtintor === 'ok' ? 'checked' : 'unchecked'}
+                                            onPress={onExtS}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                    </View>
+
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='red'
+                                            value="notOk"
+                                            status={checkedExtintor === 'notOk' ? 'checked' : 'unchecked'}
+                                            onPress={onExtN}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                    </View>
+                                </View>
+                                {isExt && <View style={{
+                                marginBottom: mb,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
+                                }}>
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openExt}
+                                    value={valueExt}
+                                    items={itemsExt}
+                                    setOpen={setOpenExt}
+                                    setValue={setValueExt}
+                                    setItems={setItemsExt}
+
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
+                                </View>}
+
+                                {!isExt && <View mt='5%' ml={'30%'}>
+                                <View display='flex' flexDirection='row'>
+                                    <Text mt='3%' color='primary.600' fontFamily={fonts.heading}>Validade: {text}</Text>
+
+                                    <View ml={'10%'} >
+                                        <TouchableOpacity onPress={() => showMode('date')} >
+                                        <View backgroundColor='green.700' borderRadius={40} size={9} alignItems='center' justifyContent='center' display='flex'>
+                                            <Calendar size={22} color={'#fff'} />
+                                        </View>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                                
+
+                                {
+                                    show && (
+                                    <DateTimePicker
+                                        testID='dateTimePicker'
+                                        value={date}
+                                        mode='date'
+                                        display='default'
+                                        onChange={onChange}
+                                    />
+
+                                    )
+                                }
+                                </View>}
+
+                                <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='35%' mt={4}> Primeiros Socorros </Text>
+                                <View display='flex' flexDirection='row' ml={'32%'}>
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='green'
+                                            value="ok"
+                                            status={checkedPri === 'ok' ? 'checked' : 'unchecked'}
+                                            onPress={onPriS}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                    </View>
+
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='red'
+                                            value="notOk"
+                                            status={checkedPri === 'notOk' ? 'checked' : 'unchecked'}
+                                            onPress={onPriN}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                    </View>
+                                </View>
+                                {isPri && <View style={{
+                                marginBottom: mb1,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
+                                }}>
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress1}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openPri}
+                                    value={valuePri}
+                                    items={itemsPri}
+                                    setOpen={setOpenPri}
+                                    setValue={setValuePri}
+                                    setItems={setItemsPri}
+
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
+                                </View>}
+
+                                <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='35%' mt={4}> Cinto de Segurança </Text>
+                                <View display='flex' flexDirection='row' ml={'32%'}>
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='green'
+                                            value="ok"
+                                            status={checkedCinto === 'ok' ? 'checked' : 'unchecked'}
+                                            onPress={onCintoS}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                    </View>
+
+                                    <View alignItems={'center'} mt={'5%'} mr={'25%'}>
+                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <RadioButton
+                                            color='red'
+                                            value="notOk"
+                                            status={checkedCinto === 'notOk' ? 'checked' : 'unchecked'}
+                                            onPress={onCintoN}
+                                            />
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                    </View>
+                                </View>
+
+                                {isCinto && <View style={{
+                                marginBottom: mb2,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 15
+                                }}>
+                                <DropDownPicker
+                                    dropDownDirection="BOTTOM"
+                                    listMode="SCROLLVIEW"
+                                    onPress={onComboboxPress2}
+                                    placeholder="Selecione a(s) Parte(s)"
+                                    open={openCinto}
+                                    value={valueCinto}
+                                    items={itemsCinto}
+                                    setOpen={setOpenCinto}
+                                    setValue={setValueCinto}
+                                    setItems={setItemsCinto}
+
+                                    theme="LIGHT"
+                                    multiple={true}
+                                    mode="BADGE"
+                                    badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                />
+                                </View>}
+                                <VStack mt={'7%'} mx={'38%'} mb={'7%'}>
+                                    <Button color={'#12375C'} title='Gravar' onPress={onGravar} />
+                                </VStack>
+                            </ScrollView>
+                        </KeyboardAvoidingView>
+                    </VStack>
+                </SafeAreaView>
+            </VStack>
+        )
+    }
+
 
 
 
@@ -900,7 +1737,7 @@ const InspeccaoInfo = (props) => {
                 <HStack textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row" bg='white'>
                     <View bg='white'>
                         <Text color="primary.800" fontSize="md" fontFamily={fonts.heading} bg='white'>
-                            Inspeção diária
+                            Detalhes Inspeção diária
                         </Text>
                     </View>
                 </HStack>
@@ -953,12 +1790,12 @@ const InspeccaoInfo = (props) => {
                         )),
                     }}
                 />
-                {/* <Tab.Screen
+                <Tab.Screen
                     name="five"
                     component={Screen5}
                     options={{
-                        tabBarIcon: (({ color, size }) => (
-                            <Icon as={<Headlights color={color} size={size} />} />
+                        tabBarIcon: (({ color }) => (
+                            <Icon as={<Headlights color={color} size={20} />} />
                         )),
                     }}
                 />
@@ -966,7 +1803,7 @@ const InspeccaoInfo = (props) => {
                     name="six"
                     component={Screen6}
                     options={{
-                        tabBarIcon: (({ color, size }) => (
+                        tabBarIcon: (({ color }) => (
                             <MaterialCommunityIcons name="engine-outline" size={24} color={color} />
                         )),
                     }}
@@ -975,20 +1812,20 @@ const InspeccaoInfo = (props) => {
                     name="seven"
                     component={Screen7}
                     options={{
-                        tabBarIcon: (({ color, size }) => (
-                            <Icon as={<VideoCamera color={color} size={size} />} />
+                        tabBarIcon: (({ color }) => (
+                            <Icon as={<VideoCamera color={color} size={20} />} />
                         )),
                     }}
                 />
                 <Tab.Screen
                     name="Profile"
-                    component={Screen9}
+                    component={Screen8}
                     options={{
-                        tabBarIcon: (({ color, size }) => (
-                            <Icon as={<FirstAidKit color={color} size={size} />} />
+                        tabBarIcon: (({ color }) => (
+                            <Icon as={<FirstAidKit color={color} size={20} />} />
                         )),
                     }}
-                /> */}
+                />
             </Tab.Navigator>
         </>
     )
