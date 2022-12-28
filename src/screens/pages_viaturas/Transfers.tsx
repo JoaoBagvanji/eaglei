@@ -12,6 +12,7 @@ import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import FormTransferencia from '../../routes/r_viaturas/trans.routes';
 import api from '../../services/api';
 import { Load } from '../../components/Load';
+import userImg from '../../assets/avatars/transfercar3.png';
 
 const Stack = createStackNavigator();
 
@@ -195,7 +196,9 @@ const data = [
                     entre as Transferências
                 </Text>
                 </View>
-                <Icon as ={<MagnifyingGlass color={colors.green[700]}/>} />
+                <View backgroundColor='white' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
+                  <Imagens source={userImg} width='40' height='30' borderRadius='40' alt='Imagem de transfer' />
+                </View>
             </HStack>
             <View mb={'42%'}>
                 <FlatList            

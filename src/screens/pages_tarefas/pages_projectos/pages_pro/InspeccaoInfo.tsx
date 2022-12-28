@@ -325,25 +325,25 @@ const InspeccaoInfo = (props) => {
 
                                 <View display='flex' flexDirection='row' ml={'30%'}>
                                     <View alignItems={'center'} mt={'10%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.carrocaria === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCarrocariaS}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'10%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.carrocaria === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCarrocariaN}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
@@ -571,25 +571,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Pneus </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.pneus === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPneuS}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.pneus === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPneuN}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
@@ -622,25 +622,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Pressão </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.pressao === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPreS}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.pressao === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPreN}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
@@ -673,25 +673,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Porcas </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.porcas === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPorcaS}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.porcas === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPorcaN}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
@@ -724,25 +724,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Travões </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.travoes === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onTravS}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.travoes === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onTravN}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
@@ -843,25 +843,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='37%' mt={4}> Vidros/Espelhos </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.vidros === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onVidrosS}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.vidros === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onVidrosN}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
                                 {isVidros && <View style={{
@@ -892,25 +892,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='37%' mt={4}> Limpa-parabrisas </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'10%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.limpa_parabrisas === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedLimpa('ok')}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'10%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.limpa_parabrisas === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedLimpa('notOk')}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
@@ -983,25 +983,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Luzes </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.luzes === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onLuzS}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.luzes === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onLuzN}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
                                 {isLuzes && <View style={{
@@ -1102,25 +1102,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='40%' mt={4}> Óleo/Água </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.nivel === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onOleoS}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.nivel === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onOleoN}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
@@ -1152,25 +1152,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Motor </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.Waning_engine === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMotor('ok')}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.Waning_engine === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMotor('notOk')}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
                                 
@@ -1246,25 +1246,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Câmera </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.camera === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCamS}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.camera === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCamN}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
@@ -1296,25 +1296,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='40%' mt={4}> Mãos-Livres </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                         color='green'
                                         value="ok"
                                         status={insp.handsfree === 'ok' ? 'checked' : 'unchecked'}
                                         onPress={() => setCheckedMaos('ok')}
                                         />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.handsfree === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMaos('notOk')}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
                                 
@@ -1542,25 +1542,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='45%' mt={4}> Extintor </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.extintor === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onExtS}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.extintor === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onExtN}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
                                 {isExt && <View style={{
@@ -1619,25 +1619,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='35%' mt={4}> Primeiros Socorros </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.socorros === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPriS}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.socorros === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPriN}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
                                 {isPri && <View style={{
@@ -1668,25 +1668,25 @@ const InspeccaoInfo = (props) => {
                                 <Text color='blueGray.400' fontFamily={fonts.heading} fontSize='xs' ml='35%' mt={4}> Cinto de Segurança </Text>
                                 <View display='flex' flexDirection='row' ml={'32%'}>
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsUp color={colors.primary[700]} size={25} />
+                                        <ThumbsUp color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='green'
                                             value="ok"
                                             status={insp.cintoSeg === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCintoS}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'> Ok </Text>
                                     </View>
 
                                     <View alignItems={'center'} mt={'5%'} mr={'25%'}>
-                                        <ThumbsDown color={colors.primary[700]} size={25} />
+                                        <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
                                             value="notOk"
                                             status={insp.cintoSeg === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCintoN}
                                             />
-                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
+                                        <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
 
