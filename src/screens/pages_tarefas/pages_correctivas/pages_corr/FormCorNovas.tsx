@@ -1971,7 +1971,7 @@ import api from '../../../../services/api';
                <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
                <View>
                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-               Detalhes da Manutenção Correctiva 
+               Detalhes da Manutenção Correctiva Nova
                </Text>
                </View>
                </HStack>
