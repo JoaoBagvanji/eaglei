@@ -1,5 +1,6 @@
 import { useTheme } from 'native-base';
 import { StyleSheet } from 'react-native';
+import fonts from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
     container:{
@@ -17,9 +18,9 @@ export const styles = StyleSheet.create({
         //backgroundColor: '#e0edf9',
         fontSize:14,
         textColor: '#12375C',
-        height: 40,
         width:'90%',
-        marginBottom:'2%'
+        marginBottom:'2%',
+        fontFamily: fonts.text
     },
 
 });
