@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 
-import TopTabs from '../../screens/pages_tarefas/pages_correctivas/pages_corr/FormCorProgresso';
+import TopTabs from '../../screens/pages_tarefas/pages_correctivas/pages_corr/FormCorAtencao';
 
     export default function App() {
           

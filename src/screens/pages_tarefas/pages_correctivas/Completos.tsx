@@ -4,7 +4,7 @@ import { Info, CheckCircle  ,LightbulbFilament ,Lightning ,Package,Camera, Hands
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../../styles/colors';
 
-import FormInfoCorCompletos from "../../../routes/r_correctivas/corCompletos.routes";
+import FormInfoCorCompletos from "./pages_corr/FormCorCompletos";
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 

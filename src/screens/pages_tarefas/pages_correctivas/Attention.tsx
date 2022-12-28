@@ -3,7 +3,7 @@ import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'nat
 import { Info ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine, Warning } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import  CorAttention  from "../../../routes/r_correctivas/corAtencao.routes";
+import  CorAttention  from "./pages_corr/FormCorAtencao";
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 
