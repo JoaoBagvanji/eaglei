@@ -16,12 +16,15 @@ import Inspeccao from '../Inspeccao';
 
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import api from '../../../services/api';
+import { Load } from '../../../components/Load';
 
 
 //Vars globais a nivel do ficheiro
 var temBowser = false;
 var isInspg = true;
 var isFiled = {
+  'motorista': '',
   'kilometragem': '',
   'carrocaria': '',
   'bowser': '',
@@ -56,6 +59,9 @@ var isFiled = {
   'validade_extintor': ''
 }
 
+  
+
+
 
 const StackRoutes = createStackNavigator();
 
@@ -63,13 +69,63 @@ const StackRoutes = createStackNavigator();
 
 
 function Screen1() {
+  const [insp, setInsp] = useState({
+    matricula: '',
+    nome: '',
+    datta: '',
+    kilometragem: '',
+    carrocaria: '',
+    bowser: '',
+    bolareboque: '',
+    pneus: '',
+    pressao: '',
+    porcas: '',
+    travoes: '',
+    vidros: '',
+    limpa_parabrisas: '',
+    luzes: '',
+    nivel: '',
+    Waning_engine: '',
+    camera: '',
+    handsfree: '',
+    extintor: '',
+    socorros: '',
+    cintoSeg: '',
+    razaoCarrocari: [],
+    razaobolareboque: [],
+    razaoPneus: [],
+    razaoPressao: [],
+    razaoPorcas: [],
+    razaoTravoes: [],
+    razaoVidros: [],
+    razaoLuzes: [],
+    razaonivel: [],
+    razaoCamera: [],
+    razaoextintor: [],
+    razaosocorros: [],
+    razaocintoSeg: [],
+    validade_extintor: ''
+})
 
   const [kilom, setKilom] = useState('');
   isFiled.kilometragem = kilom;
 
   const { colors } = useTheme();
   const { fonts } = useTheme();
+  const [isloading, setIsLoading] = useState(true);
+  const [dados, setDados] = useState([]);
+  React.useEffect(() => {
+    (async () => {
 
+      api.get(`/viatura/inspdiaria/novo`).then(d => {
+        setIsLoading(false);
+        // setDados(d.data);
+        setInsp(d.data)
+        console.log(d.data)
+      });
+
+    })()
+  }, [])
 
 
   return (
@@ -82,6 +138,8 @@ function Screen1() {
         <TextInput
           style={styles.txtInput}
           mode='outlined'
+          value={insp.nome}
+          onChangeText={(text) => setInsp({ ...insp, ...{ motorista: text } })}
           selectionColor='#12375C'
           activeOutlineColor='#12375C'
           outlineColor='#12375C'
@@ -96,6 +154,7 @@ function Screen1() {
         <TextInput
           style={styles.txtInput}
           mode='outlined'
+          value={insp.matricula}
           selectionColor='#12375C'
           activeOutlineColor='#12375C'
           outlineColor='#12375C'
@@ -110,6 +169,7 @@ function Screen1() {
         <TextInput
           style={styles.txtInput}
           mode='outlined'
+          value={insp.kilometragem}
           selectionColor='#12375C'
           activeOutlineColor='#12375C'
           outlineColor='#12375C'
@@ -127,6 +187,7 @@ function Screen1() {
         <TextInput
           style={styles.txtInput}
           mode='outlined'
+          // value={insp.data}
           selectionColor='#12375C'
           activeOutlineColor='#12375C'
           outlineColor='#12375C'
@@ -1781,7 +1842,7 @@ function Screen8() {
         </View>}
 
         <VStack mt={'7%'} mx={'38%'}>
-          <Button color={'#12375C'} title='Gravar' onPress={onGravar} />
+          <Button color={'#12375C'} title='Gravar' onPress={() => console.log(isFiled)} />
         </VStack>
       </VStack>
 
@@ -1823,111 +1884,110 @@ function Screen9() {
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function FormInspeccao() {
+export default function FormInspeccao(props) {
   const { colors } = useTheme();
   const { fonts } = useTheme();
 
 
-  
-  return (
-    <>
-      {isInspg &&
-        <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
-          <View>
-            <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-              Inspeção diária
-            </Text>
-          </View>
-        </HStack>
-      }
+    return (
+      <>
+        {isInspg &&
+          <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
+            <View>
+              <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                Inspeção diária
+              </Text>
+            </View>
+          </HStack>
+        }
 
 
 
 
-      <Tab.Navigator
-        initialRouteName="one"
-        screenOptions={{
-          swipeEnabled: false,
-          tabBarShowLabel: false,
-          tabBarActiveTintColor: colors.green[700],
-          tabBarInactiveTintColor: colors.gray[600],
-        }}
-      >
-        <Tab.Screen
-          name="one"
-          component={Screen1}
-          options={{
-            tabBarIcon: (({ color }) => (
-              <Icon as={<Note color={color} size={20} />} />
-            )),
+        <Tab.Navigator
+          initialRouteName="one"
+          screenOptions={{
+            swipeEnabled: false,
+            tabBarShowLabel: false,
+            tabBarActiveTintColor: colors.green[700],
+            tabBarInactiveTintColor: colors.gray[600],
           }}
-        />
-        <Tab.Screen
-          name="two"
-          component={Screen2}
-          options={{
-            tabBarIcon: (({ color }) => (
-              <Icon as={<Car color={color} size={20} />} />
-            )),
-          }}
-        />
-        <Tab.Screen
-          name="three"
-          component={Screen3}
-          options={{
-            tabBarIcon: (({ color }) => (
-              <Icon as={<NumberCircleZero color={color} size={20} />} />
-            )),
-          }}
-        />
-        <Tab.Screen
-          name="four"
-          component={Screen4}
-          options={{
-            tabBarIcon: (({ color }) => (
-              <MaterialCommunityIcons name="mirror-rectangle" size={20} color={color} />
-            )),
-          }}
-        />
-        <Tab.Screen
-          name="five"
-          component={Screen5}
-          options={{
-            tabBarIcon: (({ color }) => (
-              <Icon as={<Headlights color={color} size={20} />} />
-            )),
-          }}
-        />
-        <Tab.Screen
-          name="six"
-          component={Screen6}
-          options={{
-            tabBarIcon: (({ color }) => (
-              <MaterialCommunityIcons name="engine-outline" size={24} color={color} />
-            )),
-          }}
-        />
-        <Tab.Screen
-          name="seven"
-          component={Screen7}
-          options={{
-            tabBarIcon: (({ color }) => (
-              <Icon as={<VideoCamera color={color} size={20} />} />
-            )),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Screen9}
-          options={{
-            tabBarIcon: (({ color }) => (
-              <Icon as={<FirstAidKit color={color} size={20} />} />
-            )),
-          }}
-        />
+        >
+          <Tab.Screen
+            name="one"
+            component={Screen1}
+            options={{
+              tabBarIcon: (({ color }) => (
+                <Icon as={<Note color={color} size={20} />} />
+              )),
+            }}
+          />
+          <Tab.Screen
+            name="two"
+            component={Screen2}
+            options={{
+              tabBarIcon: (({ color }) => (
+                <Icon as={<Car color={color} size={20} />} />
+              )),
+            }}
+          />
+          <Tab.Screen
+            name="three"
+            component={Screen3}
+            options={{
+              tabBarIcon: (({ color }) => (
+                <Icon as={<NumberCircleZero color={color} size={20} />} />
+              )),
+            }}
+          />
+          <Tab.Screen
+            name="four"
+            component={Screen4}
+            options={{
+              tabBarIcon: (({ color }) => (
+                <MaterialCommunityIcons name="mirror-rectangle" size={20} color={color} />
+              )),
+            }}
+          />
+          <Tab.Screen
+            name="five"
+            component={Screen5}
+            options={{
+              tabBarIcon: (({ color }) => (
+                <Icon as={<Headlights color={color} size={20} />} />
+              )),
+            }}
+          />
+          <Tab.Screen
+            name="six"
+            component={Screen6}
+            options={{
+              tabBarIcon: (({ color }) => (
+                <MaterialCommunityIcons name="engine-outline" size={24} color={color} />
+              )),
+            }}
+          />
+          <Tab.Screen
+            name="seven"
+            component={Screen7}
+            options={{
+              tabBarIcon: (({ color }) => (
+                <Icon as={<VideoCamera color={color} size={20} />} />
+              )),
+            }}
+          />
+          <Tab.Screen
+            name="Profile"
+            component={Screen9}
+            options={{
+              tabBarIcon: (({ color }) => (
+                <Icon as={<FirstAidKit color={color} size={20} />} />
+              )),
+            }}
+          />
 
-      </Tab.Navigator>
-    </>
+        </Tab.Navigator>
+      </>
 
-  );
-}
+    );
+  }
