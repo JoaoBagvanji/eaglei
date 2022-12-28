@@ -1827,6 +1827,8 @@ export default function FormInspeccao() {
   const { colors } = useTheme();
   const { fonts } = useTheme();
 
+
+  
   return (
     <>
       {isInspg &&
@@ -1855,8 +1857,8 @@ export default function FormInspeccao() {
           name="one"
           component={Screen1}
           options={{
-            tabBarIcon: (({ color, size }) => (
-              <Icon as={<Note color={color} size={size} />} />
+            tabBarIcon: (({ color }) => (
+              <Icon as={<Note color={color} size={20} />} />
             )),
           }}
         />
@@ -1864,8 +1866,8 @@ export default function FormInspeccao() {
           name="two"
           component={Screen2}
           options={{
-            tabBarIcon: (({ color, size }) => (
-              <Icon as={<Car color={color} size={size} />} />
+            tabBarIcon: (({ color }) => (
+              <Icon as={<Car color={color} size={20} />} />
             )),
           }}
         />
@@ -1873,8 +1875,8 @@ export default function FormInspeccao() {
           name="three"
           component={Screen3}
           options={{
-            tabBarIcon: (({ color, size }) => (
-              <Icon as={<NumberCircleZero color={color} size={size} />} />
+            tabBarIcon: (({ color }) => (
+              <Icon as={<NumberCircleZero color={color} size={20} />} />
             )),
           }}
         />
@@ -1882,7 +1884,7 @@ export default function FormInspeccao() {
           name="four"
           component={Screen4}
           options={{
-            tabBarIcon: (({ color, size }) => (
+            tabBarIcon: (({ color }) => (
               <MaterialCommunityIcons name="mirror-rectangle" size={20} color={color} />
             )),
           }}
@@ -1891,8 +1893,8 @@ export default function FormInspeccao() {
           name="five"
           component={Screen5}
           options={{
-            tabBarIcon: (({ color, size }) => (
-              <Icon as={<Headlights color={color} size={size} />} />
+            tabBarIcon: (({ color }) => (
+              <Icon as={<Headlights color={color} size={20} />} />
             )),
           }}
         />
@@ -1900,7 +1902,7 @@ export default function FormInspeccao() {
           name="six"
           component={Screen6}
           options={{
-            tabBarIcon: (({ color, size }) => (
+            tabBarIcon: (({ color }) => (
               <MaterialCommunityIcons name="engine-outline" size={24} color={color} />
             )),
           }}
@@ -1909,8 +1911,8 @@ export default function FormInspeccao() {
           name="seven"
           component={Screen7}
           options={{
-            tabBarIcon: (({ color, size }) => (
-              <Icon as={<VideoCamera color={color} size={size} />} />
+            tabBarIcon: (({ color }) => (
+              <Icon as={<VideoCamera color={color} size={20} />} />
             )),
           }}
         />
@@ -1918,8 +1920,8 @@ export default function FormInspeccao() {
           name="Profile"
           component={Screen9}
           options={{
-            tabBarIcon: (({ color, size }) => (
-              <Icon as={<FirstAidKit color={color} size={size} />} />
+            tabBarIcon: (({ color }) => (
+              <Icon as={<FirstAidKit color={color} size={20} />} />
             )),
           }}
         />
