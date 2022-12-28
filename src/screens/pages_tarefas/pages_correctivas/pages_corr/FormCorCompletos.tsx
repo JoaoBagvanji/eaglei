@@ -44,7 +44,7 @@ import api from '../../../../services/api';
                 
                    setDados(d.data);
                     console.log("-------DADOS DA ROTA--------");
-                    console.log(d.data.jobcard_credelecinfo);
+                    console.log(d.data.spares_usados);
            
                })
              
@@ -1399,365 +1399,365 @@ import api from '../../../../services/api';
    
    
    
-          //    //reparacao
-          //       function Screen6() {
+             //reparacao
+                function Screen6() {
       
-          //         const data = [
+                  const data = [
       
-          //             {
-          //                 id: 1,
-          //                 tipo_de_equip: 'Condensor',
-          //                 modelo: 'a',
-          //                 nr_de_serie: '1223',
-          //             },
-          //             {
-          //                 id: 2,
-          //                 tipo_de_equip: 'Condensor',
-          //                 modelo: 'c',
-          //                 nr_de_serie: '24555',
-          //             }
+                      {
+                          id: 1,
+                          tipo_de_equip: 'Condensor',
+                          modelo: 'a',
+                          nr_de_serie: '1223',
+                      },
+                      {
+                          id: 2,
+                          tipo_de_equip: 'Condensor',
+                          modelo: 'c',
+                          nr_de_serie: '24555',
+                      }
                     
-          //         ];
+                  ];
       
-          //             type Nav ={
-          //               navigate : (value: string) => void;
-          //           }
-          //             const { navigate } = useNavigation<Nav>();
+                      type Nav ={
+                        navigate : (value: string) => void;
+                    }
+                      const { navigate } = useNavigation<Nav>();
                   
-          //             const oneUser = ( {item} ) =>(
-          //                 <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+                      const oneUser = ( {item} ) =>(
+                          <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
       
-          //                     <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.tipo_de_equip}</Text>
-          //                     <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.modelo}</Text>
-          //                     <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.nr_de_serie}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_equiptype}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_model}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_serialnumber}</Text>
       
-          //                     <TouchableOpacity onPress={() => navigate('InfoEquip')}>
-          //                       <Icon as ={<Info color={colors.blueGray[400]}/>} />
-          //                     </TouchableOpacity>
+                              <TouchableOpacity onPress={() => navigate('InfoEquip')}>
+                                <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                              </TouchableOpacity>
       
-          //                 </HStack>   
-          //             )
+                          </HStack>   
+                      )
       
-          //             function itemSeparator(){
-          //                 return <View style={styles.separator}/>
-          //             }
+                      function itemSeparator(){
+                          return <View style={styles.separator}/>
+                      }
       
-          //             const { fonts } = useTheme();
-          //             const { colors } = useTheme();
+                      const { fonts } = useTheme();
+                      const { colors } = useTheme();
       
-          //               return (
-          //                 <SafeAreaView style={styles.container}>
+                        return (
+                          <SafeAreaView style={styles.container}>
       
-          //                         <VStack bg="white" mb={'60%'} width={'100%'}>
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
       
-          //                                 <Text
-          //                                     color='#12375C'
-          //                                     mt={'8%'}
-          //                                     mb={'4%'}
-          //                                     fontFamily={fonts.body}
-          //                                     fontSize='md'
-          //                                     alignSelf={'center'}>
-          //                                     REPARAÇÃO DE EQUIPAMENTOS
-          //                                 </Text>
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              REPARAÇÃO DE EQUIPAMENTOS
+                                          </Text>
       
-          //                                 <HStack justifyContent={'space-evenly'}>
+                                          <HStack justifyContent={'space-evenly'}>
                                             
-          //                                         <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Tipo de Equipamento </Text>
-          //                                         <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Modelo </Text>
-          //                                         <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Número de Série </Text>
-          //                                         <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Tipo de Equipamento </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Modelo </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Número de Série </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
       
-          //                                 </HStack>
+                                          </HStack>
       
-          //                             <FlatList 
-          //                                   data = {data}
-          //                                   renderItem = { oneUser }
-          //                                   ItemSeparatorComponent = { itemSeparator }
-          //                                   ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-          //                                   keyExtractor = { data => data.id }
-          //                                   showsVerticalScrollIndicator={false}
-          //                               />
+                                      <FlatList 
+                                            data = {dados.equipamentoArrayJobcard}
+                                            renderItem = { oneUser }
+                                            ItemSeparatorComponent = { itemSeparator }
+                                            ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                            keyExtractor = { data => data.id }
+                                            showsVerticalScrollIndicator={false}
+                                        />
       
-          //                         </VStack>
+                                  </VStack>
       
-          //                 </SafeAreaView>
-          //                 );
+                          </SafeAreaView>
+                          );
       
       
       
-          //       }
+                }
                 
    
    
    
    
-          //    ///SOBRESSALENTE
-          //         function Screen7() {
+             ///SOBRESSALENTE
+                  function Screen7() {
                     
-          //           const data = [
+                    const data = [
         
-          //             {
-          //                 id: 1,
-          //                 item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
-          //                 qtd_usada: '1',
-          //             },
-          //             {
-          //                 id: 2,
-          //                 item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
-          //                 qtd_usada: '4',
-          //             }
+                      {
+                          id: 1,
+                          item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
+                          qtd_usada: '1',
+                      },
+                      {
+                          id: 2,
+                          item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
+                          qtd_usada: '4',
+                      }
                     
-          //         ];
+                  ];
         
-          //             type Nav ={
-          //               navigate : (value: string) => void;
-          //           }
-          //             const { navigate } = useNavigation<Nav>();
+                      type Nav ={
+                        navigate : (value: string) => void;
+                    }
+                      const { navigate } = useNavigation<Nav>();
                   
-          //             const oneUser = ( {item} ) =>(
-          //                 <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+                      const oneUser = ( {item} ) =>(
+                          <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
         
-          //                     <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.item}</Text>
-          //                     <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.qtd_usada}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.jobcard_item}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.jobcard_quantityuse}</Text>
                               
-          //                     <TouchableOpacity onPress={() => navigate('InfoSpare')}>
-          //                       <Icon as ={<Info color={colors.blueGray[400]}/>} />
-          //                     </TouchableOpacity>
+                              <TouchableOpacity onPress={() => navigate('InfoSpare')}>
+                                <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                              </TouchableOpacity>
         
-          //                 </HStack>   
-          //             )
+                          </HStack>   
+                      )
         
-          //             function itemSeparator(){
-          //                 return <View style={styles.separator}/>
-          //             }
+                      function itemSeparator(){
+                          return <View style={styles.separator}/>
+                      }
         
-          //             const { fonts } = useTheme();
-          //             const { colors } = useTheme();
+                      const { fonts } = useTheme();
+                      const { colors } = useTheme();
         
-          //               return (
-          //                 <SafeAreaView style={styles.container}>
+                        return (
+                          <SafeAreaView style={styles.container}>
         
-          //                         <VStack bg="white" mb={'60%'} width={'100%'}>
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
         
-          //                                 <Text
-          //                                     color='#12375C'
-          //                                     mt={'8%'}
-          //                                     mb={'4%'}
-          //                                     fontFamily={fonts.body}
-          //                                     fontSize='md'
-          //                                     alignSelf={'center'}>
-          //                                     SOBRESSALENTE USADO
-          //                                 </Text>
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              SOBRESSALENTE USADO
+                                          </Text>
         
-          //                                 <HStack justifyContent={'space-evenly'}>
+                                          <HStack justifyContent={'space-evenly'}>
                                             
-          //                                         <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Item </Text>
-          //                                         <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Quantidade usada </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Item </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Quantidade usada </Text>
                                                   
-          //                                 </HStack>
+                                          </HStack>
         
-          //                             <FlatList 
-          //                                   data = {dados.spares_usados}
-          //                                   renderItem = { oneUser }
-          //                                   ItemSeparatorComponent = { itemSeparator }
-          //                                   ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-          //                                   keyExtractor = { data => data.id }
-          //                                   showsVerticalScrollIndicator={false}
-          //                               />
+                                      <FlatList 
+                                            data = {dados.sparesArrayJobcard}
+                                            renderItem = { oneUser }
+                                            ItemSeparatorComponent = { itemSeparator }
+                                            ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                            keyExtractor = { data => data.id }
+                                            showsVerticalScrollIndicator={false}
+                                        />
         
-          //                         </VStack>
+                                  </VStack>
         
-          //                 </SafeAreaView>
-          //                 );
+                          </SafeAreaView>
+                          );
         
         
-          //         }
+                  }
         
    
    
    
    
            //FOTOS
-            //     function Screen8({navigation}) {
+                function Screen8({navigation}) {
       
-            //       const { fonts } = useTheme();
-            //       const { colors } = useTheme();
+                  const { fonts } = useTheme();
+                  const { colors } = useTheme();
               
-            //     const [images, setImages] = useState([]);
-            //     const [isLoading, setIsLoading] = useState(false);
-            //     const { width } = useWindowDimensions();
+                const [images, setImages] = useState([]);
+                const [isLoading, setIsLoading] = useState(false);
+                const { width } = useWindowDimensions();
       
-            //     let deviceHeight = Dimensions.get('window').height;
-            //     let deviceWidth = Dimensions.get('window').width;
+                let deviceHeight = Dimensions.get('window').height;
+                let deviceWidth = Dimensions.get('window').width;
       
               
-            //                 const pictures = [
-            //           {
-            //               id: 1,
-            //               image: require('../../../../assets/tecnicos/jobcardphoto1.png'),
+                            const pictures = [
+                      {
+                          id: 1,
+                          image: require('../../../../assets/tecnicos/jobcardphoto1.png'),
                       
-            //           },
-            //           {
-            //               id: 2,
-            //                   image: require('../../../../assets/tecnicos/jobcardphoto2.png'),
-            //           },
-            //           {
-            //               id: 3,
-            //               image: require('../../../../assets/tecnicos/jobcardphoto3.png'),
-            //           },
-            //           {
-            //               id: 4,
-            //               image: require('../../../../assets/tecnicos/jobcardphoto4.png'),
-            //           },
-            //           {
-            //               id: 5,
-            //               image: require('../../../../assets/tecnicos/jobcardphoto5.png'),
-            //           },
-            //           {
-            //               id: 6,
+                      },
+                      {
+                          id: 2,
+                              image: require('../../../../assets/tecnicos/jobcardphoto2.png'),
+                      },
+                      {
+                          id: 3,
+                          image: require('../../../../assets/tecnicos/jobcardphoto3.png'),
+                      },
+                      {
+                          id: 4,
+                          image: require('../../../../assets/tecnicos/jobcardphoto4.png'),
+                      },
+                      {
+                          id: 5,
+                          image: require('../../../../assets/tecnicos/jobcardphoto5.png'),
+                      },
+                      {
+                          id: 6,
                       
-            //               image: require('../../../../assets/tecnicos/jobcardphotoinfo6.png'),
-            //           },
-            //           {
-            //               id: 7,
-            //               image: require('../../../../assets/tecnicos/jobcardphoto7.png'),
+                          image: require('../../../../assets/tecnicos/jobcardphotoinfo6.png'),
+                      },
+                      {
+                          id: 7,
+                          image: require('../../../../assets/tecnicos/jobcardphoto7.png'),
                         
-            //           },
-            //           {
-            //               id: 8,
-            //               image: require('../../../../assets/tecnicos/jobcardphoto8.png'),
-            //           }
-            //               ];
+                      },
+                      {
+                          id: 8,
+                          image: require('../../../../assets/tecnicos/jobcardphoto8.png'),
+                      }
+                          ];
               
               
-            //               const pickFromGal = async () => {
-            //                 // No permissions request is necessary for launching the image library
-            //                 setIsLoading(true);
+                          const pickFromGal = async () => {
+                            // No permissions request is necessary for launching the image library
+                            setIsLoading(true);
                 
-            //                 let  resultados = await ImagePicker.launchImageLibraryAsync({
-            //                         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            //                         // allowsEditing: true,
-            //                         allowsMultipleSelection: true,
-            //                         selectionLimit: 10,
-            //                         aspect: [4, 3],
-            //                         quality: 1,
-            //                     });
+                            let  resultados = await ImagePicker.launchImageLibraryAsync({
+                                    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                                    // allowsEditing: true,
+                                    allowsMultipleSelection: true,
+                                    selectionLimit: 10,
+                                    aspect: [4, 3],
+                                    quality: 1,
+                                });
                 
-            //                     setIsLoading(false);
-            //                     console.log(resultados);
+                                setIsLoading(false);
+                                console.log(resultados);
                             
-            //                     resultados.assets.forEach(element => {
+                                resultados.assets.forEach(element => {
                                     
-            //                         if (!resultados.canceled) {
-            //                             setImages(resultados.assets);
-            //                             }
-            //                     });
+                                    if (!resultados.canceled) {
+                                        setImages(resultados.assets);
+                                        }
+                                });
                                 
-            //             };
+                        };
                 
               
                           
                                               
-            //       return (
-            //       <VStack flex={1} pb={4} mb={16} bg="white">
+                  return (
+                  <VStack flex={1} pb={4} mb={16} bg="white">
               
-            //           <SafeAreaView style={styles.container}>
+                      <SafeAreaView style={styles.container}>
               
-            //           <ScrollView mb='12%'>
+                      <ScrollView mb='12%'>
                   
-            //           <FlatList
-            //               scrollEnabled={false}
-            //               data={dados.photoinfo}
-            //               renderItem={({ item }) => (
+                      <FlatList
+                          scrollEnabled={false}
+                          data={dados.jobcardphotoinfo}
+                          renderItem={({ item }) => (
       
-            //                 <View borderWidth={3} borderColor={'white'}>
+                            <View borderWidth={3} borderColor={'white'}>
       
-            //                     <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUrl', {url: item}) }>
-            //                         <RNimage
-            //                         source={item}
-            //                         style={{ width: width / 2, height: 250 }}
-            //                         />
-            //                     </TouchableOpacity>
+                                <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUrl', {url: item}) }>
+                                    <RNimage
+                                    source={item}
+                                    style={{ width: width / 2, height: 250 }}
+                                    />
+                                </TouchableOpacity>
       
-            //                 </View>
+                            </View>
       
-            //               )}
-            //               numColumns={2}
-            //               keyExtractor={(item) => item.image}
-            //               contentContainerStyle={{ marginVertical: 10}}
-            //               ListHeaderComponent={
-            //               <Text
-            //                 color='#12375C'
-            //                 mt={'8%'}
-            //                 mb={'4%'}
-            //                 fontFamily={fonts.body}
-            //                 fontSize='md'
-            //                 alignSelf={'center'}>
-            //                 FOTOS
-            //                 </Text>
+                          )}
+                          numColumns={2}
+                          keyExtractor={(item) => item.image}
+                          contentContainerStyle={{ marginVertical: 10}}
+                          ListHeaderComponent={
+                          <Text
+                            color='#12375C'
+                            mt={'8%'}
+                            mb={'4%'}
+                            fontFamily={fonts.body}
+                            fontSize='md'
+                            alignSelf={'center'}>
+                            FOTOS
+                            </Text>
       
-            //               }
-            //           />
-      
-      
+                          }
+                      />
       
       
       
       
-            //                     <View alignItems='center' justifyContent='center' display='flex' >
-            //                           <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
-            //                       </View>
+      
+      
+                                <View alignItems='center' justifyContent='center' display='flex' >
+                                      <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
+                                  </View>
               
-            //                       <FlatList
-            //               scrollEnabled={false}
-            //               data={images}
-            //               renderItem={({ item }) => (
+                                  <FlatList
+                          scrollEnabled={false}
+                          data={images}
+                          renderItem={({ item }) => (
       
-            //                 <View borderWidth={3} borderColor={'white'}>
+                            <View borderWidth={3} borderColor={'white'}>
       
-            //                     <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUri', {uri: item.uri}) }>
-            //                         <RNimage
-            //                         source={{uri: item.uri}}
-            //                         style={{ width: width / 2, height: 250 }}
-            //                         />
-            //                     </TouchableOpacity>
+                                <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUri', {uri: item.uri}) }>
+                                    <RNimage
+                                    source={{uri: item.uri}}
+                                    style={{ width: width / 2, height: 250 }}
+                                    />
+                                </TouchableOpacity>
       
-            //                 </View>
+                            </View>
       
-            //               )}
-            //               numColumns={2}
-            //               keyExtractor={(item) => item.uri}
-            //               contentContainerStyle={{ marginVertical: 10}}
-            //               ListHeaderComponent={
-            //                 isLoading ? (
-            //                 <View>
-            //                     <Text
-            //                     style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
-            //                     A carregar...
-            //                     </Text>
-            //                     <ActivityIndicator size={"large"} />
-            //                 </View>
-            //                 ) : (
+                          )}
+                          numColumns={2}
+                          keyExtractor={(item) => item.uri}
+                          contentContainerStyle={{ marginVertical: 10}}
+                          ListHeaderComponent={
+                            isLoading ? (
+                            <View>
+                                <Text
+                                style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
+                                A carregar...
+                                </Text>
+                                <ActivityIndicator size={"large"} />
+                            </View>
+                            ) : (
                           
-            //                 <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
+                            <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
                                 
-            //                     <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
-            //                           <Image size={22} color={'#A1C861'} />
-            //                           <Text style={styles.text}> Galeria</Text>
-            //                     </TouchableOpacity>
+                                <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
+                                      <Image size={22} color={'#A1C861'} />
+                                      <Text style={styles.text}> Galeria</Text>
+                                </TouchableOpacity>
       
-            //                 </HStack>
-            //     )
-            // }
-            //           />
+                            </HStack>
+                )
+            }
+                      />
       
                                   
-            //               </ScrollView>
+                          </ScrollView>
               
-            //           </SafeAreaView>
-            //       </VStack> 
-            //     );
-            //   };
+                      </SafeAreaView>
+                  </VStack> 
+                );
+              };
 
           
 
@@ -1966,11 +1966,11 @@ import api from '../../../../services/api';
             return (
               <>
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
-             <View>
-             <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-             Detalhes da Manutenção Correctiva Completa
-             </Text>
-             </View>
+                <View>
+                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                Detalhes da Manutenção Correctiva Completa
+                </Text>
+                </View>
              </HStack>
                
 
@@ -1983,6 +1983,7 @@ import api from '../../../../services/api';
                   tabBarInactiveTintColor: colors.gray[600],
                 }}
               >
+
                 <Tab.Screen
                   name="one"
                   component={Screen1}
@@ -1992,6 +1993,7 @@ import api from '../../../../services/api';
                       )),
                   }}
                 />
+
                 <Tab.Screen
                   name="two"
                   component={Screen2}
@@ -2002,7 +2004,7 @@ import api from '../../../../services/api';
                   }}
                 />
 
-                {/* <Tab.Screen
+                <Tab.Screen
                   name="three"
                   component={Screen3}
                   options={{
@@ -2010,7 +2012,7 @@ import api from '../../../../services/api';
                           <Icon as ={<MagnifyingGlass color={color} size={size}/>} />
                       )),
                   }}
-                /> */}
+                /> 
             
                 <Tab.Screen
                   name="four"
@@ -2032,7 +2034,7 @@ import api from '../../../../services/api';
                   }}   
                 />
 
-                {/*
+                
                 <Tab.Screen
                   name="six"
                   component={Screen13}
@@ -2041,7 +2043,8 @@ import api from '../../../../services/api';
                         <Icon as ={<Wrench color={color} size={size}/>} />
                       )),
                   }}
-                />
+                /> 
+                
                 <Tab.Screen
                   name="seven"
                   component={Screen14}
@@ -2050,17 +2053,19 @@ import api from '../../../../services/api';
                           <Icon as ={<Archive color={color} size={size}/>} />
                       )),
                   }}
-                /> */
-                //     <Tab.Screen
-                //   name="eight"
-                //   component={Screen10}
-                //   options={{
-                //       tabBarIcon:(({color, size})=>(
-                //         <Icon as ={<Image color={color} size={size}/>} />
-                //       )),
-                //   }}
-                // />
-                /*
+                /> 
+                
+                <Tab.Screen
+                   name="eight"
+                   component={Screen10}
+                   options={{
+                       tabBarIcon:(({color, size})=>(
+                         <Icon as ={<Image color={color} size={size}/>} />
+                       )),
+                  }}
+                />
+
+                
                    <Tab.Screen
                   name="nine"
                   component={Screen9}
@@ -2069,9 +2074,11 @@ import api from '../../../../services/api';
                         <Icon as ={<Eye color={color} size={size}/>} />
                       )),
                   }}
-                /> */}
+                /> 
+
                                
               </Tab.Navigator>
+
               </>
              
             );
