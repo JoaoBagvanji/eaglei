@@ -33,12 +33,12 @@ const InspeccaoInfo = (props) => {
         vidros: '',
         limpa_parabrisas:'' ,
         luzes:'' ,
-        oleo:'' ,
-        motor:'' ,
+        nivel:'' ,
+        Waning_engine:'' ,
         camera: '',
-        maos_livre: '',
+        handsfree: '',
         extintor: '',
-        pr_socorros: '',
+        socorros: '',
         cintoSeg: '',
         razaoCarrocari: [],
         razaobolareboque: [],
@@ -48,7 +48,7 @@ const InspeccaoInfo = (props) => {
         razaoTravoes: [],
         razaoVidros: [],
         razaoLuzes: [],
-        razaoOleo: [],
+        razaonivel: [],
         razaoCamera: [],
         razaoextintor: [],
         razaosocorros: [],
@@ -62,7 +62,7 @@ const InspeccaoInfo = (props) => {
             api.get(`/viatura/inspenccaodetalhes/${props.route.params.id}`).then(d => {
 
                 setInsp(d.data);
-                console.log(d.data)
+                // console.log(d.data)
 
             });
 
@@ -84,12 +84,12 @@ const InspeccaoInfo = (props) => {
         'vidros': '',
         'limpa_parabrisas': '',
         'luzes': '',
-        'oleo': '',
-        'motor': '',
+        'nivel': '',
+        'Waning_engine': '',
         'camera': '',
-        'maos_livre': '',
+        'handsfree': '',
         'extintor': '',
-        'pr_socorros': '',
+        'socorros': '',
         'cintoSeg': '',
         'razaoCarrocari': [],
         'razaobolareboque': [],
@@ -372,7 +372,6 @@ const InspeccaoInfo = (props) => {
                                         theme="LIGHT"
                                         multiple={true}
                                         mode="BADGE"
-                                    //badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                                     />
                                 </View>}
 
@@ -1043,8 +1042,8 @@ const InspeccaoInfo = (props) => {
         const [checkedOleo, setCheckedOleo] = useState('');
         const [checkedMotor, setCheckedMotor] = useState('');
 
-        isFiled.oleo = checkedOleo;
-        isFiled.motor = checkedMotor;
+        isFiled.nivel = checkedOleo;
+        isFiled.Waning_engine = checkedMotor;
 
         const [openOleo, setOpenOleo] = useState(false);
         const [valueOleo, setValueOleo] = useState([]);
@@ -1107,7 +1106,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={insp.oleo === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.nivel === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onOleoS}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -1118,7 +1117,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={insp.oleo === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.nivel === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onOleoN}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -1157,7 +1156,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedMotor === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.Waning_engine === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMotor('ok')}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -1168,7 +1167,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedMotor === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.Waning_engine === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMotor('notOk')}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -1189,7 +1188,7 @@ const InspeccaoInfo = (props) => {
         const [checkedMaos, setCheckedMaos] = useState('');
 
         isFiled.camera = checkedCamera;
-        isFiled.maos_livre = checkedMaos;
+        isFiled.handsfree = checkedMaos;
 
         const [openCam, setOpenCam] = useState(false);
         const [valueCam, setValueCam] = useState([]);
@@ -1251,7 +1250,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedCamera === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.camera === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCamS}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -1262,7 +1261,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedCamera === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.camera === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCamN}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -1301,7 +1300,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                         color='green'
                                         value="ok"
-                                        status={checkedMaos === 'ok' ? 'checked' : 'unchecked'}
+                                        status={insp.handsfree === 'ok' ? 'checked' : 'unchecked'}
                                         onPress={() => setCheckedMaos('ok')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -1312,7 +1311,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedMaos === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.handsfree === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={() => setCheckedMaos('notOk')}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -1333,7 +1332,7 @@ const InspeccaoInfo = (props) => {
         const [checkedCinto, setCheckedCinto] = useState('');
 
         isFiled.extintor = checkedExtintor;
-        isFiled.pr_socorros = checkedPri;
+        isFiled.socorros = checkedPri;
         isFiled.cintoSeg = checkedCinto;
 
         const [openExt, setOpenExt] = useState(false);
@@ -1497,12 +1496,12 @@ const InspeccaoInfo = (props) => {
                 isFiled.kilometragem != '' &&
                 isFiled.limpa_parabrisas != '' &&
                 isFiled.luzes != '' &&
-                isFiled.maos_livre != '' &&
-                isFiled.motor != '' &&
-                isFiled.oleo != '' &&
+                isFiled.handsfree != '' &&
+                isFiled.Waning_engine != '' &&
+                isFiled.nivel != '' &&
                 isFiled.pneus != '' &&
                 isFiled.porcas != '' &&
-                isFiled.pr_socorros != '' &&
+                isFiled.socorros != '' &&
                 isFiled.pressao != '' &&
                 isFiled.travoes != '' &&
                 isFiled.vidros != ''
@@ -1547,7 +1546,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedExtintor === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.extintor === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onExtS}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -1558,7 +1557,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedExtintor === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.extintor === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onExtN}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -1591,9 +1590,9 @@ const InspeccaoInfo = (props) => {
 
                                 {!isExt && <View mt='5%' ml={'30%'}>
                                 <View display='flex' flexDirection='row'>
-                                    <Text mt='3%' color='primary.600' fontFamily={fonts.heading}>Validade: {text}</Text>
+                                    <Text mt='3%' color='primary.600' fontFamily={fonts.heading}>Validade: {insp.datta}</Text>
 
-                                    <View ml={'10%'} >
+                                    <View ml={'5%'} >
                                         <TouchableOpacity onPress={() => showMode('date')} >
                                         <View backgroundColor='green.700' borderRadius={40} size={9} alignItems='center' justifyContent='center' display='flex'>
                                             <Calendar size={22} color={'#fff'} />
@@ -1624,7 +1623,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedPri === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.socorros === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onPriS}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -1635,7 +1634,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedPri === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.socorros === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onPriN}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -1673,7 +1672,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='green'
                                             value="ok"
-                                            status={checkedCinto === 'ok' ? 'checked' : 'unchecked'}
+                                            status={insp.cintoSeg === 'ok' ? 'checked' : 'unchecked'}
                                             onPress={onCintoS}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'> Ok </Text>
@@ -1684,7 +1683,7 @@ const InspeccaoInfo = (props) => {
                                         <RadioButton
                                             color='red'
                                             value="notOk"
-                                            status={checkedCinto === 'notOk' ? 'checked' : 'unchecked'}
+                                            status={insp.cintoSeg === 'notOk' ? 'checked' : 'unchecked'}
                                             onPress={onCintoN}
                                             />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='md'>Not Ok </Text>
@@ -1715,9 +1714,6 @@ const InspeccaoInfo = (props) => {
                                     badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
                                 />
                                 </View>}
-                                <VStack mt={'7%'} mx={'38%'} mb={'7%'}>
-                                    <Button color={'#12375C'} title='Gravar' onPress={onGravar} />
-                                </VStack>
                             </ScrollView>
                         </KeyboardAvoidingView>
                     </VStack>
