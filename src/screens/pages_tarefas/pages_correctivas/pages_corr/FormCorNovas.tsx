@@ -75,7 +75,7 @@ import api from '../../../../services/api';
               <VStack flex={1} bg="white">
               <SafeAreaView style={styles.container}>
               
-              <VStack mt='5%' mb='30%'>
+              <VStack mt='5%' mb='35%'>
                   <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null} >
                       <ScrollView showsVerticalScrollIndicator={false}>
       
@@ -207,7 +207,7 @@ import api from '../../../../services/api';
                                       mode="outlined"
                                       label="Cell"
                                       theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                      value={razao}
+                                      value={dados.jobcard_cell}
                                       onChangeText={(text) => setRazao(text)}
                                       autoComplete='off'
                                       editable={false}
@@ -238,7 +238,7 @@ import api from '../../../../services/api';
                                       mode="outlined"
                                       label="Line Manager Cell"
                                       theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                      value={razao}
+                                      value={dados.jobcard_linemanagercell}
                                       onChangeText={(text) => setRazao(text)}
                                       autoComplete='off'
                                       editable={false}
@@ -376,7 +376,7 @@ import api from '../../../../services/api';
                                             mode="outlined"
                                             label="Telefone do Cliente"
                                             theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                            value={razao}
+                                            value={dados.jobcard_clientetelefone}
                                             onChangeText={(text) => setRazao(text)}
                                             autoComplete='off'
                                             />
@@ -1797,10 +1797,12 @@ import api from '../../../../services/api';
           
               const oneUser = ( {item} ) =>(
                   <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
-    
-                      <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.nome}</Text>
-                      <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.data_accao}</Text>
-             
+                    
+
+                        <><Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_audittrailname}</Text>
+                        <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_audittraildate} - {item.jobcard_audittrailaction}</Text></>
+               
+                    
                   </HStack>   
               )
     
@@ -1833,7 +1835,7 @@ import api from '../../../../services/api';
                                   </HStack>
     
                               <FlatList 
-                                    data = {data}
+                                    data = {dados.jobcard_audittrail}
                                     renderItem = { oneUser }
                                     ItemSeparatorComponent = { itemSeparator }
                                     ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
