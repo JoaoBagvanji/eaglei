@@ -194,7 +194,7 @@ export function Artigos() {
             <IconButton backgroundColor={colors.green[700]} borderRadius={20}
               icon={<SkipForward  color={colors.white} size={14}/>} ml='4%'
               />
-            <View width='90%' ml='10%'>
+            <View width='90%' ml='9%'>
               <SearchFilter data={dados} input={input} setInput={setInput}/>
             </View>
             

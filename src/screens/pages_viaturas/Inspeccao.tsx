@@ -13,7 +13,8 @@ import { FlatList, StyleSheet, Image, TouchableOpacity  } from 'react-native';
 import FormInspeccao from '../../routes/r_viaturas/insp.routes';
 import api from '../../services/api';
 import { Load } from '../../components/Load';
-
+import userImg from '../../assets/avatars/inspectioncar3.png';
+import InspeccaoInfo from '../pages_tarefas/pages_projectos/pages_pro/InspeccaoInfo';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -22,6 +23,7 @@ export default function MyStack() {
        <Stack.Navigator  screenOptions={{headerShown: false}} 
                initialRouteName='Inspeccao'>
            <Stack.Screen name="Inspeccao" component={Inspeccao} />
+           <Stack.Screen name="InspeccaoInfo" component={InspeccaoInfo} />
            <Stack.Screen name="FormInspeccao" component={FormInspeccao} />
        </Stack.Navigator>
  
@@ -111,7 +113,7 @@ export function Inspeccao({navigation}) {
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: '20%', marginLeft: '1%'}}>
+              <TouchableOpacity onPress={() =>   navigation.navigate('InspeccaoInfo', {id: item._id}) } style={{ paddingBottom: '20%', marginLeft: '1%'}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >
@@ -158,7 +160,9 @@ export function Inspeccao({navigation}) {
                     entre as Inspecções
                 </Text>
                 </View>
-                <Icon as ={<MagnifyingGlass color={colors.green[700]}/>} />
+                <View backgroundColor='white' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
+                  <Imagens source={userImg} width='40' height='30' borderRadius='40' alt='Imagem de artigos' />
+                </View>
             </HStack>
             <View mb={'10%'}>
                 <FlatList            

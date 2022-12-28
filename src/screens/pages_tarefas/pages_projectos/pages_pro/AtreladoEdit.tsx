@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, Select, Box, ScrollView, CheckIcon, Image} from 'native-base';
-import { Car, FloppyDisk, MapPin, XCircle } from 'phosphor-react-native'
+import { VStack, HStack, View, Text, Icon, useTheme, ScrollView, Image} from 'native-base';
+import { Cards, FloppyDisk, Jeep, XCircle } from 'phosphor-react-native'
 
 import {  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import Matricula from '../../../../components/Matricula';
-import Modelo from '../../../../components/Modelo';
-import Marca from '../../../../components/Marca';
-import Ano from '../../../../components/Ano';
 import api from '../../../../services/api';
-import { setEnvironmentData } from 'worker_threads';
+
 import { TextInput } from 'react-native-paper';
 import userImg from '../../../../assets/avatars/atrelado.png';
 import { Load } from '../../../../components/Load';
 import { Button } from '../../../../components/Button';
 import { ButtonCancel } from '../../../../components/ButtonCancel';
 
+import { useNavigation } from '@react-navigation/native';
+
 const AtreladoEdit = (props) => {
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+    const { navigate } = useNavigation<Nav>()
     const { fonts } = useTheme();
     const { colors } = useTheme();
     const [ matricula, setMatricula ] = useState("");
@@ -60,10 +61,10 @@ const AtreladoEdit = (props) => {
                 <HStack w="full" justifyContent="space-between" alignItems='center' flexDirection="row">
                     <View>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                        Detalhes 
+                        Editar 
                     </Text>
                     <Text color="primary.800" fontSize="md" fontFamily={fonts.body}>
-                        da Atrelado
+                        Atrelado
                     </Text>
                     </View>
                     <View backgroundColor='white' borderRadius={40} size={10} alignItems='center' justifyContent='center' display='flex'>
@@ -83,16 +84,44 @@ const AtreladoEdit = (props) => {
                             <Modelo value={atrelado.modelo} setValue={setModelo}/>
                         </View> */}
 
-                        <View style={styles.uinputView}>
-                            <Marca value={atrelado.dieselbowser} setValue={setMarca}/>
-                        </View>
+                        {/* <View style={styles.uinputView}>
+                            <Marca value={atrelado.dieselbowser} setValue={(text) => setMarca(text)} />
+                        </View> */}
 
                         <View style={styles.uinputView}>
-                            <Matricula value={atrelado.matricula} setValue={setMatricula}/>
+                        <TextInput
+                            style={styles.txtInput} 
+                            selectionColor='#12375C' 
+                            outlineColor='#cce3f9'
+                            activeOutlineColor='#12375C' 
+                            underlineColor='#12375C' 
+                            left={<TextInput.Icon icon={Jeep}
+                            color={colors.green[600]} />}
+                            mode="outlined"
+                            label="Marca"
+                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                            value={atrelado.dieselbowser}
+                            onChangeText={(text) => setAtrelado({...atrelado,...{dieselbowser:text}})}
+                            autoComplete='off'
+                            />
                         </View>
 
                         <View mb={'10%'} style={styles.uinputView}>
-                            <Ano value={atrelado.data_registo1} setValue={setAno}/>
+                            <TextInput
+                                style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='#cce3f9'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                left={<TextInput.Icon icon={Cards}
+                                color={colors.green[600]} />}
+                                mode="outlined"
+                                label="Matrícula"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={atrelado.matricula}
+                                onChangeText={(text) => setAtrelado({...atrelado,...{matricula:text}})}
+                                autoComplete='off'
+                            />
                         </View>
 
                         <View marginLeft='30%' marginBottom='10%' marginTop='5%' alignItems='center' justifyContent='space-around' display='flex' flexDirection='row'>
@@ -101,6 +130,9 @@ const AtreladoEdit = (props) => {
                                 title='Atualizar'
                                 leftIcon={<Icon as={<FloppyDisk color={colors.green[700]} size={20}/>} ml={4}/>}
                                 p={2}
+                                onPress={() =>api.post('/viatura/editaratrelado',atrelado).then(d=>{
+                                    navigate('Viatura')
+                                })}
                                 /> 
                             </View>
                             <View style={styles.uinputViewbutton}>
@@ -129,7 +161,6 @@ const AtreladoEdit = (props) => {
             width: 300,
             fontSize: 12,
             textAlign: 'center',
-            height: 50,
         },
         uinputView:{
             marginTop: "5%",

@@ -26,7 +26,7 @@ export default function MyStack(){
 );
 }
 
- function Completas() {
+ function Completas({navigation}) {
   
   
     const data = [
@@ -125,12 +125,9 @@ export default function MyStack(){
       setShouldShow(val_sec);
     }
     
-    const handleInfo = () => {
-      navigate('FormInfoCorCompletos') as never;
-    }
-
     const [dados, setDados]=useState([]);
     const[isloading, setIsLoading]=useState(true);
+    
     
     useEffect(()=>{
     (async()=>{
@@ -141,9 +138,7 @@ export default function MyStack(){
         console.log(d.data.complete)
 
     });
-    // const alvo  =  dadoss.data; 
-    
-        // setDados(data)
+   
     })()
     
 
@@ -208,7 +203,9 @@ export default function MyStack(){
             </View>
             </Box>
             <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity onPress={handleInfo} style={{ paddingBottom: 10, marginLeft: 2}}>
+              <TouchableOpacity
+             onPress={() =>   navigation.navigate('FormInfoCorCompletos', {id: item._id}) }
+              style={{ paddingBottom: 10, marginLeft: 2}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
               <View >

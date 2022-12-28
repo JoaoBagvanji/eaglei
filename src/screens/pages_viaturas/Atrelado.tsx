@@ -24,10 +24,12 @@ export default function MyStack() {
 
  );
 }
+
 export  function Atrelado({navigation}) {
 
     const { fonts } = useTheme();
     const { colors } = useTheme();
+
 
     
     

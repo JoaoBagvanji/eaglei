@@ -22,6 +22,7 @@ import InfoSpare from './corr_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import api from '../../../../services/api';
 
         var canDisplay = {
             'avaliacao_risco': [],
@@ -35,381 +36,279 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           const StackRoutes = createStackNavigator();
 
-      
-      function Screen1() {
+          const Tab = createMaterialTopTabNavigator();
+
+          export default function FormCorProgresso(props) {
 
 
             const {colors} = useTheme();
             const {fonts} = useTheme();
 
-            const [razao, setRazao] = useState('');
-            
-            const [ abastecimento, setAbastecimento ] = useState("");
+            const [dados, setDados] = useState ({});
 
-            const [ value, setValue ] = useState("");
+            React.useEffect(()=>{
+               (async()=>{
+                   
+                 api.get(`/tarefa/detalhesJobcardCallout/${props.route.params.id}`).then(d=>{
+                
+                   setDados(d.data);
+                   console.log("-------DADOS DA ROTA--------");
+                   console.log(dados);
+           
+               });
+             
+               })()
+               },[]);
 
-            const [ preco, setPreco ] = useState("");
 
-            const [openRazao, setOpenRazao] = useState(false);
-            const [valueRazao, setValueRazao] = useState([]);
-            const [itemsRazao, setItemsRazao] = useState([
-                {label: 'AC Mains Failure', value: 'AC Mains Failure'},
-                {label: 'Rectifier System', value: 'Rectifier System'},
-                {label: 'Rectifier Module', value: 'Rectifier Module'},
-                {label: 'Generator Low Fuel', value: 'Generator Low Fuel'},
-                {label: 'Generator Abnormal', value: 'Generator Abnormal'},
-                {label: 'Generator Running', value: 'Generator Running'},
-                {label: 'High Temperature', value: 'High Temperature'},
-                {label: 'Battery Low', value: 'Battery Low'},
-                {label: 'Door Switch Intruder', value: 'Door Switch Intruder'},
-                {label: 'Motion Detector', value: 'Motion Detector'},
-                {label: 'FAN Stalled', value: 'FAN Stalled'},
-                {label: 'Smoke Detector', value: 'Smoke Detector'},
-                {label: 'Site Down', value: 'Site Down'},
-                {label: 'RRU replacement', value: 'RRU replacement'},
-                {label: 'RRU fiber', value: 'RRU fiber'},
-                {label: 'Fly leads', value: 'Fly leads'},
-                {label: 'UBBP board', value: 'UBBP board'},
-                {label: 'WBBP board', value: 'WBBP board'},
-                {label: 'BBU board', value: 'BBU board'},
-                {label: 'RTN905 RTN950', value: 'RTN905 RTN950'},
-                {label: 'RTN controller board', value: 'RTN controller board'},
-                {label: 'RTN Fan unit', value: 'RTN Fan unit'},
-                {label: 'OSN fan unit', value: 'OSN fan unit'},
-                {label: 'ODU replacement', value: 'ODU replacement'},
-                {label: 'Patch Cords', value: 'Patch Cords'},
-                {label: 'Outdoor cabinet cooling system', value: 'Outdoor cabinet cooling system'},
-              ]);
 
-       
-
+      
+      //info BASICA
+      function Screen1() {
     
-          return (
-            <VStack flex={1} bg="white">
-            <SafeAreaView style={styles.container}>
-            
-            <VStack mt='5%' mb='30%'>
-                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null} >
-                    <ScrollView showsVerticalScrollIndicator={false}>
+        const {colors} = useTheme();
+        const {fonts} = useTheme();
 
-                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> INFORMAÇÃO BÁSICA</Text>
+        const [razao, setRazao] = useState('');      
+        const [ preco, setPreco ] = useState("");
+
+      return (
+        <VStack flex={1} bg="white">
+        <SafeAreaView style={styles.container}>
+        
+        <VStack mt='5%' mb='30%'>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null} >
+                <ScrollView showsVerticalScrollIndicator={false}>
+
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> INFORMAÇÃO BÁSICA</Text>
+                    </View>
+                  
+                         <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Numero Ref Comserv"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.jobcard_cod}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
                         </View>
-                      
-                             <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Numero Ref Comserv"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Ticket Number"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-
-                            <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Call </Text>
-                            </View>
-                            <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                                <Box maxW='300'>
-                                        <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
-                                    bg: "primary.500",
-                                    endIcon: <CheckIcon  size='5' />
-                                }} onValueChange={itemValue => setAbastecimento(itemValue)}>
-                                    <Select.Item label="Radio" value="Radio" />
-                                    <Select.Item label="Transmission" value="Transmission" />
-                                    <Select.Item label="Power" value="Power" />
-                                    <Select.Item label="Civil" value="Civil" />
-                                    <Select.Item label="Core-data center" value="Core-data center" />
-                                    </Select>
-                                </Box>
-                            </View>
-
-                            <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Departamento </Text>
-                        </View>
-
-                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                            <Box maxW='300'>
-                                    <Select selectedValue={preco} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
-                                bg: "primary.500",
-                                endIcon: <CheckIcon  size='5' />
-                            }} onValueChange={itemValue => setPreco(itemValue)}>
-                                <Select.Item label="Telco" value="Telco" />
-                                <Select.Item label="Facilities" value="Facilities" />
-                                <Select.Item label="Power" value="Power" />
-                                <Select.Item label="Data Center" value="Data Center" />
-                                </Select>
-                            </Box>
-                        </View>
-
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Região"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Tipo de trabalho"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-
-                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Razão </Text>
+                                   
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Call"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.jobcard_call}
+                                editable={false}
+                                 />
                         </View>
                         
-                        <View style={{
-                                marginBottom: '2%',
-                                backgroundColor: 'transparent',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                paddingHorizontal: '8%'
-                                }}>
-                                <DropDownPicker
-                                 listMode="MODAL"
-                                       textStyle={{
-                                        fontSize: 14
-                                    }}
-                                    placeholder="Escolha a opção"
-                                    open={openRazao}
-                                    value={valueRazao}
-                                    items={itemsRazao}
-                                    setOpen={setOpenRazao}
-                                    setValue={setValueRazao}
-                                    setItems={setItemsRazao}
-                                    multiple={true}
-                                   // theme="DEFAULT"
-                                    mode="BADGE"
-                                    badgeDotColors={["#A1C861"]}
-                                    />
+
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Departamento"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.jobcard_departamento}
+                                editable={false}
+                                 />
                         </View>
 
                         <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Acção correctiva"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Região"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.jobcard_regiao}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
+                        </View>
 
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Tipo de trabalho"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.jobcard_jobtype}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
+                        </View>
+
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Razão"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.razao}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
+                        </View>
                         
-                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Ocorreram problemas de Saúde e Segurança? </Text>
+                                
+
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> TÉCNICO </Text>
+                    </View>
+                    <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
+
+                       <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Nome"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.jobcard_tecniconome}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
+                        </View>
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Cell"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={razao}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
+                        </View>
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Line Manager"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.jobcard_linemanager}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
                         </View>
 
-                        <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                            <Box maxW='300'>
-                                    <Select selectedValue={preco} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
-                                bg: "primary.500",
-                                endIcon: <CheckIcon  size='5' />
-                            }} onValueChange={itemValue => setPreco(itemValue)}>
-                                <Select.Item label="Sim" value="Sim" />
-                                <Select.Item label="Não" value="Não" />
-                              </Select>
-                            </Box>
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Line Manager Cell"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={razao}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
+                        </View>
+            
+                    <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                        <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> REPORTE </Text>
+                    </View>
+                    <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
+
+                      <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Registrado Por"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.criado_por}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
                         </View>
 
-                      
-
-                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> TÉCNICO </Text>
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Registrado em"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.data_registojobcard}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
                         </View>
-                        <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
 
-                           <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Nome"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Cell"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Line Manager"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Line Manager Cell"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-                
-                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                            <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> REPORTE </Text>
+                        <View style={styles.uinputView}>
+                            < TextInput style={styles.txtInput} 
+                                selectionColor='#12375C' 
+                                outlineColor='gray'
+                                activeOutlineColor='#12375C' 
+                                underlineColor='#12375C' 
+                                mode="outlined"
+                                label="Data e hora relatada"
+                                theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                value={dados.data_criacao}
+                                onChangeText={(text) => setRazao(text)}
+                                autoComplete='off'
+                                editable={false}
+                                />
                         </View>
-                        <View borderBottomColor={colors.green[700]} borderBottomWidth={2} width="50%" ml='25%' mt={2}/>
-    
-                          <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Registrado Por"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
 
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Registrado em"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </VStack>
 
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Data relatada"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
+        </SafeAreaView>
+        </VStack> 
+          );
 
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Hora relatada"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-
-                            <View style={styles.uinputView}>
-                                < TextInput style={styles.txtInput} 
-                                    selectionColor='#12375C' 
-                                    outlineColor='gray'
-                                    activeOutlineColor='#12375C' 
-                                    underlineColor='#12375C' 
-                                    mode="outlined"
-                                    label="Operador NMC"
-                                    theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                    value={razao}
-                                    onChangeText={(text) => setRazao(text)}
-                                    autoComplete='off'
-                                    />
-                            </View>
-
-                    </ScrollView>
-                </KeyboardAvoidingView>
-            </VStack>
-
-            </SafeAreaView>
-            </VStack> 
-              );
-
-              
-          }
-
+          
+      }
 
 
 
@@ -417,109 +316,99 @@ import DropDownPicker from 'react-native-dropdown-picker';
            
           
 
-          function Screen2() {
-
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
-
-            const [razao, setRazao] = useState('');
-            
-            const [ abastecimento, setAbastecimento ] = useState("");
-
-            const [ value, setValue ] = useState("");
-
-            const [ preco, setPreco ] = useState("");
-
+            //CLIENTE
+            function Screen2() {
+      
+              const {colors} = useTheme();
+              const {fonts} = useTheme();
+      
+              const [razao, setRazao] = useState('');
+               
+             
+             
+                  return (
+                    <VStack flex={1} bg="white">
+                    <SafeAreaView style={styles.container}>
+                    
+                    <VStack mt='5%' mb='30%'>
+                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null} >
+                            <ScrollView showsVerticalScrollIndicator={false}>
         
-           
-                return (
-                  <VStack flex={1} bg="white">
-                  <SafeAreaView style={styles.container}>
-                  
-                  <VStack mt='5%' mb='30%'>
-                      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null} >
-                          <ScrollView showsVerticalScrollIndicator={false}>
+                                <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                    <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> CLIENTE </Text>
+                                </View>
       
-                              <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                                  <Text color='#12375C' fontFamily={fonts.body} fontSize='md'> CLIENTE </Text>
-                              </View>
-
-                              <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                                  <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Cliente </Text>
-                                  </View>
-                                  <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                                      <Box maxW='300'>
-                                              <Select selectedValue={abastecimento} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
-                                          bg: "primary.500",
-                                          endIcon: <CheckIcon  size='5' />
-                                      }} onValueChange={itemValue => setAbastecimento(itemValue)}>
-                                          <Select.Item label="Radio" value="Radio" />
-                                          <Select.Item label="Transmission" value="Transmission" />
-                                          <Select.Item label="Power" value="Power" />
-                                          <Select.Item label="Civil" value="Civil" />
-                                          <Select.Item label="COre-data center" value="COre-data center" />
-                                          </Select>
-                                      </Box>
-                                  </View>
-      
-                            
-                                   <View style={styles.uinputView}>
-                                      < TextInput style={styles.txtInput} 
-                                          selectionColor='#12375C' 
-                                          outlineColor='gray'
-                                          activeOutlineColor='#12375C' 
-                                          underlineColor='#12375C' 
-                                          mode="outlined"
-                                          label="Filial"
-                                          theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                          value={razao}
-                                          onChangeText={(text) => setRazao(text)}
-                                          autoComplete='off'
-                                          />
-                                  </View>
-      
-                                  <View style={styles.uinputView}>
-                                      < TextInput style={styles.txtInput} 
-                                          selectionColor='#12375C' 
-                                          outlineColor='gray'
-                                          activeOutlineColor='#12375C' 
-                                          underlineColor='#12375C' 
-                                          mode="outlined"
-                                          label="Telefone do Cliente"
-                                          theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
-                                          value={razao}
-                                          onChangeText={(text) => setRazao(text)}
-                                          autoComplete='off'
-                                          />
-                                  </View>
-      
+                                <View style={styles.uinputView}>
+                                        < TextInput style={styles.txtInput} 
+                                            selectionColor='#12375C' 
+                                            outlineColor='gray'
+                                            activeOutlineColor='#12375C' 
+                                            underlineColor='#12375C' 
+                                            mode="outlined"
+                                            label="Cliente"
+                                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                            value={dados.cliente}
+                                            onChangeText={(text) => setRazao(text)}
+                                            autoComplete='off'
+                                            />
+                                    </View>
+        
+                              
+                                     <View style={styles.uinputView}>
+                                        < TextInput style={styles.txtInput} 
+                                            selectionColor='#12375C' 
+                                            outlineColor='gray'
+                                            activeOutlineColor='#12375C' 
+                                            underlineColor='#12375C' 
+                                            mode="outlined"
+                                            label="Filial"
+                                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                            value={dados.filial}
+                                            onChangeText={(text) => setRazao(text)}
+                                            autoComplete='off'
+                                            />
+                                    </View>
+        
+                                    <View style={styles.uinputView}>
+                                        < TextInput style={styles.txtInput} 
+                                            selectionColor='#12375C' 
+                                            outlineColor='gray'
+                                            activeOutlineColor='#12375C' 
+                                            underlineColor='#12375C' 
+                                            mode="outlined"
+                                            label="Telefone do Cliente"
+                                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                            value={dados.jobcard_clientetelefone}
+                                            onChangeText={(text) => setRazao(text)}
+                                            autoComplete='off'
+                                            />
+                                    </View>
+        
+                                    <View style={styles.uinputView}>
+                                        < TextInput style={styles.txtInput} 
+                                            selectionColor='#12375C' 
+                                            outlineColor='gray'
+                                            activeOutlineColor='#12375C' 
+                                            underlineColor='#12375C' 
+                                            mode="outlined"
+                                            label="Site"
+                                            theme={{fonts:{regular:{fontFamily:fonts.body}}, colors:{placeholder: colors.primary[600]}}}
+                                            value={dados.jobcard_site}
+                                            onChangeText={(text) => setRazao(text)}
+                                            autoComplete='off'
+                                            />
+                                    </View>
                                
-                                  <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                                  <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> Site </Text>
-                              </View>
-                              <View  alignItems='center' justifyContent='center' fontFamily={fonts.body} mt={2} >
-                                  <Box maxW='300'>
-                                          <Select selectedValue={preco} minWidth="300" accessibilityLabel="Escolha Opção" placeholder="Escolha Opção" _selectedItem={{
-                                      bg: "primary.500",
-                                      endIcon: <CheckIcon  size='5' />
-                                  }} onValueChange={itemValue => setPreco(itemValue)}>
-                                      <Select.Item label="Telco" value="Telco" />
-                                      <Select.Item label="Facilities" value="Facilities" />
-                                      <Select.Item label="Power" value="Power" />
-                                      <Select.Item label="Data Center" value="Data Center" />
-                                      </Select>
-                                  </Box>
-                              </View>
-                                        
-                          </ScrollView>
-                      </KeyboardAvoidingView>
-                  </VStack>
+                                          
+                            </ScrollView>
+                        </KeyboardAvoidingView>
+                    </VStack>
+        
+                    </SafeAreaView>
+                    </VStack> 
+              );
       
-                  </SafeAreaView>
-                  </VStack> 
-            );
-
-          }
+            }
 
 
 
@@ -1420,6 +1309,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
           );
         }
 
+
+
+
           function Screen5() {
 
             const data = [
@@ -1506,6 +1398,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
           }
+
+
 
 
           function Screen6() {
@@ -1596,6 +1490,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
           }
           
 
+
+
           function Screen7() {
            
             const data = [
@@ -1676,6 +1572,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
           }
+
+
 
 
           function Screen8({navigation}) {
@@ -1861,86 +1759,91 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
           
 
-           function Screen9() {
-
-                const data = [
-
-                  {
-                      id: 1,
-                      nome: 'Jaime Chitereca',
-                      data_accao: '28/11/2022 10:52\nTT number criado',
-                  },
-                  {
-                      id: 2,
-                      nome: 'Jose Tovela',
-                      data_accao: '08/10/2022 14:27\nAccept the jobcard',
-                  },
-                  {
-                    id: 3,
-                    nome: 'João Bagvanji',
-                    data_accao: '18/11/2022 11:32\nInfo de viagem',
-                }
-                
-              ];
-    
-                  type Nav ={
-                    navigate : (value: string) => void;
-                }
-                  const { navigate } = useNavigation<Nav>();
-              
-                  const oneUser = ( {item} ) =>(
-                      <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
-    
-                          <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.nome}</Text>
-                          <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.data_accao}</Text>
-                 
-                      </HStack>   
-                  )
-    
-                  function itemSeparator(){
-                      return <View style={styles.separator}/>
+                //AUDITORIA
+                function Screen9() {
+  
+  
+                  const data = [
+          
+                    {
+                        id: 1,
+                        nome: 'Jaime Chitereca',
+                        data_accao: '28/11/2022 10:52\nTT number criado',
+                    },
+                    {
+                        id: 2,
+                        nome: 'Jose Tovela',
+                        data_accao: '08/10/2022 14:27\nAccept the jobcard',
+                    },
+                    {
+                      id: 3,
+                      nome: 'João Bagvanji',
+                      data_accao: '18/11/2022 11:32\nInfo de viagem',
                   }
-    
-                  const { fonts } = useTheme();
-                  const { colors } = useTheme();
-    
-                    return (
-                      <SafeAreaView style={styles.container}>
-    
-                              <VStack bg="white" mb={'60%'} width={'100%'}>
-    
-                                      <Text
-                                          color='#12375C'
-                                          mt={'8%'}
-                                          mb={'4%'}
-                                          fontFamily={fonts.body}
-                                          fontSize='md'
-                                          alignSelf={'center'}>
-                                          AUDITORIA
-                                      </Text>
-    
-                                      <HStack justifyContent={'space-evenly'}>
-                                        
-                                              <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Responsável</Text>
-                                              <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Data - Acção</Text>
-                                      </HStack>
-    
-                                  <FlatList 
-                                        data = {data}
-                                        renderItem = { oneUser }
-                                        ItemSeparatorComponent = { itemSeparator }
-                                        ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-                                        keyExtractor = { data => data.id }
-                                        showsVerticalScrollIndicator={false}
-                                    />
-    
-                              </VStack>
-    
-                      </SafeAreaView>
-                      );
-    
-
-          }
+                  
+                ];
+          
+                    type Nav ={
+                      navigate : (value: string) => void;
+                  }
+                    const { navigate } = useNavigation<Nav>();
+                
+                    const oneUser = ( {item} ) =>(
+                        <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+                          
+      
+                              <><Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_audittrailname}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_audittraildate} - {item.jobcard_audittrailaction}</Text></>
+                     
+                          
+                        </HStack>   
+                    )
+          
+                    function itemSeparator(){
+                        return <View style={styles.separator}/>
+                    }
+          
+                    const { fonts } = useTheme();
+                    const { colors } = useTheme();
+          
+                      return (
+                        <SafeAreaView style={styles.container}>
+          
+                                <VStack bg="white" mb={'60%'} width={'100%'}>
+          
+                                        <Text
+                                            color='#12375C'
+                                            mt={'8%'}
+                                            mb={'4%'}
+                                            fontFamily={fonts.body}
+                                            fontSize='md'
+                                            alignSelf={'center'}>
+                                            AUDITORIA
+                                        </Text>
+          
+                                        <HStack justifyContent={'space-evenly'}>
+                                          
+                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Responsável</Text>
+                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Data - Acção</Text>
+                                        </HStack>
+          
+                                    <FlatList 
+                                          data = {dados.jobcard_audittrail}
+                                          renderItem = { oneUser }
+                                          ItemSeparatorComponent = { itemSeparator }
+                                          ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                          keyExtractor = { data => data.id }
+                                          showsVerticalScrollIndicator={false}
+                                      />
+          
+                                </VStack>
+          
+                        </SafeAreaView>
+                        );
+          
+          
+            }
+          
 
           
           function Screen10(){
@@ -2026,7 +1929,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
                         </StackRoutes.Navigator>
                 );
 
-          }    
+          }   
+          
+          
+
 
           function Screen14(){
         
@@ -2049,11 +1955,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
           }  
           
 
-          const Tab = createMaterialTopTabNavigator();
-
-          export default function FormCorProgresso() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
+      
 
             return (
               <>

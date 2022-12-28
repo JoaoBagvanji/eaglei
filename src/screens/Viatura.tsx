@@ -1,5 +1,5 @@
 import React , {useState,useEffect}from 'react';
-import { VStack, HStack, View, Text, Icon, useTheme, useColorMode, useColorModeValue, Center, IconButton} from 'native-base';
+import { VStack, HStack, View, Text, Icon, useTheme, useColorMode, useColorModeValue} from 'native-base';
 import { Car, ArrowsLeftRight, FileSearch, Sun} from 'phosphor-react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrailer } from '@fortawesome/free-solid-svg-icons';
