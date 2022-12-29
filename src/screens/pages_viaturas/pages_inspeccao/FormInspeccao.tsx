@@ -41,6 +41,7 @@ var isFiled = {
   'oleo': '',
   'motor': '',
   'camera': '',
+  'refrigeracao':'',
   'maos_livre': '',
   'extintor': '',
   'pr_socorros': '',
@@ -1874,7 +1875,11 @@ function Screen8() {
         </View>}
 
         <VStack mt={'7%'} mx={'38%'}>
-          <Button leftIcon={<Icon as={<FloppyDisk color={colors.white} size={20}/>} ml={1} p={2}/>} title='Gravar' onPress={() =>api.post('/viatura/inspdiaria/novo',isFiled).then(d=>{console.log('Viatura')})} />
+          <Button 
+            leftIcon={<Icon as={<FloppyDisk color={colors.white} size={20}/>} ml={1} p={2}/>} 
+            title='Gravar' 
+            onPress={() =>api.post('/viatura/inspdiaria/novo',isFiled).then(d=>{console.log(d.data)})} 
+          />
         </VStack>
       </VStack>
 
