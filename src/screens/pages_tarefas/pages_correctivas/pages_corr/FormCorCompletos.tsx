@@ -688,17 +688,15 @@ import api from '../../../../services/api';
               const {colors} = useTheme();
               const {fonts} = useTheme();
 
-          let obj={}
+          
 
-              if (
-                dados.jobcard_analisederisco.keys(obj).length === 0 && typeof dados.jobcard_analisederisco === "undefined" 
+              if ( Object.values(dados.jobcard_analisederisco).length === 0 && typeof dados.jobcard_analisederisco === "undefined" 
              ){
               setMostraRisco(false);
              }
 
 
-             if (
-              dados.jobcard_analisederiscoAmbiental.keys(obj).length === 0 && typeof dados.jobcard_analisederiscoAmbiental === "undefined"
+             if (Object.values(dados.jobcard_analisederiscoAmbiental).length === 0 && typeof dados.jobcard_analisederiscoAmbiental === "undefined"
            ){
             setMostraAmbiental(false);
            }
