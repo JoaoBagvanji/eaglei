@@ -18,6 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import api from '../../../services/api';
 import { Load } from '../../../components/Load';
+import Kilometragem from '../../../components/Kilometragem';
 
 
 //Vars globais a nivel do ficheiro
@@ -57,7 +58,7 @@ var isFiled = {
   'razaosocorros': [],
   'razaocintoSeg': [],
   'validade_extintor': ''
-}
+};
 
   
 
@@ -65,7 +66,10 @@ var isFiled = {
 
 const StackRoutes = createStackNavigator();
 
-
+function submit(pp){
+  console.log(isFiled);
+  console.log(pp)
+}
 
 
 function Screen1() {
@@ -117,15 +121,44 @@ function Screen1() {
   React.useEffect(() => {
     (async () => {
 
-      api.get(`/viatura/inspdiaria/novo`).then(d => {
+      api.get(`/viatura/inspdiaria/novo`).then(async(d) => {
         setIsLoading(false);
+        let temp1=await new Date();
+        let dia=await temp1.getDate()<10? ('0'+temp1.getDate()): temp1.getDate();
+        let mes=await temp1.getMonth()+1<10? ('0'+(temp1.getMonth()+1)): temp1.getMonth()+1;
+        let ano=await temp1.getFullYear();
+        let horas=await temp1.getHours()<10? ('0'+temp1.getHours()): temp1.getHours();
+        let minutos=await temp1.getMinutes()<10? ('0'+temp1.getMinutes()):temp1.getMinutes();
+        let datta=await dia+'/'+mes+'/'+ano+"  "+horas+':'+minutos;
+        let kilometros = d.data.kilometragem.toString()
         // setDados(d.data);
-        setInsp(d.data)
-        console.log(d.data)
+        setInsp({...d.data, datta: datta, kilometragem: kilometros});
+        console.log(d.data);
+        
+        // setInsp({...insp,datta:datta});
       });
 
     })()
   }, [])
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+  const [text, setText] = useState('Data');
+
+  isFiled.validade_extintor = text;
+
+  const onChange = (event, selectedDate) => {
+    setShow(false)
+
+    const currentDate = selectedDate || date;
+    setDate(selectedDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+
+    
+    setText(fDate)
+  };
 
 
   return (
@@ -137,72 +170,68 @@ function Screen1() {
 
         <TextInput
           style={styles.txtInput}
-          mode='outlined'
+          selectionColor='#12375C'
+          outlineColor='#cce3f9'
+          activeOutlineColor='#12375C'
+          underlineColor='#12375C'
+          left={<TextInput.Icon icon={User}
+              color={colors.green[600]} />}
+          mode="outlined"
+          label="Motorista"
+          theme={{ fonts: { regular: { fontFamily: fonts.body } }, colors: { placeholder: colors.primary[600] } }}
           value={insp.nome}
-          onChangeText={(text) => setInsp({ ...insp, ...{ motorista: text } })}
-          selectionColor='#12375C'
-          activeOutlineColor='#12375C'
-          outlineColor='#12375C'
-          left={<TextInput.Icon icon={
-            User
-          }
-            color={
-              colors.primary[600]
-            } />}
-          label="MOTORISTA" />
+          
+          autoComplete='off' />
 
         <TextInput
           style={styles.txtInput}
-          mode='outlined'
+          selectionColor='#12375C'
+          outlineColor='#cce3f9'
+          activeOutlineColor='#12375C'
+          underlineColor='#12375C'
+          left={<TextInput.Icon icon={ClosedCaptioning}
+              color={colors.green[600]} />}
+          mode="outlined"
+          label="Matrícula"
+          theme={{ fonts: { regular: { fontFamily: fonts.body } }, colors: { placeholder: colors.primary[600] } }}
           value={insp.matricula}
-          selectionColor='#12375C'
-          activeOutlineColor='#12375C'
-          outlineColor='#12375C'
-          left={<TextInput.Icon icon={
-            ClosedCaptioning
-          }
-            color={
-              colors.primary[600]
-            } />}
-          label="MATRICULA" />
+          
+          autoComplete='off' />
 
         <TextInput
           style={styles.txtInput}
-          mode='outlined'
+          selectionColor='#12375C'
+          outlineColor='#cce3f9'
+          activeOutlineColor='#12375C'
+          underlineColor='#12375C'
+          left={<TextInput.Icon icon={Gauge}
+              color={colors.green[600]} />}
+          mode="outlined"
+          label="Kilometragem"
+          theme={{ fonts: { regular: { fontFamily: fonts.body } }, colors: { placeholder: colors.primary[600] } }}
           value={insp.kilometragem}
-          selectionColor='#12375C'
-          activeOutlineColor='#12375C'
-          outlineColor='#12375C'
-          left={<TextInput.Icon icon={
-            Gauge
-          }
-            color={
-              colors.primary[600]
-            } />}
-          label="KILOMETROS"
-          onChangeText={text => setKilom(text)} />
+          onChangeText={(text) => {isFiled['kilometragem']=text; return setInsp({ ...insp,'kilometragem': text })}}
+          autoComplete='off'
+           />
 
 
 
         <TextInput
           style={styles.txtInput}
-          mode='outlined'
-          // value={insp.data}
           selectionColor='#12375C'
+          outlineColor='#cce3f9'
           activeOutlineColor='#12375C'
-          outlineColor='#12375C'
-          left={<TextInput.Icon icon={
-            Calendar
-          }
-            color={
-              colors.primary[600]
-            } />}
-          label="DATA E HORA" />
-
+          underlineColor='#12375C'
+          left={<TextInput.Icon icon={Calendar} 
+          color={colors.green[600]} />}
+          mode="outlined"
+          label="Data e Horas"
+          theme={{ fonts: { regular: { fontFamily: fonts.body } }, colors: { placeholder: colors.primary[600] } }}
+          value={insp.datta}
+          
+          autoComplete='off'
+        />
       </View>
-
-
-
     </ScrollView>
   );
 
@@ -297,7 +326,7 @@ function Screen2() {
 
   const onCarrocariaN = () => {
     console.log("Voce clicou em nao no Radio Button Carrocaria Dislike");
-    setCheckedCar('notOk');
+    setCheckedCar('not ok');
     setIsCarrocaria(true);
   }
 
@@ -310,7 +339,7 @@ function Screen2() {
 
   const onBowserN = () => {
     console.log("Voce clicou em nao no Radio Button Bowser Nao");
-    setCheckedBow('notOk');
+    setCheckedBow('not ok');
     temBowser = false;
     setIsBowser(false);
   }
@@ -323,7 +352,7 @@ function Screen2() {
 
   const onReboqueN = () => {
     console.log("Voce clicou em nao no Radio Button Reboque Dislike");
-    setCheckedReb('notOk');
+    setCheckedReb('not ok');
     setIsReboque(true);
   }
 
@@ -348,8 +377,8 @@ function Screen2() {
         <HStack alignItems={'center'} >
           <RadioButton
             color='red'
-            value="notOk"
-            status={checkedCar === 'notOk' ? 'checked' : 'unchecked'}
+            value="not ok"
+            status={checkedCar === 'not ok' ? 'checked' : 'unchecked'}
             onPress={onCarrocariaN}
           />
           <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -404,8 +433,8 @@ function Screen2() {
         <HStack alignItems={'center'}>
           <RadioButton
             color='red'
-            value="notOk"
-            status={checkedBow === 'notOk' ? 'checked' : 'unchecked'}
+            value="not ok"
+            status={checkedBow === 'not ok' ? 'checked' : 'unchecked'}
             onPress={onBowserN}
           />
           <Text fontFamily={fonts.body}>Não</Text>
@@ -436,8 +465,8 @@ function Screen2() {
           <HStack alignItems={'center'} mr={4}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedReb === 'notOk' ? 'checked' : 'unchecked'}
+              value="not ok"
+              status={checkedReb === 'not ok' ? 'checked' : 'unchecked'}
               onPress={onReboqueN}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -555,7 +584,7 @@ function Screen3() {
 
   const onPneuN = () => {
     console.log("Voce clicou em nao no Radio Button Pneu Dislike");
-    setCheckedPneu('notOk');
+    setCheckedPneu('not ok');
     setIsPneu(true);
   }
 
@@ -567,7 +596,7 @@ function Screen3() {
 
   const onPreN = () => {
     console.log("Voce clicou em nao no Radio Button Pressao Dislike");
-    setCheckedPre('notOk');
+    setCheckedPre('not ok');
     setIsPressao(true);
   }
 
@@ -579,7 +608,7 @@ function Screen3() {
 
   const onPorcaN = () => {
     console.log("Voce clicou em nao no Radio Button Porca Dislike");
-    setCheckedPor('notOk');
+    setCheckedPor('not ok');
     setIsPorcas(true);
   }
 
@@ -591,7 +620,7 @@ function Screen3() {
 
   const onTravN = () => {
     console.log("Voce clicou em nao no Radio Button Travoes Dislike");
-    setCheckedTra('notOk');
+    setCheckedTra('not ok');
     setIsTravoes(true);
   }
 
@@ -685,8 +714,8 @@ function Screen3() {
         <HStack alignItems={'center'}>
           <RadioButton
             color='red'
-            value="notOk"
-            status={checkedPneu === 'notOk' ? 'checked' : 'unchecked'}
+            value="not ok"
+            status={checkedPneu === 'not ok' ? 'checked' : 'unchecked'}
             onPress={onPneuN}
           />
           <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -736,8 +765,8 @@ function Screen3() {
         <HStack alignItems={'center'}>
           <RadioButton
             color='red'
-            value="notOk"
-            status={checkedPre === 'notOk' ? 'checked' : 'unchecked'}
+            value="not ok"
+            status={checkedPre === 'not ok' ? 'checked' : 'unchecked'}
             onPress={onPreN}
           />
           <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -788,8 +817,8 @@ function Screen3() {
         <HStack alignItems={'center'}>
           <RadioButton
             color='red'
-            value="notOk"
-            status={checkedPor === 'notOk' ? 'checked' : 'unchecked'}
+            value="not ok"
+            status={checkedPor === 'not ok' ? 'checked' : 'unchecked'}
             onPress={onPorcaN}
           />
           <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -839,8 +868,8 @@ function Screen3() {
         <HStack alignItems={'center'}>
           <RadioButton
             color='red'
-            value="notOk"
-            status={checkedTra === 'notOk' ? 'checked' : 'unchecked'}
+            value="not ok"
+            status={checkedTra === 'not ok' ? 'checked' : 'unchecked'}
             onPress={onTravN}
           />
           <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -918,7 +947,7 @@ function Screen4() {
 
   const onVidrosN = () => {
     console.log("Voce clicou em nao no Radio Button Vidro Dislike");
-    setCheckedVidro('notOk');
+    setCheckedVidro('not ok');
     setIsVidros(true);
   }
 
@@ -960,8 +989,8 @@ function Screen4() {
         <HStack alignItems={'center'}>
           <RadioButton
             color='red'
-            value="notOk"
-            status={checkedVidro === 'notOk' ? 'checked' : 'unchecked'}
+            value="not ok"
+            status={checkedVidro === 'not ok' ? 'checked' : 'unchecked'}
             onPress={onVidrosN}
           />
           <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -1010,9 +1039,9 @@ function Screen4() {
         <HStack alignItems={'center'}>
           <RadioButton
             color='red'
-            value="notOk"
-            status={checkedLimpa === 'notOk' ? 'checked' : 'unchecked'}
-            onPress={() => setCheckedLimpa('notOk')}
+            value="not ok"
+            status={checkedLimpa === 'not ok' ? 'checked' : 'unchecked'}
+            onPress={() => setCheckedLimpa('not ok')}
           />
           <ThumbsDown color={colors.primary[700]} size={'20'} />
         </HStack>
@@ -1059,7 +1088,7 @@ function Screen5() {
 
   const onLuzN = () => {
     console.log("Voce clicou em nao no Radio Button Luz Dislike");
-    setCheckedLuzes('notOk');
+    setCheckedLuzes('not ok');
     setIsLuzes(true);
   }
 
@@ -1105,8 +1134,8 @@ function Screen5() {
           <HStack alignItems={'center'}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedLuzes === 'notOk' ? 'checked' : 'unchecked'}
+              value="not ok"
+              status={checkedLuzes === 'not ok' ? 'checked' : 'unchecked'}
               onPress={onLuzN}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -1184,7 +1213,7 @@ function Screen6() {
 
   const onOleoN = () => {
     console.log("Voce clicou em nao no Radio Button Oleo Dislike");
-    setCheckedOleo('notOk');
+    setCheckedOleo('not ok');
     setIsOleo(true);
   }
 
@@ -1231,8 +1260,8 @@ function Screen6() {
           <HStack alignItems={'center'}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedOleo === 'notOk' ? 'checked' : 'unchecked'}
+              value="not ok"
+              status={checkedOleo === 'not ok' ? 'checked' : 'unchecked'}
               onPress={onOleoN}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -1282,9 +1311,9 @@ function Screen6() {
           <HStack alignItems={'center'}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedMotor === 'notOk' ? 'checked' : 'unchecked'}
-              onPress={() => setCheckedMotor('notOk')}
+              value="not ok"
+              status={checkedMotor === 'not ok' ? 'checked' : 'unchecked'}
+              onPress={() => setCheckedMotor('not ok')}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
           </HStack>
@@ -1331,7 +1360,7 @@ function Screen7() {
 
   const onCamN = () => {
     console.log("Voce clicou em nao no Radio Button Camera Dislike");
-    setCheckedCamera('notOk');
+    setCheckedCamera('not ok');
     setIsCam(true);
   }
 
@@ -1377,8 +1406,8 @@ function Screen7() {
           <HStack alignItems={'center'}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedCamera === 'notOk' ? 'checked' : 'unchecked'}
+              value="not ok"
+              status={checkedCamera === 'not ok' ? 'checked' : 'unchecked'}
               onPress={onCamN}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -1427,9 +1456,9 @@ function Screen7() {
           <HStack alignItems={'center'}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedMaos === 'notOk' ? 'checked' : 'unchecked'}
-              onPress={() => setCheckedMaos('notOk')}
+              value="not ok"
+              status={checkedMaos === 'not ok' ? 'checked' : 'unchecked'}
+              onPress={() => setCheckedMaos('not ok')}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
           </HStack>
@@ -1500,7 +1529,7 @@ function Screen8() {
 
   const onExtN = () => {
     console.log("Voce clicou em nao no Radio Button Extintor Dislike");
-    setCheckedExtintor('notOk');
+    setCheckedExtintor('not ok');
     setIsExt(true);
   }
 
@@ -1512,7 +1541,7 @@ function Screen8() {
 
   const onPriN = () => {
     console.log("Voce clicou em nao no Radio Button Primeiros Dislike");
-    setCheckedPri('notOk');
+    setCheckedPri('not ok');
     setIsPri(true);
   }
 
@@ -1524,7 +1553,7 @@ function Screen8() {
 
   const onCintoN = () => {
     console.log("Voce clicou em nao no Radio Button Cinto Dislike");
-    setCheckedCinto('notOk');
+    setCheckedCinto('not ok');
     setIsCinto(true);
   }
 
@@ -1684,8 +1713,8 @@ function Screen8() {
           <HStack alignItems={'center'}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedExtintor === 'notOk' ? 'checked' : 'unchecked'}
+              value="not ok"
+              status={checkedExtintor === 'not ok' ? 'checked' : 'unchecked'}
               onPress={onExtN}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -1757,8 +1786,8 @@ function Screen8() {
           <HStack alignItems={'center'}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedPri === 'notOk' ? 'checked' : 'unchecked'}
+              value="not ok"
+              status={checkedPri === 'not ok' ? 'checked' : 'unchecked'}
               onPress={onPriN}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
@@ -1807,8 +1836,8 @@ function Screen8() {
           <HStack alignItems={'center'}>
             <RadioButton
               color='red'
-              value="notOk"
-              status={checkedCinto === 'notOk' ? 'checked' : 'unchecked'}
+              value="not ok"
+              status={checkedCinto === 'not ok' ? 'checked' : 'unchecked'}
               onPress={onCintoN}
             />
             <ThumbsDown color={colors.primary[700]} size={'20'} />
