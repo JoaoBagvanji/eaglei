@@ -15,6 +15,8 @@ import api from '../../services/api';
 import { Load } from '../../components/Load';
 import userImg from '../../assets/avatars/inspectioncar3.png';
 import InspeccaoInfo from '../pages_tarefas/pages_projectos/pages_pro/InspeccaoInfo';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faTrailer } from '@fortawesome/free-solid-svg-icons';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -116,6 +118,9 @@ export function Inspeccao({navigation}) {
               <TouchableOpacity onPress={() =>   navigation.navigate('InspeccaoInfo', {id: item._id}) } style={{ paddingBottom: '20%', marginLeft: '1%'}}>
               <Icon as ={<Info color={colors.blueGray[400]}/>} />
               </TouchableOpacity>
+              {(item.dieselbowser) && <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
+                  <FontAwesomeIcon icon={faTrailer} color='#A1C861' size={25} />
+              </TouchableOpacity>}
               <View >
               {item.situacao.indexOf('green')!= -1 ?(<IconButton backgroundColor={colors.green[700]} borderRadius={20}
                   icon={<CaretDown  color={colors.green[700]} size={10}/>}
