@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, ScrollView, } from 'native-base';
 import { Calendar, Car, Cards, FirstAidKit, Gauge, Headlights, IdentificationCard, Note, NumberCircleZero, ThumbsDown, ThumbsUp, VideoCamera } from 'phosphor-react-native'
 
-import { StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, FlatList } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import api from '../../../../services/api';
@@ -64,7 +64,7 @@ const InspeccaoInfo = (props) => {
             api.get(`/viatura/inspenccaodetalhes/${props.route.params.id}`).then(d => {
                 setIsLoading(false);
                 setInsp(d.data);
-                // console.log(d.data)
+                console.log(d.data)
 
             });
 
@@ -284,7 +284,7 @@ const InspeccaoInfo = (props) => {
 
         const onCarrocariaN = () => {
             console.log("Voce clicou em nao no Radio Button Carrocaria Dislike");
-            setCheckedCar('notOk');
+            setCheckedCar('not ok');
             setIsCarrocaria(true);
         }
 
@@ -297,7 +297,7 @@ const InspeccaoInfo = (props) => {
 
         const onBowserN = () => {
             console.log("Voce clicou em nao no Radio Button Bowser Nao");
-            setCheckedBow('notOk');
+            setCheckedBow('not ok');
             temBowser = false;
             setIsBowser(false);
         }
@@ -310,7 +310,7 @@ const InspeccaoInfo = (props) => {
 
         const onReboqueN = () => {
             console.log("Voce clicou em nao no Radio Button Reboque Dislike");
-            setCheckedReb('notOk');
+            setCheckedReb('not ok');
             setIsReboque(true);
         }
 
@@ -341,8 +341,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.carrocaria === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.carrocaria === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onCarrocariaN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -452,7 +452,7 @@ const InspeccaoInfo = (props) => {
 
         const onPneuN = () => {
             console.log("Voce clicou em nao no Radio Button Pneu Dislike");
-            setCheckedPneu('notOk');
+            setCheckedPneu('not ok');
             setIsPneu(true);
         }
 
@@ -464,7 +464,7 @@ const InspeccaoInfo = (props) => {
 
         const onPreN = () => {
             console.log("Voce clicou em nao no Radio Button Pressao Dislike");
-            setCheckedPre('notOk');
+            setCheckedPre('not ok');
             setIsPressao(true);
         }
 
@@ -476,7 +476,7 @@ const InspeccaoInfo = (props) => {
 
         const onPorcaN = () => {
             console.log("Voce clicou em nao no Radio Button Porca Dislike");
-            setCheckedPor('notOk');
+            setCheckedPor('not ok');
             setIsPorcas(true);
         }
 
@@ -488,7 +488,7 @@ const InspeccaoInfo = (props) => {
 
         const onTravN = () => {
             console.log("Voce clicou em nao no Radio Button Travoes Dislike");
-            setCheckedTra('notOk');
+            setCheckedTra('not ok');
             setIsTravoes(true);
         }
 
@@ -587,8 +587,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.pneus === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.pneus === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onPneuN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -638,8 +638,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.pressao === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.pressao === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onPreN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -689,8 +689,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.porcas === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.porcas === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onPorcaN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -740,8 +740,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.travoes === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.travoes === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onTravN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -811,7 +811,7 @@ const InspeccaoInfo = (props) => {
 
         const onVidrosN = () => {
             console.log("Voce clicou em nao no Radio Button Vidro Dislike");
-            setCheckedVidro('notOk');
+            setCheckedVidro('not ok');
             setIsVidros(true);
         }
 
@@ -859,8 +859,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.vidros === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.vidros === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onVidrosN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -908,9 +908,9 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.limpa_parabrisas === 'notOk' ? 'checked' : 'unchecked'}
-                                            onPress={() => setCheckedLimpa('notOk')}
+                                            value="not ok"
+                                            status={insp.limpa_parabrisas === 'not ok' ? 'checked' : 'unchecked'}
+                                            onPress={() => setCheckedLimpa('not ok')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
@@ -949,7 +949,7 @@ const InspeccaoInfo = (props) => {
 
         const onLuzN = () => {
             console.log("Voce clicou em nao no Radio Button Luz Dislike");
-            setCheckedLuzes('notOk');
+            setCheckedLuzes('not ok');
             setIsLuzes(true);
         }
 
@@ -971,12 +971,21 @@ const InspeccaoInfo = (props) => {
             }
         }
 
+        const oneUser = ( {item} ) =>(
+            <View style={styles.item}>
+                <Text color='red.400' fontFamily={fonts.heading} fontSize='sm'>{item}</Text>     
+            </View>   
+        )
+        function itemSeparator(){
+            return <View style={styles.separator}/>
+        }
+
         return (
             <VStack flex={1} pb={4} mb={16} bg="white">
                 <SafeAreaView style={styles.container}>
                     <VStack mt='10%' mb='12%'>
                         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
-                            <ScrollView showsVerticalScrollIndicator={false}>
+                            
                                 <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                                     <Text color='Primary.400' fontFamily={fonts.body} fontSize='md'> Luzes </Text>
                                 </View>
@@ -999,39 +1008,33 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.luzes === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.luzes === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onLuzN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
                                 </View>
-                                {isLuzes && <View style={{
+                                {insp.luzes === 'not ok' && <View style={{
                                     marginBottom: mb,
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     paddingHorizontal: 15
                                 }}>
-                                    <DropDownPicker
-                                        dropDownDirection="BOTTOM"
-                                        listMode="SCROLLVIEW"
-                                        onPress={onComboboxPress}
-                                        placeholder="Selecione a(s) Parte(s)"
-                                        open={openLuzes}
-                                        value={valueLuzes}
-                                        items={itemsLuzes}
-                                        setOpen={setOpenLuzes}
-                                        setValue={setValueLuzes}
-                                        setItems={setItemsLuzes}
-
-                                        theme="LIGHT"
-                                        multiple={true}
-                                        mode="BADGE"
-                                        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                                    
+                                    <FlatList            
+                                        
+                                        data = {insp.razaoLuzes}
+                                        renderItem = { oneUser }
+                                        ItemSeparatorComponent = { itemSeparator }
+                                        ListEmptyComponent =  {<Text>Não especificado</Text>}
+                                        keyExtractor = { data => data.id }
+                                        showsVerticalScrollIndicator={false}
+                                        
                                     />
                                 </View>}
 
-                            </ScrollView>
+                            
                         </KeyboardAvoidingView>
                     </VStack>
                 </SafeAreaView>
@@ -1068,7 +1071,7 @@ const InspeccaoInfo = (props) => {
 
         const onOleoN = () => {
             console.log("Voce clicou em nao no Radio Button Oleo Dislike");
-            setCheckedOleo('notOk');
+            setCheckedOleo('not ok');
             setIsOleo(true);
         }
 
@@ -1118,8 +1121,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.nivel === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.nivel === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onOleoN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -1168,9 +1171,9 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.Waning_engine === 'notOk' ? 'checked' : 'unchecked'}
-                                            onPress={() => setCheckedMotor('notOk')}
+                                            value="not ok"
+                                            status={insp.Waning_engine === 'not ok' ? 'checked' : 'unchecked'}
+                                            onPress={() => setCheckedMotor('not ok')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
@@ -1212,7 +1215,7 @@ const InspeccaoInfo = (props) => {
 
         const onCamN = () => {
             console.log("Voce clicou em nao no Radio Button Camera Dislike");
-            setCheckedCamera('notOk');
+            setCheckedCamera('not ok');
             setIsCam(true);
         }
 
@@ -1262,8 +1265,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.camera === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.camera === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onCamN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -1312,9 +1315,9 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.handsfree === 'notOk' ? 'checked' : 'unchecked'}
-                                            onPress={() => setCheckedMaos('notOk')}
+                                            value="not ok"
+                                            status={insp.handsfree === 'not ok' ? 'checked' : 'unchecked'}
+                                            onPress={() => setCheckedMaos('not ok')}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
                                     </View>
@@ -1374,7 +1377,7 @@ const InspeccaoInfo = (props) => {
 
         const onExtN = () => {
             console.log("Voce clicou em nao no Radio Button Extintor Dislike");
-            setCheckedExtintor('notOk');
+            setCheckedExtintor('not ok');
             setIsExt(true);
         }
 
@@ -1386,7 +1389,7 @@ const InspeccaoInfo = (props) => {
 
         const onPriN = () => {
             console.log("Voce clicou em nao no Radio Button Primeiros Dislike");
-            setCheckedPri('notOk');
+            setCheckedPri('not ok');
             setIsPri(true);
         }
 
@@ -1398,7 +1401,7 @@ const InspeccaoInfo = (props) => {
 
         const onCintoN = () => {
             console.log("Voce clicou em nao no Radio Button Cinto Dislike");
-            setCheckedCinto('notOk');
+            setCheckedCinto('not ok');
             setIsCinto(true);
         }
 
@@ -1558,8 +1561,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.extintor === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.extintor === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onExtN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -1635,8 +1638,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.socorros === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.socorros === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onPriN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -1684,8 +1687,8 @@ const InspeccaoInfo = (props) => {
                                         <ThumbsDown color={colors.primary[700]} size={20} />
                                         <RadioButton
                                             color='red'
-                                            value="notOk"
-                                            status={insp.cintoSeg === 'notOk' ? 'checked' : 'unchecked'}
+                                            value="not ok"
+                                            status={insp.cintoSeg === 'not ok' ? 'checked' : 'unchecked'}
                                             onPress={onCintoN}
                                         />
                                         <Text color='blueGray.400' fontFamily={fonts.body} fontSize='xs'>Not Ok </Text>
@@ -1867,7 +1870,19 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         marginLeft: '20%'
 
+    },item:{
+        flex:1,
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingVertical:13
     },
+    separator:{
+        height: 1,
+        width: '100%',
+        backgroundColor: '#f2f2f2'
+    },
+    
 
 
 
