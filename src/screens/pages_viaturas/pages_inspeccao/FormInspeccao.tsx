@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { View, Button, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Calendar, Car, ClosedCaptioning, FirstAidKit, Gauge, Headlights, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera } from 'phosphor-react-native';
+import { Calendar, Car, ClosedCaptioning, FirstAidKit, FloppyDisk, Gauge, Headlights, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera } from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -19,6 +19,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import api from '../../../services/api';
 import { Load } from '../../../components/Load';
 import Kilometragem from '../../../components/Kilometragem';
+import { Button } from '../../../components/Button';
 
 
 //Vars globais a nivel do ficheiro
@@ -111,6 +112,8 @@ function Screen1() {
     validade_extintor: ''
 })
 
+
+
   const [kilom, setKilom] = useState('');
   isFiled.kilometragem = kilom;
 
@@ -134,7 +137,7 @@ function Screen1() {
         // setDados(d.data);
         setInsp({...d.data, datta: datta, kilometragem: kilometros});
         console.log(d.data);
-        
+        setKilom(kilometros);
         // setInsp({...insp,datta:datta});
       });
 
@@ -209,8 +212,8 @@ function Screen1() {
           mode="outlined"
           label="Kilometragem"
           theme={{ fonts: { regular: { fontFamily: fonts.body } }, colors: { placeholder: colors.primary[600] } }}
-          value={insp.kilometragem}
-          onChangeText={(text) => {isFiled['kilometragem']=text; return setInsp({ ...insp,'kilometragem': text })}}
+          value={kilom}
+          onChangeText={async (text) => {  setKilom( text )}}
           autoComplete='off'
            />
 
@@ -1871,7 +1874,7 @@ function Screen8() {
         </View>}
 
         <VStack mt={'7%'} mx={'38%'}>
-          <Button color={'#12375C'} title='Gravar' onPress={() => console.log(isFiled)} />
+          <Button leftIcon={<Icon as={<FloppyDisk color={colors.white} size={20}/>} ml={1} p={2}/>} title='Gravar' onPress={() =>api.post('/viatura/inspdiaria/novo',isFiled).then(d=>{console.log('Viatura')})} />
         </VStack>
       </VStack>
 
