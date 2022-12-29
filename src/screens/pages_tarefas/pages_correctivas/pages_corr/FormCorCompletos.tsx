@@ -72,6 +72,10 @@ import api from '../../../../services/api';
               "comments": "",
              })
 
+
+             var [mostraRisco, setMostraRisco] = useState(true);
+             var [mostraAmbiental, setMostraAmbiental] = useState(true);
+
           
 
 
@@ -242,8 +246,7 @@ import api from '../../../../services/api';
 
                                setRisco(ve => ({ ...ve, comments: d.data.jobcard_analisederisco.jobcard_radiocomments}));
 
-
-
+                              
 
 
                                if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk21 == "ok")
@@ -312,9 +315,49 @@ import api from '../../../../services/api';
 
 
                                setAmbiental(ve => ({ ...ve, comments: d.data.jobcard_analisederiscoAmbiental.jobcard_radiocomments2}));
+
+
+                               if (
+                                risco.risco1=="" &&
+                                risco.risco2=="" &&
+                                risco.risco3=="" &&
+                                risco.risco4=="" &&
+                                risco.risco4=="" &&
+                                risco.risco5=="" &&
+                                risco.risco6=="" &&
+                                risco.risco7=="" &&
+                                risco.risco8=="" &&
+                                risco.risco9=="" &&
+                                risco.risco10=="" &&
+                                risco.risco11=="" &&
+                                risco.risco12=="" &&
+                                risco.risco13=="" &&
+                                risco.risco14=="" &&
+                                risco.risco15=="" &&
+                                risco.risco16=="" &&
+                                risco.risco17=="" &&
+                                risco.risco18=="" &&
+                                risco.risco19=="" &&
+                                risco.comments==""
+                             ){
+                              setMostraRisco(false);
+                             }
            
 
-
+                             if (
+                              ambiental.risco1=="" &&
+                              ambiental.risco2=="" &&
+                              ambiental.risco3=="" &&
+                              ambiental.risco4=="" &&
+                              ambiental.risco4=="" &&
+                              ambiental.risco5=="" &&
+                              ambiental.risco6=="" &&
+                              ambiental.risco7=="" &&
+                              ambiental.risco8=="" &&
+                              ambiental.comments==""
+                           ){
+                            setMostraAmbiental(false);
+                           }
 
            
                })
@@ -688,6 +731,37 @@ import api from '../../../../services/api';
 
               const [razao, setRazao] = useState('');
 
+              if(!mostraRisco && !mostraAmbiental){
+                        
+                return (
+                  <SafeAreaView style={styles.container}>
+  
+                          <VStack bg="white" mb={'60%'} width={'100%'}>
+  
+                                  <Text
+                                      color='#12375C'
+                                      mt={'8%'}
+                                      mb={'4%'}
+                                      fontFamily={fonts.body}
+                                      fontSize='md'
+                                      alignSelf={'center'}>
+                                      AVALIAÇÃO DE RISCO & DE IMPACTO AMBIENTAL
+                                  </Text>
+  
+                                  <HStack justifyContent={'center'} alignItems="center">
+                                  <Icon as ={<Warning color={'red'}/>} />
+                                          <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                              
+                                  </HStack>
+  
+                              
+  
+                          </VStack>
+  
+                  </SafeAreaView>
+                  );
+              }
+               else{
               return (
                 <VStack flex={1} bg="white">
                           <SafeAreaView style={styles.container}>
@@ -695,6 +769,8 @@ import api from '../../../../services/api';
                               <VStack mt='5%' mb='30%'>
                                   <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                                       <ScrollView showsVerticalScrollIndicator={false}>
+
+                                        {mostraRisco && <>
 
                                           <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                                               <Text color='#12375C' fontFamily={fonts.body} fontSize='md'>
@@ -1228,8 +1304,9 @@ import api from '../../../../services/api';
                                             <Text style={styles.currentText}> Observações </Text>
                                             <TextArea borderColor={'black'} width={'80%'} alignSelf='center' value={risco.comments} aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
 
+                                            </> }
 
-
+                                            {mostraAmbiental && <>
                                             <View
                                               borderBottomColor={'#12375C'}
                                               borderBottomWidth={4}
@@ -1471,7 +1548,9 @@ import api from '../../../../services/api';
 
                                             <Text style={styles.currentText}> Observações </Text>
                                             <TextArea borderColor={'black'} width={'80%'} value={ambiental.comments} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
-
+                                          
+                                            </> }
+                                            
                                       </ScrollView>
                                   </KeyboardAvoidingView>
                               </VStack>
@@ -1479,6 +1558,7 @@ import api from '../../../../services/api';
                           </SafeAreaView>
                 </VStack>
               );
+              }
             }
             
 
