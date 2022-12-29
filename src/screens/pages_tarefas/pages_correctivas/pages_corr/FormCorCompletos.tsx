@@ -21,7 +21,7 @@ import InfoEquip from './corr_info/infoEquip';
 import InfoSpare from './corr_info/InfoSpare';
 
 import { useNavigation } from '@react-navigation/native';
-import DropDownPicker from 'react-native-dropdown-picker';
+
 import api from '../../../../services/api';
 
 
@@ -326,14 +326,6 @@ import api from '../../../../services/api';
 
                
               
-
-
-
-
-
-
-
-
 
 
        //info BASICA
@@ -1488,6 +1480,7 @@ import api from '../../../../services/api';
                 </VStack>
               );
             }
+            
 
 
 
@@ -1548,6 +1541,37 @@ import api from '../../../../services/api';
             const { fonts } = useTheme();
             const { colors } = useTheme();
       
+            if(dados.generatorArrayJobcard.length == 0){
+                        
+              return (
+                <SafeAreaView style={styles.container}>
+
+                        <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                                <Text
+                                    color='#12375C'
+                                    mt={'8%'}
+                                    mb={'4%'}
+                                    fontFamily={fonts.body}
+                                    fontSize='md'
+                                    alignSelf={'center'}>
+                                    DETALHES DO GERADOR
+                                </Text>
+
+                                <HStack justifyContent={'center'} alignItems="center">
+                                <Icon as ={<Warning color={'red'}/>} />
+                                        <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                            
+                                </HStack>
+
+                            
+
+                        </VStack>
+
+                </SafeAreaView>
+                );
+            }
+             else{
               return (
                 <SafeAreaView style={styles.container}>
       
@@ -1587,6 +1611,7 @@ import api from '../../../../services/api';
                 </SafeAreaView>
                 );
               }
+          }
       
    
    
@@ -1655,7 +1680,7 @@ import api from '../../../../services/api';
                                               DETALHES DE ENERGIA
                                           </Text>
       
-                                          <HStack justifyContent={'center'}>
+                                          <HStack justifyContent={'center'} alignItems="center">
                                           <Icon as ={<Warning color={'red'}/>} />
                                                   <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
                                                       
@@ -1768,6 +1793,37 @@ import api from '../../../../services/api';
                       const { fonts } = useTheme();
                       const { colors } = useTheme();
       
+                      if(dados.equipamentoArrayJobcard.length == 0){
+                        
+                        return (
+                          <SafeAreaView style={styles.container}>
+      
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                               REPARAÇÃO DE EQUIPAMENTOS
+                                          </Text>
+      
+                                          <HStack justifyContent={'center'} alignItems="center">
+                                          <Icon as ={<Warning color={'red'}/>} />
+                                                  <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                      
+                                          </HStack>
+      
+                                      
+      
+                                  </VStack>
+      
+                          </SafeAreaView>
+                          );
+                      }
+                       else{
                         return (
                           <SafeAreaView style={styles.container}>
       
@@ -1805,6 +1861,7 @@ import api from '../../../../services/api';
       
                           </SafeAreaView>
                           );
+                        }
       
       
       
@@ -1857,6 +1914,37 @@ import api from '../../../../services/api';
                       const { fonts } = useTheme();
                       const { colors } = useTheme();
         
+                      if(dados.sparesArrayJobcard.length == 0){
+                        
+                        return (
+                          <SafeAreaView style={styles.container}>
+      
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                               SOBRESSALENTE USADO
+                                          </Text>
+      
+                                          <HStack justifyContent={'center'} alignItems="center">
+                                          <Icon as ={<Warning color={'red'}/>} />
+                                                  <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                      
+                                          </HStack>
+      
+                                      
+      
+                                  </VStack>
+      
+                          </SafeAreaView>
+                          );
+                      }
+                       else{
                         return (
                           <SafeAreaView style={styles.container}>
         
@@ -1892,7 +1980,7 @@ import api from '../../../../services/api';
         
                           </SafeAreaView>
                           );
-        
+                  }
         
                   }
         
@@ -1980,7 +2068,36 @@ import api from '../../../../services/api';
                 
               
                           
-                                              
+                        if(dados.jobcardphotoinfo.length == 0){
+                        
+                          return (
+                            <SafeAreaView style={styles.container}>
+        
+                                    <VStack bg="white" mb={'60%'} width={'100%'}>
+        
+                                            <Text
+                                                color='#12375C'
+                                                mt={'8%'}
+                                                mb={'4%'}
+                                                fontFamily={fonts.body}
+                                                fontSize='md'
+                                                alignSelf={'center'}>
+                                                 FOTOS
+                                            </Text>
+        
+                                            <HStack justifyContent={'center'} alignItems="center">
+                                            <Icon as ={<Warning color={'red'}/>} />
+                                                    <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                        
+                                            </HStack>
+        
+                                        
+        
+                                    </VStack>
+        
+                            </SafeAreaView>
+                            );
+                        }                       
                   return (
                   <VStack flex={1} pb={4} mb={16} bg="white">
               
@@ -2080,7 +2197,10 @@ import api from '../../../../services/api';
                       </SafeAreaView>
                   </VStack> 
                 );
-              };
+          }
+
+
+            
 
           
 
