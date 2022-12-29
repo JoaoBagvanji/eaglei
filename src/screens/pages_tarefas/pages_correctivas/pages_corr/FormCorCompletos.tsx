@@ -2,7 +2,7 @@ import * as React from 'react';
 import {  StyleSheet, KeyboardAvoidingView, Platform, SafeAreaView, FlatList, TouchableOpacity, useWindowDimensions, Image as RNimage, ActivityIndicator, Dimensions} from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Archive, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, User, Wrench, Image} from 'phosphor-react-native';
-import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Box, CheckIcon, Select, Radio, Stack, TextArea} from 'native-base';
+import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Radio, Stack, TextArea} from 'native-base';
 
 import {useEffect, useState } from 'react';
 import * as ImagePicker from "expo-image-picker";
@@ -37,6 +37,54 @@ import api from '../../../../services/api';
 
             const [dados, setDados] = useState ({});
 
+            var [risco, setRisco] = useState({
+              "risco1": "",
+              "risco2": "",
+              "risco3": "",
+              "risco4": "",
+              "risco5": "",
+              "risco6": "",
+              "risco7": "",
+              "risco8": "",
+              "risco9": "",
+              "risco10": "",
+              "risco11": "",
+              "risco12": "",
+              "risco13": "",
+              "risco14": "",
+              "risco15": "",
+              "risco16": "",
+              "risco17": "",
+              "risco18": "",
+              "risco19": "",
+              "comments": "",
+             })
+
+            //  var risco = {
+            //   "risco1": "",
+            //   "risco2": "",
+            //   "risco3": "",
+            //   "risco4": "",
+            //   "risco5": "",
+            //   "risco6": "",
+            //   "risco7": "",
+            //   "risco8": "",
+            //   "risco9": "",
+            //   "risco10": "",
+            //   "risco11": "",
+            //   "risco12": "",
+            //   "risco13": "",
+            //   "risco14": "",
+            //   "risco15": "",
+            //   "risco16": "",
+            //   "risco17": "",
+            //   "risco18": "",
+            //   "risco19": "",
+            //   "comments": "",
+            //  }
+
+
+
             useEffect(()=>{
                (async()=>{
                    
@@ -44,12 +92,180 @@ import api from '../../../../services/api';
                 
                    setDados(d.data);
                     console.log("-------DADOS DA ROTA--------");
-                    console.log(d.data.spares_usados);
+                    console.log(d.data.jobcard_analisederisco);
+
+
+
+                    if (d.data.jobcard_analisederisco.jobcard_risk1 == "ok")
+                    setRisco(ve => ({ ...ve, risco1: "1"}));
+             else if (d.data.jobcard_analisederisco.jobcard_risk1 == "not ok")
+                     setRisco(ve => ({ ...ve, risco1: "2"}));
+             else if (d.data.jobcard_analisederisco.jobcard_risk1 == "na")
+                      setRisco(ve => ({ ...ve, risco1: "3"}));
+
+
+             if (d.data.jobcard_analisederisco.jobcard_risk2 == "ok")
+             setRisco(ve => ({ ...ve, risco2: "1"}));
+              else if (d.data.jobcard_analisederisco.jobcard_risk2 == "not ok")
+              setRisco(ve => ({ ...ve, risco2: "2"}));
+              else if (d.data.jobcard_analisederisco.jobcard_risk2 == "na")
+              setRisco(ve => ({ ...ve, risco2: "3"}));
+            
+
+                  if (d.data.jobcard_analisederisco.jobcard_risk3 == "ok")
+                  setRisco(ve => ({ ...ve, risco3: "1"}));
+               else if (d.data.jobcard_analisederisco.jobcard_risk3 == "not ok")
+               setRisco(ve => ({ ...ve, risco3: "2"}));
+               else if (d.data.jobcard_analisederisco.jobcard_risk3 == "na")
+               setRisco(ve => ({ ...ve, risco3: "3"}));
+
+                   if (d.data.jobcard_analisederisco.jobcard_risk4 == "ok")
+                    setRisco(ve => ({ ...ve, risco4: "1"}));
+                else if (d.data.jobcard_analisederisco.jobcard_risk4 == "not ok")
+                setRisco(ve => ({ ...ve, risco4: "2"}));
+                else if (d.data.jobcard_analisederisco.jobcard_risk4 == "na")
+                setRisco(ve => ({ ...ve, risco4: "3"}));
+
+
+
+                    if (d.data.jobcard_analisederisco.jobcard_risk5 == "ok")
+                      setRisco(ve => ({ ...ve, risco5: "1"}));
+                 else if (d.data.jobcard_analisederisco.jobcard_risk5 == "not ok")
+                 setRisco(ve => ({ ...ve, risco5: "2"}));
+                 else if (d.data.jobcard_analisederisco.jobcard_risk5 == "na")
+                 setRisco(ve => ({ ...ve, risco5: "3"}));
+
+
+
+                     if (d.data.jobcard_analisederisco.jobcard_risk6 == "ok")
+                           setRisco(ve => ({ ...ve, risco6: "1"}));
+                  else if (d.data.jobcard_analisederisco.jobcard_risk6 == "not ok")
+                  setRisco(ve => ({ ...ve, risco6: "2"}));
+                  else if (d.data.jobcard_analisederisco.jobcard_risk6 == "na")
+                  setRisco(ve => ({ ...ve, risco6: "3"}));
+
+
+                      if (d.data.jobcard_analisederisco.jobcard_risk7 == "ok")
+                      setRisco(ve => ({ ...ve, risco7: "1"}));
+                   else if (d.data.jobcard_analisederisco.jobcard_risk7 == "not ok")
+                   setRisco(ve => ({ ...ve, risco7: "2"}));
+                   else if (d.data.jobcard_analisederisco.jobcard_risk7 == "na")
+                   setRisco(ve => ({ ...ve, risco7: "3"}));
+
+                       if (d.data.jobcard_analisederisco.jobcard_risk8 == "ok")
+                       setRisco(ve => ({ ...ve, risco8: "1"}));
+                    else if (d.data.jobcard_analisederisco.jobcard_risk8 == "not ok")
+                    setRisco(ve => ({ ...ve, risco8: "2"}));
+                    else if (d.data.jobcard_analisederisco.jobcard_risk8 == "na")
+                    setRisco(ve => ({ ...ve, risco8: "3"}));
+
+
+                        if (d.data.jobcard_analisederisco.jobcard_risk9 == "ok")
+                        setRisco(ve => ({ ...ve, risco9: "1"}));
+                     else if (d.data.jobcard_analisederisco.jobcard_risk9 == "not ok")
+                     setRisco(ve => ({ ...ve, risco9: "2"}));
+                     else if (d.data.jobcard_analisederisco.jobcard_risk9 == "na")
+                     setRisco(ve => ({ ...ve, risco9: "3"}));
+
+
+                         if (d.data.jobcard_analisederisco.jobcard_risk10 == "ok")
+                         setRisco(ve => ({ ...ve, risco10: "1"}));
+                      else if (d.data.jobcard_analisederisco.jobcard_risk10 == "not ok")
+                      setRisco(ve => ({ ...ve, risco10: "2"}));
+                      else if (d.data.jobcard_analisederisco.jobcard_risk10 == "na")
+                      setRisco(ve => ({ ...ve, risco10: "3"}));
+
+
+                          if (d.data.jobcard_analisederisco.jobcard_risk11 == "ok")
+                          setRisco(ve => ({ ...ve, risco11: "1"}));
+                       else if (d.data.jobcard_analisederisco.jobcard_risk11 == "not ok")
+                       setRisco(ve => ({ ...ve, risco11: "2"}));
+                       else if (d.data.jobcard_analisederisco.jobcard_risk11 == "na")
+                       setRisco(ve => ({ ...ve, risco11: "3"}));
+
+
+                           if (d.data.jobcard_analisederisco.jobcard_risk12 == "ok")
+                             setRisco(ve => ({ ...ve, risco12: "1"}));
+                        else if (d.data.jobcard_analisederisco.jobcard_risk12 == "not ok")
+                        setRisco(ve => ({ ...ve, risco12: "2"}));
+                        else if (d.data.jobcard_analisederisco.jobcard_risk12 == "na")
+                        setRisco(ve => ({ ...ve, risco12: "3"}));
+
+
+                            if (d.data.jobcard_analisederisco.jobcard_risk13 == "ok")
+                            setRisco(ve => ({ ...ve, risco13: "1"}));
+                         else if (d.data.jobcard_analisederisco.jobcard_risk13 == "not ok")
+                         setRisco(ve => ({ ...ve, risco13: "2"}));
+                         else if (d.data.jobcard_analisederisco.jobcard_risk13 == "na")
+                         setRisco(ve => ({ ...ve, risco13: "3"}));
+
+
+                             if (d.data.jobcard_analisederisco.jobcard_risk14 == "ok")
+                             setRisco(ve => ({ ...ve, risco14: "1"}));
+                          else if (d.data.jobcard_analisederisco.jobcard_risk14 == "not ok")
+                          setRisco(ve => ({ ...ve, risco14: "2"}));
+                          else if (d.data.jobcard_analisederisco.jobcard_risk14 == "na")
+                          setRisco(ve => ({ ...ve, risco14: "3"}));
+
+
+                              if (d.data.jobcard_analisederisco.jobcard_risk15 == "ok")
+                              setRisco(ve => ({ ...ve, risco15: "1"}));
+                           else if (d.data.jobcard_analisederisco.jobcard_risk15 == "not ok")
+                           setRisco(ve => ({ ...ve, risco15: "2"}));
+                           else if (d.data.jobcard_analisederisco.jobcard_risk15 == "na")
+                           setRisco(ve => ({ ...ve, risco15: "3"}));
+
+
+
+                               if (d.data.jobcard_analisederisco.jobcard_risk16 == "ok")
+                               setRisco(ve => ({ ...ve, risco16: "1"}));
+                            else if (d.data.jobcard_analisederisco.jobcard_risk16 == "not ok")
+                            setRisco(ve => ({ ...ve, risco16: "2"}));
+                            else if (d.data.jobcard_analisederisco.jobcard_risk16 == "na")
+                            setRisco(ve => ({ ...ve, risco16: "3"}));
+
+
+
+                                if (d.data.jobcard_analisederisco.jobcard_risk17 == "ok")
+                                setRisco(ve => ({ ...ve, risco17: "1"}));
+                             else if (d.data.jobcard_analisederisco.jobcard_risk17 == "not ok")
+                             setRisco(ve => ({ ...ve, risco17: "2"}));
+                             else if (d.data.jobcard_analisederisco.jobcard_risk17 == "na")
+                             setRisco(ve => ({ ...ve, risco17: "3"}));
+
+
+                                 if (d.data.jobcard_analisederisco.jobcard_risk18 == "ok")
+                                 setRisco(ve => ({ ...ve, risco18: "1"}));
+                              else if (d.data.jobcard_analisederisco.jobcard_risk18 == "not ok")
+                              setRisco(ve => ({ ...ve, risco18: "2"}));
+                              else if (d.data.jobcard_analisederisco.jobcard_risk18 == "na")
+                              setRisco(ve => ({ ...ve, risco18: "3"}));
+
+
+                                  if (d.data.jobcard_analisederisco.jobcard_risk19 == "ok")
+                                  setRisco(ve => ({ ...ve, risco19: "1"}));
+                               else if (d.data.jobcard_analisederisco.jobcard_risk19 == "not ok")
+                               setRisco(ve => ({ ...ve, risco19: "2"}));
+                               else if (d.data.jobcard_analisederisco.jobcard_risk19 == "na")
+                               setRisco(ve => ({ ...ve, risco19: "3"}));
            
                })
              
                })()
                },[]);
+
+         
+
+               
+              
+
+
+
+
+
+
+
+
 
 
        //info BASICA
@@ -438,7 +654,7 @@ import api from '../../../../services/api';
                                                       <Text style={styles.currentText}> O PLANO DE VIAGEM FOI ELABORADO, COMUNICADO E VALIDADO? </Text>
                                                   
                                                     
-                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco1}> 
                                                       <Stack direction={{
                                                             base: "row",
                                                             md: "row"
@@ -446,6 +662,7 @@ import api from '../../../../services/api';
                                                             base: "center",
                                                             md: "center"
                                                           }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+
                                                           <Radio colorScheme="emerald" value="1" size='sm'>
                                                             Sim
                                                           </Radio>
@@ -466,7 +683,7 @@ import api from '../../../../services/api';
                                                       <Text style={styles.currentText}> FOI EFETUADA A INSPEÇÃO DIÁRIA DA VIATURA? </Text>
                                                   
                                                     
-                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco2}> 
                                                       <Stack direction={{
                                                             base: "row",
                                                             md: "row"
@@ -493,7 +710,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> TODOS OS TRABALHADORES TÊM A FORMAÇÃO E INFORMAÇÃO SUFICIENTE SOBRE A ATIVIDADE A EXECUTAR? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco3}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -520,7 +737,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> ANTES DO INÍCIO DO(S) TRABALHO(S) TEVE CONHECIMENTO DOS PERIGOS E RISCOS ASSOCIADOS À SUA ATIVIDADE? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco4}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -547,7 +764,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> TODOS OS TRABALHADORES CONHECEM OS PROCEDIMENTOS EM CASO DE UMA EMERGÊNCIA?</Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco5}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -574,7 +791,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> A METODOLOGIA DE TRABALHOS DA ATIVIDADE A EXECUTAR É SEGURA? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco6}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -601,7 +818,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> AS INSTRUÇÕES DA AUTORIZAÇÃO DE TRABALHOS FORAM PERCEBIDAS? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco7}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -628,7 +845,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> TODAS AS CONDIÇÕES DA AUTORIZAÇÃO DE TRABALHOS ESTÃO ASSEGURADAS? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco8}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -655,7 +872,7 @@ import api from '../../../../services/api';
                                                   <Text style={styles.currentText}> TODO O EQUIPAMENTO NECESSÁRIO À EXECUÇÃO DOS TRABALHOS ESTÁ DISPONÍVEL E EM BOM ESTADO DE CONSERVAÇÃO? </Text>
 
 
-                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco9}> 
                                                   <Stack direction={{
                                                         base: "row",
                                                         md: "row"
@@ -682,7 +899,7 @@ import api from '../../../../services/api';
                                             <Text style={styles.currentText}> TODOS OS TRABALHADORES ESTÃO NA POSSE DOS EPI’S ADEQUADOS A ATIVIDADE? </Text>
 
 
-                                            <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                            <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco10}> 
                                             <Stack direction={{
                                                   base: "row",
                                                   md: "row"
@@ -709,7 +926,7 @@ import api from '../../../../services/api';
                                             <Text style={styles.currentText}> O LOCAL DE TRABALHO ESTÁ LIMPO, SEGURO E ORGANIZADO? (INSECTOS, SERPENTES, ABELHAS, ZONAS DE RISCO) </Text>
 
 
-                                            <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                            <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco11}> 
                                             <Stack direction={{
                                                   base: "row",
                                                   md: "row"
@@ -736,7 +953,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE QUEDA AO MESMO NÍVEL, NÍVEL DIFERENTE E EM ALTURA? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco12}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -763,7 +980,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE QUEDA DE OBJETOS? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco13}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -790,7 +1007,7 @@ import api from '../../../../services/api';
                                             <Text style={styles.currentText}> CASO EXISTAM RISCOS ACRESCIDOS ORIGINADOS POR SITUAÇÕES EXTERNAS À INTERVENÇÃO (CONDICIONALISMOS NO LOCAL, CONDIÇÕES ATMOSFÉRICAS ADVERSAS, OUTROS TRABALHOS NA PROXIMIDADE), ESTES ESTÃO CONTROLADOS?</Text>
 
 
-                                            <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                            <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco14}> 
                                             <Stack direction={{
                                                   base: "row",
                                                   md: "row"
@@ -817,7 +1034,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR A ILUMINAÇÃO É SUFICIENTE E ADEQUADA?</Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco15}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -844,7 +1061,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> NO EXERCÍCIO DA(S) ATIVIDADE(S) EXISTE O RISCO DE CONTACTO COM A ELETRICIDADE? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco16}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -871,7 +1088,7 @@ import api from '../../../../services/api';
                                               <Text style={styles.currentText}> TODAS AS FONTES DE ENERGIA ESTÃO BLOQUEADAS? </Text>
 
 
-                                              <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                              <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco17}> 
                                               <Stack direction={{
                                                     base: "row",
                                                     md: "row"
@@ -898,7 +1115,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE INCÊNDIO OU EXPLOSÕES?</Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco18}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -920,39 +1137,13 @@ import api from '../../../../services/api';
 
                                           </View>
 
-                                          <View style={[styles.container, styles.step1]}>
-
-                                          <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE INCÊNDIO OU EXPLOSÕES?</Text>
-
-
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
-                                          <Stack direction={{
-                                                base: "row",
-                                                md: "row"
-                                              }} alignItems={{
-                                                base: "center",
-                                                md: "center"
-                                              }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                              <Radio colorScheme="emerald" value="1" size='sm'>
-                                                Sim
-                                              </Radio>
-                                              <Radio colorScheme="secondary" value="2" size='sm'>
-                                                Não
-                                              </Radio>
-                                              <Radio colorScheme="yellow" value="3" size='sm'>
-                                                N/A
-                                              </Radio>
-                                          </Stack>
-                                          </Radio.Group>
-
-                                          </View>
-
+                                     
                                           <View style={[styles.container, styles.step1]}>
 
                                           <Text style={styles.currentText}> PARA UMA COMUNICAÇÃO SEGURA DURANTE OS TRABALHOS HÁ A NECESSIDADE DE UM RÁDIO DE COMUNICAÇÃO? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco19}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
