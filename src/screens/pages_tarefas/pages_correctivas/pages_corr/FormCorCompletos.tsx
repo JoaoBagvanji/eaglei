@@ -317,48 +317,7 @@ import api from '../../../../services/api';
                                setAmbiental(ve => ({ ...ve, comments: d.data.jobcard_analisederiscoAmbiental.jobcard_radiocomments2}));
 
 
-                               if (
-                                risco.risco1=="" &&
-                                risco.risco2=="" &&
-                                risco.risco3=="" &&
-                                risco.risco4=="" &&
-                                risco.risco4=="" &&
-                                risco.risco5=="" &&
-                                risco.risco6=="" &&
-                                risco.risco7=="" &&
-                                risco.risco8=="" &&
-                                risco.risco9=="" &&
-                                risco.risco10=="" &&
-                                risco.risco11=="" &&
-                                risco.risco12=="" &&
-                                risco.risco13=="" &&
-                                risco.risco14=="" &&
-                                risco.risco15=="" &&
-                                risco.risco16=="" &&
-                                risco.risco17=="" &&
-                                risco.risco18=="" &&
-                                risco.risco19=="" &&
-                                risco.comments==""
-                             ){
-                              setMostraRisco(false);
-                             }
-           
-
-                             if (
-                              ambiental.risco1=="" &&
-                              ambiental.risco2=="" &&
-                              ambiental.risco3=="" &&
-                              ambiental.risco4=="" &&
-                              ambiental.risco4=="" &&
-                              ambiental.risco5=="" &&
-                              ambiental.risco6=="" &&
-                              ambiental.risco7=="" &&
-                              ambiental.risco8=="" &&
-                              ambiental.comments==""
-                           ){
-                            setMostraAmbiental(false);
-                           }
-
+                       
            
                })
              
@@ -729,7 +688,21 @@ import api from '../../../../services/api';
               const {colors} = useTheme();
               const {fonts} = useTheme();
 
-              const [razao, setRazao] = useState('');
+          let obj={}
+
+              if (
+                dados.jobcard_analisederisco.keys(obj).length === 0 && typeof dados.jobcard_analisederisco === "undefined" 
+             ){
+              setMostraRisco(false);
+             }
+
+
+             if (
+              dados.jobcard_analisederiscoAmbiental.keys(obj).length === 0 && typeof dados.jobcard_analisederiscoAmbiental === "undefined"
+           ){
+            setMostraAmbiental(false);
+           }
+
 
               if(!mostraRisco && !mostraAmbiental){
                         
