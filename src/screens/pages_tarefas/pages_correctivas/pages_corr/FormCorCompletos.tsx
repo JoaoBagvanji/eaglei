@@ -690,13 +690,13 @@ import api from '../../../../services/api';
 
           
 
-              if ( Object.values(dados.jobcard_analisederisco).length === 0 && typeof dados.jobcard_analisederisco === "undefined" 
+              if ( typeof dados.jobcard_analisederisco === "undefined" 
              ){
               setMostraRisco(false);
              }
 
 
-             if (Object.values(dados.jobcard_analisederiscoAmbiental).length === 0 && typeof dados.jobcard_analisederiscoAmbiental === "undefined"
+             if (typeof dados.jobcard_analisederiscoAmbiental === "undefined"
            ){
             setMostraAmbiental(false);
            }
