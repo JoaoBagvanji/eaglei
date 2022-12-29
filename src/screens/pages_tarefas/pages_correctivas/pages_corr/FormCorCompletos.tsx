@@ -319,7 +319,7 @@ import api from '../../../../services/api';
                })()
                },[]);
 
-         
+             
 
                
               
@@ -684,12 +684,6 @@ import api from '../../../../services/api';
               const {fonts} = useTheme();
 
           
-
-          
-           }
-
-
-            
               return (
                 <VStack flex={1} bg="white">
                           <SafeAreaView style={styles.container}>
@@ -1487,6 +1481,12 @@ import api from '../../../../services/api';
                 </VStack>
               );
               
+          
+           }
+
+
+            
+            
         
             
 
@@ -2533,8 +2533,8 @@ import api from '../../../../services/api';
               </>
              
             );
-          }  
-
+           
+          }
 
           const styles =StyleSheet.create({
             text:{   
