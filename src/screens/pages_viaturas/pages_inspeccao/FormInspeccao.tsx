@@ -1878,7 +1878,7 @@ function Screen8() {
           <Button 
             leftIcon={<Icon as={<FloppyDisk color={colors.white} size={20}/>} ml={1} p={2}/>} 
             title='Gravar' 
-            onPress={() =>api.post('/viatura/inspdiaria/novo',isFiled).then(d=>{console.log(d.data)})} 
+            onPress={() =>api.post('/viatura/inspdiaria/novo',isFiled).then(d=>{navigate('Viatura')})} 
           />
         </VStack>
       </VStack>
