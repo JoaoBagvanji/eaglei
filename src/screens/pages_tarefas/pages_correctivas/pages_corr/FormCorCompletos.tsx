@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {  StyleSheet, KeyboardAvoidingView, Platform, SafeAreaView, FlatList, TouchableOpacity, useWindowDimensions, Image as RNimage, ActivityIndicator, Dimensions} from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Archive, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, User, Wrench, Image} from 'phosphor-react-native';
+import { Archive, Eye, Info, LightbulbFilament, Lightning, MagnifyingGlass, Note, User, Wrench, Image, Warning} from 'phosphor-react-native';
 import { View, Text, Icon, useTheme, VStack, HStack, ScrollView, Radio, Stack, TextArea} from 'native-base';
 
 import {useEffect, useState } from 'react';
@@ -60,29 +60,19 @@ import api from '../../../../services/api';
               "comments": "",
              })
 
-            //  var risco = {
-            //   "risco1": "",
-            //   "risco2": "",
-            //   "risco3": "",
-            //   "risco4": "",
-            //   "risco5": "",
-            //   "risco6": "",
-            //   "risco7": "",
-            //   "risco8": "",
-            //   "risco9": "",
-            //   "risco10": "",
-            //   "risco11": "",
-            //   "risco12": "",
-            //   "risco13": "",
-            //   "risco14": "",
-            //   "risco15": "",
-            //   "risco16": "",
-            //   "risco17": "",
-            //   "risco18": "",
-            //   "risco19": "",
-            //   "comments": "",
-            //  }
+             var [ambiental, setAmbiental] = useState({
+              "risco1": "",
+              "risco2": "",
+              "risco3": "",
+              "risco4": "",
+              "risco5": "",
+              "risco6": "",
+              "risco7": "",
+              "risco8": "",
+              "comments": "",
+             })
 
+          
 
 
             useEffect(()=>{
@@ -92,7 +82,7 @@ import api from '../../../../services/api';
                 
                    setDados(d.data);
                     console.log("-------DADOS DA ROTA--------");
-                    console.log(d.data.jobcard_analisederisco);
+                    console.log(d.data.jobcard_analisederiscoAmbiental);
 
 
 
@@ -104,11 +94,11 @@ import api from '../../../../services/api';
                       setRisco(ve => ({ ...ve, risco1: "3"}));
 
 
-             if (d.data.jobcard_analisederisco.jobcard_risk2 == "ok")
+             if (d.data.jobcard_analisederisco.jobcard_risk22 == "ok")
              setRisco(ve => ({ ...ve, risco2: "1"}));
-              else if (d.data.jobcard_analisederisco.jobcard_risk2 == "not ok")
+              else if (d.data.jobcard_analisederisco.jobcard_risk22 == "not ok")
               setRisco(ve => ({ ...ve, risco2: "2"}));
-              else if (d.data.jobcard_analisederisco.jobcard_risk2 == "na")
+              else if (d.data.jobcard_analisederisco.jobcard_risk22 == "na")
               setRisco(ve => ({ ...ve, risco2: "3"}));
             
 
@@ -248,6 +238,84 @@ import api from '../../../../services/api';
                                setRisco(ve => ({ ...ve, risco19: "2"}));
                                else if (d.data.jobcard_analisederisco.jobcard_risk19 == "na")
                                setRisco(ve => ({ ...ve, risco19: "3"}));
+
+
+                               setRisco(ve => ({ ...ve, comments: d.data.jobcard_analisederisco.jobcard_radiocomments}));
+
+
+
+
+
+                               if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk21 == "ok")
+                               setAmbiental(ve => ({ ...ve, risco1: "1"}));
+                        else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk21 == "not ok")
+                                setAmbiental(ve => ({ ...ve, risco1: "2"}));
+                        else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk21 == "na")
+                                 setAmbiental(ve => ({ ...ve, risco1: "3"}));
+           
+           
+                        if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk22 == "ok")
+                        setAmbiental(ve => ({ ...ve, risco2: "1"}));
+                         else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk22 == "not ok")
+                         setAmbiental(ve => ({ ...ve, risco2: "2"}));
+                         else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk22 == "na")
+                         setAmbiental(ve => ({ ...ve, risco2: "3"}));
+                       
+           
+                             if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk23 == "ok")
+                             setAmbiental(ve => ({ ...ve, risco3: "1"}));
+                          else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk23 == "not ok")
+                          setAmbiental(ve => ({ ...ve, risco3: "2"}));
+                          else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk23 == "na")
+                          setAmbiental(ve => ({ ...ve, risco3: "3"}));
+           
+                              if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk24 == "ok")
+                               setAmbiental(ve => ({ ...ve, risco4: "1"}));
+                           else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk24 == "not ok")
+                           setAmbiental(ve => ({ ...ve, risco4: "2"}));
+                           else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk24 == "na")
+                           setAmbiental(ve => ({ ...ve, risco4: "3"}));
+           
+           
+           
+                               if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk25 == "ok")
+                                 setAmbiental(ve => ({ ...ve, risco5: "1"}));
+                            else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk25 == "not ok")
+                            setAmbiental(ve => ({ ...ve, risco5: "2"}));
+                            else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk25 == "na")
+                            setAmbiental(ve => ({ ...ve, risco5: "3"}));
+           
+           
+           
+                                if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk26 == "ok")
+                                      setAmbiental(ve => ({ ...ve, risco6: "1"}));
+                             else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk26 == "not ok")
+                             setAmbiental(ve => ({ ...ve, risco6: "2"}));
+                             else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk26 == "na")
+                             setAmbiental(ve => ({ ...ve, risco6: "3"}));
+           
+           
+                                 if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk27 == "ok")
+                                 setAmbiental(ve => ({ ...ve, risco7: "1"}));
+                              else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk27 == "not ok")
+                              setAmbiental(ve => ({ ...ve, risco7: "2"}));
+                              else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk27 == "na")
+                              setAmbiental(ve => ({ ...ve, risco7: "3"}));
+           
+                                  if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk28 == "ok")
+                                  setAmbiental(ve => ({ ...ve, risco8: "1"}));
+                               else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk28 == "not ok")
+                               setAmbiental(ve => ({ ...ve, risco8: "2"}));
+                               else if (d.data.jobcard_analisederiscoAmbiental.jobcard_risk28 == "na")
+                               setAmbiental(ve => ({ ...ve, risco8: "3"}));
+
+
+
+                               setAmbiental(ve => ({ ...ve, comments: d.data.jobcard_analisederiscoAmbiental.jobcard_radiocomments2}));
+           
+
+
+
            
                })
              
@@ -1166,7 +1234,7 @@ import api from '../../../../services/api';
                                           </View>
 
                                             <Text style={styles.currentText}> Observações </Text>
-                                            <TextArea borderColor={'black'} width={'80%'} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
+                                            <TextArea borderColor={'black'} width={'80%'} alignSelf='center' value={risco.comments} aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
 
 
 
@@ -1197,7 +1265,7 @@ import api from '../../../../services/api';
                                                       <Text style={styles.currentText}> ESTÃO CRIADAS CONDIÇÕES PARA QUE OS RESÍDUOS SEJAM SEGREGADOS CORRETAMENTE? </Text>
                                                   
                                                     
-                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco1}> 
                                                       <Stack direction={{
                                                             base: "row",
                                                             md: "row"
@@ -1225,7 +1293,7 @@ import api from '../../../../services/api';
                                                       <Text style={styles.currentText}> PARA A ATIVIDADE A SER DESENVOLVIDA ESTÁ DISPONÍVEL UM KIT DE DERRAMES AMBIENTAIS? </Text>
                                                   
                                                     
-                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco2}> 
                                                       <Stack direction={{
                                                             base: "row",
                                                             md: "row"
@@ -1252,7 +1320,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> TODOS OS TRABALHADORES CONHECEM OS PROCEDIMENTOS EM CASO DE OCORRÊNCIA DE UM ACIDENTE AMBIENTAL? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco3}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -1279,7 +1347,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> NO AMBIENTE EM QUE SE VAI DESENVOLVER A ATIVIDADE EXISTEM CONDIÇÕES PARA UMA CORRETA MANUTENÇÃO E UTILIZAÇÃO DOS VEÍCULOS E EQUIPAMENTOS?</Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco4}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -1306,7 +1374,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> EXISTEM FICHAS DE DADOS DE SEGURANÇA DOS PRODUTOS QUÍMICOS?</Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco5}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -1333,7 +1401,34 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> OS PRODUTOS QUÍMICOS ESTÃO DEVIDAMENTE IDENTIFICADOS E ARMAZENADOS? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco6}> 
+                                          <Stack direction={{
+                                                base: "row",
+                                                md: "row"
+                                              }} alignItems={{
+                                                base: "center",
+                                                md: "center"
+                                              }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                              <Radio colorScheme="emerald" value="1" size='sm'>
+                                                Sim
+                                              </Radio>
+                                              <Radio colorScheme="secondary" value="2" size='sm'>
+                                                Não
+                                              </Radio>
+                                              <Radio colorScheme="yellow" value="3" size='sm'>
+                                                N/A
+                                              </Radio>
+                                          </Stack>
+                                          </Radio.Group>
+
+                                          </View>
+
+                                          <View style={[styles.container, styles.step1]}>
+
+                                          <Text style={styles.currentText}> FORAM DIVULGADOS OS IMPACTOS AMBIENTAIS DECORRENTES DA ATIVIDADE QUE VAI SER REALIZADA? </Text>
+
+
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco7}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -1360,7 +1455,7 @@ import api from '../../../../services/api';
                                           <Text style={styles.currentText}> O LOCAL EM QUE SE VAI DESENVOLVER A ATIVIDADE ESTÁ LIMPO E ORGANIZADO? </Text>
 
 
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5}> 
+                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco8}> 
                                           <Stack direction={{
                                                 base: "row",
                                                 md: "row"
@@ -1383,7 +1478,7 @@ import api from '../../../../services/api';
                                           </View>
 
                                             <Text style={styles.currentText}> Observações </Text>
-                                            <TextArea borderColor={'black'} width={'80%'} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
+                                            <TextArea borderColor={'black'} width={'80%'} value={ambiental.comments} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
 
                                       </ScrollView>
                                   </KeyboardAvoidingView>
@@ -1542,7 +1637,38 @@ import api from '../../../../services/api';
       
                       const { fonts } = useTheme();
                       const { colors } = useTheme();
+
+                      if(dados.jobcard_credelecinfo.length == 0){
+                        
+                        return (
+                          <SafeAreaView style={styles.container}>
       
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              DETALHES DE ENERGIA
+                                          </Text>
+      
+                                          <HStack justifyContent={'center'}>
+                                          <Icon as ={<Warning color={'red'}/>} />
+                                                  <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                      
+                                          </HStack>
+      
+                                      
+      
+                                  </VStack>
+      
+                          </SafeAreaView>
+                          );
+                      }
+                       else{
                         return (
                           <SafeAreaView style={styles.container}>
       
@@ -1581,6 +1707,12 @@ import api from '../../../../services/api';
                           </SafeAreaView>
                           );
       
+
+                      }
+
+
+
+                       
       
       
                 }
