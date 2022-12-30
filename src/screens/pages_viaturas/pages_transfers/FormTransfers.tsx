@@ -127,7 +127,7 @@ function Screen1() {
           left={<TextInput.Icon icon={User}
               color={colors.green[600]} />}
           mode="outlined"
-          label="De"
+          label="Origem"
           theme={{ fonts: { regular: { fontFamily: fonts.body } }, colors: { placeholder: colors.primary[600] } }}
           value={insp.origem}
           autoComplete='off' />
@@ -175,7 +175,7 @@ function Screen1() {
          autoComplete='off'
         />
 
-        <Text ml={'10%'} fontFamily={fonts.body}>Para</Text>
+        <Text ml={'10%'} fontFamily={fonts.body}>Destino</Text>
         <View style={{
           marginBottom: mb,
           backgroundColor: 'transparent',
@@ -185,9 +185,10 @@ function Screen1() {
         }}>
           <DropDownPicker
             listMode="MODAL"
-            //autoScroll={true}
+            autoScroll={true}
             textStyle={{
-              fontSize: 14
+              fontSize: 14,
+              fontFamily: fonts.body ,
             }}
             placeholder="Escolha a opção"
             open={openPara}
