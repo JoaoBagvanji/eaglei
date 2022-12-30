@@ -23,6 +23,7 @@ import InfoSpare from './corr_info/InfoSpare';
 import { useNavigation } from '@react-navigation/native';
 
 import api from '../../../../services/api';
+import { Load } from '../../../../components/Load';
 
 
           const StackRoutes = createStackNavigator();
@@ -30,6 +31,8 @@ import api from '../../../../services/api';
           const Tab = createMaterialTopTabNavigator();
 
           export default function FormCorCompletos(props) {
+
+            const[isloading, setIsLoading]=useState(true);
 
             const {colors} = useTheme();
             const {fonts} = useTheme();
@@ -71,11 +74,6 @@ import api from '../../../../services/api';
               "risco8": "",
               "comments": "",
              })
-
-
-             var [mostraRisco, setMostraRisco] = useState(true);
-             var [mostraAmbiental, setMostraAmbiental] = useState(true);
-
           
 
 
@@ -87,6 +85,7 @@ import api from '../../../../services/api';
                    setDados(d.data);
                     console.log("-------DADOS DA ROTA--------");
                     console.log(d.data.jobcard_analisederiscoAmbiental);
+                    setIsLoading(false);
 
 
 
@@ -317,55 +316,14 @@ import api from '../../../../services/api';
                                setAmbiental(ve => ({ ...ve, comments: d.data.jobcard_analisederiscoAmbiental.jobcard_radiocomments2}));
 
 
-                               if (
-                                risco.risco1=="" &&
-                                risco.risco2=="" &&
-                                risco.risco3=="" &&
-                                risco.risco4=="" &&
-                                risco.risco4=="" &&
-                                risco.risco5=="" &&
-                                risco.risco6=="" &&
-                                risco.risco7=="" &&
-                                risco.risco8=="" &&
-                                risco.risco9=="" &&
-                                risco.risco10=="" &&
-                                risco.risco11=="" &&
-                                risco.risco12=="" &&
-                                risco.risco13=="" &&
-                                risco.risco14=="" &&
-                                risco.risco15=="" &&
-                                risco.risco16=="" &&
-                                risco.risco17=="" &&
-                                risco.risco18=="" &&
-                                risco.risco19=="" &&
-                                risco.comments==""
-                             ){
-                              setMostraRisco(false);
-                             }
-           
-
-                             if (
-                              ambiental.risco1=="" &&
-                              ambiental.risco2=="" &&
-                              ambiental.risco3=="" &&
-                              ambiental.risco4=="" &&
-                              ambiental.risco4=="" &&
-                              ambiental.risco5=="" &&
-                              ambiental.risco6=="" &&
-                              ambiental.risco7=="" &&
-                              ambiental.risco8=="" &&
-                              ambiental.comments==""
-                           ){
-                            setMostraAmbiental(false);
-                           }
-
+                       
            
                })
              
                })()
                },[]);
 
-         
+             
 
                
               
@@ -729,39 +687,7 @@ import api from '../../../../services/api';
               const {colors} = useTheme();
               const {fonts} = useTheme();
 
-              const [razao, setRazao] = useState('');
-
-              if(!mostraRisco && !mostraAmbiental){
-                        
-                return (
-                  <SafeAreaView style={styles.container}>
-  
-                          <VStack bg="white" mb={'60%'} width={'100%'}>
-  
-                                  <Text
-                                      color='#12375C'
-                                      mt={'8%'}
-                                      mb={'4%'}
-                                      fontFamily={fonts.body}
-                                      fontSize='md'
-                                      alignSelf={'center'}>
-                                      AVALIAÇÃO DE RISCO & DE IMPACTO AMBIENTAL
-                                  </Text>
-  
-                                  <HStack justifyContent={'center'} alignItems="center">
-                                  <Icon as ={<Warning color={'red'}/>} />
-                                          <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
-                                              
-                                  </HStack>
-  
-                              
-  
-                          </VStack>
-  
-                  </SafeAreaView>
-                  );
-              }
-               else{
+          
               return (
                 <VStack flex={1} bg="white">
                           <SafeAreaView style={styles.container}>
@@ -770,7 +696,7 @@ import api from '../../../../services/api';
                                   <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                                       <ScrollView showsVerticalScrollIndicator={false}>
 
-                                        {mostraRisco && <>
+                                     
 
                                           <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                                               <Text color='#12375C' fontFamily={fonts.body} fontSize='md'>
@@ -1304,9 +1230,9 @@ import api from '../../../../services/api';
                                             <Text style={styles.currentText}> Observações </Text>
                                             <TextArea borderColor={'black'} width={'80%'} alignSelf='center' value={risco.comments} aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
 
-                                            </> }
+                                          
 
-                                            {mostraAmbiental && <>
+                                           
                                             <View
                                               borderBottomColor={'#12375C'}
                                               borderBottomWidth={4}
@@ -1549,7 +1475,7 @@ import api from '../../../../services/api';
                                             <Text style={styles.currentText}> Observações </Text>
                                             <TextArea borderColor={'black'} width={'80%'} value={ambiental.comments} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
                                           
-                                            </> }
+                                           
                                             
                                       </ScrollView>
                                   </KeyboardAvoidingView>
@@ -1558,8 +1484,14 @@ import api from '../../../../services/api';
                           </SafeAreaView>
                 </VStack>
               );
-              }
-            }
+              
+          
+           }
+
+
+            
+            
+        
             
 
 
@@ -2068,216 +2000,217 @@ import api from '../../../../services/api';
    
    
    
-           //FOTOS
-                function Screen8({navigation}) {
-      
-                  const { fonts } = useTheme();
-                  const { colors } = useTheme();
               
-                const [images, setImages] = useState([]);
-                const [isLoading, setIsLoading] = useState(false);
-                const { width } = useWindowDimensions();
-      
-                let deviceHeight = Dimensions.get('window').height;
-                let deviceWidth = Dimensions.get('window').width;
-      
-              
-                            const pictures = [
-                      {
-                          id: 1,
-                          image: require('../../../../assets/tecnicos/jobcardphoto1.png'),
+              //FOTOS
+              function Screen8({navigation}) {
+            
+                const { fonts } = useTheme();
+                const { colors } = useTheme();
+            
+              const [images, setImages] = useState([]);
+              const [isLoading, setIsLoading] = useState(false);
+              const { width } = useWindowDimensions();
+
+              let deviceHeight = Dimensions.get('window').height;
+              let deviceWidth = Dimensions.get('window').width;
+
+            
+                          const pictures = [
+                    {
+                        id: 1,
+                        image: require('../../../../assets/tecnicos/jobcardphoto1.png'),
+                    
+                    },
+                    {
+                        id: 2,
+                            image: require('../../../../assets/tecnicos/jobcardphoto2.png'),
+                    },
+                    {
+                        id: 3,
+                        image: require('../../../../assets/tecnicos/jobcardphoto3.png'),
+                    },
+                    {
+                        id: 4,
+                        image: require('../../../../assets/tecnicos/jobcardphoto4.png'),
+                    },
+                    {
+                        id: 5,
+                        image: require('../../../../assets/tecnicos/jobcardphoto5.png'),
+                    },
+                    {
+                        id: 6,
+                    
+                        image: require('../../../../assets/tecnicos/jobcardphotoinfo6.png'),
+                    },
+                    {
+                        id: 7,
+                        image: require('../../../../assets/tecnicos/jobcardphoto7.png'),
                       
-                      },
-                      {
-                          id: 2,
-                              image: require('../../../../assets/tecnicos/jobcardphoto2.png'),
-                      },
-                      {
-                          id: 3,
-                          image: require('../../../../assets/tecnicos/jobcardphoto3.png'),
-                      },
-                      {
-                          id: 4,
-                          image: require('../../../../assets/tecnicos/jobcardphoto4.png'),
-                      },
-                      {
-                          id: 5,
-                          image: require('../../../../assets/tecnicos/jobcardphoto5.png'),
-                      },
-                      {
-                          id: 6,
-                      
-                          image: require('../../../../assets/tecnicos/jobcardphotoinfo6.png'),
-                      },
-                      {
-                          id: 7,
-                          image: require('../../../../assets/tecnicos/jobcardphoto7.png'),
-                        
-                      },
-                      {
-                          id: 8,
-                          image: require('../../../../assets/tecnicos/jobcardphoto8.png'),
-                      }
-                          ];
+                    },
+                    {
+                        id: 8,
+                        image: require('../../../../assets/tecnicos/jobcardphoto8.png'),
+                    }
+                        ];
+            
+            
+                        const pickFromGal = async () => {
+                          // No permissions request is necessary for launching the image library
+                          setIsLoading(true);
               
+                          let  resultados = await ImagePicker.launchImageLibraryAsync({
+                                  mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                                  // allowsEditing: true,
+                                  allowsMultipleSelection: true,
+                                  selectionLimit: 10,
+                                  aspect: [4, 3],
+                                  quality: 1,
+                              });
               
-                          const pickFromGal = async () => {
-                            // No permissions request is necessary for launching the image library
-                            setIsLoading(true);
-                
-                            let  resultados = await ImagePicker.launchImageLibraryAsync({
-                                    mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                                    // allowsEditing: true,
-                                    allowsMultipleSelection: true,
-                                    selectionLimit: 10,
-                                    aspect: [4, 3],
-                                    quality: 1,
-                                });
-                
-                                setIsLoading(false);
-                                console.log(resultados);
-                            
-                                resultados.assets.forEach(element => {
-                                    
-                                    if (!resultados.canceled) {
-                                        setImages(resultados.assets);
-                                        }
-                                });
-                                
-                        };
-                
-              
+                              setIsLoading(false);
+                              console.log(resultados);
                           
-                        if(dados.jobcardphotoinfo.length == 0){
-                        
-                          return (
-                            <SafeAreaView style={styles.container}>
-        
-                                    <VStack bg="white" mb={'60%'} width={'100%'}>
-        
-                                            <Text
-                                                color='#12375C'
-                                                mt={'8%'}
-                                                mb={'4%'}
-                                                fontFamily={fonts.body}
-                                                fontSize='md'
-                                                alignSelf={'center'}>
-                                                 FOTOS
-                                            </Text>
-        
-                                            <HStack justifyContent={'center'} alignItems="center">
-                                            <Icon as ={<Warning color={'red'}/>} />
-                                                    <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
-                                                        
-                                            </HStack>
-        
-                                        
-        
-                                    </VStack>
-        
-                            </SafeAreaView>
-                            );
-                        }                       
-                  return (
-                  <VStack flex={1} pb={4} mb={16} bg="white">
-              
-                      <SafeAreaView style={styles.container}>
-              
-                      <ScrollView mb='12%'>
-                  
-                      <FlatList
-                          scrollEnabled={false}
-                          data={dados.jobcardphotoinfo}
-                          renderItem={({ item }) => (
-      
-                            <View borderWidth={3} borderColor={'white'}>
-      
-                                <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUrl', {url: item}) }>
-                                    <RNimage
-                                    source={item}
-                                    style={{ width: width / 2, height: 250 }}
-                                    />
-                                </TouchableOpacity>
-      
-                            </View>
-      
-                          )}
-                          numColumns={2}
-                          keyExtractor={(item) => item.image}
-                          contentContainerStyle={{ marginVertical: 10}}
-                          ListHeaderComponent={
-                          <Text
-                            color='#12375C'
-                            mt={'8%'}
-                            mb={'4%'}
-                            fontFamily={fonts.body}
-                            fontSize='md'
-                            alignSelf={'center'}>
-                            FOTOS
-                            </Text>
-      
-                          }
-                      />
-      
-      
-      
-      
-      
-      
-                                <View alignItems='center' justifyContent='center' display='flex' >
-                                      <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
-                                  </View>
-              
-                                  <FlatList
-                          scrollEnabled={false}
-                          data={images}
-                          renderItem={({ item }) => (
-      
-                            <View borderWidth={3} borderColor={'white'}>
-      
-                                <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUri', {uri: item.uri}) }>
-                                    <RNimage
-                                    source={{uri: item.uri}}
-                                    style={{ width: width / 2, height: 250 }}
-                                    />
-                                </TouchableOpacity>
-      
-                            </View>
-      
-                          )}
-                          numColumns={2}
-                          keyExtractor={(item) => item.uri}
-                          contentContainerStyle={{ marginVertical: 10}}
-                          ListHeaderComponent={
-                            isLoading ? (
-                            <View>
-                                <Text
-                                style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
-                                A carregar...
-                                </Text>
-                                <ActivityIndicator size={"large"} />
-                            </View>
-                            ) : (
-                          
-                            <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
-                                
-                                <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
-                                      <Image size={22} color={'#A1C861'} />
-                                      <Text style={styles.text}> Galeria</Text>
-                                </TouchableOpacity>
-      
-                            </HStack>
-                )
-            }
-                      />
-      
+                              resultados.assets.forEach(element => {
                                   
-                          </ScrollView>
+                                  if (!resultados.canceled) {
+                                      setImages(resultados.assets);
+                                      }
+                              });
+                              
+                      };
               
-                      </SafeAreaView>
-                  </VStack> 
-                );
+            
+                        
+                      if(dados.jobcardphotoinfo.length == 0){
+                      
+                        return (
+                          <SafeAreaView style={styles.container}>
+
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              FOTOS
+                                          </Text>
+
+                                          <HStack justifyContent={'center'} alignItems="center">
+                                          <Icon as ={<Warning color={'red'}/>} />
+                                                  <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                      
+                                          </HStack>
+
+                                      
+
+                                  </VStack>
+
+                          </SafeAreaView>
+                          );
+                      }                       
+                return (
+                <VStack flex={1} pb={4} mb={16} bg="white">
+            
+                    <SafeAreaView style={styles.container}>
+            
+                    <ScrollView mb='12%'>
+                
+                    <FlatList
+                        scrollEnabled={false}
+                        data={dados.jobcardphotoinfo}
+                        renderItem={({ item }) => (
+
+                          <View borderWidth={3} borderColor={'white'}>
+
+                              <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUrl', {url: item}) }>
+                                  <RNimage
+                                  source={item}
+                                  style={{ width: width / 2, height: 250 }}
+                                  />
+                              </TouchableOpacity>
+
+                          </View>
+
+                        )}
+                        numColumns={2}
+                        keyExtractor={(item) => item.image}
+                        contentContainerStyle={{ marginVertical: 10}}
+                        ListHeaderComponent={
+                        <Text
+                          color='#12375C'
+                          mt={'8%'}
+                          mb={'4%'}
+                          fontFamily={fonts.body}
+                          fontSize='md'
+                          alignSelf={'center'}>
+                          FOTOS
+                          </Text>
+
+                        }
+                    />
+
+
+
+
+
+
+                              <View alignItems='center' justifyContent='center' display='flex' >
+                                    <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
+                                </View>
+            
+                                <FlatList
+                        scrollEnabled={false}
+                        data={images}
+                        renderItem={({ item }) => (
+
+                          <View borderWidth={3} borderColor={'white'}>
+
+                              <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUri', {uri: item.uri}) }>
+                                  <RNimage
+                                  source={{uri: item.uri}}
+                                  style={{ width: width / 2, height: 250 }}
+                                  />
+                              </TouchableOpacity>
+
+                          </View>
+
+                        )}
+                        numColumns={2}
+                        keyExtractor={(item) => item.uri}
+                        contentContainerStyle={{ marginVertical: 10}}
+                        ListHeaderComponent={
+                          isLoading ? (
+                          <View>
+                              <Text
+                              style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
+                              A carregar...
+                              </Text>
+                              <ActivityIndicator size={"large"} />
+                          </View>
+                          ) : (
+                        
+                          <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
+                              
+                              <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
+                                    <Image size={22} color={'#A1C861'} />
+                                    <Text style={styles.text}> Galeria</Text>
+                              </TouchableOpacity>
+
+                          </HStack>
+              )
           }
+                    />
+
+                                
+                        </ScrollView>
+            
+                    </SafeAreaView>
+                </VStack> 
+              );
+              }
 
 
             
@@ -2484,7 +2417,14 @@ import api from '../../../../services/api';
           }  
           
 
-       
+          if(isloading)
+          return(
+              <Load/>
+      
+          )
+          
+          else
+      {
 
             return (
               <>
@@ -2605,8 +2545,9 @@ import api from '../../../../services/api';
               </>
              
             );
+           
           }
-
+        }
 
           const styles =StyleSheet.create({
             text:{   
