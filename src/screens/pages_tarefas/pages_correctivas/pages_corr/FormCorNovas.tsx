@@ -23,6 +23,7 @@ import InfoSpare from './corr_info/InfoSpare';
 import { useNavigation } from '@react-navigation/native';
 
 import api from '../../../../services/api';
+import { Load } from '../../../../components/Load';
 
 
           const StackRoutes = createStackNavigator();
@@ -30,6 +31,8 @@ import api from '../../../../services/api';
           const Tab = createMaterialTopTabNavigator();
 
           export default function FormCorNovas(props) {
+
+            const[isloading, setIsLoading]=useState(true);
 
             const {colors} = useTheme();
             const {fonts} = useTheme();
@@ -81,6 +84,7 @@ import api from '../../../../services/api';
                  api.get(`/tarefa/detalhesJobcardCallout/${props.route.params.id}`).then(d=>{
                 
                    setDados(d.data);
+                   setIsLoading(false);
                     console.log("-------DADOS DA ROTA--------");
                     console.log(d.data.jobcard_analisederisco);
 
@@ -1597,6 +1601,15 @@ import api from '../../../../services/api';
 
        
 
+        if(isloading)
+            return(
+                <Load/>
+        
+            )
+          
+          else
+             {
+
             return (
               <>
              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
@@ -1618,95 +1631,97 @@ import api from '../../../../services/api';
                 }}
               >
 
-                <Tab.Screen
-                  name="one"
-                  component={Screen1}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Note color={color} size={size}/>} />
-                      )),
-                  }}
-                />
+                        <Tab.Screen
+                        name="one"
+                        component={Screen1}
+                        options={{
+                            tabBarIcon:(({color, size})=>(
+                                <Icon as ={<Note color={color} size={size}/>} />
+                            )),
+                        }}
+                        />
 
-                <Tab.Screen
-                  name="two"
-                  component={Screen2}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<User color={color} size={size}/>} />
-                      )),
-                  }}
-                />
-          
-                <Tab.Screen
-                  name="four"
-                  component={Screen11}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Lightning color={color} size={size}/>} />
-                      )),
-                  }}
-                />
+                        <Tab.Screen
+                        name="two"
+                        component={Screen2}
+                        options={{
+                            tabBarIcon:(({color, size})=>(
+                                <Icon as ={<User color={color} size={size}/>} />
+                            )),
+                        }}
+                        />
+                    
+                        <Tab.Screen
+                        name="four"
+                        component={Screen11}
+                        options={{
+                            tabBarIcon:(({color, size})=>(
+                                <Icon as ={<Lightning color={color} size={size}/>} />
+                            )),
+                        }}
+                        />
 
-                 <Tab.Screen
-                  name="five"
-                  component={Screen12}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<LightbulbFilament color={color} size={size}/>} />
-                      )),
-                  }}   
-                />
+                        <Tab.Screen
+                        name="five"
+                        component={Screen12}
+                        options={{
+                            tabBarIcon:(({color, size})=>(
+                                <Icon as ={<LightbulbFilament color={color} size={size}/>} />
+                            )),
+                        }}   
+                        />
 
-                
-                <Tab.Screen
-                  name="six"
-                  component={Screen13}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<Wrench color={color} size={size}/>} />
-                      )),
-                  }}
-                /> 
-                
-                <Tab.Screen
-                  name="seven"
-                  component={Screen14}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Archive color={color} size={size}/>} />
-                      )),
-                  }}
-                /> 
-                
-                <Tab.Screen
-                   name="eight"
-                   component={Screen10}
-                   options={{
-                       tabBarIcon:(({color, size})=>(
-                         <Icon as ={<Image color={color} size={size}/>} />
-                       )),
-                  }}
-                />
+                        
+                        <Tab.Screen
+                        name="six"
+                        component={Screen13}
+                        options={{
+                            tabBarIcon:(({color, size})=>(
+                                <Icon as ={<Wrench color={color} size={size}/>} />
+                            )),
+                        }}
+                        /> 
+                        
+                        <Tab.Screen
+                        name="seven"
+                        component={Screen14}
+                        options={{
+                            tabBarIcon:(({color, size})=>(
+                                <Icon as ={<Archive color={color} size={size}/>} />
+                            )),
+                        }}
+                        /> 
+                        
+                        <Tab.Screen
+                        name="eight"
+                        component={Screen10}
+                        options={{
+                            tabBarIcon:(({color, size})=>(
+                                <Icon as ={<Image color={color} size={size}/>} />
+                            )),
+                        }}
+                        />
 
-                
-                   <Tab.Screen
-                  name="nine"
-                  component={Screen9}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<Eye color={color} size={size}/>} />
-                      )),
-                  }}
-                /> 
+                        
+                        <Tab.Screen
+                        name="nine"
+                        component={Screen9}
+                        options={{
+                            tabBarIcon:(({color, size})=>(
+                                <Icon as ={<Eye color={color} size={size}/>} />
+                            )),
+                        }}
+                        /> 
 
-                               
+                                    
               </Tab.Navigator>
 
               </>
              
             );
+           
           }
+        }
 
 
           const styles =StyleSheet.create({

@@ -38,7 +38,7 @@ import { Load } from '../../../../components/Load';
             const {fonts} = useTheme();
 
 
-            const [dados, setDados] = useState ({});
+            var [dados, setDados] = useState ({});
 
             var [risco, setRisco] = useState({
               "risco1": "",
@@ -83,11 +83,12 @@ import { Load } from '../../../../components/Load';
                  api.get(`/tarefa/detalhesJobcardCallout/${props.route.params.id}`).then(d=>{
                 
                   setDados(d.data);
+                  setIsLoading(false);
                    console.log("-------DADOS DA ANALISE DE RISCO--------");
                    console.log(d.data.jobcard_analisederisco);
                    console.log("-------DADOS DA ANALISE DE RISCO ambiental--------");
                    console.log(d.data.jobcard_analisederiscoAmbiental);
-                    setIsLoading(false);
+                    
 
 
 
@@ -684,44 +685,43 @@ import { Load } from '../../../../components/Load';
 
 
 
+           //AVAL
+           function Screen3() {
+            const {colors} = useTheme();
+            const {fonts} = useTheme();
 
-        //AVAL
-            function Screen3() {
-              const {colors} = useTheme();
-              const {fonts} = useTheme();
-          
 
-              if(!dados.jobcard_analisederisco && !dados.jobcard_analisederiscoAmbiental){
+            if(!dados.jobcard_analisederisco && !dados.jobcard_analisederiscoAmbiental){
                         
-                return (
-                  <SafeAreaView style={styles.container}>
-  
-                          <VStack bg="white" mb={'60%'} width={'100%'}>
-  
-                                  <Text
-                                      color='#12375C'
-                                      mt={'8%'}
-                                      mb={'4%'}
-                                      fontFamily={fonts.body}
-                                      fontSize='md'
-                                      alignSelf={'center'}>
-                                      AVALIAÇÃO DE RISCO
-                                  </Text>
-  
-                                  <HStack justifyContent={'center'} alignItems="center">
-                                           <Icon as ={<Warning color={'red'}/>} />
-                                          <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
-                                              
-                                  </HStack>
-  
-                              
-  
-                          </VStack>
-  
-                  </SafeAreaView>
-                  );
-              }
-               else{
+              return (
+                <SafeAreaView style={styles.container}>
+
+                        <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                                <Text
+                                    color='#12375C'
+                                    mt={'8%'}
+                                    mb={'4%'}
+                                    fontFamily={fonts.body}
+                                    fontSize='md'
+                                    alignSelf={'center'}>
+                                    AVALIAÇÃO DE RISCO & DO IMPACTO AMBIENTAL DE ÚLTIMO MINUTO
+                                </Text>
+
+                                <HStack justifyContent={'center'} alignItems="center">
+                                         <Icon as ={<Warning color={'red'}/>} />
+                                        <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                            
+                                </HStack>
+
+                            
+
+                        </VStack>
+
+                </SafeAreaView>
+                );
+            }
+             else{
               return (
                 <VStack flex={1} bg="white">
                           <SafeAreaView style={styles.container}>
@@ -730,9 +730,9 @@ import { Load } from '../../../../components/Load';
                                   <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                                       <ScrollView showsVerticalScrollIndicator={false}>
 
-                                     
-
-                                         {dados.jobcard_analisederisco && <> <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                    
+                                      {dados.jobcard_analisederisco && <> 
+                                          <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                                               <Text color='#12375C' fontFamily={fonts.body} fontSize='md'>
                                               AVALIAÇÃO DE RISCO 
                                               </Text>
@@ -1233,7 +1233,7 @@ import { Load } from '../../../../components/Load';
 
                                           </View>
 
-                                     
+                                    
                                           <View style={[styles.container, styles.step1]}>
 
                                           <Text style={styles.currentText}> PARA UMA COMUNICAÇÃO SEGURA DURANTE OS TRABALHOS HÁ A NECESSIDADE DE UM RÁDIO DE COMUNICAÇÃO? </Text>
@@ -1266,17 +1266,20 @@ import { Load } from '../../../../components/Load';
 
                                           
 
-                                           
+                                          
                                             <View
                                               borderBottomColor={'#12375C'}
                                               borderBottomWidth={4}
                                               width="100%"
                                               alignSelf={'center'}
                                               my={'10%'}/>
+
                                               </>
                                               }
 
-                                          {dados.jobcard_analisederiscoAmbiental && <>
+                                        
+                                      {dados.jobcard_analisederiscoAmbiental && <>
+
                                           <View alignItems='center' justifyItems={'center'} justifyContent='center' display='flex'>
                                               <Text color='#12375C' fontFamily={fonts.body} fontSize='md' alignSelf={'center'}>
                                               AVALIAÇÃO DO IMPACTO AMBIENTAL DE ÚLTIMO MINUTO
@@ -1520,26 +1523,20 @@ import { Load } from '../../../../components/Load';
                           </SafeAreaView>
                 </VStack>
               );
-                                            }
-              
-          
-           }
-
-
-            
+          }
             
         
-            
+         }
+
+
+    
 
 
 
 
 
 
-
-
-
-            //GENERATOR
+       //GENERATOR
                 function Screen4() {
       
       
@@ -1664,6 +1661,7 @@ import { Load } from '../../../../components/Load';
       
    
    
+
    
    
              //CREDELEC
@@ -2513,7 +2511,7 @@ import { Load } from '../../../../components/Load';
                       )),
                   }}
                 /> 
-            {/* 
+            
                 <Tab.Screen
                   name="four"
                   component={Screen11}
@@ -2574,7 +2572,7 @@ import { Load } from '../../../../components/Load';
                         <Icon as ={<Eye color={color} size={size}/>} />
                       )),
                   }}
-                />  */}
+                /> 
 
                                
               </Tab.Navigator>

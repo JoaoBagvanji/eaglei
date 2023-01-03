@@ -23,6 +23,7 @@ import InfoSpare from './corr_info/InfoSpare';
 import { useNavigation } from '@react-navigation/native';
 
 import api from '../../../../services/api';
+import { Load } from '../../../../components/Load';
 
 
           const StackRoutes = createStackNavigator();
@@ -38,6 +39,8 @@ import api from '../../../../services/api';
 
 
             const [dados, setDados] = useState ({});
+
+            const[isloading, setIsLoading]=useState(true);
 
             var [risco, setRisco] = useState({
               "risco1": "",
@@ -84,6 +87,7 @@ import api from '../../../../services/api';
                  api.get(`/tarefa/detalhesJobcardCallout/${props.route.params.id}`).then(d=>{
                 
                    setDados(d.data);
+                   setIsLoading(false);
                     console.log("-------DADOS DA ROTA--------");
                     console.log(d.data.jobcard_analisederiscoAmbiental);
 
@@ -683,260 +687,128 @@ import api from '../../../../services/api';
 
 
 
+                //AVAL
+                function Screen3() {
+                  const {colors} = useTheme();
+                  const {fonts} = useTheme();
 
-          //AVAL
-          function Screen3() {
-            const {colors} = useTheme();
-            const {fonts} = useTheme();
 
-        
-            return (
-              <VStack flex={1} bg="white">
-                        <SafeAreaView style={styles.container}>
+                  if(!dados.jobcard_analisederisco && !dados.jobcard_analisederiscoAmbiental){
+                              
+                    return (
+                      <SafeAreaView style={styles.container}>
 
-                            <VStack mt='5%' mb='30%'>
-                                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
-                                    <ScrollView showsVerticalScrollIndicator={false}>
+                              <VStack bg="white" mb={'60%'} width={'100%'}>
 
-                                   
+                                      <Text
+                                          color='#12375C'
+                                          mt={'8%'}
+                                          mb={'4%'}
+                                          fontFamily={fonts.body}
+                                          fontSize='md'
+                                          alignSelf={'center'}>
+                                          AVALIAÇÃO DE RISCO & DO IMPACTO AMBIENTAL DE ÚLTIMO MINUTO
+                                      </Text>
 
-                                        <View alignItems='center' justifyContent='center' display='flex' mt={4}>
-                                            <Text color='#12375C' fontFamily={fonts.body} fontSize='md'>
-                                            AVALIAÇÃO DE RISCO 
-                                            </Text>
-                                        </View>
-                                        
-                                        <View
-                                            borderBottomColor={colors.green[700]}
-                                            borderBottomWidth={2}
-                                            width="70%"
-                                            alignSelf={'center'}
-                                            mt={2}/>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                                    <Text style={styles.currentText}> O PLANO DE VIAGEM FOI ELABORADO, COMUNICADO E VALIDADO? </Text>
-                                                
+                                      <HStack justifyContent={'center'} alignItems="center">
+                                              <Icon as ={<Warning color={'red'}/>} />
+                                              <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
                                                   
-                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco1}> 
-                                                    <Stack direction={{
-                                                          base: "row",
-                                                          md: "row"
-                                                        }} alignItems={{
-                                                          base: "center",
-                                                          md: "center"
-                                                        }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                      </HStack>
 
-                                                        <Radio colorScheme="emerald" value="1" size='sm'>
-                                                          Sim
-                                                        </Radio>
-                                                        <Radio colorScheme="secondary" value="2" size='sm'>
-                                                          Não
-                                                        </Radio>
-                                                        <Radio colorScheme="yellow" value="3" size='sm'>
-                                                          N/A
-                                                        </Radio>
-                                                    </Stack>
-                                                  </Radio.Group>
-                                            
-                                        </View>
+                                  
 
-                                        
-                                        <View style={[styles.container, styles.step1]}>
+                              </VStack>
 
-                                                    <Text style={styles.currentText}> FOI EFETUADA A INSPEÇÃO DIÁRIA DA VIATURA? </Text>
+                      </SafeAreaView>
+                      );
+                  }
+                  else{
+                    return (
+                      <VStack flex={1} bg="white">
+                                <SafeAreaView style={styles.container}>
+
+                                    <VStack mt='5%' mb='30%'>
+                                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
+                                            <ScrollView showsVerticalScrollIndicator={false}>
+
+                                          
+                                            {dados.jobcard_analisederisco && <> 
+                                                <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                                    <Text color='#12375C' fontFamily={fonts.body} fontSize='md'>
+                                                    AVALIAÇÃO DE RISCO 
+                                                    </Text>
+                                                </View>
                                                 
-                                                  
-                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco2}> 
-                                                    <Stack direction={{
-                                                          base: "row",
-                                                          md: "row"
-                                                        }} alignItems={{
-                                                          base: "center",
-                                                          md: "center"
-                                                        }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                                        <Radio colorScheme="emerald" value="1" size='sm'>
-                                                          Sim
-                                                        </Radio>
-                                                        <Radio colorScheme="secondary" value="2" size='sm'>
-                                                          Não
-                                                        </Radio>
-                                                        <Radio colorScheme="yellow" value="3" size='sm'>
-                                                          N/A
-                                                        </Radio>
-                                                    </Stack>
-                                                  </Radio.Group>
-                                            
-                                        </View>
+                                                <View
+                                                    borderBottomColor={colors.green[700]}
+                                                    borderBottomWidth={2}
+                                                    width="70%"
+                                                    alignSelf={'center'}
+                                                    mt={2}/>
 
-                                        <View style={[styles.container, styles.step1]}>
+                                                <View style={[styles.container, styles.step1]}>
 
-                                        <Text style={styles.currentText}> TODOS OS TRABALHADORES TÊM A FORMAÇÃO E INFORMAÇÃO SUFICIENTE SOBRE A ATIVIDADE A EXECUTAR? </Text>
+                                                            <Text style={styles.currentText}> O PLANO DE VIAGEM FOI ELABORADO, COMUNICADO E VALIDADO? </Text>
+                                                        
+                                                          
+                                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco1}> 
+                                                            <Stack direction={{
+                                                                  base: "row",
+                                                                  md: "row"
+                                                                }} alignItems={{
+                                                                  base: "center",
+                                                                  md: "center"
+                                                                }} space={10} w="75%" alignSelf={'center'} maxW="300px">
 
+                                                                <Radio colorScheme="emerald" value="1" size='sm'>
+                                                                  Sim
+                                                                </Radio>
+                                                                <Radio colorScheme="secondary" value="2" size='sm'>
+                                                                  Não
+                                                                </Radio>
+                                                                <Radio colorScheme="yellow" value="3" size='sm'>
+                                                                  N/A
+                                                                </Radio>
+                                                            </Stack>
+                                                          </Radio.Group>
+                                                    
+                                                </View>
 
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco3}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
+                                                
+                                                <View style={[styles.container, styles.step1]}>
 
-                                        </View>
-                                        
-                                        <View style={[styles.container, styles.step1]}>
+                                                            <Text style={styles.currentText}> FOI EFETUADA A INSPEÇÃO DIÁRIA DA VIATURA? </Text>
+                                                        
+                                                          
+                                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco2}> 
+                                                            <Stack direction={{
+                                                                  base: "row",
+                                                                  md: "row"
+                                                                }} alignItems={{
+                                                                  base: "center",
+                                                                  md: "center"
+                                                                }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                                <Radio colorScheme="emerald" value="1" size='sm'>
+                                                                  Sim
+                                                                </Radio>
+                                                                <Radio colorScheme="secondary" value="2" size='sm'>
+                                                                  Não
+                                                                </Radio>
+                                                                <Radio colorScheme="yellow" value="3" size='sm'>
+                                                                  N/A
+                                                                </Radio>
+                                                            </Stack>
+                                                          </Radio.Group>
+                                                    
+                                                </View>
 
-                                        <Text style={styles.currentText}> ANTES DO INÍCIO DO(S) TRABALHO(S) TEVE CONHECIMENTO DOS PERIGOS E RISCOS ASSOCIADOS À SUA ATIVIDADE? </Text>
+                                                <View style={[styles.container, styles.step1]}>
 
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco4}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> TODOS OS TRABALHADORES CONHECEM OS PROCEDIMENTOS EM CASO DE UMA EMERGÊNCIA?</Text>
+                                                <Text style={styles.currentText}> TODOS OS TRABALHADORES TÊM A FORMAÇÃO E INFORMAÇÃO SUFICIENTE SOBRE A ATIVIDADE A EXECUTAR? </Text>
 
 
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco5}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> A METODOLOGIA DE TRABALHOS DA ATIVIDADE A EXECUTAR É SEGURA? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco6}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> AS INSTRUÇÕES DA AUTORIZAÇÃO DE TRABALHOS FORAM PERCEBIDAS? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco7}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> TODAS AS CONDIÇÕES DA AUTORIZAÇÃO DE TRABALHOS ESTÃO ASSEGURADAS? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco8}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                                <Text style={styles.currentText}> TODO O EQUIPAMENTO NECESSÁRIO À EXECUÇÃO DOS TRABALHOS ESTÁ DISPONÍVEL E EM BOM ESTADO DE CONSERVAÇÃO? </Text>
-
-
-                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco9}> 
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco3}> 
                                                 <Stack direction={{
                                                       base: "row",
                                                       md: "row"
@@ -956,313 +828,365 @@ import api from '../../../../services/api';
                                                 </Stack>
                                                 </Radio.Group>
 
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                          <Text style={styles.currentText}> TODOS OS TRABALHADORES ESTÃO NA POSSE DOS EPI’S ADEQUADOS A ATIVIDADE? </Text>
-
-
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco10}> 
-                                          <Stack direction={{
-                                                base: "row",
-                                                md: "row"
-                                              }} alignItems={{
-                                                base: "center",
-                                                md: "center"
-                                              }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                              <Radio colorScheme="emerald" value="1" size='sm'>
-                                                Sim
-                                              </Radio>
-                                              <Radio colorScheme="secondary" value="2" size='sm'>
-                                                Não
-                                              </Radio>
-                                              <Radio colorScheme="yellow" value="3" size='sm'>
-                                                N/A
-                                              </Radio>
-                                          </Stack>
-                                          </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                          <Text style={styles.currentText}> O LOCAL DE TRABALHO ESTÁ LIMPO, SEGURO E ORGANIZADO? (INSECTOS, SERPENTES, ABELHAS, ZONAS DE RISCO) </Text>
-
-
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco11}> 
-                                          <Stack direction={{
-                                                base: "row",
-                                                md: "row"
-                                              }} alignItems={{
-                                                base: "center",
-                                                md: "center"
-                                              }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                              <Radio colorScheme="emerald" value="1" size='sm'>
-                                                Sim
-                                              </Radio>
-                                              <Radio colorScheme="secondary" value="2" size='sm'>
-                                                Não
-                                              </Radio>
-                                              <Radio colorScheme="yellow" value="3" size='sm'>
-                                                N/A
-                                              </Radio>
-                                          </Stack>
-                                          </Radio.Group>
-
-                                        </View>
-                                        
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE QUEDA AO MESMO NÍVEL, NÍVEL DIFERENTE E EM ALTURA? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco12}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE QUEDA DE OBJETOS? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco13}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                          <Text style={styles.currentText}> CASO EXISTAM RISCOS ACRESCIDOS ORIGINADOS POR SITUAÇÕES EXTERNAS À INTERVENÇÃO (CONDICIONALISMOS NO LOCAL, CONDIÇÕES ATMOSFÉRICAS ADVERSAS, OUTROS TRABALHOS NA PROXIMIDADE), ESTES ESTÃO CONTROLADOS?</Text>
-
-
-                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco14}> 
-                                          <Stack direction={{
-                                                base: "row",
-                                                md: "row"
-                                              }} alignItems={{
-                                                base: "center",
-                                                md: "center"
-                                              }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                              <Radio colorScheme="emerald" value="1" size='sm'>
-                                                Sim
-                                              </Radio>
-                                              <Radio colorScheme="secondary" value="2" size='sm'>
-                                                Não
-                                              </Radio>
-                                              <Radio colorScheme="yellow" value="3" size='sm'>
-                                                N/A
-                                              </Radio>
-                                          </Stack>
-                                          </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR A ILUMINAÇÃO É SUFICIENTE E ADEQUADA?</Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco15}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> NO EXERCÍCIO DA(S) ATIVIDADE(S) EXISTE O RISCO DE CONTACTO COM A ELETRICIDADE? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco16}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                            <Text style={styles.currentText}> TODAS AS FONTES DE ENERGIA ESTÃO BLOQUEADAS? </Text>
-
-
-                                            <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco17}> 
-                                            <Stack direction={{
-                                                  base: "row",
-                                                  md: "row"
-                                                }} alignItems={{
-                                                  base: "center",
-                                                  md: "center"
-                                                }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                                <Radio colorScheme="emerald" value="1" size='sm'>
-                                                  Sim
-                                                </Radio>
-                                                <Radio colorScheme="secondary" value="2" size='sm'>
-                                                  Não
-                                                </Radio>
-                                                <Radio colorScheme="yellow" value="3" size='sm'>
-                                                  N/A
-                                                </Radio>
-                                            </Stack>
-                                            </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE INCÊNDIO OU EXPLOSÕES?</Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco18}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                   
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> PARA UMA COMUNICAÇÃO SEGURA DURANTE OS TRABALHOS HÁ A NECESSIDADE DE UM RÁDIO DE COMUNICAÇÃO? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco19}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                          <Text style={styles.currentText}> Observações </Text>
-                                          <TextArea borderColor={'black'} width={'80%'} alignSelf='center' value={risco.comments} aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
-
-                                        
-
-                                         
-                                          <View
-                                            borderBottomColor={'#12375C'}
-                                            borderBottomWidth={4}
-                                            width="100%"
-                                            alignSelf={'center'}
-                                            my={'10%'}/>
-
-
-
-                                        <View alignItems='center' justifyItems={'center'} justifyContent='center' display='flex'>
-                                            <Text color='#12375C' fontFamily={fonts.body} fontSize='md' alignSelf={'center'}>
-                                            AVALIAÇÃO DO IMPACTO AMBIENTAL DE ÚLTIMO MINUTO
-                                            </Text>
-                                        </View>
-                                        
-                                        <View
-                                            borderBottomColor={colors.green[700]}
-                                            borderBottomWidth={2}
-                                            width="95%"
-                                            alignSelf={'center'}
-                                            mt={2}/>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                                    <Text style={styles.currentText}> ESTÃO CRIADAS CONDIÇÕES PARA QUE OS RESÍDUOS SEJAM SEGREGADOS CORRETAMENTE? </Text>
+                                                </View>
                                                 
-                                                  
-                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco1}> 
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> ANTES DO INÍCIO DO(S) TRABALHO(S) TEVE CONHECIMENTO DOS PERIGOS E RISCOS ASSOCIADOS À SUA ATIVIDADE? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco4}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> TODOS OS TRABALHADORES CONHECEM OS PROCEDIMENTOS EM CASO DE UMA EMERGÊNCIA?</Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco5}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> A METODOLOGIA DE TRABALHOS DA ATIVIDADE A EXECUTAR É SEGURA? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco6}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> AS INSTRUÇÕES DA AUTORIZAÇÃO DE TRABALHOS FORAM PERCEBIDAS? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco7}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> TODAS AS CONDIÇÕES DA AUTORIZAÇÃO DE TRABALHOS ESTÃO ASSEGURADAS? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco8}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                        <Text style={styles.currentText}> TODO O EQUIPAMENTO NECESSÁRIO À EXECUÇÃO DOS TRABALHOS ESTÁ DISPONÍVEL E EM BOM ESTADO DE CONSERVAÇÃO? </Text>
+
+
+                                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco9}> 
+                                                        <Stack direction={{
+                                                              base: "row",
+                                                              md: "row"
+                                                            }} alignItems={{
+                                                              base: "center",
+                                                              md: "center"
+                                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                            <Radio colorScheme="emerald" value="1" size='sm'>
+                                                              Sim
+                                                            </Radio>
+                                                            <Radio colorScheme="secondary" value="2" size='sm'>
+                                                              Não
+                                                            </Radio>
+                                                            <Radio colorScheme="yellow" value="3" size='sm'>
+                                                              N/A
+                                                            </Radio>
+                                                        </Stack>
+                                                        </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                  <Text style={styles.currentText}> TODOS OS TRABALHADORES ESTÃO NA POSSE DOS EPI’S ADEQUADOS A ATIVIDADE? </Text>
+
+
+                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco10}> 
+                                                  <Stack direction={{
+                                                        base: "row",
+                                                        md: "row"
+                                                      }} alignItems={{
+                                                        base: "center",
+                                                        md: "center"
+                                                      }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                      <Radio colorScheme="emerald" value="1" size='sm'>
+                                                        Sim
+                                                      </Radio>
+                                                      <Radio colorScheme="secondary" value="2" size='sm'>
+                                                        Não
+                                                      </Radio>
+                                                      <Radio colorScheme="yellow" value="3" size='sm'>
+                                                        N/A
+                                                      </Radio>
+                                                  </Stack>
+                                                  </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                  <Text style={styles.currentText}> O LOCAL DE TRABALHO ESTÁ LIMPO, SEGURO E ORGANIZADO? (INSECTOS, SERPENTES, ABELHAS, ZONAS DE RISCO) </Text>
+
+
+                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco11}> 
+                                                  <Stack direction={{
+                                                        base: "row",
+                                                        md: "row"
+                                                      }} alignItems={{
+                                                        base: "center",
+                                                        md: "center"
+                                                      }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                      <Radio colorScheme="emerald" value="1" size='sm'>
+                                                        Sim
+                                                      </Radio>
+                                                      <Radio colorScheme="secondary" value="2" size='sm'>
+                                                        Não
+                                                      </Radio>
+                                                      <Radio colorScheme="yellow" value="3" size='sm'>
+                                                        N/A
+                                                      </Radio>
+                                                  </Stack>
+                                                  </Radio.Group>
+
+                                                </View>
+                                                
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE QUEDA AO MESMO NÍVEL, NÍVEL DIFERENTE E EM ALTURA? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco12}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE QUEDA DE OBJETOS? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco13}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                  <Text style={styles.currentText}> CASO EXISTAM RISCOS ACRESCIDOS ORIGINADOS POR SITUAÇÕES EXTERNAS À INTERVENÇÃO (CONDICIONALISMOS NO LOCAL, CONDIÇÕES ATMOSFÉRICAS ADVERSAS, OUTROS TRABALHOS NA PROXIMIDADE), ESTES ESTÃO CONTROLADOS?</Text>
+
+
+                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco14}> 
+                                                  <Stack direction={{
+                                                        base: "row",
+                                                        md: "row"
+                                                      }} alignItems={{
+                                                        base: "center",
+                                                        md: "center"
+                                                      }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                      <Radio colorScheme="emerald" value="1" size='sm'>
+                                                        Sim
+                                                      </Radio>
+                                                      <Radio colorScheme="secondary" value="2" size='sm'>
+                                                        Não
+                                                      </Radio>
+                                                      <Radio colorScheme="yellow" value="3" size='sm'>
+                                                        N/A
+                                                      </Radio>
+                                                  </Stack>
+                                                  </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR A ILUMINAÇÃO É SUFICIENTE E ADEQUADA?</Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco15}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> NO EXERCÍCIO DA(S) ATIVIDADE(S) EXISTE O RISCO DE CONTACTO COM A ELETRICIDADE? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco16}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                    <Text style={styles.currentText}> TODAS AS FONTES DE ENERGIA ESTÃO BLOQUEADAS? </Text>
+
+
+                                                    <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco17}> 
                                                     <Stack direction={{
                                                           base: "row",
                                                           md: "row"
@@ -1280,215 +1204,331 @@ import api from '../../../../services/api';
                                                           N/A
                                                         </Radio>
                                                     </Stack>
-                                                  </Radio.Group>
-                                            
-                                        </View>
+                                                    </Radio.Group>
 
-                                        
-                                        <View style={[styles.container, styles.step1]}>
+                                                </View>
 
-                                                    <Text style={styles.currentText}> PARA A ATIVIDADE A SER DESENVOLVIDA ESTÁ DISPONÍVEL UM KIT DE DERRAMES AMBIENTAIS? </Text>
-                                                
-                                                  
-                                                  <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco2}> 
-                                                    <Stack direction={{
-                                                          base: "row",
-                                                          md: "row"
-                                                        }} alignItems={{
-                                                          base: "center",
-                                                          md: "center"
-                                                        }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                                        <Radio colorScheme="emerald" value="1" size='sm'>
-                                                          Sim
-                                                        </Radio>
-                                                        <Radio colorScheme="secondary" value="2" size='sm'>
-                                                          Não
-                                                        </Radio>
-                                                        <Radio colorScheme="yellow" value="3" size='sm'>
-                                                          N/A
-                                                        </Radio>
-                                                    </Stack>
-                                                  </Radio.Group>
-                                            
-                                        </View>
+                                                <View style={[styles.container, styles.step1]}>
 
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> TODOS OS TRABALHADORES CONHECEM OS PROCEDIMENTOS EM CASO DE OCORRÊNCIA DE UM ACIDENTE AMBIENTAL? </Text>
+                                                <Text style={styles.currentText}> NO LOCAL EM QUE VÃO TRABALHAR EXISTE O RISCO DE INCÊNDIO OU EXPLOSÕES?</Text>
 
 
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco3}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco18}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
 
-                                        </View>
-                                        
-                                        <View style={[styles.container, styles.step1]}>
+                                                </View>
 
-                                        <Text style={styles.currentText}> NO AMBIENTE EM QUE SE VAI DESENVOLVER A ATIVIDADE EXISTEM CONDIÇÕES PARA UMA CORRETA MANUTENÇÃO E UTILIZAÇÃO DOS VEÍCULOS E EQUIPAMENTOS?</Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco4}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> EXISTEM FICHAS DE DADOS DE SEGURANÇA DOS PRODUTOS QUÍMICOS?</Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco5}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> OS PRODUTOS QUÍMICOS ESTÃO DEVIDAMENTE IDENTIFICADOS E ARMAZENADOS? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco6}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> FORAM DIVULGADOS OS IMPACTOS AMBIENTAIS DECORRENTES DA ATIVIDADE QUE VAI SER REALIZADA? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco7}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                        <View style={[styles.container, styles.step1]}>
-
-                                        <Text style={styles.currentText}> O LOCAL EM QUE SE VAI DESENVOLVER A ATIVIDADE ESTÁ LIMPO E ORGANIZADO? </Text>
-
-
-                                        <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco8}> 
-                                        <Stack direction={{
-                                              base: "row",
-                                              md: "row"
-                                            }} alignItems={{
-                                              base: "center",
-                                              md: "center"
-                                            }} space={10} w="75%" alignSelf={'center'} maxW="300px">
-                                            <Radio colorScheme="emerald" value="1" size='sm'>
-                                              Sim
-                                            </Radio>
-                                            <Radio colorScheme="secondary" value="2" size='sm'>
-                                              Não
-                                            </Radio>
-                                            <Radio colorScheme="yellow" value="3" size='sm'>
-                                              N/A
-                                            </Radio>
-                                        </Stack>
-                                        </Radio.Group>
-
-                                        </View>
-
-                                          <Text style={styles.currentText}> Observações </Text>
-                                          <TextArea borderColor={'black'} width={'80%'} value={ambiental.comments} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
-                                        
-                                         
                                           
-                                    </ScrollView>
-                                </KeyboardAvoidingView>
-                            </VStack>
+                                                <View style={[styles.container, styles.step1]}>
 
-                        </SafeAreaView>
-              </VStack>
-            );
-            
-        
-         }
+                                                <Text style={styles.currentText}> PARA UMA COMUNICAÇÃO SEGURA DURANTE OS TRABALHOS HÁ A NECESSIDADE DE UM RÁDIO DE COMUNICAÇÃO? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={risco.risco19}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                  <Text style={styles.currentText}> Observações </Text>
+                                                  <TextArea borderColor={'black'} width={'80%'} alignSelf='center' value={risco.comments} aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
+
+                                                
+
+                                                
+                                                  <View
+                                                    borderBottomColor={'#12375C'}
+                                                    borderBottomWidth={4}
+                                                    width="100%"
+                                                    alignSelf={'center'}
+                                                    my={'10%'}/>
+
+                                                    </>
+                                                    }
+
+                                              
+                                            {dados.jobcard_analisederiscoAmbiental && <>
+
+                                                <View alignItems='center' justifyItems={'center'} justifyContent='center' display='flex'>
+                                                    <Text color='#12375C' fontFamily={fonts.body} fontSize='md' alignSelf={'center'}>
+                                                    AVALIAÇÃO DO IMPACTO AMBIENTAL DE ÚLTIMO MINUTO
+                                                    </Text>
+                                                </View>
+                                                
+                                                <View
+                                                    borderBottomColor={colors.green[700]}
+                                                    borderBottomWidth={2}
+                                                    width="95%"
+                                                    alignSelf={'center'}
+                                                    mt={2}/>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                            <Text style={styles.currentText}> ESTÃO CRIADAS CONDIÇÕES PARA QUE OS RESÍDUOS SEJAM SEGREGADOS CORRETAMENTE? </Text>
+                                                        
+                                                          
+                                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco1}> 
+                                                            <Stack direction={{
+                                                                  base: "row",
+                                                                  md: "row"
+                                                                }} alignItems={{
+                                                                  base: "center",
+                                                                  md: "center"
+                                                                }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                                <Radio colorScheme="emerald" value="1" size='sm'>
+                                                                  Sim
+                                                                </Radio>
+                                                                <Radio colorScheme="secondary" value="2" size='sm'>
+                                                                  Não
+                                                                </Radio>
+                                                                <Radio colorScheme="yellow" value="3" size='sm'>
+                                                                  N/A
+                                                                </Radio>
+                                                            </Stack>
+                                                          </Radio.Group>
+                                                    
+                                                </View>
+
+                                                
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                            <Text style={styles.currentText}> PARA A ATIVIDADE A SER DESENVOLVIDA ESTÁ DISPONÍVEL UM KIT DE DERRAMES AMBIENTAIS? </Text>
+                                                        
+                                                          
+                                                          <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco2}> 
+                                                            <Stack direction={{
+                                                                  base: "row",
+                                                                  md: "row"
+                                                                }} alignItems={{
+                                                                  base: "center",
+                                                                  md: "center"
+                                                                }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                                <Radio colorScheme="emerald" value="1" size='sm'>
+                                                                  Sim
+                                                                </Radio>
+                                                                <Radio colorScheme="secondary" value="2" size='sm'>
+                                                                  Não
+                                                                </Radio>
+                                                                <Radio colorScheme="yellow" value="3" size='sm'>
+                                                                  N/A
+                                                                </Radio>
+                                                            </Stack>
+                                                          </Radio.Group>
+                                                    
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> TODOS OS TRABALHADORES CONHECEM OS PROCEDIMENTOS EM CASO DE OCORRÊNCIA DE UM ACIDENTE AMBIENTAL? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco3}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+                                                
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> NO AMBIENTE EM QUE SE VAI DESENVOLVER A ATIVIDADE EXISTEM CONDIÇÕES PARA UMA CORRETA MANUTENÇÃO E UTILIZAÇÃO DOS VEÍCULOS E EQUIPAMENTOS?</Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco4}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> EXISTEM FICHAS DE DADOS DE SEGURANÇA DOS PRODUTOS QUÍMICOS?</Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco5}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> OS PRODUTOS QUÍMICOS ESTÃO DEVIDAMENTE IDENTIFICADOS E ARMAZENADOS? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco6}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> FORAM DIVULGADOS OS IMPACTOS AMBIENTAIS DECORRENTES DA ATIVIDADE QUE VAI SER REALIZADA? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco7}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                <View style={[styles.container, styles.step1]}>
+
+                                                <Text style={styles.currentText}> O LOCAL EM QUE SE VAI DESENVOLVER A ATIVIDADE ESTÁ LIMPO E ORGANIZADO? </Text>
+
+
+                                                <Radio.Group name="exampleGroup" accessibilityLabel="favorite colorscheme" mb={5} value={ambiental.risco8}> 
+                                                <Stack direction={{
+                                                      base: "row",
+                                                      md: "row"
+                                                    }} alignItems={{
+                                                      base: "center",
+                                                      md: "center"
+                                                    }} space={10} w="75%" alignSelf={'center'} maxW="300px">
+                                                    <Radio colorScheme="emerald" value="1" size='sm'>
+                                                      Sim
+                                                    </Radio>
+                                                    <Radio colorScheme="secondary" value="2" size='sm'>
+                                                      Não
+                                                    </Radio>
+                                                    <Radio colorScheme="yellow" value="3" size='sm'>
+                                                      N/A
+                                                    </Radio>
+                                                </Stack>
+                                                </Radio.Group>
+
+                                                </View>
+
+                                                  <Text style={styles.currentText}> Observações </Text>
+                                                  <TextArea borderColor={'black'} width={'80%'} value={ambiental.comments} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
+                                                
+                                                  </>
+                                                    }
+                                                  
+                                            </ScrollView>
+                                        </KeyboardAvoidingView>
+                                    </VStack>
+
+                                </SafeAreaView>
+                      </VStack>
+                    );
+                }
+                  
+
+              }
 
 
           
@@ -2411,127 +2451,137 @@ import api from '../../../../services/api';
 
        
 
-            return (
-              <>
-             <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
-                <View>
-                <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
-                Detalhes da Manutenção Correctiva em Progresso
-                </Text>
-                </View>
-             </HStack>
-               
-
-              <Tab.Navigator
-                initialRouteName="one"
-                screenOptions={{
-                  swipeEnabled: true,
-                  tabBarShowLabel: false,
-                  tabBarActiveTintColor: colors.green[700],
-                  tabBarInactiveTintColor: colors.gray[600],
-                }}
-              >
-
-                <Tab.Screen
-                  name="one"
-                  component={Screen1}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Note color={color} size={size}/>} />
-                      )),
-                  }}
-                />
-
-                <Tab.Screen
-                  name="two"
-                  component={Screen2}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<User color={color} size={size}/>} />
-                      )),
-                  }}
-                />
-
-                <Tab.Screen
-                  name="three"
-                  component={Screen3}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<MagnifyingGlass color={color} size={size}/>} />
-                      )),
-                  }}
-                /> 
+          if(isloading)
+                return(
+                    <Load/>
             
-                <Tab.Screen
-                  name="four"
-                  component={Screen11}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Lightning color={color} size={size}/>} />
-                      )),
-                  }}
-                />
+                )
+          
+          else
+           {
 
-                 <Tab.Screen
-                  name="five"
-                  component={Screen12}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<LightbulbFilament color={color} size={size}/>} />
-                      )),
-                  }}   
-                />
-
+              return (
+                <>
+              <HStack my={'3%'} textAlign={'center'} justifyContent="center" alignItems='center' flexDirection="row">
+                  <View>
+                  <Text color="primary.800" fontSize="md" fontFamily={fonts.heading}>
+                  Detalhes da Manutenção Correctiva em Progresso
+                  </Text>
+                  </View>
+              </HStack>
                 
-                <Tab.Screen
-                  name="six"
-                  component={Screen13}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<Wrench color={color} size={size}/>} />
-                      )),
-                  }}
-                /> 
-                
-                <Tab.Screen
-                  name="seven"
-                  component={Screen14}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Archive color={color} size={size}/>} />
-                      )),
-                  }}
-                /> 
-                
-                <Tab.Screen
-                   name="eight"
-                   component={Screen10}
-                   options={{
-                       tabBarIcon:(({color, size})=>(
-                         <Icon as ={<Image color={color} size={size}/>} />
-                       )),
-                  }}
-                />
 
-                
-                   <Tab.Screen
-                  name="nine"
-                  component={Screen9}
-                  options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<Eye color={color} size={size}/>} />
-                      )),
+                <Tab.Navigator
+                  initialRouteName="one"
+                  screenOptions={{
+                    swipeEnabled: true,
+                    tabBarShowLabel: false,
+                    tabBarActiveTintColor: colors.green[700],
+                    tabBarInactiveTintColor: colors.gray[600],
                   }}
-                /> 
+                >
 
-                               
-              </Tab.Navigator>
+                  <Tab.Screen
+                    name="one"
+                    component={Screen1}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                            <Icon as ={<Note color={color} size={size}/>} />
+                        )),
+                    }}
+                  />
 
-              </>
-             
-            );
+                  <Tab.Screen
+                    name="two"
+                    component={Screen2}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                            <Icon as ={<User color={color} size={size}/>} />
+                        )),
+                    }}
+                  />
+
+                  <Tab.Screen
+                    name="three"
+                    component={Screen3}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                            <Icon as ={<MagnifyingGlass color={color} size={size}/>} />
+                        )),
+                    }}
+                  /> 
+              
+                  <Tab.Screen
+                    name="four"
+                    component={Screen11}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                            <Icon as ={<Lightning color={color} size={size}/>} />
+                        )),
+                    }}
+                  />
+
+                  <Tab.Screen
+                    name="five"
+                    component={Screen12}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                          <Icon as ={<LightbulbFilament color={color} size={size}/>} />
+                        )),
+                    }}   
+                  />
+
+                  
+                  <Tab.Screen
+                    name="six"
+                    component={Screen13}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                          <Icon as ={<Wrench color={color} size={size}/>} />
+                        )),
+                    }}
+                  /> 
+                  
+                  <Tab.Screen
+                    name="seven"
+                    component={Screen14}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                            <Icon as ={<Archive color={color} size={size}/>} />
+                        )),
+                    }}
+                  /> 
+                  
+                  <Tab.Screen
+                    name="eight"
+                    component={Screen10}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                          <Icon as ={<Image color={color} size={size}/>} />
+                        )),
+                    }}
+                  />
+
+                  
+                    <Tab.Screen
+                    name="nine"
+                    component={Screen9}
+                    options={{
+                        tabBarIcon:(({color, size})=>(
+                          <Icon as ={<Eye color={color} size={size}/>} />
+                        )),
+                    }}
+                  /> 
+
+                                
+                </Tab.Navigator>
+
+                </>
+              
+              );
+           
           }
-
+        }
 
           const styles =StyleSheet.create({
             text:{   
