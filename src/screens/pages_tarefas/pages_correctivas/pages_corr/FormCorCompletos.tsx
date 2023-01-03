@@ -326,11 +326,9 @@ import { Load } from '../../../../components/Load';
                })()
                },[]);
 
+    
              
-
-               
-              
-
+            
 
        //info BASICA
        function Screen1() {
@@ -1648,7 +1646,7 @@ import { Load } from '../../../../components/Load';
                                   renderItem = { oneUser }
                                   ItemSeparatorComponent = { itemSeparator }
                                   ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de gerador</Text>}
-                                  keyExtractor = { data => data.id }
+                                  keyExtractor = { data => data._id }
                                   showsVerticalScrollIndicator={false}
                               />
       
@@ -1770,7 +1768,7 @@ import { Load } from '../../../../components/Load';
                                             renderItem = { oneUser }
                                             ItemSeparatorComponent = { itemSeparator }
                                             ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de ENERGIA</Text>}
-                                            keyExtractor = { data => data.id }
+                                            keyExtractor = { data => data._id }
                                             showsVerticalScrollIndicator={false}
                                         />
       
@@ -1900,7 +1898,7 @@ import { Load } from '../../../../components/Load';
                                             renderItem = { oneUser }
                                             ItemSeparatorComponent = { itemSeparator }
                                             ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-                                            keyExtractor = { data => data.id }
+                                            keyExtractor = { data => data._id }
                                             showsVerticalScrollIndicator={false}
                                         />
       
@@ -2019,7 +2017,7 @@ import { Load } from '../../../../components/Load';
                                             renderItem = { oneUser }
                                             ItemSeparatorComponent = { itemSeparator }
                                             ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-                                            keyExtractor = { data => data.id }
+                                            keyExtractor = { data => data._id }
                                             showsVerticalScrollIndicator={false}
                                         />
         
@@ -2328,7 +2326,7 @@ import { Load } from '../../../../components/Load';
                                                 renderItem = { oneUser }
                                                 ItemSeparatorComponent = { itemSeparator }
                                                 ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-                                                keyExtractor = { data => data.id }
+                                                keyExtractor = { data => data._id }
                                                 showsVerticalScrollIndicator={false}
                                             />
                 
@@ -2522,7 +2520,7 @@ import { Load } from '../../../../components/Load';
                   }}
                 />
 
-                 <Tab.Screen
+                  <Tab.Screen
                   name="five"
                   component={Screen12}
                   options={{
@@ -2572,7 +2570,7 @@ import { Load } from '../../../../components/Load';
                         <Icon as ={<Eye color={color} size={size}/>} />
                       )),
                   }}
-                /> 
+                />  
 
                                
               </Tab.Navigator>

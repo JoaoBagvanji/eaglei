@@ -1534,808 +1534,809 @@ import { Load } from '../../../../components/Load';
           
           
       
-          //GENERATOR
-              function Screen4() {
-    
-    
-                const data = [
-    
-              {
-                  id: 1,
-                  gerador: 'Toyama',
-                  horas_anteriores: '0',
-                  horas_atuais: '1100',
-                  horas_d_reabastecimento: '0' ,
-              },
-              {
-                id: 2,
-                gerador: 'Vonder',
-                horas_anteriores: '5',
-                horas_atuais: '3200',
-                horas_d_reabastecimento: '1' ,
-                }
-            
-                ];
-    
-    
-            type Nav ={
-                navigate : (value: string) => void;
-            }
-    
-            const { navigate } = useNavigation<Nav>();
-        
-              const oneUser = ( {item} ) =>(
-              <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
-    
-                  <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_generator}</Text>
-                  <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_previousgeneratorhrs}</Text>
-                  <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_currentgeneratorhours}</Text>
-                                 
-                  <TouchableOpacity onPress={() => navigate('InfoGerador')}>
-                    <Icon as ={<Info color={colors.blueGray[400]}/>} />
-                  </TouchableOpacity>
-    
-              </HStack>   
-          )
-    
-          function itemSeparator(){
-              return <View style={styles.separator}/>
-          }
-    
-          const { fonts } = useTheme();
-          const { colors } = useTheme();
-    
-          if(dados.generatorArrayJobcard.length == 0){
-                      
-            return (
-              <SafeAreaView style={styles.container}>
-
-                      <VStack bg="white" mb={'60%'} width={'100%'}>
-
-                              <Text
-                                  color='#12375C'
-                                  mt={'8%'}
-                                  mb={'4%'}
-                                  fontFamily={fonts.body}
-                                  fontSize='md'
-                                  alignSelf={'center'}>
-                                  DETALHES DO GERADOR
-                              </Text>
-
-                              <HStack justifyContent={'center'} alignItems="center">
-                              <Icon as ={<Warning color={'red'}/>} />
-                                      <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
-                                          
-                              </HStack>
-
-                          
-
-                      </VStack>
-
-              </SafeAreaView>
-              );
-          }
-           else{
-            return (
-              <SafeAreaView style={styles.container}>
-    
-                      <VStack bg="white" mb={'60%'} width={'100%'}>
-    
-                              <Text
-                                  color='#12375C'
-                                  mt={'8%'}
-                                  mb={'4%'}
-                                  fontFamily={fonts.body}
-                                  fontSize='md'
-                                  alignSelf={'center'}>
-                                  DETALHES DO GERADOR
-                              </Text>
-    
-                              <HStack justifyContent={'space-evenly'}>
-                                
-                                      <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Gerador </Text>
-                                      <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Anteriores </Text>
-                                      <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Actuais </Text>
-                                      <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Reabast. </Text>
-                                      <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-    
-                              </HStack>
-    
-                          <FlatList 
-                                data = {dados.generatorArrayJobcard}
-                                renderItem = { oneUser }
-                                ItemSeparatorComponent = { itemSeparator }
-                                ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de gerador</Text>}
-                                keyExtractor = { data => data.id }
-                                showsVerticalScrollIndicator={false}
-                            />
-    
-                      </VStack>
-    
-              </SafeAreaView>
-              );
-            }
-        }
-    
- 
- 
- 
- 
-           //CREDELEC
-              function Screen5() {
-    
-                const data = [
-    
-                    {
-                        id: 1,
-                        actual_kwh: '5',
-                        kwh_posterior: '6',
-                        valor_adicionado: '1',
-                    },
-                    {
-                        id: 2,
-                        actual_kwh: '3',
-                        kwh_posterior: '5',
-                        valor_adicionado: '2',
-                    }
-                  
-                ];
-    
-                    type Nav ={
-                      navigate : (value: string) => void;
-                  }
-                    const { navigate } = useNavigation<Nav>();
-                
-                    const oneUser = ( {item} ) =>(
-                        <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
-    
-                            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.jobcard_currentkwh}</Text>
-                            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.jobcard_kwhafter}</Text>
-                            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.jobcard_amountadded}</Text>
-    
-                            <TouchableOpacity onPress={() => navigate('InfoEnergia')}>
-                              <Icon as ={<Info color={colors.blueGray[400]}/>} />
-                            </TouchableOpacity>
-    
-                        </HStack>   
-                    )
-    
-                    function itemSeparator(){
-                        return <View style={styles.separator}/>
-                    }
-    
-                    const { fonts } = useTheme();
-                    const { colors } = useTheme();
-
-                    if(dados.jobcard_credelecinfo.length == 0){
-                      
-                      return (
-                        <SafeAreaView style={styles.container}>
-    
-                                <VStack bg="white" mb={'60%'} width={'100%'}>
-    
-                                        <Text
-                                            color='#12375C'
-                                            mt={'8%'}
-                                            mb={'4%'}
-                                            fontFamily={fonts.body}
-                                            fontSize='md'
-                                            alignSelf={'center'}>
-                                            DETALHES DE ENERGIA
-                                        </Text>
-    
-                                        <HStack justifyContent={'center'} alignItems="center">
-                                        <Icon as ={<Warning color={'red'}/>} />
-                                                <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
-                                                    
-                                        </HStack>
-    
-                                    
-    
-                                </VStack>
-    
-                        </SafeAreaView>
-                        );
-                    }
-                     else{
-                      return (
-                        <SafeAreaView style={styles.container}>
-    
-                                <VStack bg="white" mb={'60%'} width={'100%'}>
-    
-                                        <Text
-                                            color='#12375C'
-                                            mt={'8%'}
-                                            mb={'4%'}
-                                            fontFamily={fonts.body}
-                                            fontSize='md'
-                                            alignSelf={'center'}>
-                                            DETALHES DE ENERGIA
-                                        </Text>
-    
-                                        <HStack justifyContent={'space-evenly'}>
-                                          
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Actual Kw/h </Text>
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Kw/h Posterior </Text>
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Valor Adicionado </Text>
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-    
-                                        </HStack>
-    
-                                    <FlatList 
-                                          data = {dados.jobcard_credelecinfo}
-                                          renderItem = { oneUser }
-                                          ItemSeparatorComponent = { itemSeparator }
-                                          ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de ENERGIA</Text>}
-                                          keyExtractor = { data => data.id }
-                                          showsVerticalScrollIndicator={false}
-                                      />
-    
-                                </VStack>
-    
-                        </SafeAreaView>
-                        );
-    
-
-                    }
-
-
-
-                     
-    
-    
-              }
- 
- 
- 
- 
- 
- 
-           //reparacao
-              function Screen6() {
-    
-                const data = [
-    
-                    {
-                        id: 1,
-                        tipo_de_equip: 'Condensor',
-                        modelo: 'a',
-                        nr_de_serie: '1223',
-                    },
-                    {
-                        id: 2,
-                        tipo_de_equip: 'Condensor',
-                        modelo: 'c',
-                        nr_de_serie: '24555',
-                    }
-                  
-                ];
-    
-                    type Nav ={
-                      navigate : (value: string) => void;
-                  }
-                    const { navigate } = useNavigation<Nav>();
-                
-                    const oneUser = ( {item} ) =>(
-                        <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
-    
-                            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_equiptype}</Text>
-                            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_model}</Text>
-                            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_serialnumber}</Text>
-    
-                            <TouchableOpacity onPress={() => navigate('InfoEquip')}>
-                              <Icon as ={<Info color={colors.blueGray[400]}/>} />
-                            </TouchableOpacity>
-    
-                        </HStack>   
-                    )
-    
-                    function itemSeparator(){
-                        return <View style={styles.separator}/>
-                    }
-    
-                    const { fonts } = useTheme();
-                    const { colors } = useTheme();
-    
-                    if(dados.equipamentoArrayJobcard.length == 0){
-                      
-                      return (
-                        <SafeAreaView style={styles.container}>
-    
-                                <VStack bg="white" mb={'60%'} width={'100%'}>
-    
-                                        <Text
-                                            color='#12375C'
-                                            mt={'8%'}
-                                            mb={'4%'}
-                                            fontFamily={fonts.body}
-                                            fontSize='md'
-                                            alignSelf={'center'}>
-                                             REPARAÇÃO DE EQUIPAMENTOS
-                                        </Text>
-    
-                                        <HStack justifyContent={'center'} alignItems="center">
-                                        <Icon as ={<Warning color={'red'}/>} />
-                                                <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
-                                                    
-                                        </HStack>
-    
-                                    
-    
-                                </VStack>
-    
-                        </SafeAreaView>
-                        );
-                    }
-                     else{
-                      return (
-                        <SafeAreaView style={styles.container}>
-    
-                                <VStack bg="white" mb={'60%'} width={'100%'}>
-    
-                                        <Text
-                                            color='#12375C'
-                                            mt={'8%'}
-                                            mb={'4%'}
-                                            fontFamily={fonts.body}
-                                            fontSize='md'
-                                            alignSelf={'center'}>
-                                            REPARAÇÃO DE EQUIPAMENTOS
-                                        </Text>
-    
-                                        <HStack justifyContent={'space-evenly'}>
-                                          
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Tipo de Equipamento </Text>
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Modelo </Text>
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Número de Série </Text>
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-    
-                                        </HStack>
-    
-                                    <FlatList 
-                                          data = {dados.equipamentoArrayJobcard}
-                                          renderItem = { oneUser }
-                                          ItemSeparatorComponent = { itemSeparator }
-                                          ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-                                          keyExtractor = { data => data.id }
-                                          showsVerticalScrollIndicator={false}
-                                      />
-    
-                                </VStack>
-    
-                        </SafeAreaView>
-                        );
-                      }
-    
-    
-    
-              }
-              
- 
- 
- 
- 
-           ///SOBRESSALENTE
-                function Screen7() {
-                  
+                //GENERATOR
+                function Screen4() {
+      
+      
                   const data = [
       
+                {
+                    id: 1,
+                    gerador: 'Toyama',
+                    horas_anteriores: '0',
+                    horas_atuais: '1100',
+                    horas_d_reabastecimento: '0' ,
+                },
+                {
+                  id: 2,
+                  gerador: 'Vonder',
+                  horas_anteriores: '5',
+                  horas_atuais: '3200',
+                  horas_d_reabastecimento: '1' ,
+                  }
+              
+                  ];
+      
+      
+              type Nav ={
+                  navigate : (value: string) => void;
+              }
+      
+              const { navigate } = useNavigation<Nav>();
+          
+                const oneUser = ( {item} ) =>(
+                <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+      
+                    <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_generator}</Text>
+                    <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_previousgeneratorhrs}</Text>
+                    <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_currentgeneratorhours}</Text>
+                                   
+                    <TouchableOpacity onPress={() => navigate('InfoGerador')}>
+                      <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                    </TouchableOpacity>
+      
+                </HStack>   
+            )
+      
+            function itemSeparator(){
+                return <View style={styles.separator}/>
+            }
+      
+            const { fonts } = useTheme();
+            const { colors } = useTheme();
+      
+            if(dados.generatorArrayJobcard.length == 0){
+                        
+              return (
+                <SafeAreaView style={styles.container}>
+
+                        <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                                <Text
+                                    color='#12375C'
+                                    mt={'8%'}
+                                    mb={'4%'}
+                                    fontFamily={fonts.body}
+                                    fontSize='md'
+                                    alignSelf={'center'}>
+                                    DETALHES DO GERADOR
+                                </Text>
+
+                                <HStack justifyContent={'center'} alignItems="center">
+                                <Icon as ={<Warning color={'red'}/>} />
+                                        <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                            
+                                </HStack>
+
+                            
+
+                        </VStack>
+
+                </SafeAreaView>
+                );
+            }
+             else{
+              return (
+                <SafeAreaView style={styles.container}>
+      
+                        <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                <Text
+                                    color='#12375C'
+                                    mt={'8%'}
+                                    mb={'4%'}
+                                    fontFamily={fonts.body}
+                                    fontSize='md'
+                                    alignSelf={'center'}>
+                                    DETALHES DO GERADOR
+                                </Text>
+      
+                                <HStack justifyContent={'space-evenly'}>
+                                  
+                                        <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Gerador </Text>
+                                        <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Anteriores </Text>
+                                        <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Actuais </Text>
+                                        <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> H. Reabast. </Text>
+                                        <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+      
+                                </HStack>
+      
+                            <FlatList 
+                                  data = {dados.generatorArrayJobcard}
+                                  renderItem = { oneUser }
+                                  ItemSeparatorComponent = { itemSeparator }
+                                  ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de gerador</Text>}
+                                  keyExtractor = { data => data._id }
+                                  showsVerticalScrollIndicator={false}
+                              />
+      
+                        </VStack>
+      
+                </SafeAreaView>
+                );
+              }
+          }
+      
+   
+   
+
+   
+   
+             //CREDELEC
+                function Screen5() {
+      
+                  const data = [
+      
+                      {
+                          id: 1,
+                          actual_kwh: '5',
+                          kwh_posterior: '6',
+                          valor_adicionado: '1',
+                      },
+                      {
+                          id: 2,
+                          actual_kwh: '3',
+                          kwh_posterior: '5',
+                          valor_adicionado: '2',
+                      }
+                    
+                  ];
+      
+                      type Nav ={
+                        navigate : (value: string) => void;
+                    }
+                      const { navigate } = useNavigation<Nav>();
+                  
+                      const oneUser = ( {item} ) =>(
+                          <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+      
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.jobcard_currentkwh}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.jobcard_kwhafter}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.jobcard_amountadded}</Text>
+      
+                              <TouchableOpacity onPress={() => navigate('InfoEnergia')}>
+                                <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                              </TouchableOpacity>
+      
+                          </HStack>   
+                      )
+      
+                      function itemSeparator(){
+                          return <View style={styles.separator}/>
+                      }
+      
+                      const { fonts } = useTheme();
+                      const { colors } = useTheme();
+
+                      if(dados.jobcard_credelecinfo.length == 0){
+                        
+                        return (
+                          <SafeAreaView style={styles.container}>
+      
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              DETALHES DE ENERGIA
+                                          </Text>
+      
+                                          <HStack justifyContent={'center'} alignItems="center">
+                                          <Icon as ={<Warning color={'red'}/>} />
+                                                  <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                      
+                                          </HStack>
+      
+                                      
+      
+                                  </VStack>
+      
+                          </SafeAreaView>
+                          );
+                      }
+                       else{
+                        return (
+                          <SafeAreaView style={styles.container}>
+      
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              DETALHES DE ENERGIA
+                                          </Text>
+      
+                                          <HStack justifyContent={'space-evenly'}>
+                                            
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Actual Kw/h </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Kw/h Posterior </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Valor Adicionado </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+      
+                                          </HStack>
+      
+                                      <FlatList 
+                                            data = {dados.jobcard_credelecinfo}
+                                            renderItem = { oneUser }
+                                            ItemSeparatorComponent = { itemSeparator }
+                                            ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de ENERGIA</Text>}
+                                            keyExtractor = { data => data._id }
+                                            showsVerticalScrollIndicator={false}
+                                        />
+      
+                                  </VStack>
+      
+                          </SafeAreaView>
+                          );
+      
+
+                      }
+
+
+
+                       
+      
+      
+                }
+   
+   
+   
+   
+   
+   
+             //reparacao
+                function Screen6() {
+      
+                  const data = [
+      
+                      {
+                          id: 1,
+                          tipo_de_equip: 'Condensor',
+                          modelo: 'a',
+                          nr_de_serie: '1223',
+                      },
+                      {
+                          id: 2,
+                          tipo_de_equip: 'Condensor',
+                          modelo: 'c',
+                          nr_de_serie: '24555',
+                      }
+                    
+                  ];
+      
+                      type Nav ={
+                        navigate : (value: string) => void;
+                    }
+                      const { navigate } = useNavigation<Nav>();
+                  
+                      const oneUser = ( {item} ) =>(
+                          <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+      
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_equiptype}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_model}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_serialnumber}</Text>
+      
+                              <TouchableOpacity onPress={() => navigate('InfoEquip')}>
+                                <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                              </TouchableOpacity>
+      
+                          </HStack>   
+                      )
+      
+                      function itemSeparator(){
+                          return <View style={styles.separator}/>
+                      }
+      
+                      const { fonts } = useTheme();
+                      const { colors } = useTheme();
+      
+                      if(dados.equipamentoArrayJobcard.length == 0){
+                        
+                        return (
+                          <SafeAreaView style={styles.container}>
+      
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                               REPARAÇÃO DE EQUIPAMENTOS
+                                          </Text>
+      
+                                          <HStack justifyContent={'center'} alignItems="center">
+                                          <Icon as ={<Warning color={'red'}/>} />
+                                                  <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                      
+                                          </HStack>
+      
+                                      
+      
+                                  </VStack>
+      
+                          </SafeAreaView>
+                          );
+                      }
+                       else{
+                        return (
+                          <SafeAreaView style={styles.container}>
+      
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              REPARAÇÃO DE EQUIPAMENTOS
+                                          </Text>
+      
+                                          <HStack justifyContent={'space-evenly'}>
+                                            
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Tipo de Equipamento </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Modelo </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Número de Série </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+      
+                                          </HStack>
+      
+                                      <FlatList 
+                                            data = {dados.equipamentoArrayJobcard}
+                                            renderItem = { oneUser }
+                                            ItemSeparatorComponent = { itemSeparator }
+                                            ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                            keyExtractor = { data => data._id }
+                                            showsVerticalScrollIndicator={false}
+                                        />
+      
+                                  </VStack>
+      
+                          </SafeAreaView>
+                          );
+                        }
+      
+      
+      
+                }
+                
+   
+   
+   
+   
+             ///SOBRESSALENTE
+                  function Screen7() {
+                    
+                    const data = [
+        
+                      {
+                          id: 1,
+                          item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
+                          qtd_usada: '1',
+                      },
+                      {
+                          id: 2,
+                          item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
+                          qtd_usada: '4',
+                      }
+                    
+                  ];
+        
+                      type Nav ={
+                        navigate : (value: string) => void;
+                    }
+                      const { navigate } = useNavigation<Nav>();
+                  
+                      const oneUser = ( {item} ) =>(
+                          <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+        
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.jobcard_item}</Text>
+                              <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.jobcard_quantityuse}</Text>
+                              
+                              <TouchableOpacity onPress={() => navigate('InfoSpare')}>
+                                <Icon as ={<Info color={colors.blueGray[400]}/>} />
+                              </TouchableOpacity>
+        
+                          </HStack>   
+                      )
+        
+                      function itemSeparator(){
+                          return <View style={styles.separator}/>
+                      }
+        
+                      const { fonts } = useTheme();
+                      const { colors } = useTheme();
+        
+                      if(dados.sparesArrayJobcard.length == 0){
+                        
+                        return (
+                          <SafeAreaView style={styles.container}>
+      
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+      
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                               SOBRESSALENTE USADO
+                                          </Text>
+      
+                                          <HStack justifyContent={'center'} alignItems="center">
+                                          <Icon as ={<Warning color={'red'}/>} />
+                                                  <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                      
+                                          </HStack>
+      
+                                      
+      
+                                  </VStack>
+      
+                          </SafeAreaView>
+                          );
+                      }
+                       else{
+                        return (
+                          <SafeAreaView style={styles.container}>
+        
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+        
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              SOBRESSALENTE USADO
+                                          </Text>
+        
+                                          <HStack justifyContent={'space-evenly'}>
+                                            
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Item </Text>
+                                                  <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Quantidade usada </Text>
+                                                  
+                                          </HStack>
+        
+                                      <FlatList 
+                                            data = {dados.sparesArrayJobcard}
+                                            renderItem = { oneUser }
+                                            ItemSeparatorComponent = { itemSeparator }
+                                            ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                            keyExtractor = { data => data._id }
+                                            showsVerticalScrollIndicator={false}
+                                        />
+        
+                                  </VStack>
+        
+                          </SafeAreaView>
+                          );
+                  }
+        
+                  }
+        
+   
+   
+   
+   
+              
+              //FOTOS
+              function Screen8({navigation}) {
+            
+                const { fonts } = useTheme();
+                const { colors } = useTheme();
+            
+              const [images, setImages] = useState([]);
+              const [isLoading, setIsLoading] = useState(false);
+              const { width } = useWindowDimensions();
+
+              let deviceHeight = Dimensions.get('window').height;
+              let deviceWidth = Dimensions.get('window').width;
+
+            
+                          const pictures = [
                     {
                         id: 1,
-                        item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
-                        qtd_usada: '1',
+                        image: require('../../../../assets/tecnicos/jobcardphoto1.png'),
+                    
                     },
                     {
                         id: 2,
-                        item: 'AC - DB 12000 btu- R410a FG12HN/AG12HN',
-                        qtd_usada: '4',
+                            image: require('../../../../assets/tecnicos/jobcardphoto2.png'),
+                    },
+                    {
+                        id: 3,
+                        image: require('../../../../assets/tecnicos/jobcardphoto3.png'),
+                    },
+                    {
+                        id: 4,
+                        image: require('../../../../assets/tecnicos/jobcardphoto4.png'),
+                    },
+                    {
+                        id: 5,
+                        image: require('../../../../assets/tecnicos/jobcardphoto5.png'),
+                    },
+                    {
+                        id: 6,
+                    
+                        image: require('../../../../assets/tecnicos/jobcardphotoinfo6.png'),
+                    },
+                    {
+                        id: 7,
+                        image: require('../../../../assets/tecnicos/jobcardphoto7.png'),
+                      
+                    },
+                    {
+                        id: 8,
+                        image: require('../../../../assets/tecnicos/jobcardphoto8.png'),
                     }
-                  
-                ];
-      
-                    type Nav ={
-                      navigate : (value: string) => void;
-                  }
-                    const { navigate } = useNavigation<Nav>();
+                        ];
+            
+            
+                        const pickFromGal = async () => {
+                          // No permissions request is necessary for launching the image library
+                          setIsLoading(true);
+              
+                          let  resultados = await ImagePicker.launchImageLibraryAsync({
+                                  mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                                  // allowsEditing: true,
+                                  allowsMultipleSelection: true,
+                                  selectionLimit: 10,
+                                  aspect: [4, 3],
+                                  quality: 1,
+                              });
+              
+                              setIsLoading(false);
+                              console.log(resultados);
+                          
+                              resultados.assets.forEach(element => {
+                                  
+                                  if (!resultados.canceled) {
+                                      setImages(resultados.assets);
+                                      }
+                              });
+                              
+                      };
+              
+            
+                        
+                      if(dados.jobcardphotoinfo.length == 0){
+                      
+                        return (
+                          <SafeAreaView style={styles.container}>
+
+                                  <VStack bg="white" mb={'60%'} width={'100%'}>
+
+                                          <Text
+                                              color='#12375C'
+                                              mt={'8%'}
+                                              mb={'4%'}
+                                              fontFamily={fonts.body}
+                                              fontSize='md'
+                                              alignSelf={'center'}>
+                                              FOTOS
+                                          </Text>
+
+                                          <HStack justifyContent={'center'} alignItems="center">
+                                          <Icon as ={<Warning color={'red'}/>} />
+                                                  <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                                      
+                                          </HStack>
+
+                                      
+
+                                  </VStack>
+
+                          </SafeAreaView>
+                          );
+                      }                       
+                return (
+                <VStack flex={1} pb={4} mb={16} bg="white">
+            
+                    <SafeAreaView style={styles.container}>
+            
+                    <ScrollView mb='12%'>
                 
-                    const oneUser = ( {item} ) =>(
-                        <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
-      
-                            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}  >{item.jobcard_item}</Text>
-                            <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]} >{item.jobcard_quantityuse}</Text>
-                            
-                            <TouchableOpacity onPress={() => navigate('InfoSpare')}>
-                              <Icon as ={<Info color={colors.blueGray[400]}/>} />
-                            </TouchableOpacity>
-      
-                        </HStack>   
-                    )
-      
-                    function itemSeparator(){
-                        return <View style={styles.separator}/>
-                    }
-      
-                    const { fonts } = useTheme();
-                    const { colors } = useTheme();
-      
-                    if(dados.sparesArrayJobcard.length == 0){
-                      
-                      return (
-                        <SafeAreaView style={styles.container}>
-    
-                                <VStack bg="white" mb={'60%'} width={'100%'}>
-    
-                                        <Text
-                                            color='#12375C'
-                                            mt={'8%'}
-                                            mb={'4%'}
-                                            fontFamily={fonts.body}
-                                            fontSize='md'
-                                            alignSelf={'center'}>
-                                             SOBRESSALENTE USADO
-                                        </Text>
-    
-                                        <HStack justifyContent={'center'} alignItems="center">
-                                        <Icon as ={<Warning color={'red'}/>} />
-                                                <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
-                                                    
-                                        </HStack>
-    
-                                    
-    
-                                </VStack>
-    
-                        </SafeAreaView>
-                        );
-                    }
-                     else{
-                      return (
-                        <SafeAreaView style={styles.container}>
-      
-                                <VStack bg="white" mb={'60%'} width={'100%'}>
-      
-                                        <Text
-                                            color='#12375C'
-                                            mt={'8%'}
-                                            mb={'4%'}
-                                            fontFamily={fonts.body}
-                                            fontSize='md'
-                                            alignSelf={'center'}>
-                                            SOBRESSALENTE USADO
-                                        </Text>
-      
-                                        <HStack justifyContent={'space-evenly'}>
-                                          
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Item </Text>
-                                                <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Quantidade usada </Text>
-                                                
-                                        </HStack>
-      
-                                    <FlatList 
-                                          data = {dados.sparesArrayJobcard}
-                                          renderItem = { oneUser }
-                                          ItemSeparatorComponent = { itemSeparator }
-                                          ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-                                          keyExtractor = { data => data.id }
-                                          showsVerticalScrollIndicator={false}
-                                      />
-      
-                                </VStack>
-      
-                        </SafeAreaView>
-                        );
-                }
-      
-                }
-      
- 
- 
- 
- 
-            
-            //FOTOS
-            function Screen8({navigation}) {
-          
-              const { fonts } = useTheme();
-              const { colors } = useTheme();
-          
-            const [images, setImages] = useState([]);
-            const [isLoading, setIsLoading] = useState(false);
-            const { width } = useWindowDimensions();
+                    <FlatList
+                        scrollEnabled={false}
+                        data={dados.jobcardphotoinfo}
+                        renderItem={({ item }) => (
 
-            let deviceHeight = Dimensions.get('window').height;
-            let deviceWidth = Dimensions.get('window').width;
+                          <View borderWidth={3} borderColor={'white'}>
 
-          
-                        const pictures = [
-                  {
-                      id: 1,
-                      image: require('../../../../assets/tecnicos/jobcardphoto1.png'),
-                  
-                  },
-                  {
-                      id: 2,
-                          image: require('../../../../assets/tecnicos/jobcardphoto2.png'),
-                  },
-                  {
-                      id: 3,
-                      image: require('../../../../assets/tecnicos/jobcardphoto3.png'),
-                  },
-                  {
-                      id: 4,
-                      image: require('../../../../assets/tecnicos/jobcardphoto4.png'),
-                  },
-                  {
-                      id: 5,
-                      image: require('../../../../assets/tecnicos/jobcardphoto5.png'),
-                  },
-                  {
-                      id: 6,
-                  
-                      image: require('../../../../assets/tecnicos/jobcardphotoinfo6.png'),
-                  },
-                  {
-                      id: 7,
-                      image: require('../../../../assets/tecnicos/jobcardphoto7.png'),
-                    
-                  },
-                  {
-                      id: 8,
-                      image: require('../../../../assets/tecnicos/jobcardphoto8.png'),
-                  }
-                      ];
-          
-          
-                      const pickFromGal = async () => {
-                        // No permissions request is necessary for launching the image library
-                        setIsLoading(true);
-            
-                        let  resultados = await ImagePicker.launchImageLibraryAsync({
-                                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                                // allowsEditing: true,
-                                allowsMultipleSelection: true,
-                                selectionLimit: 10,
-                                aspect: [4, 3],
-                                quality: 1,
-                            });
-            
-                            setIsLoading(false);
-                            console.log(resultados);
-                        
-                            resultados.assets.forEach(element => {
-                                
-                                if (!resultados.canceled) {
-                                    setImages(resultados.assets);
-                                    }
-                            });
-                            
-                    };
-            
-          
-                      
-                    if(dados.jobcardphotoinfo.length == 0){
-                    
-                      return (
-                        <SafeAreaView style={styles.container}>
+                              <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUrl', {url: item}) }>
+                                  <RNimage
+                                  source={item}
+                                  style={{ width: width / 2, height: 250 }}
+                                  />
+                              </TouchableOpacity>
 
-                                <VStack bg="white" mb={'60%'} width={'100%'}>
+                          </View>
 
-                                        <Text
-                                            color='#12375C'
-                                            mt={'8%'}
-                                            mb={'4%'}
-                                            fontFamily={fonts.body}
-                                            fontSize='md'
-                                            alignSelf={'center'}>
-                                            FOTOS
-                                        </Text>
+                        )}
+                        numColumns={2}
+                        keyExtractor={(item) => item.image}
+                        contentContainerStyle={{ marginVertical: 10}}
+                        ListHeaderComponent={
+                        <Text
+                          color='#12375C'
+                          mt={'8%'}
+                          mb={'4%'}
+                          fontFamily={fonts.body}
+                          fontSize='md'
+                          alignSelf={'center'}>
+                          FOTOS
+                          </Text>
 
-                                        <HStack justifyContent={'center'} alignItems="center">
-                                        <Icon as ={<Warning color={'red'}/>} />
-                                                <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
-                                                    
-                                        </HStack>
-
-                                    
-
-                                </VStack>
-
-                        </SafeAreaView>
-                        );
-                    }                       
-              return (
-              <VStack flex={1} pb={4} mb={16} bg="white">
-          
-                  <SafeAreaView style={styles.container}>
-          
-                  <ScrollView mb='12%'>
-              
-                  <FlatList
-                      scrollEnabled={false}
-                      data={dados.jobcardphotoinfo}
-                      renderItem={({ item }) => (
-
-                        <View borderWidth={3} borderColor={'white'}>
-
-                            <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUrl', {url: item}) }>
-                                <RNimage
-                                source={item}
-                                style={{ width: width / 2, height: 250 }}
-                                />
-                            </TouchableOpacity>
-
-                        </View>
-
-                      )}
-                      numColumns={2}
-                      keyExtractor={(item) => item.image}
-                      contentContainerStyle={{ marginVertical: 10}}
-                      ListHeaderComponent={
-                      <Text
-                        color='#12375C'
-                        mt={'8%'}
-                        mb={'4%'}
-                        fontFamily={fonts.body}
-                        fontSize='md'
-                        alignSelf={'center'}>
-                        FOTOS
-                        </Text>
-
-                      }
-                  />
-
-
-
-
-
-
-                            <View alignItems='center' justifyContent='center' display='flex' >
-                                  <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
-                              </View>
-          
-                              <FlatList
-                      scrollEnabled={false}
-                      data={images}
-                      renderItem={({ item }) => (
-
-                        <View borderWidth={3} borderColor={'white'}>
-
-                            <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUri', {uri: item.uri}) }>
-                                <RNimage
-                                source={{uri: item.uri}}
-                                style={{ width: width / 2, height: 250 }}
-                                />
-                            </TouchableOpacity>
-
-                        </View>
-
-                      )}
-                      numColumns={2}
-                      keyExtractor={(item) => item.uri}
-                      contentContainerStyle={{ marginVertical: 10}}
-                      ListHeaderComponent={
-                        isLoading ? (
-                        <View>
-                            <Text
-                            style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
-                            A carregar...
-                            </Text>
-                            <ActivityIndicator size={"large"} />
-                        </View>
-                        ) : (
-                      
-                        <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
-                            
-                            <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
-                                  <Image size={22} color={'#A1C861'} />
-                                  <Text style={styles.text}> Galeria</Text>
-                            </TouchableOpacity>
-
-                        </HStack>
-            )
-        }
-                  />
-
-                              
-                      </ScrollView>
-          
-                  </SafeAreaView>
-              </VStack> 
-            );
-            }
-
-
-          
-
-        
-
-
-
-
-            //AUDITORIA
-                  function Screen9() {
-      
-      
-                      const data = [
-              
-                        {
-                            id: 1,
-                            nome: 'Jaime Chitereca',
-                            data_accao: '28/11/2022 10:52\nTT number criado',
-                        },
-                        {
-                            id: 2,
-                            nome: 'Jose Tovela',
-                            data_accao: '08/10/2022 14:27\nAccept the jobcard',
-                        },
-                        {
-                          id: 3,
-                          nome: 'João Bagvanji',
-                          data_accao: '18/11/2022 11:32\nInfo de viagem',
-                      }
-                      
-                    ];
-              
-                        type Nav ={
-                          navigate : (value: string) => void;
-                      }
-                        const { navigate } = useNavigation<Nav>();
-                    
-                        const oneUser = ( {item} ) =>(
-                            <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
-                              
-          
-                                  <><Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_audittrailname}</Text>
-                                  <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_audittraildate} - {item.jobcard_audittrailaction}</Text></>
-                        
-                              
-                            </HStack>   
-                        )
-              
-                        function itemSeparator(){
-                            return <View style={styles.separator}/>
                         }
-              
-                        const { fonts } = useTheme();
-                        const { colors } = useTheme();
-              
-                          return (
-                            <SafeAreaView style={styles.container}>
-              
-                                    <VStack bg="white" mb={'60%'} width={'100%'}>
-              
-                                            <Text
-                                                color='#12375C'
-                                                mt={'8%'}
-                                                mb={'4%'}
-                                                fontFamily={fonts.body}
-                                                fontSize='md'
-                                                alignSelf={'center'}>
-                                                AUDITORIA
-                                            </Text>
-              
-                                            <HStack justifyContent={'space-evenly'}>
-                                              
-                                                    <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Responsável</Text>
-                                                    <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Data - Acção</Text>
-                                            </HStack>
-              
-                                        <FlatList 
-                                              data = {dados.jobcard_audittrail}
-                                              renderItem = { oneUser }
-                                              ItemSeparatorComponent = { itemSeparator }
-                                              ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
-                                              keyExtractor = { data => data.id }
-                                              showsVerticalScrollIndicator={false}
-                                          />
-              
-                                    </VStack>
-              
-                            </SafeAreaView>
-                            );
-              
-              
-                }
+                    />
+
+
+
+
+
+
+                              <View alignItems='center' justifyContent='center' display='flex' >
+                                    <Text color='gray.600' fontFamily={fonts.body} fontSize='xs'> ADICIONAR FOTOS</Text>
+                                </View>
+            
+                                <FlatList
+                        scrollEnabled={false}
+                        data={images}
+                        renderItem={({ item }) => (
+
+                          <View borderWidth={3} borderColor={'white'}>
+
+                              <TouchableOpacity onPress={() =>   navigation.navigate('ShowPicByUri', {uri: item.uri}) }>
+                                  <RNimage
+                                  source={{uri: item.uri}}
+                                  style={{ width: width / 2, height: 250 }}
+                                  />
+                              </TouchableOpacity>
+
+                          </View>
+
+                        )}
+                        numColumns={2}
+                        keyExtractor={(item) => item.uri}
+                        contentContainerStyle={{ marginVertical: 10}}
+                        ListHeaderComponent={
+                          isLoading ? (
+                          <View>
+                              <Text
+                              style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
+                              A carregar...
+                              </Text>
+                              <ActivityIndicator size={"large"} />
+                          </View>
+                          ) : (
+                        
+                          <HStack mb={'3%'} alignContent={'center'} justifyContent={'space-evenly'}>
+                              
+                              <TouchableOpacity style={styles.formButton} onPress={pickFromGal}>
+                                    <Image size={22} color={'#A1C861'} />
+                                    <Text style={styles.text}> Galeria</Text>
+                              </TouchableOpacity>
+
+                          </HStack>
+              )
+          }
+                    />
+
+                                
+                        </ScrollView>
+            
+                    </SafeAreaView>
+                </VStack> 
+              );
+              }
+
+
+            
+
+          
+
+
+
+
+              //AUDITORIA
+                    function Screen9() {
+        
+        
+                        const data = [
+                
+                          {
+                              id: 1,
+                              nome: 'Jaime Chitereca',
+                              data_accao: '28/11/2022 10:52\nTT number criado',
+                          },
+                          {
+                              id: 2,
+                              nome: 'Jose Tovela',
+                              data_accao: '08/10/2022 14:27\nAccept the jobcard',
+                          },
+                          {
+                            id: 3,
+                            nome: 'João Bagvanji',
+                            data_accao: '18/11/2022 11:32\nInfo de viagem',
+                        }
+                        
+                      ];
+                
+                          type Nav ={
+                            navigate : (value: string) => void;
+                        }
+                          const { navigate } = useNavigation<Nav>();
+                      
+                          const oneUser = ( {item} ) =>(
+                              <HStack borderBottomColor={'grey'} borderBottomWidth={1} style={styles.item}  bgColor={'whitesmoke'}>
+                                
+            
+                                    <><Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_audittrailname}</Text>
+                                    <Text fontSize={'12'} fontFamily={fonts.body} color={colors.primary[600]}>{item.jobcard_audittraildate} - {item.jobcard_audittrailaction}</Text></>
+                          
+                                
+                              </HStack>   
+                          )
+                
+                          function itemSeparator(){
+                              return <View style={styles.separator}/>
+                          }
+                
+                          const { fonts } = useTheme();
+                          const { colors } = useTheme();
+                
+                            return (
+                              <SafeAreaView style={styles.container}>
+                
+                                      <VStack bg="white" mb={'60%'} width={'100%'}>
+                
+                                              <Text
+                                                  color='#12375C'
+                                                  mt={'8%'}
+                                                  mb={'4%'}
+                                                  fontFamily={fonts.body}
+                                                  fontSize='md'
+                                                  alignSelf={'center'}>
+                                                  AUDITORIA
+                                              </Text>
+                
+                                              <HStack justifyContent={'space-evenly'}>
+                                                
+                                                      <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C'> Responsável</Text>
+                                                      <Text fontSize={'12'} fontFamily={fonts.heading} color='#12375C' mx={'2%'}> Data - Acção</Text>
+                                              </HStack>
+                
+                                          <FlatList 
+                                                data = {dados.jobcard_audittrail}
+                                                renderItem = { oneUser }
+                                                ItemSeparatorComponent = { itemSeparator }
+                                                ListEmptyComponent =  {<Text>Esta é uma lista de detalhes de REPARAÇÃO DE EQUIPAMENTOS</Text>}
+                                                keyExtractor = { data => data._id }
+                                                showsVerticalScrollIndicator={false}
+                                            />
+                
+                                      </VStack>
+                
+                              </SafeAreaView>
+                              );
+                
+                
+                  }
               
 
 
