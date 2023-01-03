@@ -2486,8 +2486,8 @@ import { Load } from '../../../../components/Load';
                   name="one"
                   component={Screen1}
                   options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Note color={color} size={size}/>} />
+                      tabBarIcon:(({color})=>(
+                          <Icon as ={<Note color={color} size={20}/>} />
                       )),
                   }}
                 />
@@ -2496,8 +2496,8 @@ import { Load } from '../../../../components/Load';
                   name="two"
                   component={Screen2}
                   options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<User color={color} size={size}/>} />
+                      tabBarIcon:(({color})=>(
+                          <Icon as ={<User color={color} size={20}/>} />
                       )),
                   }}
                 />
@@ -2506,8 +2506,8 @@ import { Load } from '../../../../components/Load';
                   name="three"
                   component={Screen3}
                   options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<MagnifyingGlass color={color} size={size}/>} />
+                      tabBarIcon:(({color})=>(
+                          <Icon as ={<MagnifyingGlass color={color} size={20}/>} />
                       )),
                   }}
                 /> 
@@ -2516,8 +2516,8 @@ import { Load } from '../../../../components/Load';
                   name="four"
                   component={Screen11}
                   options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Lightning color={color} size={size}/>} />
+                      tabBarIcon:(({color})=>(
+                          <Icon as ={<Lightning color={color} size={20}/>} />
                       )),
                   }}
                 />
@@ -2526,8 +2526,8 @@ import { Load } from '../../../../components/Load';
                   name="five"
                   component={Screen12}
                   options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<LightbulbFilament color={color} size={size}/>} />
+                      tabBarIcon:(({color})=>(
+                        <Icon as ={<LightbulbFilament color={color} size={20}/>} />
                       )),
                   }}   
                 />
@@ -2537,8 +2537,8 @@ import { Load } from '../../../../components/Load';
                   name="six"
                   component={Screen13}
                   options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<Wrench color={color} size={size}/>} />
+                      tabBarIcon:(({color})=>(
+                        <Icon as ={<Wrench color={color} size={20}/>} />
                       )),
                   }}
                 /> 
@@ -2547,8 +2547,8 @@ import { Load } from '../../../../components/Load';
                   name="seven"
                   component={Screen14}
                   options={{
-                      tabBarIcon:(({color, size})=>(
-                          <Icon as ={<Archive color={color} size={size}/>} />
+                      tabBarIcon:(({color})=>(
+                          <Icon as ={<Archive color={color} size={20}/>} />
                       )),
                   }}
                 /> 
@@ -2557,8 +2557,8 @@ import { Load } from '../../../../components/Load';
                    name="eight"
                    component={Screen10}
                    options={{
-                       tabBarIcon:(({color, size})=>(
-                         <Icon as ={<Image color={color} size={size}/>} />
+                       tabBarIcon:(({color})=>(
+                         <Icon as ={<Image color={color} size={20}/>} />
                        )),
                   }}
                 />
@@ -2568,8 +2568,8 @@ import { Load } from '../../../../components/Load';
                   name="nine"
                   component={Screen9}
                   options={{
-                      tabBarIcon:(({color, size})=>(
-                        <Icon as ={<Eye color={color} size={size}/>} />
+                      tabBarIcon:(({color})=>(
+                        <Icon as ={<Eye color={color} size={20}/>} />
                       )),
                   }}
                 /> 

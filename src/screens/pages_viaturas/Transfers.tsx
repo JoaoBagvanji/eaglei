@@ -28,7 +28,7 @@ export default function MyStack() {
    );
  }
 
-export function Transferencia({navigation}) {
+export function Transferencia(props) {
 
 
 
@@ -134,7 +134,10 @@ const data = [
                     </View>
     
                     <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                      <Icon>{data[0].icon2}</Icon>
+                      <TouchableOpacity activeOpacity={0.7} onPress={() =>api.get(`/viatura/transferencia/aprovar/${props.route.params.id}`).then(d=>{navigate('Viatura')})} >
+                        <Icon>{data[0].icon2}</Icon>
+                      </TouchableOpacity>
+                      
                     </View>
     
                     
