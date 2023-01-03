@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { View, Button, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Calendar, Car, ClosedCaptioning, FirstAidKit, Gauge, Headlights, Jeep, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera } from 'phosphor-react-native';
+import { Calendar, Car, ClosedCaptioning, FirstAidKit, FloppyDisk, Gauge, Headlights, Jeep, Note, NumberCircleZero, ThumbsDown, ThumbsUp, User, VideoCamera } from 'phosphor-react-native';
 import { Text, Icon, useTheme, VStack, HStack, ScrollView } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -10,7 +10,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { styles } from '../pages_inspeccao/formStyles';
 import { RadioButton, TextInput } from 'react-native-paper';
 import { useState } from 'react';
-
+import { Button } from '../../../components/Button';
 
 import { NavigationContainer, StackActions, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -58,24 +58,7 @@ function Screen1() {
   const [openPara, setOpenPara] = useState(false);
   const [destino, setDestino] = useState([]);
   const [itemsPara, setItemsPara] = useState([
-    { label: 'Abdul Tauate', value: 'Abdul Tauate' },
-    { label: 'Abilio Mabunda', value: 'Abilio Mabunda' },
-    { label: 'Aderito Machava', value: 'Aderito Machava' },
-    { label: 'Adonizio Matavele', value: 'Adonizio Matavele' },
-    { label: 'Aissa Manuel', value: 'Aissa Manuel' },
-    { label: 'Albertino Changule', value: 'Albertino Changule' },
-    { label: 'Alvaro Chicuele', value: 'Alvaro Chicuele' },
-    { label: 'Anifo Castro', value: 'Anifo Castro' },
-    { label: 'Adolfo Castro', value: 'Adolfo Castro' },
-    { label: 'Antonio Mahumane', value: 'Antonio Mahumane' },
-    { label: 'Antonio Junior', value: 'Antonio Junior' },
-    { label: 'Argentina Parruque', value: 'Argentina Parruque' },
-    { label: 'Armando Carre', value: 'Armando Carre' },
-    { label: 'Armando Sidumo', value: 'Armando Sidumo' },
-    { label: 'Armando Vilanculos', value: 'Armando Vilanculos' },
-    { label: 'Arnaldo Buque', value: 'Arnaldo Buque' },
-    { label: 'Arnaldo Guilossa', value: 'Arnaldo Guilossa' },
-    { label: 'Arnaldo Tembe', value: 'Arnaldo Tembe' },
+    { id:0,label: '', value: '' },
 
   ]);
 
@@ -88,7 +71,7 @@ function Screen1() {
     matricula: '',
     marca:'',
     datta:'',
-    destino: [],
+    destino: [{ id:0,label: '', value: '' }],
   })
   React.useEffect(() => {
     (async () => {
@@ -183,26 +166,28 @@ function Screen1() {
           justifyContent: 'center',
           paddingHorizontal: 15
         }}>
-          <DropDownPicker
-            listMode="MODAL"
-            autoScroll={true}
-            textStyle={{
-              fontSize: 14,
-              fontFamily: fonts.body ,
-            }}
-            placeholder="Escolha a opção"
-            open={openPara}
-            value={destino}
-            items={itemsPara}
-            setOpen={setOpenPara}
-            setValue={setDestino}
-            setItems={setItemsPara}
-
-            theme="LIGHT"
-            multiple={false}
-            mode="BADGE"
-            badgeDotColors={["#A1C861"]}
-          />
+          
+            <DropDownPicker
+              listMode="MODAL"
+              autoScroll={true}
+              textStyle={{
+                fontSize: 14,
+                fontFamily: fonts.body ,
+              }}
+              placeholder="Escolha a opção"
+              open={openPara}
+              value={destino}
+              items={insp.destino}
+              setOpen={setOpenPara}
+              setValue={setDestino}
+              setItems={setDestino}
+              loading={true}
+              theme="LIGHT"
+              multiple={false}
+              mode="BADGE"
+              badgeDotColors={["#A1C861"]}
+            />
+          
         </View>
 
       </View>
@@ -1300,7 +1285,11 @@ function Screen7({ navigation }) {
         </HStack>
 
         <VStack mt={'7%'} mx={'38%'}>
-          <Button color={'#12375C'} title='Gravar' onPress={onGravar} />
+        <Button 
+            leftIcon={<Icon as={<FloppyDisk color={colors.white} size={20}/>} ml={1} p={2}/>} 
+            title='Gravar' 
+            onPress={() =>api.post('/viatura/transferencia/novo',isFiled).then(d=>{navigate('Viatura')})} 
+          />
         </VStack>
       </VStack>
 
