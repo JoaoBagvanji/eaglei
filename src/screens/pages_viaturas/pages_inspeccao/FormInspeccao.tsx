@@ -68,12 +68,6 @@ var isFiled = {
 
 const StackRoutes = createStackNavigator();
 
-function submit(pp){
-  console.log(isFiled);
-  console.log(pp)
-}
-
-
 function Screen1() {
   const [insp, setInsp] = useState({
     matricula: '',
