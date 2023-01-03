@@ -82,9 +82,11 @@ import { Load } from '../../../../components/Load';
                    
                  api.get(`/tarefa/detalhesJobcardCallout/${props.route.params.id}`).then(d=>{
                 
-                   setDados(d.data);
-                    console.log("-------DADOS DA ROTA--------");
-                    console.log(d.data.jobcard_analisederiscoAmbiental);
+                  setDados(d.data);
+                   console.log("-------DADOS DA ANALISE DE RISCO--------");
+                   console.log(d.data.jobcard_analisederisco);
+                   console.log("-------DADOS DA ANALISE DE RISCO ambiental--------");
+                   console.log(d.data.jobcard_analisederiscoAmbiental);
                     setIsLoading(false);
 
 
@@ -682,12 +684,44 @@ import { Load } from '../../../../components/Load';
 
 
 
+
         //AVAL
             function Screen3() {
               const {colors} = useTheme();
               const {fonts} = useTheme();
-
           
+
+              if(!dados.jobcard_analisederisco && !dados.jobcard_analisederiscoAmbiental){
+                        
+                return (
+                  <SafeAreaView style={styles.container}>
+  
+                          <VStack bg="white" mb={'60%'} width={'100%'}>
+  
+                                  <Text
+                                      color='#12375C'
+                                      mt={'8%'}
+                                      mb={'4%'}
+                                      fontFamily={fonts.body}
+                                      fontSize='md'
+                                      alignSelf={'center'}>
+                                      AVALIAÇÃO DE RISCO
+                                  </Text>
+  
+                                  <HStack justifyContent={'center'} alignItems="center">
+                                           <Icon as ={<Warning color={'red'}/>} />
+                                          <Text fontSize={'12'} fontFamily={fonts.body} > Sem dados por mostrar. </Text>
+                                              
+                                  </HStack>
+  
+                              
+  
+                          </VStack>
+  
+                  </SafeAreaView>
+                  );
+              }
+               else{
               return (
                 <VStack flex={1} bg="white">
                           <SafeAreaView style={styles.container}>
@@ -698,7 +732,7 @@ import { Load } from '../../../../components/Load';
 
                                      
 
-                                          <View alignItems='center' justifyContent='center' display='flex' mt={4}>
+                                         {dados.jobcard_analisederisco && <> <View alignItems='center' justifyContent='center' display='flex' mt={4}>
                                               <Text color='#12375C' fontFamily={fonts.body} fontSize='md'>
                                               AVALIAÇÃO DE RISCO 
                                               </Text>
@@ -1239,9 +1273,10 @@ import { Load } from '../../../../components/Load';
                                               width="100%"
                                               alignSelf={'center'}
                                               my={'10%'}/>
+                                              </>
+                                              }
 
-
-
+                                          {dados.jobcard_analisederiscoAmbiental && <>
                                           <View alignItems='center' justifyItems={'center'} justifyContent='center' display='flex'>
                                               <Text color='#12375C' fontFamily={fonts.body} fontSize='md' alignSelf={'center'}>
                                               AVALIAÇÃO DO IMPACTO AMBIENTAL DE ÚLTIMO MINUTO
@@ -1475,7 +1510,8 @@ import { Load } from '../../../../components/Load';
                                             <Text style={styles.currentText}> Observações </Text>
                                             <TextArea borderColor={'black'} width={'80%'} value={ambiental.comments} alignSelf='center' aria-label="t1Disabled" placeholder="" isDisabled autoCompleteType={undefined} />
                                           
-                                           
+                                            </>
+                                              }
                                             
                                       </ScrollView>
                                   </KeyboardAvoidingView>
@@ -1484,6 +1520,7 @@ import { Load } from '../../../../components/Load';
                           </SafeAreaView>
                 </VStack>
               );
+                                            }
               
           
            }
@@ -2476,7 +2513,7 @@ import { Load } from '../../../../components/Load';
                       )),
                   }}
                 /> 
-            
+            {/* 
                 <Tab.Screen
                   name="four"
                   component={Screen11}
@@ -2537,7 +2574,7 @@ import { Load } from '../../../../components/Load';
                         <Icon as ={<Eye color={color} size={size}/>} />
                       )),
                   }}
-                /> 
+                />  */}
 
                                
               </Tab.Navigator>

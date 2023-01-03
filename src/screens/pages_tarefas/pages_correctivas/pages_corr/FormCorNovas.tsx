@@ -82,7 +82,7 @@ import api from '../../../../services/api';
                 
                    setDados(d.data);
                     console.log("-------DADOS DA ROTA--------");
-                    console.log(d.data.jobcard_analisederiscoAmbiental);
+                    console.log(d.data.jobcard_analisederisco);
 
 
 
