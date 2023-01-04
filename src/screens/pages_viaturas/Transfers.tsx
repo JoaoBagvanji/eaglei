@@ -130,14 +130,13 @@ const data = [
                   <Text fontFamily={fonts.heading}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.datta}</Text>
                   {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
                    <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                      <Icon>{data[0].icon}</Icon>
+                      <TouchableOpacity activeOpacity={0.6} onPress={() =>api.get('/viatura/transferencia/aprovar/${id: item._id}').then(d=>{console.log('Aprovado')})}>
+                          <Icon>{data[0].icon}</Icon>
+                      </TouchableOpacity>
                     </View>
     
                     <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                      <TouchableOpacity activeOpacity={0.7} onPress={() =>api.get(`/viatura/transferencia/aprovar/${props.route.params.id}`).then(d=>{navigate('Viatura')})} >
-                        <Icon>{data[0].icon2}</Icon>
-                      </TouchableOpacity>
-                      
+                      <Icon>{data[0].icon2}</Icon>
                     </View>
     
                     
