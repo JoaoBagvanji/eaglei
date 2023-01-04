@@ -91,6 +91,8 @@ export default function MyStack() {
       },
         
     ];
+
+    
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
     const [ showPosition, setShowPosition ] = useState();

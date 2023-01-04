@@ -2303,7 +2303,7 @@ import { Load } from '../../../../components/Load';
                             return (
                               <SafeAreaView style={styles.container}>
                 
-                                      <VStack bg="white" mb={'60%'} width={'100%'}>
+                                      <VStack bg="white" mb={'50%'} width={'100%'}>
                 
                                               <Text
                                                   color='#12375C'
