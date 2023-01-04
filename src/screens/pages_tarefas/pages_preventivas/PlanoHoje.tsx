@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { VStack, HStack, View, Text, Icon, useTheme, Box, IconButton } from 'native-base';
 import { Info, FilePlus ,Package,Camera, Handshake,CaretDown, CaretUp, HandPalm,ThumbsUp ,MapPinLine } from 'phosphor-react-native';
 import { FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
@@ -6,6 +6,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Action from '../pages_projectos/pages_pro/ActionPreventiva';
 import prevHoje from '../../../routes/r_preventivas/prevHoje.routes';
 import { useNavigation } from '@react-navigation/native';
+import api from '../../../services/api';
+import { AuthContext } from '../../../context/auth';
+import { Load } from '../../../components/Load';
 
 const Stack = createStackNavigator();
  
@@ -24,6 +27,24 @@ export default function MyStack(){
 
  function PlanoHoje({navigation}) {
 
+        const[isloading, setIsLoading]=useState(true);
+        const [dados, setDados] = useState ({});
+
+        const [aceita, setAceita] = useState([]);
+
+        useEffect(()=>{
+          (async()=>{
+          
+          api.get("tarefa/preventiva/newhoje").then(d=>{
+          setDados(d.data);
+          setIsLoading(false);
+          console.log(d.data); 
+          });
+    
+          })()
+          },[])
+
+
   type Nav ={
     navigate : (value: string) => void;
   }
@@ -33,58 +54,77 @@ export default function MyStack(){
   function handleInfo(){
     navigate('prevHoje') as never;
   }
+
+  const handleAceita = () => {
+    if (!aceita)
+    alert('Já possui uma manutenção em progresso!');
+}
+
+  const {utilizadorr}=useContext(AuthContext);
   
   const handleAction = () => {
     navigation.navigate('Action') as never;
 }
 
-    const data = [
-        {
-            id: 1,
-            nome: '4552, Matola',
-            info: 'Mario Joaquim, estado: novos',
-            image: require('../../../assets/avatars/tower2.png'),
-            icon: <Icon as ={<HandPalm    color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<MapPinLine     color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake      color='#A1C861' size={16} />} />,
-        },
-        {
-            id: 2,
-            nome: '4352, Pateke',
-            info: 'Samuel Joaquim, estado: novos',
-            image: require('../../../assets/avatars/tower2.png'),
-            icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
-        },
-        {
-            id: 3,
-            nome: '4652, Museu',
-            info: 'David Joaquim, estado: novos',
-            image: require('../../../assets/avatars/tower2.png'),
-            icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
-            icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
-            icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
-            icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-            icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
-        },
-        {
-          id: 4,
-          nome: '5992, Chibuto',
-          info: 'Helio Joaquim, estado: novos',
-          image: require('../../../assets/avatars/tower2.png'),
-          icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
-          icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
-          icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
-          icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
-          icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
-      },
-        
-    ];
+const data = [
+  {
+      id: 1,
+      nome: '4552, Matola',
+      info: 'Mario Joaquim, estado: novos',
+      image: require('../../../assets/avatars/tower2.png'),
+      dataCenter: require('../../../assets/avatars/datacenter.png'),
+      power: require('../../../assets/avatars/generator----.png'),
+      dce: require('../../../assets/avatars/AC.png'),
+      icon: <Icon as ={<HandPalm    color='#A1C861' size={16} />} />,
+      icon2: <Icon as ={<ThumbsUp  color='#A1C861' size={16} />} />,
+      icon3: <Icon as ={<MapPinLine     color='#A1C861' size={16} />} />,
+      icon4: <Icon as ={<Camera    color='#A1C861' size={16} />} />,
+      icon5: <Icon as ={<Handshake      color='#A1C861' size={16} />} />,
+  },
+  {
+      id: 2,
+      nome: '4352, Pateke',
+      info: 'Samuel Joaquim, estado: novos',
+      image: require('../../../assets/avatars/tower2.png'),
+      dataCenter: require('../../../assets/avatars/datacenter.png'),
+      power: require('../../../assets/avatars/generator----.png'),
+      dce: require('../../../assets/avatars/AC.png'),
+      icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
+      icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
+      icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
+      icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
+      icon5: <Icon as ={<Handshake  color='#A1C861' size={16} />} />,
+  },
+  {
+      id: 3,
+      nome: '4652, Museu',
+      info: 'David Joaquim, estado: novos',
+      image: require('../../../assets/avatars/tower2.png'),
+      dataCenter: require('../../../assets/avatars/datacenter.png'),
+      power: require('../../../assets/avatars/generator----.png'),
+      dce: require('../../../assets/avatars/AC.png'),
+      icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
+      icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
+      icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
+      icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
+      icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+  },
+  {
+    id: 4,
+    nome: '5992, Chibuto',
+    info: 'Helio Joaquim, estado: novos',
+    image: require('../../../assets/avatars/tower2.png'),
+    dataCenter: require('../../../assets/avatars/datacenter.png'),
+    power: require('../../../assets/avatars/generator----.png'),
+    dce: require('../../../assets/avatars/AC.png'),
+    icon: <Icon as ={<HandPalm   color='#A1C861' size={16} />} />,
+    icon2: <Icon as ={<ThumbsUp color='#A1C861' size={16} />} />,
+    icon3: <Icon as ={<Package  color='#A1C861' size={16} />} />,
+    icon4: <Icon as ={<Camera  color='#A1C861' size={16} />} />,
+    icon5: <Icon as ={<Handshake   color='#A1C861' size={16} />} />,
+},
+  
+];
 
     const val_init = Array.from({ length: data.length}, (v,p) => false)
     const [shouldShow, setShouldShow] = useState(val_init);
@@ -101,51 +141,138 @@ export default function MyStack(){
       setShouldShow(val_sec);
     }
 
-    const oneUser = ( {item} ) =>(
-        <View style={styles.item}>
-            <View style={styles.avatarContainer }>
-              <Image source={item.image} style={styles.avatar}/>
-            </View>
-            <Box flexDirection={'column'}>
-            
-            <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.nome}</Text>
-            <View flexDirection={'column'} margin='0.5' >
-              <Text fontFamily={fonts.body}  fontSize={12} color={colors.blueGray[400]} marginLeft={5}>{item.info}</Text>
-              {shouldShow[item.id] ? (<View display='flex' flexDirection='row' justifyContent='space-around'>
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <TouchableOpacity onPress={handleAction}>
-                        <Icon>{item.icon}</Icon>
-                  </TouchableOpacity>  
-                </View>
-
-                
-                <View marginLeft={4} marginTop={2} backgroundColor='primary.700' borderRadius={40} size={8} alignItems='center' justifyContent='center' display='flex'>
-                  <Icon>{item.icon2}</Icon>
-                </View>
-
-
-                
-              </View>) : null}
+    const oneUser = ({item}) => (
+      
+      <View style={styles.item}>
+  
+                  {(item.departamento == "Telco") &&
+                  <View style={styles.avatarContainer }>
+                    <Image source={data[0].image} style={styles.avatar}/>
+                  </View>}
+  
+                  {(item.departamento == "Data Center") &&
+                  <View style={styles.avatarContainer }>
+                    <Image source={data[0].dataCenter} style={styles.picsContainer}/>
+                  </View>}
+  
+                  {(item.departamento == "Climatização e Electricidade" || item.departamento == "HVAC") &&
+                  <View style={styles.avatarContainer }>
+                    <Image source={data[0].dce} style={styles.picsContainer}/>
+                  </View>}
+  
+                  {(item.departamento == "Energia" || item.departamento == "Power") &&
+                  <View style={styles.avatarContainer }>
+                    <Image source={data[0].image} style={styles.picsContainer}/>
+                  </View>}
+  
+  
+  
+      <Box flexDirection={'column'}>
+  
+          <Text fontFamily={fonts.heading} color={colors.primary[600]} marginLeft={5}>{item.jobcard_site},&nbsp;{item.sitename}</Text>
+  
+          <View flexDirection={'column'} margin='0.5'>
+              <Text
+                  fontFamily={fonts.body}
+                  fontSize={12}
+                  color={colors.blueGray[400]}
+                  marginLeft={5}>{item.jobcard_tecniconome}
+              </Text>
               
-            </View>
-            </Box>
-            <View display='flex' flexDirection='column' alignContent='space-between'>
-              <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 2}}>
-              <Icon as ={<Info color={colors.blueGray[400]}/>} />
-              </TouchableOpacity>
-              <View >
-                {!shouldShow[item.id] ? (<IconButton backgroundColor={colors.green[700]} borderRadius={20}
-                  icon={<CaretDown  color={colors.primary[700]} size={10}/>}
-                  onPress={() => handleDropDownItems(item.id)}
-                  />) : (<IconButton backgroundColor={colors.red[300]} borderRadius={20}
-                  icon={<CaretUp   color={colors.primary[700]} size={10}/>}
-                  onPress={() => handleHideItems(item.id)}
-                  />)} 
-              </View>
-            </View>
-            
-        </View>   
-    )
+              {shouldShow[item.id]
+                      ? (
+                          <View display='flex' flexDirection='row' justifyContent='space-around'>
+  
+                              {  (utilizadorr.nome == item.jobcard_linemanager || utilizadorr.nivel_acesso == "admin" || utilizadorr.funcao == "Director Tecnico" || 
+                                   (utilizadorr.funcao =="Regional Manager" && utilizadorr.regiao == item.jobcard_regiao)) &&
+                                   
+                              <View
+                                  marginLeft={4}
+                                  marginTop={2}
+                                  backgroundColor='primary.700'
+                                  borderRadius={40}
+                                  size={8}
+                                  alignItems='center'
+                                  justifyContent='center'
+                                  display='flex'>
+  
+                       
+                                   
+                                        <TouchableOpacity onPress={handleAction}>
+                                              <Icon>{data[0].icon}</Icon>
+                                        </TouchableOpacity>
+                                   </View>
+                                   }
+                                
+  
+                             
+                                {  (utilizadorr.nome == item.jobcard_tecniconome ) &&
+                              <View
+                                  marginLeft={4}
+                                  marginTop={2}
+                                  backgroundColor='primary.700'
+                                  borderRadius={40}
+                                  size={8}
+                                  alignItems='center'
+                                  justifyContent='center'
+                                  display='flex'>
+                                  <TouchableOpacity onPress={handleAceita}>
+                                              <Icon>{data[0].icon2}</Icon>
+                                        </TouchableOpacity>
+                              </View>
+                          }
+  
+                          </View>
+                      )
+                      : null
+              }
+  
+          </View>
+      </Box>
+  
+  
+      <View display='flex' flexDirection='column' alignContent='space-between'>
+          <TouchableOpacity
+              onPress={() =>   navigation.navigate('FormCorNovas', {id: item._id}) }
+              style={{
+                  paddingBottom: 10,
+                  marginLeft: 2
+              }}>
+              <Icon as = {<Info color={colors.blueGray[400]}/>}/>
+          </TouchableOpacity>
+          <View >
+              {
+                  !shouldShow[item.id]
+                      ? (
+                          <IconButton
+                              backgroundColor={colors.green[700]}
+                              borderRadius={20}
+                              icon={<CaretDown color = {
+                                  colors.primary[700]
+                              }
+                              size = {
+                                  10
+                              } />}
+                              onPress={() => handleDropDownItems(item.id)}/>
+                      )
+                      : (
+                          <IconButton
+                              backgroundColor={colors.red[300]}
+                              borderRadius={20}
+                              icon={<CaretUp color = {
+                                  colors.primary[700]
+                              }
+                              size = {
+                                  10
+                              } />}
+                              onPress={() => handleHideItems(item.id)}/>
+                      )
+              }
+          </View>
+      </View>
+  
+  </View>
+      )
 
     function itemSeparator(){
         return <View style={styles.separator}/>
@@ -154,6 +281,16 @@ export default function MyStack(){
     const { fonts } = useTheme();
     const { colors } = useTheme();
 
+
+
+    if(isloading)
+    return(
+        <Load/>
+
+    )
+    
+    else
+{
   return (
     <VStack flex={1} pb={6} bg="white">
         
@@ -183,7 +320,9 @@ export default function MyStack(){
       </VStack>
     </VStack>
   );
-}
+}}
+
+
 
 
 const styles=StyleSheet.create({
@@ -211,6 +350,10 @@ const styles=StyleSheet.create({
         width: 50,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    picsContainer:{
+      height: 50,
+      width: 50,
     },
     avatar:{
         height: 35,
